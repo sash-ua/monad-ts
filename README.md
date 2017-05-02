@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/sash-ua/monad-ts.svg?branch=master)](https://travis-ci.org/sash-ua/monad-ts)
-[![Downloads][downloads-image]](http://npm-stat.com/charts.html?package=monad-ts)
+[![npm](https://img.shields.io/npm/dw/localeval.svg)](https://github.com/sash-ua/monad-ts)
 
 # Monad-ts
 

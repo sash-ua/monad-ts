@@ -1,56 +1,56 @@
 window.esdocSearchIndex = [
   [
-    "monad/src/error.js~errorm",
+    "monad-ts/src/error.js~errorm",
     "class/src/error.js~ErrorM.html",
-    "<span>ErrorM</span> <span class=\"search-result-import-path\">Monad/src/error.js</span>",
+    "<span>ErrorM</span> <span class=\"search-result-import-path\">monad-ts/src/error.js</span>",
     "class"
   ],
   [
-    "monad/src/flow.js~flow",
+    "monad-ts/src/flow.js~flow",
     "class/src/flow.js~Flow.html",
-    "<span>Flow</span> <span class=\"search-result-import-path\">Monad/src/flow.js</span>",
+    "<span>Flow</span> <span class=\"search-result-import-path\">monad-ts/src/flow.js</span>",
     "class"
   ],
   [
-    "monad/src/identity.js~identity",
+    "monad-ts/src/identity.js~identity",
     "class/src/identity.js~Identity.html",
-    "<span>Identity</span> <span class=\"search-result-import-path\">Monad/src/identity.js</span>",
+    "<span>Identity</span> <span class=\"search-result-import-path\">monad-ts/src/identity.js</span>",
     "class"
   ],
   [
-    "monad/src/list.js~list",
+    "monad-ts/src/list.js~list",
     "class/src/list.js~List.html",
-    "<span>List</span> <span class=\"search-result-import-path\">Monad/src/list.js</span>",
+    "<span>List</span> <span class=\"search-result-import-path\">monad-ts/src/list.js</span>",
     "class"
   ],
   [
-    "monad/src/maybe.js~maybe",
+    "monad-ts/src/maybe.js~maybe",
     "class/src/maybe.js~Maybe.html",
-    "<span>Maybe</span> <span class=\"search-result-import-path\">Monad/src/maybe.js</span>",
+    "<span>Maybe</span> <span class=\"search-result-import-path\">monad-ts/src/maybe.js</span>",
     "class"
   ],
   [
-    "monad/src/monad.js~monad",
+    "monad-ts/src/monad.js~monad",
     "class/src/monad.js~Monad.html",
-    "<span>Monad</span> <span class=\"search-result-import-path\">Monad/src/monad.js</span>",
+    "<span>Monad</span> <span class=\"search-result-import-path\">monad-ts/src/monad.js</span>",
     "class"
   ],
   [
-    "monad/src/state.js~state",
+    "monad-ts/src/state.js~state",
     "class/src/state.js~State.html",
-    "<span>State</span> <span class=\"search-result-import-path\">Monad/src/state.js</span>",
+    "<span>State</span> <span class=\"search-result-import-path\">monad-ts/src/state.js</span>",
     "class"
   ],
   [
-    "monad/src/services/cast.js~cast",
+    "monad-ts/src/services/cast.js~cast",
     "function/index.html#static-function-cast",
-    "<span>cast</span> <span class=\"search-result-import-path\">Monad/src/services/cast.js</span>",
+    "<span>cast</span> <span class=\"search-result-import-path\">monad-ts/src/services/cast.js</span>",
     "function"
   ],
   [
-    "monad/src/services/clone.js~clone",
+    "monad-ts/src/services/clone.js~clone",
     "function/index.html#static-function-clone",
-    "<span>clone</span> <span class=\"search-result-import-path\">Monad/src/services/clone.js</span>",
+    "<span>clone</span> <span class=\"search-result-import-path\">monad-ts/src/services/clone.js</span>",
     "function"
   ],
   [
@@ -453,12 +453,6 @@ window.esdocSearchIndex = [
     "src/identity.js",
     "file/src/identity.js.html",
     "src/identity.js",
-    "file"
-  ],
-  [
-    "src/index.js",
-    "file/src/index.js.html",
-    "src/index.js",
     "file"
   ],
   [
