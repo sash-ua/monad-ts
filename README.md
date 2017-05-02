@@ -54,7 +54,7 @@ One of the main ideas of functional programming is to use pure functions as much
 don't do any kind of side-effects. At the same time the majority of programs should operate with side-effects in
 process. Monads allow us to do all the side-effecting computations using pure functions effectively.
 
-**[API:](https://sash-ua.github.io/monad-ts/)**
+## [API](https://sash-ua.github.io/monad-ts/)
 
 ### Ways to use:
 
