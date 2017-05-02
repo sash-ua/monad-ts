@@ -1,6 +1,18 @@
 {
-  "name": "Monad",
+  "name": "Monad-ts",
   "version": "0.0.1",
+  "description": "Monad-ts is a small (7kb) library implements some of key monads and way to chain them in a pipe (flow) in JavaScript",
+  "homepage": "https://github.com/sash-ua/monad-ts",
+  "keywords": [
+    "monad-library",
+    "monads",
+    "typescript",
+    "javascript",
+    "state",
+    "monad-ts",
+    "functional-js",
+    "functional-programming"
+  ],
   "scripts": {
     "build": "npm-run-all -p -r tsc:watch webpack  lite",
     "build:prod": "npm-run-all -p -r tsc:watch webpack:prod  lite",
@@ -16,6 +28,7 @@
     "esdoc": "esdoc",
     "doc:gen": "npm-run-all -s esdoc lite:dg"
   },
+  "main": "index.js",
   "licenses": [
     {
       "type": "Apache 2.0"
