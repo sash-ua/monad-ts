@@ -1,0 +1,52 @@
+sudo: false
+dist: trusty
+
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+
+language: node_js
+
+node_js:
+  - 'node'
+  - '7'
+
+group: stable
+
+os:
+  - winows
+  - linux
+  - osx
+
+branches:
+  only:
+    - master
+
+install:
+  - npm install
+
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew outdated xctool || brew upgrade xctool; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" || "$TRAVIS_OS_NAME" == "winows" ]]; then export CHROME_BIN=chromium-browser; fi  # Karma CI
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew cask install google-chrome; fi  # Karma CI
+  - if [[ "$TRAVIS_OS_NAME" == "linux" || "$TRAVIS_OS_NAME" == "winows" ]]; then export DISPLAY=:99.0; fi
+
+before_script:
+  - if [[ "$TRAVIS_OS_NAME" == "linux" || "$TRAVIS_OS_NAME" == "winows" ]]; then sh -e /etc/init.d/xvfb start; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" || "$TRAVIS_OS_NAME" == "winows" ]]; then nohup bash -c "webdriver-manager start 2>&1 &"; fi  # Protractor CI
+
+script:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" || "$TRAVIS_OS_NAME" == "winows" ]]; then npm run test; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then npm run test; fi
+
+notifications:
+  email: false
+
+cache:
+  directories:
+    - node_modules
+

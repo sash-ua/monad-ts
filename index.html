@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Monad</title>
+    <script type="text/javascript" src="lib/monad_ts.js"></script>
+    <!--<script type="text/javascript" src="lib/monad_ts.min.js"></script>-->
+</head>
+<body>
+<script>
+    var m = new Monad_ts.State({q:1, w:2});
+    console.log(m.get());
+    var maybe = new Monad_ts.Maybe();
+    var z = {
+        url: 'http://...',
+        getUrl: function (){
+            return this.url;
+        }
+    };
+    console.log(maybe.bind(r => r.getUrl(), z));
+</script>
+</body>
+</html>
