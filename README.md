@@ -1,6 +1,5 @@
-[![Build Status](https://travis-ci.org/sash-ua/monad-ts.svg?branch=master)](https://travis-ci
-.org/sash-ua/monad-ts)
-![Downloads][downloads-image](http://npm-stat.com/charts.html?package=monad-ts)
+[![Build Status](https://travis-ci.org/sash-ua/monad-ts.svg?branch=master)](https://travis-ci.org/sash-ua/monad-ts)
+[![Downloads][downloads-image]](http://npm-stat.com/charts.html?package=monad-ts)
 
 # Monad-ts
 
