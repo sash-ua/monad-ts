@@ -2,6 +2,7 @@
 import {Flow} from "../src/flow";
 import {cast} from "../src/services/cast";
 import {List} from "../src/list";
+import {State} from "../src/state";
 
 describe('Flow: ',()=>{
     const list = new List();

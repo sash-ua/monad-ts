@@ -3,11 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Monad</title>
-    <script type="text/javascript" src="lib/monad_ts.js"></script>
-    <!--<script type="text/javascript" src="lib/monad_ts.min.js"></script>-->
+    <script type="text/javascript" src="lib/monad_ts.min.js"></script>
+    <!--<script type="text/javascript" src="lib/monad_ts.js"></script>-->
 </head>
 <body>
 <script>
+    var func = (v) => {
+        v.x=10;
+        return v;
+    };
+    var f = new Monad_ts.Flow({x: 1}).bind(v=>func(v)).subscribe();
+    console.log(f);
     var m = new Monad_ts.State({q:1, w:2});
     console.log(m.get());
     var maybe = new Monad_ts.Maybe();

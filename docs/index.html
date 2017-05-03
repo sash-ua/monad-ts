@@ -48,7 +48,7 @@
 <div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><p><a href="https://travis-ci.org/sash-ua/monad-ts"><img src="https://travis-ci.org/sash-ua/monad-ts.svg?branch=master" alt="Build Status"></a>
 <a href="https://github.com/sash-ua/monad-ts"><img src="https://img.shields.io/npm/dw/localeval.svg" alt="npm"></a></p>
 <h1 id="monad-ts">Monad-ts</h1>
-<p>Monad-ts is a small (7kb) library implements some of key monads and way to chain them in a pipe (flow) in JavaScript.</p>
+<p>Monad-ts is a small (7kb) library implements some of key monads and way to chain them in a pipe (flow) in JavaScript and Typescript.</p>
 <h2 id="content">Content</h2>
 <ul>
 <li><a href="#installation">Installation</a></li>
@@ -89,8 +89,17 @@ process. Monads allow us to do all the side-effecting computations using pure fu
 <h2 id="-api-https-sash-ua-github-io-monad-ts-"><a href="https://sash-ua.github.io/monad-ts/">API</a></h2>
 <h3 id="ways-to-use-">Ways to use:</h3>
 <h4 id="1-as-a-dependency-">1. As a dependency.</h4>
-<p>Example:</p>
-<pre><code><code class="source-code prettyprint">const e: number = 50;
+<p>Import library or class in compatible for you way:</p>
+<pre><code><code class="source-code prettyprint">import * as Monad from &quot;/node_modules/monad-ts/index&quot;</code>
+</code></pre><p>or</p>
+<pre><code><code class="source-code prettyprint">import {State} from &quot;/node_modules/monad-ts/index&quot;</code>
+</code></pre><p>or</p>
+<pre><code><code class="source-code prettyprint">import {List} from &quot;monad-ts/src/list&quot;</code>
+</code></pre><p>Example:</p>
+<pre><code><code class="source-code prettyprint">import {Flow, List} from &quot;/node_modules/monad-ts/index&quot;
+
+const list = new List();
+const e: number = 50;
 let r : number;
 let t : number[];
 console.log(t); // undefined
@@ -105,10 +114,11 @@ console.log(r); // 56
 console.log(t); // [ -7, 7, -6, 6, -5, 5, 5, -5, 6, -6, 7, -7 ]
 console.log(z); // [ -7, -6, -5, 5, 6, 7 ]</code>
 </code></pre><h4 id="2-add-to-html-page-">2. Add to html page.</h4>
-<pre><code><code class="source-code prettyprint">&lt;script type=&quot;text/javascript&quot; src=&quot;lib/monad-ts.min.js&quot;&gt;&lt;/script&gt;</code>
-</code></pre><p>Type: UMD.</p>
+<p>Type: UMD.</p>
 <p>Library name: Monad_ts.</p>
-<p>Example:</p>
+<p>Add library after es6-shim, es5-shim.</p>
+<pre><code><code class="source-code prettyprint">&lt;script type=&quot;text/javascript&quot; src=&quot;lib/monad-ts.min.js&quot;&gt;&lt;/script&gt;</code>
+</code></pre><p>Example:</p>
 <pre><code><code class="source-code prettyprint">var state = new Monad_ts.State({q:1, w:2});
  console.log(state.get()); // {q:1, w:2}
 

@@ -3,7 +3,7 @@
 
 # Monad-ts
 
-Monad-ts is a small (7kb) library implements some of key monads and way to chain them in a pipe (flow) in JavaScript.
+Monad-ts is a small (7kb) library implements some of key monads and way to chain them in a pipe (flow) in JavaScript and Typescript.
 
 ## Content
 * [Installation](#installation)
@@ -60,8 +60,24 @@ process. Monads allow us to do all the side-effecting computations using pure fu
 
 #### 1. As a dependency.
 
+Import library or class in compatible for you way:
+```
+import * as Monad from "/node_modules/monad-ts/index"
+```
+or
+```
+import {State} from "/node_modules/monad-ts/index"
+```
+or
+```
+import {List} from "monad-ts/src/list"
+```
+
 Example:
 ```
+import {Flow, List} from "/node_modules/monad-ts/index"
+
+const list = new List();
 const e: number = 50;
 let r : number;
 let t : number[];
@@ -80,12 +96,14 @@ console.log(z); // [ -7, -6, -5, 5, 6, 7 ]
 
 #### 2. Add to html page.
 
-```
-<script type="text/javascript" src="lib/monad-ts.min.js"></script>
-```
 Type: UMD.
 
 Library name: Monad_ts.
+
+Add library after es6-shim, es5-shim.
+```
+<script type="text/javascript" src="lib/monad-ts.min.js"></script>
+```
 
 Example:
 ```
