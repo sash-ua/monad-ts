@@ -538,7 +538,7 @@
           "leadingComments": [
             {
               "type": "CommentBlock",
-              "value": "*\r\n * class Monad - base class.\r\n * @implements {M}\r\n ",
+              "value": "*\r\n * Class Monad - base class.\r\n * @implements {M}\r\n ",
               "start": 0,
               "end": 58,
               "loc": {
@@ -575,7 +575,7 @@
         "leadingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * class Monad - base class.\r\n * @implements {M}\r\n ",
+            "value": "*\r\n * Class Monad - base class.\r\n * @implements {M}\r\n ",
             "start": 0,
             "end": 58,
             "loc": {
@@ -615,7 +615,7 @@
   "comments": [
     {
       "type": "CommentBlock",
-      "value": "*\r\n * class Monad - base class.\r\n * @implements {M}\r\n ",
+      "value": "*\r\n * Class Monad - base class.\r\n * @implements {M}\r\n ",
       "start": 0,
       "end": 58,
       "loc": {
@@ -681,7 +681,7 @@
   "tokens": [
     {
       "type": "CommentBlock",
-      "value": "*\r\n * class Monad - base class.\r\n * @implements {M}\r\n ",
+      "value": "*\r\n * Class Monad - base class.\r\n * @implements {M}\r\n ",
       "start": 0,
       "end": 58,
       "loc": {

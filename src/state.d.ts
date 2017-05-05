@@ -2,7 +2,7 @@ import { Monad } from "./monad";
 import { Maybe } from "./maybe";
 import { ErrorM } from "./error";
 /**
- * Class State - for app. state manipulations.
+ * Class State - for application state manipulations.
  * @extends {Monad}
  */
 export declare class State<T> extends Monad<T> {
