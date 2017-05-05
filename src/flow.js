@@ -44,10 +44,10 @@ var Flow = (function (_super) {
         return _this;
     }
     /**
-     * chain the operations on a monadic values
-     * @param {function(v: any)} f - transformation function for a monad
+     * chain the operations on a monadic values.
+     * @param {function(v: T) => Pr<U>} f - transformation function for a main flow value.
      * @param {any} [v= this.flow] - underlying value for a monad.
-     * @return {any} given value v or transformed value by f(v) or throw Error
+     * @return {any} monadic value from v or transformed value by f(v) or throw Error.
      */
     Flow.prototype.bind = function (f, v) {
         var _this = this;
@@ -56,17 +56,17 @@ var Flow = (function (_super) {
         return this;
     };
     /**
-     * create branch from a pipe. :)
-     * @param {function(v: any)} f - transformation function for a main flow value.
-     * @returns {Flow}
+     * create branch from a pipe.
+     * @param {function(v: T) => Pr<U>} f - transformation function for a main flow value.
+     * @return {Flow}
      */
     Flow.prototype.let = function (f) {
         f(clone_1.clone(this.flow));
         return this;
     };
     /**
-     * extract value from a pipe
-     * @returns {any}
+     * extract value from a pipe.
+     * @return {any}
      */
     Flow.prototype.subscribe = function () {
         return this.flow;

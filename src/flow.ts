@@ -50,27 +50,27 @@ export class Flow<T> extends Monad<T>{
         this.err = new ErrorM();
     }
     /**
-     * chain the operations on a monadic values
-     * @param {function(v: any)} f - transformation function for a monad
+     * chain the operations on a monadic values.
+     * @param {function(v: T) => Pr<U>} f - transformation function for a main flow value.
      * @param {any} [v= this.flow] - underlying value for a monad.
-     * @return {any} given value v or transformed value by f(v) or throw Error
+     * @return {any} monadic value from v or transformed value by f(v) or throw Error.
      */
-    bind<T, U>(f?: MF<T, U>, v: any = this.flow): any{
-        this.flow = f ? this.err.bind(v => this.maybe.bind(v => f(v), v), v) : this.err.bind(v => v, v);
+    bind<T, U>(f?: MF<T, U>, v: any = this.flow){
+        this.flow = f ? this.err.bind(v => this.maybe.bind((v: any) => f(v), v), v) : this.err.bind(v => v, v);
         return this;
     }
     /**
-     * create branch from a pipe. :)
-     * @param {function(v: any)} f - transformation function for a main flow value.
-     * @returns {Flow}
+     * create branch from a pipe.
+     * @param {function(v: T) => Pr<U>} f - transformation function for a main flow value.
+     * @return {Flow}
      */
     let<T, U>(f: MF<T, U>): Pr<U>{
         f(clone(this.flow));
         return this;
     }
     /**
-     * extract value from a pipe
-     * @returns {any}
+     * extract value from a pipe.
+     * @return {any}
      */
     subscribe<T>(): T{
         return this.flow;

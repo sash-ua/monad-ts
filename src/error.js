@@ -12,7 +12,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var monad_1 = require("./monad");
 /**
- * Class ErrorM.
+ * Class ErrorM - return given value or produce Error if take Error or get Error after execution of f(v).
  * @extends {Monad}
  */
 var ErrorM = (function (_super) {
@@ -24,10 +24,10 @@ var ErrorM = (function (_super) {
         return _super.call(this) || this;
     }
     /**
-     * Method that chains the operations on a monadic values
-     * @param {function(v: any)} f - transformation function for a monad
+     * Method that chains the operations on a monadic values.
+     * @param {function(v: T) => Pr<U>} f - transformation function for a monad.
      * @param {any} v - underlying value for a monad.
-     * @return {Pr<U>  | Error} given value v or transformed value by f(v) or throw Error
+     * @return {Pr<U>  | Error} monadic value from v or transformed value by f(v) or throw Error.
      */
     ErrorM.prototype.bind = function (f, v) {
         if (v !== v || v === Infinity || v === -Infinity || v instanceof Error) {

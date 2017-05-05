@@ -1,20 +1,20 @@
-import { MF, Monad, Pr } from "./monad";
+import { Monad } from "./monad";
 /**
- * Class List.
+ * Class List - transform every element of array with given function "contemporaneously".
  * @extends {Monad}
  */
 export declare class List<T> extends Monad<T> {
     /**
-     * Method that chains the operations on a monadic values
-     * @param {function(v: any)} f - transformation function for a monad
-     * @param {T} v - underlying value for a monad.
-     * @return {Pr<U>} given value v or transformed value by F(v)
+     * Method to transform every element of array with given function "contemporaneously".
+     * @param {function(n: T) => U} f - transformation function for a monad.
+     * @param {Array<T>} v - underlying value for a monad.
+     * @return {Array<U>} monadic value from v or transformed value by F(v).
      */
-    bind<U>(f: MF<T, U>, v: T): Pr<U> | Array<T>;
+    bind<U>(f: (n: T) => U, v: Array<T>): Array<U>;
     /**
-     * @param {function(v: any)} f - transformation function of a monad
+     * @param {function(n: T) => U} f - transformation function for a monad.
      * @param {any} v - underlying value for a monad.
-     * @return {Pr<U>} given value v or transformed value by F(v)
+     * @return {Array<U>} given value v or transformed value by F(v).
      * @private
      */
     private _disp<U>(f, v);

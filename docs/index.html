@@ -53,7 +53,11 @@
 <ul>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#tests">Tests</a></li>
+</ul>
+<p><strong>Introduction</strong></p>
+<ul>
 <li><a href="#intro">Intro</a></li>
+<li><a href="#api">API</a></li>
 </ul>
 <p><strong>All monads</strong></p>
 <ul>
@@ -81,12 +85,14 @@ use ES5-shim and ES6-shim or alternatives.</p>
 </code></pre><p>or</p>
 <pre><code><code class="source-code prettyprint"> yarn test</code>
 </code></pre><h2 id="intro">Intro</h2>
-<p>** This monads implementation aren&apos;t exact copy of Haskell monads. My goal was to reach results comparable with the
-using of like monads from Haskell in JS.</p>
 <p>One of the main ideas of functional programming is to use pure functions as much as possible. But pure functions
 don&apos;t do any kind of side-effects. At the same time the majority of programs should operate with side-effects in
 process. Monads allow us to do all the side-effecting computations using pure functions effectively.</p>
-<h2 id="-api-https-sash-ua-github-io-monad-ts-"><a href="https://sash-ua.github.io/monad-ts/">API</a></h2>
+<p>** This monads implementation aren&apos;t exact copy of Haskell monads. My goal was to reach results comparable with the
+using of like monads from Haskell in JS.</p>
+<p>** In TypeScript be attentive to type definitions while coding.</p>
+<h2 id="api">API</h2>
+<p><a href="https://sash-ua.github.io/monad-ts/">API - description of classes, methods and utilities.</a></p>
 <h3 id="ways-to-use-">Ways to use:</h3>
 <h4 id="1-as-a-dependency-">1. As a dependency.</h4>
 <p>Import library or class in compatible for you way:</p>
@@ -106,9 +112,9 @@ console.log(t); // undefined
 console.log(r); // undefined
 const z = new Flow(5)
     .bind((v: number): any =&gt; v+1)
-    .let((v: number): any =&gt; new Flow(v).bind(v =&gt; r = v+e))
-    .bind((v: number): any =&gt; cast(list.bind(v =&gt; [v-1, v, v+1], [-v, v ]), 1))
-    .let((v: number)=&gt; new Flow(v).bind(v =&gt; t = v, cast(list.bind(v=&gt;[v, -v], v), 1)))
+    .let((v: number): any =&gt; new Flow(v).bind((v: number) =&gt; r = v+e))
+    .bind((v: number): any =&gt; cast(list.bind((v: number) =&gt; [v-1, v, v+1], [-v, v ]), 1))
+    .let((v: number)=&gt; new Flow(v).bind((v: number[]) =&gt; t = v, cast(list.bind((v: number)=&gt;[v, -v], [v]), 2)))
     .subscribe();
 console.log(r); // 56
 console.log(t); // [ -7, 7, -6, 6, -5, 5, 5, -5, 6, -6, 7, -7 ]
@@ -132,94 +138,74 @@ console.log(z); // [ -7, -6, -5, 5, 6, 7 ]</code>
  console.log(maybe.bind(r =&gt; r.getUrl(), z)); // http://...</code>
 </code></pre><h2 id="monads">Monads</h2>
 <h4 id="identity">Identity</h4>
-<p>It just wraps a value and return value transformed by given function.</p>
-<p>Method.</p>
-<ul>
-<li>just(function, value) - return transformed value<pre><code><code class="source-code prettyprint">const i = new Identity();
-i.just(v=&gt;v+1, 3); // 4</code>
-</code></pre></li>
-</ul>
-<h4 id="maybe">Maybe</h4>
+<p>Examples:</p>
+<pre><code><code class="source-code prettyprint">const i = new Identity(3); // Identity({v: 3})
+i.bind((v:number) =&gt; v);   // 3</code>
+</code></pre><pre><code><code class="source-code prettyprint">const i = new Identity();
+i.just((v:number) =&gt; v+1, 3); // 4</code>
+</code></pre><h4 id="maybe">Maybe</h4>
 <p>It similar to the Identity but it can also represent the absence of any value. Monad Maybe returns value transformed
 by given function. If Maybe monad gets null or undefined in given values it produce null. If after application of given transformation function monad get null or undefined monad produce null.</p>
-<p>Method.</p>
-<ul>
-<li>bind(function, value) - return null or transformed value<pre><code><code class="source-code prettyprint">const maybe = new Maybe();
-const z = {
-          url: &apos;http://...&apos;,
-          getUrl: function (){
-              return this.url;
-          }
-      };
-maybe.bind(r =&gt; r.getUrl(), z); // return http://...</code>
-</code></pre></li>
-</ul>
-<h4 id="errorm">ErrorM</h4>
+<p>Examples:</p>
+<pre><code><code class="source-code prettyprint">const maybe = new Maybe();
+type G = { url: string; getUrl: () =&gt; any; };
+const z: G = {
+    url: &apos;http://...&apos;,
+    getUrl: function (){
+        return this.url;
+    }
+};
+maybe.bind(r =&gt; r.getUrl(), z); // http://...</code>
+</code></pre><h4 id="errorm">ErrorM</h4>
 <p>It similar to the Identity but it can also represent the error. Error monad returns value transformed by given function. If Error monad gets Error in given values it produce Error. If after application of given transformation function monad get Error monad produce Error.</p>
-<p>Method.</p>
-<ul>
-<li>bind(function, value) - return Error or transformed value<pre><code><code class="source-code prettyprint">const e = new ErrorM();
-e.bind(v =&gt; e.bind(v1=&gt;v+v1, 1), 1/0); // Error</code>
-</code></pre></li>
-</ul>
-<h4 id="list">List</h4>
+<p>Examples:</p>
+<pre><code><code class="source-code prettyprint">const e = new ErrorM();
+e.bind((v: number) =&gt; e.bind((v1: number)=&gt;v+v1, 1), 1/0); // Error</code>
+</code></pre><h4 id="list">List</h4>
 <p>The List monad represents a lazily computed list of values. It takes in an input value of type A, and produce a bunch of output values of type B, collected in one container (the array).</p>
 <p>It get array and return array, to cast array dimension according to entered array we can use function <a href="#cast">cast</a>;</p>
-<p>Method.</p>
-<ul>
-<li>bind(function, value) - return transformed value<pre><code><code class="source-code prettyprint">const list = new List();
+<p>Examples:</p>
+<pre><code><code class="source-code prettyprint">const list = new List();
 const x = [10, 2]; // Entered array
-z = cast(list.bind(v =&gt;list.bind(v =&gt; [-v, v], [v-1, v, v+1]), x), 2); // [ -9, 9, -10, 10, -11, 11, -1, 1, -2, 2,
+z = cast(list.bind((v: number) =&gt;list.bind((v: number) =&gt; [-v, v], [v-1, v, v+1]), x), 2); // [ -9, 9, -10, 10, -11, 11, -1, 1, -2, 2,
 -3, 3 ]</code>
-</code></pre></li>
-</ul>
-<h4 id="state">State</h4>
+</code></pre><h4 id="state">State</h4>
 <p>The State monad interact with local and global state variables to transform them.</p>
-<p>Constructor get initial application state as object.</p>
-<p>Methods.</p>
-<ul>
-<li>put(function) - it get function transforming application state.</li>
-<li>get() - return application state.<pre><code><code class="source-code prettyprint">const initState = {
-      data: 1,
-      children: [{
-          data: 2,
-          parent: &apos;null&apos;
-      }],
-      arr:[1,2,3]
-  };
-  const st = new State(initState);
-  console.log(st.get()); // return initState object
-  st.put(v =&gt; {
-                  v.data = 10;
-                  v.arr = list.bind(v =&gt; v+f, v.arr);
-                  return v;
-              });
-  console.log(st.get()); // { data: 10, children: [ Object({ data: 2, parent: &apos;null&apos; }) ], arr: [ 2.25, 3.25, 4.25 ] }</code>
-</code></pre></li>
-</ul>
-<h2 id="additional-tools-class-and-functions-">Additional tools (class and functions)</h2>
+<p>Examples:</p>
+<pre><code><code class="source-code prettyprint">type R = { data: number; children: any[]; arr: number[]; };
+    const initState: R = {
+        data: 1,
+        children: [{
+            data: 2,
+            parent: &apos;null&apos;
+        }],
+        arr:[1,2,3]
+    };
+    const st = new State(initState);
+    console.log(st.get()); // return initState object
+    st.put((v: R) =&gt; {
+                v.data = 10;
+                v.arr = list.bind((x:number) =&gt; x+f, v.arr);
+                return v;
+            });
+    console.log(st.get()); // { data: 10, children: [ Object({ data: 2, parent: &apos;null&apos; }) ], arr: [ 2.25, 3.25, 4.25 ] }</code>
+</code></pre><h2 id="additional-utilities-class-and-functions-">Additional utilities (class and functions)</h2>
 <h4 id="flow">Flow</h4>
-<p>Class to composing monads in a pipe (flow).</p>
-<p>Constructor create instance of the class, takes initial value when start new pipe and keeps inside.</p>
-<p>Methods.</p>
-<ul>
-<li>bind(function) - return transformed value.</li>
-<li>let(function) - create branch from a pipe.</li>
-<li>subscribe() - extract value from a pipe.<pre><code><code class="source-code prettyprint">const e: number = 50;
+<p>For composing monads in a flow (pipe).</p>
+<p>Examples:</p>
+<pre><code><code class="source-code prettyprint">const e: number = 50;
 let r : number;
 let t : number[];
 const z = new Flow(5)
-          .bind((v: number): any =&gt; v+1)
-          .let((v: number): any =&gt; new Flow(v).bind(v =&gt; r = v+e))
-          .bind((v: number): any =&gt; cast(list.bind(v =&gt; [v-1, v, v+1], [-v, v ]), 1))
-          .let((v: number)=&gt; new Flow(v).bind(v =&gt; t = v, cast(list.bind(v=&gt;[v, -v], v), 1)))
-          .subscribe();
+  .bind((v: number): any =&gt; v+1)
+  .let((v: number): any =&gt; new Flow(v).bind((v: number) =&gt; r = v+e))
+  .bind((v: number): any =&gt; cast(list.bind((v: number) =&gt; [v-1, v, v+1], [-v, v ]), 1))
+  .let((v: number)=&gt; new Flow(v).bind((v: number[]) =&gt; t = v, cast(list.bind((v: number)=&gt;[v, -v], [v]), 2)))
+  .subscribe();
 console.log(r); // 56
 console.log(t); // [ -7, 7, -6, 6, -5, 5, 5, -5, 6, -6, 7, -7 ]
 console.log(z); // [ -7, -6, -5, 5, 6, 7 ]</code>
-</code></pre></li>
-</ul>
-<h4 id="clone">clone</h4>
+</code></pre><h4 id="clone">clone</h4>
 <p>Function to clone objects (including Map). It takes objects and primitives.</p>
 <pre><code><code class="source-code prettyprint">const x = {x:1};
 const z = clone(x);

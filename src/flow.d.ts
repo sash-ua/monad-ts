@@ -27,21 +27,21 @@ export declare class Flow<T> extends Monad<T> {
      */
     constructor(flow: any);
     /**
-     * chain the operations on a monadic values
-     * @param {function(v: any)} f - transformation function for a monad
+     * chain the operations on a monadic values.
+     * @param {function(v: T) => Pr<U>} f - transformation function for a main flow value.
      * @param {any} [v= this.flow] - underlying value for a monad.
-     * @return {any} given value v or transformed value by f(v) or throw Error
+     * @return {any} monadic value from v or transformed value by f(v) or throw Error.
      */
-    bind<T, U>(f?: MF<T, U>, v?: any): any;
+    bind<T, U>(f?: MF<T, U>, v?: any): this;
     /**
-     * create branch from a pipe. :)
-     * @param {function(v: any)} f - transformation function for a main flow value.
-     * @returns {Flow}
+     * create branch from a pipe.
+     * @param {function(v: T) => Pr<U>} f - transformation function for a main flow value.
+     * @return {Flow}
      */
     let<T, U>(f: MF<T, U>): Pr<U>;
     /**
-     * extract value from a pipe
-     * @returns {any}
+     * extract value from a pipe.
+     * @return {any}
      */
     subscribe<T>(): T;
 }

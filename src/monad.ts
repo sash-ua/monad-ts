@@ -4,45 +4,42 @@
 export type Pr<U> = M<U> | U ;
 
 /**
- * @typedef {function(v: any) => Pr<U>} {MF<T, U>}
+ * @typedef {function(v: T) => Pr<U>} MF<T, U>
  */
-export type MF<T, U> = (v: any)=> Pr<U>;
+export type MF<T, U> = (v: T)=> Pr<U>;
 
 /**
  * @interface {M}
  */
 export interface M<T>{
-    inFlow?: any;
     just<T,U>(f: MF<T, U>, v: T): Pr<U>;
     errorHandler(e: Error | string): Error;
-    bind?<T,U>(f: MF<T, U>, v: T): Pr<U>;
 }
 
 /**
- * class Monad.
+ * class Monad. Base class.
  * @implements {M}
  */
 export class Monad<T> implements M<T>{
     /**
-     * Method get Error or string return Error
-     * @protected
+     * get Error or string return Error.
      * @param {Error | string} e - Error obj. or string.
      * @return {Error} throw Error.
+     * @protected
      */
     errorHandler(e: Error | string): Error{
         return e instanceof Error ? e : new Error(e);
     }
     /**
-     * Function that wraps the given value.
+     * produce result after execution f(v).
+     * @param {function(v: T) => Pr<U>} f - transformation function for a monad.
+     * @param {T} v - underlying value.
+     * @return {Pr<U>} monadic value from v or transformed value by f(v).
      * @protected
-     * @param {MF<T, U>} f - function(v: any)
-     * @param {U} v - any type value
-     * @return {Pr<U>} given value v or transformed value by f(v)
      */
-    just<U>(f: MF<T, U>, v:U): Pr<U>{
+    just<T, U>(f: MF<T, U>, v:T): Pr<U>{
         return f(v);
     }
 }
-
 
 //Copyright (c) 2017 Alex Tranchenko. All rights reserved.

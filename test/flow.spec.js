@@ -53,7 +53,7 @@ describe('Flow: ', function () {
             .bind(function (v) { return v + 1; })
             .let(function (v) { return new flow_1.Flow(v).bind(function (v) { return r = v + e; }); })
             .bind(function (v) { return cast_1.cast(list.bind(function (v) { return [v - 1, v, v + 1]; }, [-v, v]), 1); })
-            .let(function (v) { return new flow_1.Flow(v).bind(function (v) { return t = v; }, cast_1.cast(list.bind(function (v) { return [v, -v]; }, v), 1)); })
+            .let(function (v) { return new flow_1.Flow(v).bind(function (v) { return t = v; }, cast_1.cast(list.bind(function (v) { return [v, -v]; }, [v]), 2)); })
             .subscribe();
         expect(r).toEqual(56);
         expect(t).toEqual([-7, 7, -6, 6, -5, 5, 5, -5, 6, -6, 7, -7]);

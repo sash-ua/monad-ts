@@ -12,7 +12,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var monad_1 = require("./monad");
 /**
- * Class Maybe
+ * Class Maybe - return given value or produce null if take nothing or get nothing after execution of f(v).
  * @extends {Monad}
  */
 var Maybe = (function (_super) {
@@ -21,10 +21,10 @@ var Maybe = (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
-     * Method that chains the operations on a monadic values
-     * @param {function(v: any)} f - transformation function for a monad
-     * @param {any} v - underlying value for a monad.
-     * @return {Pr<U>} given value v or transformed value by f(v)
+     * chains the operations on a monadic values.
+     * @param {function(v: T) => Pr<U>} f - transformation function for a monad.
+     * @param {T} v - underlying value for a monad.
+     * @return {Pr<U>} monadic value from v or transformed value by f(v).
      */
     Maybe.prototype.bind = function (f, v) {
         if (v === null || v === undefined) {
@@ -36,8 +36,8 @@ var Maybe = (function (_super) {
         }
     };
     /**
-     * return nothing (null)
-     * @returns {null}
+     * return nothing (null).
+     * @return {null}
      */
     Maybe.prototype.nothing = function () {
         return null;

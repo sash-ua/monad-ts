@@ -48,15 +48,15 @@
 <div class="content" data-ice="content"><h1 data-ice="title">src/maybe.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { Monad } from &quot;./monad&quot;;
 /**
- * Class Maybe
+ * Class Maybe - return given value or produce null if take nothing or get nothing after execution of f(v).
  * @extends {Monad}
  */
 export class Maybe extends Monad {
     /**
-     * Method that chains the operations on a monadic values
-     * @param {function(v: any)} f - transformation function for a monad
-     * @param {any} v - underlying value for a monad.
-     * @return {Pr&lt;U&gt;} given value v or transformed value by f(v)
+     * chains the operations on a monadic values.
+     * @param {function(v: T) =&gt; Pr&lt;U&gt;} f - transformation function for a monad.
+     * @param {T} v - underlying value for a monad.
+     * @return {Pr&lt;U&gt;} monadic value from v or transformed value by f(v).
      */
     bind(f, v) {
         if (v === null || v === undefined) {
@@ -68,8 +68,8 @@ export class Maybe extends Monad {
         }
     }
     /**
-     * return nothing (null)
-     * @returns {null}
+     * return nothing (null).
+     * @return {null}
      */
     nothing() {
         return null;

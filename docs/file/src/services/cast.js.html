@@ -47,18 +47,18 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/services/cast.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
- * decreasing the dimension of an array by n
- * @param {Pr&lt;T&gt;|Array&lt;any&gt;} arr - input array.
+ * decreasing the dimension of an array by n.
+ * @param {Array&lt;T&gt;} arr - input array.
  * @param {number} n - decreasing factor.
- * @returns {Pr&lt;T&gt;|Array&lt;any&gt;|T[]}
+ * @return {Array&lt;any&gt;}
  */
 export function cast(arr, n) {
     return (n === 0 || n === undefined || n === null) ? arr : _reduser(arr, n);
 }
 /**
- * @param {Pr&lt;T&gt;|Array&lt;any&gt;} arr - input array.
+ * @param {Array&lt;T&gt;} arr - input array.
  * @param {number} n - decreasing factor.
- * @returns {Pr&lt;T&gt;|Array&lt;any&gt;|T[]}
+ * @return {Array&lt;any&gt;}
  * @private
  */
 function _reduser(arr, n) {
@@ -69,9 +69,9 @@ function _reduser(arr, n) {
         : arr;
 }
 /**
- * @param {Pr&lt;T&gt;|Array&lt;any&gt;} arr - input array.
+ * @param {Array&lt;any&gt;} arr - input array.
  * @param {number} n - decreasing factor.
- * @returns {Pr&lt;T&gt;|Array&lt;any&gt;|T[]}
+ * @return {Array&lt;any&gt;}
  * @private
  */
 function _fact(arr, n) {

@@ -9,10 +9,10 @@ import {ErrorM} from "./error";
  */
 export class State<T> extends  Monad<T>{
     /**
-     * @type {T}
+     * @type {any}
      * @protected
      */
-    protected state: T;
+    protected state: any;
     /**
      * @type {Maybe<T>}
      * @protected
@@ -48,11 +48,11 @@ export class State<T> extends  Monad<T>{
         this.err = new ErrorM();
     }
     /**
-     * @param {function(v: any)} f - function.
-     * @return {Object} this (current context) value.
+     * @param {function(v: T)=> T} f - app. state transformation function.
+     * @return {State}
      */
-    put(f: (v: any)=> T){
-        this.state = this.err.bind(v => v, this.maybe.bind(v => f(v), this.state));
+    put(f: (v: T)=> T){
+        this.state = this.err.bind((v: T) => v, this.maybe.bind((v: T) => f(v), this.state));
         return this;
     }
     /**

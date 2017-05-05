@@ -456,6 +456,24 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/identity.js~identity#bind",
+    "class/src/identity.js~Identity.html#instance-method-bind",
+    "src/identity.js~Identity#bind",
+    "method"
+  ],
+  [
+    "src/identity.js~identity#constructor",
+    "class/src/identity.js~Identity.html#instance-constructor-constructor",
+    "src/identity.js~Identity#constructor",
+    "method"
+  ],
+  [
+    "src/identity.js~identity#v",
+    "class/src/identity.js~Identity.html#instance-member-v",
+    "src/identity.js~Identity#v",
+    "member"
+  ],
+  [
     "src/list.js",
     "file/src/list.js.html",
     "src/list.js",

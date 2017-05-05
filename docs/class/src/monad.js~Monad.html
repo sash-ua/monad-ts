@@ -72,7 +72,7 @@
 
   
   
-  <div class="description" data-ice="description"><p>class Monad.</p>
+  <div class="description" data-ice="description"><p>class Monad. Base class.</p>
 </div>
   
 
@@ -112,7 +112,7 @@
       <div>
         
         
-        <div data-ice="description"><p>Method get Error or string return Error</p>
+        <div data-ice="description"><p>get Error or string return Error.</p>
 </div>
       </div>
     </td>
@@ -134,13 +134,13 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/monad.js~Monad.html#instance-method-just">just</a></span></span><span data-ice="signature">(f: <span>MF</span>&lt;<span>T</span>, <span>U</span>&gt;, v: <span>U</span>): <span>Pr</span>&lt;<span>U</span>&gt;</span>
+          <span data-ice="name"><span><a href="class/src/monad.js~Monad.html#instance-method-just">just</a></span></span><span data-ice="signature">(f: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(v: <span>T</span>)</span></span>, v: <span>T</span>): <span>Pr</span>&lt;<span>U</span>&gt;</span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Function that wraps the given value.</p>
+        <div data-ice="description"><p>produce result after execution f(v).</p>
 </div>
       </div>
     </td>
@@ -180,7 +180,7 @@
   
   
   
-  <div data-ice="description"><p>Method get Error or string return Error</p>
+  <div data-ice="description"><p>get Error or string return Error.</p>
 </div>
 
   
@@ -243,7 +243,7 @@
     
     
     
-    <span data-ice="name">just</span><span data-ice="signature">(f: <span>MF</span>&lt;<span>T</span>, <span>U</span>&gt;, v: <span>U</span>): <span>Pr</span>&lt;<span>U</span>&gt;</span>
+    <span data-ice="name">just</span><span data-ice="signature">(f: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(v: <span>T</span>)</span></span>, v: <span>T</span>): <span>Pr</span>&lt;<span>U</span>&gt;</span>
     <span class="right-info">
       
       
@@ -254,7 +254,7 @@
   
   
   
-  <div data-ice="description"><p>Function that wraps the given value.</p>
+  <div data-ice="description"><p>produce result after execution f(v).</p>
 </div>
 
   
@@ -269,16 +269,16 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">f</td>
-      <td data-ice="type"><span>MF</span>&lt;<span>T</span>, <span>U</span>&gt;</td>
+      <td data-ice="type"><span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(v: <span>T</span>)</span></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>function(v: any)</p>
+      <td data-ice="description"><p>transformation function for a monad.</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">v</td>
-      <td data-ice="type"><span>U</span></td>
+      <td data-ice="type"><span>T</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>any type value</p>
+      <td data-ice="description"><p>underlying value.</p>
 </td>
     </tr>
 </tbody>
@@ -292,7 +292,7 @@
       <tbody>
         <tr>
           <td class="return-type" data-ice="returnType"><span>Pr</span>&lt;<span>U</span>&gt;</td>
-          <td class="return-desc" data-ice="returnDescription"><p>given value v or transformed value by f(v)</p>
+          <td class="return-desc" data-ice="returnDescription"><p>monadic value from v or transformed value by f(v).</p>
 </td>
         </tr>
       </tbody>

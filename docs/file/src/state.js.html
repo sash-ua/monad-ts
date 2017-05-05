@@ -77,11 +77,11 @@ export class State extends Monad {
         this.err = new ErrorM();
     }
     /**
-     * @param {function(v: any)} f - function.
-     * @return {Object} this (current context) value.
+     * @param {function(v: T)=&gt; T} f - app. state transformation function.
+     * @return {State}
      */
     put(f) {
-        this.state = this.err.bind(v =&gt; v, this.maybe.bind(v =&gt; f(v), this.state));
+        this.state = this.err.bind((v) =&gt; v, this.maybe.bind((v) =&gt; f(v), this.state));
         return this;
     }
     /**

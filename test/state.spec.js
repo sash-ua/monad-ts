@@ -18,11 +18,14 @@ describe('State: ', function () {
         expect(st.get()).toEqual({ data: 1, children: [Object({ data: 2, parent: 'null' })], arr: [1, 2, 3] });
         st.put(function (v) {
             v.data = 10;
-            v.arr = list.bind(function (v) { return v + f; }, v.arr);
+            v.arr = list.bind(function (x) { return x + f; }, v.arr);
             return v;
         });
         expect(st.get()).toEqual({ data: 10, children: [Object({ data: 2, parent: 'null' })], arr: [2.25, 3.25, 4.25] });
-        st.put(function (v) { v.data = 11; return v; });
+        st.put(function (v) {
+            v.data = 11;
+            return v;
+        });
         expect(st.get()).toEqual({ data: 11, children: [Object({ data: 2, parent: 'null' })], arr: [2.25, 3.25, 4.25] });
     });
 });

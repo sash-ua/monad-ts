@@ -47,25 +47,25 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/monad.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
- * class Monad.
+ * class Monad. Base class.
  * @implements {M}
  */
 export class Monad {
     /**
-     * Method get Error or string return Error
-     * @protected
+     * get Error or string return Error.
      * @param {Error | string} e - Error obj. or string.
      * @return {Error} throw Error.
+     * @protected
      */
     errorHandler(e) {
         return e instanceof Error ? e : new Error(e);
     }
     /**
-     * Function that wraps the given value.
+     * produce result after execution f(v).
+     * @param {function(v: T) =&gt; Pr&lt;U&gt;} f - transformation function for a monad.
+     * @param {T} v - underlying value.
+     * @return {Pr&lt;U&gt;} monadic value from v or transformed value by f(v).
      * @protected
-     * @param {MF&lt;T, U&gt;} f - function(v: any)
-     * @param {U} v - any type value
-     * @return {Pr&lt;U&gt;} given value v or transformed value by f(v)
      */
     just(f, v) {
         return f(v);

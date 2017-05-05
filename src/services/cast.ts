@@ -1,37 +1,35 @@
 
-import {Pr} from "../monad";
-
 /**
- * decreasing the dimension of an array by n
- * @param {Pr<T>|Array<any>} arr - input array.
+ * decreasing the dimension of an array by n.
+ * @param {Array<T>} arr - input array.
  * @param {number} n - decreasing factor.
- * @returns {Pr<T>|Array<any>|T[]}
+ * @return {Array<any>}
  */
-export function cast<T>(arr: Pr<T> | Array<any>, n: number): Pr<T> | Array<any> {
+export function cast<T>(arr: T[], n: number): Array<any> {
     return (n === 0 || n === undefined || n === null) ? arr : _reduser(arr, n);
 }
 
 /**
- * @param {Pr<T>|Array<any>} arr - input array.
+ * @param {Array<T>} arr - input array.
  * @param {number} n - decreasing factor.
- * @returns {Pr<T>|Array<any>|T[]}
+ * @return {Array<any>}
  * @private
  */
-function _reduser<T>(arr: Pr<T> | Array<any>, n: number): T[] | Array<any>{
+function _reduser<T>(arr: T[], n: number): Array<any>{
     return arr.length
-        ? arr.reduce((acc: Array<any>, vL: T)=>{
+        ? arr.reduce((acc: Array<any>, vL: any)=>{
             return acc.concat(_fact(vL, n));
         },[])
         : arr;
 }
 
 /**
- * @param {Pr<T>|Array<any>} arr - input array.
+ * @param {Array<any>} arr - input array.
  * @param {number} n - decreasing factor.
- * @returns {Pr<T>|Array<any>|T[]}
+ * @return {Array<any>}
  * @private
  */
-function _fact<T>(arr: Pr<T>, n: number):Pr<T> | T[]{
+function _fact<T>(arr: Array<any>, n: number): Array<any>{
     return (n === 1) ? arr : _reduser(arr, n-1);
 }
 

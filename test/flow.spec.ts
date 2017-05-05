@@ -2,7 +2,6 @@
 import {Flow} from "../src/flow";
 import {cast} from "../src/services/cast";
 import {List} from "../src/list";
-import {State} from "../src/state";
 
 describe('Flow: ',()=>{
     const list = new List();
@@ -10,7 +9,7 @@ describe('Flow: ',()=>{
         const z = new Flow(5)
             .bind((v: any): any => v+1)
             .bind((v: any) => new Error(`value ${v}`))
-            .bind((v: any) => cast(list.bind( v=> [v-1, v, v+1], [-v, v ]), 1))
+            .bind((v: any) => cast(list.bind((v: number) => [v-1, v, v+1], [-v, v ]), 1))
             .subscribe();
         expect(z instanceof Error).toBeTruthy();
     });
@@ -18,7 +17,7 @@ describe('Flow: ',()=>{
         const z = new Flow(5)
             .bind((v: any): any => v+1)
             .bind((v: any): any => null)
-            .bind((v: any) => cast(list.bind( v=> [v-1, v, v+1], [-v, v ]), 1))
+            .bind((v: any) => cast(list.bind((v: number) => [v-1, v, v+1], [-v, v ]), 1))
             .subscribe();
         expect(z).toBeNull();
     });
@@ -26,21 +25,21 @@ describe('Flow: ',()=>{
         const z = new Flow(5)
             .bind((v: any): any => v+1)
             .bind((v: any): any => undefined)
-            .bind((v: any) => cast(list.bind( v=> [v-1, v, v+1], [-v, v ]), 1))
+            .bind((v: any) => cast(list.bind((v: number) => [v-1, v, v+1], [-v, v ]), 1))
             .subscribe();
         expect(z).toBeNull();
     });
     it('3. should return null', ()=>{
         const z = new Flow(5)
             .bind((v: any): any => v/0)
-            .bind((v: any): any => cast(list.bind( v=> [v-1, v, v+1], [-v, v ]), 1))
+            .bind((v: any): any => cast(list.bind((v: number) => [v-1, v, v+1], [-v, v ]), 1))
             .subscribe();
         expect(z instanceof Error).toBeTruthy();
     });
     it('should produce array', ()=>{
         const z = new Flow(5)
             .bind((v: any): any => v+1)
-            .bind((v: any): any => cast(list.bind( v=> [v-1, v, v+1], [-v, v ]), 1))
+            .bind((v: any): any => cast(list.bind((v: number) => [v-1, v, v+1], [-v, v ]), 1))
             .subscribe();
         expect(z).toEqual([ -7, -6, -5, 5, 6, 7 ]);
     });
@@ -52,9 +51,9 @@ describe('Flow: ',()=>{
         expect(r).toBeUndefined();
         const z = new Flow(5)
             .bind((v: number): any => v+1)
-            .let((v: number): any => new Flow(v).bind(v => r = v+e))
-            .bind((v: number): any => cast(list.bind(v => [v-1, v, v+1], [-v, v ]), 1))
-            .let((v: number)=> new Flow(v).bind(v => t = v, cast(list.bind(v=>[v, -v], v), 1)))
+            .let((v: number): any => new Flow(v).bind((v: number) => r = v+e))
+            .bind((v: number): any => cast(list.bind((v: number) => [v-1, v, v+1], [-v, v ]), 1))
+            .let((v: number)=> new Flow(v).bind((v: number[]) => t = v, cast(list.bind((v: number)=>[v, -v], [v]), 2)))
             .subscribe();
         expect(r).toEqual(56);
         expect(t).toEqual([ -7, 7, -6, 6, -5, 5, 5, -5, 6, -6, 7, -7 ]);

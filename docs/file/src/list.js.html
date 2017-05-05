@@ -48,23 +48,23 @@
 <div class="content" data-ice="content"><h1 data-ice="title">src/list.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { Monad } from &quot;./monad&quot;;
 /**
- * Class List.
+ * Class List - transform every element of array with given function &quot;contemporaneously&quot;.
  * @extends {Monad}
  */
 export class List extends Monad {
     /**
-     * Method that chains the operations on a monadic values
-     * @param {function(v: any)} f - transformation function for a monad
-     * @param {T} v - underlying value for a monad.
-     * @return {Pr&lt;U&gt;} given value v or transformed value by F(v)
+     * Method to transform every element of array with given function &quot;contemporaneously&quot;.
+     * @param {function(n: T) =&gt; U} f - transformation function for a monad.
+     * @param {Array&lt;T&gt;} v - underlying value for a monad.
+     * @return {Array&lt;U&gt;} monadic value from v or transformed value by F(v).
      */
     bind(f, v) {
         return this._disp(f, v);
     }
     /**
-     * @param {function(v: any)} f - transformation function of a monad
+     * @param {function(n: T) =&gt; U} f - transformation function for a monad.
      * @param {any} v - underlying value for a monad.
-     * @return {Pr&lt;U&gt;} given value v or transformed value by F(v)
+     * @return {Array&lt;U&gt;} given value v or transformed value by F(v).
      * @private
      */
     _disp(f, v) {

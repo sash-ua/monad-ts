@@ -8,7 +8,10 @@ Monad-ts is a small (7kb) library implements some of key monads and way to chain
 ## Content
 * [Installation](#installation)
 * [Tests](#tests)
+
+**Introduction**
 * [Intro](#intro)
+* [API](#api)
 
 **All monads**
 * [Identity](#identity)
@@ -47,14 +50,18 @@ or
 
 ## Intro
 
-** This monads implementation aren't exact copy of Haskell monads. My goal was to reach results comparable with the
-using of like monads from Haskell in JS.
-
 One of the main ideas of functional programming is to use pure functions as much as possible. But pure functions
 don't do any kind of side-effects. At the same time the majority of programs should operate with side-effects in
 process. Monads allow us to do all the side-effecting computations using pure functions effectively.
 
-## [API](https://sash-ua.github.io/monad-ts/)
+** This monads implementation aren't exact copy of Haskell monads. My goal was to reach results comparable with the
+using of like monads from Haskell in JS.
+
+** In TypeScript be attentive to type definitions while coding.
+
+## API
+
+[API - description of classes, methods and utilities.](https://sash-ua.github.io/monad-ts/)
 
 ### Ways to use:
 
@@ -85,9 +92,9 @@ console.log(t); // undefined
 console.log(r); // undefined
 const z = new Flow(5)
     .bind((v: number): any => v+1)
-    .let((v: number): any => new Flow(v).bind(v => r = v+e))
-    .bind((v: number): any => cast(list.bind(v => [v-1, v, v+1], [-v, v ]), 1))
-    .let((v: number)=> new Flow(v).bind(v => t = v, cast(list.bind(v=>[v, -v], v), 1)))
+    .let((v: number): any => new Flow(v).bind((v: number) => r = v+e))
+    .bind((v: number): any => cast(list.bind((v: number) => [v-1, v, v+1], [-v, v ]), 1))
+    .let((v: number)=> new Flow(v).bind((v: number[]) => t = v, cast(list.bind((v: number)=>[v, -v], [v]), 2)))
     .subscribe();
 console.log(r); // 56
 console.log(t); // [ -7, 7, -6, 6, -5, 5, 5, -5, 6, -6, 7, -7 ]
@@ -124,13 +131,14 @@ var state = new Monad_ts.State({q:1, w:2});
 
 #### Identity
 
-It just wraps a value and return value transformed by given function.
-
-Method.
-* just(function, value) - return transformed value
+Examples:
+```
+const i = new Identity(3); // Identity({v: 3})
+i.bind((v:number) => v);   // 3
+```
 ```
 const i = new Identity();
-i.just(v=>v+1, 3); // 4
+i.just((v:number) => v+1, 3); // 4
 ```
 
 #### Maybe
@@ -138,28 +146,27 @@ i.just(v=>v+1, 3); // 4
 It similar to the Identity but it can also represent the absence of any value. Monad Maybe returns value transformed
 by given function. If Maybe monad gets null or undefined in given values it produce null. If after application of given transformation function monad get null or undefined monad produce null.
 
-Method.
-* bind(function, value) - return null or transformed value
+Examples:
 ```
 const maybe = new Maybe();
-const z = {
-            url: 'http://...',
-            getUrl: function (){
-                return this.url;
-            }
-        };
-maybe.bind(r => r.getUrl(), z); // return http://...
+type G = { url: string; getUrl: () => any; };
+const z: G = {
+    url: 'http://...',
+    getUrl: function (){
+        return this.url;
+    }
+};
+maybe.bind(r => r.getUrl(), z); // http://...
 ```
 
 #### ErrorM
 
 It similar to the Identity but it can also represent the error. Error monad returns value transformed by given function. If Error monad gets Error in given values it produce Error. If after application of given transformation function monad get Error monad produce Error.
 
-Method.
-* bind(function, value) - return Error or transformed value
+Examples:
 ```
 const e = new ErrorM();
-e.bind(v => e.bind(v1=>v+v1, 1), 1/0); // Error
+e.bind((v: number) => e.bind((v1: number)=>v+v1, 1), 1/0); // Error
 ```
 
 #### List
@@ -168,12 +175,11 @@ The List monad represents a lazily computed list of values. It takes in an input
 
 It get array and return array, to cast array dimension according to entered array we can use function [cast](#cast);
 
-Method.
-* bind(function, value) - return transformed value
+Examples:
 ```
 const list = new List();
 const x = [10, 2]; // Entered array
-z = cast(list.bind(v =>list.bind(v => [-v, v], [v-1, v, v+1]), x), 2); // [ -9, 9, -10, 10, -11, 11, -1, 1, -2, 2,
+z = cast(list.bind((v: number) =>list.bind((v: number) => [-v, v], [v-1, v, v+1]), x), 2); // [ -9, 9, -10, 10, -11, 11, -1, 1, -2, 2,
 -3, 3 ]
 ```
 
@@ -181,13 +187,10 @@ z = cast(list.bind(v =>list.bind(v => [-v, v], [v-1, v, v+1]), x), 2); // [ -9, 
 
 The State monad interact with local and global state variables to transform them.
 
-Constructor get initial application state as object.
-
-Methods.
-* put(function) - it get function transforming application state.
-* get() - return application state.
+Examples:
 ```
-const initState = {
+type R = { data: number; children: any[]; arr: number[]; };
+    const initState: R = {
         data: 1,
         children: [{
             data: 2,
@@ -197,36 +200,31 @@ const initState = {
     };
     const st = new State(initState);
     console.log(st.get()); // return initState object
-    st.put(v => {
-			        v.data = 10;
-			        v.arr = list.bind(v => v+f, v.arr);
-			        return v;
-			    });
+    st.put((v: R) => {
+                v.data = 10;
+                v.arr = list.bind((x:number) => x+f, v.arr);
+                return v;
+            });
     console.log(st.get()); // { data: 10, children: [ Object({ data: 2, parent: 'null' }) ], arr: [ 2.25, 3.25, 4.25 ] }
 ```
 
-## Additional tools (class and functions)
+## Additional utilities (class and functions)
 
 #### Flow
 
-Class to composing monads in a pipe (flow).
+For composing monads in a flow (pipe).
 
-Constructor create instance of the class, takes initial value when start new pipe and keeps inside.
-
-Methods.
-* bind(function) - return transformed value.
-* let(function) - create branch from a pipe.
-* subscribe() - extract value from a pipe.
+Examples:
 ```
 const e: number = 50;
 let r : number;
 let t : number[];
 const z = new Flow(5)
-            .bind((v: number): any => v+1)
-            .let((v: number): any => new Flow(v).bind(v => r = v+e))
-            .bind((v: number): any => cast(list.bind(v => [v-1, v, v+1], [-v, v ]), 1))
-            .let((v: number)=> new Flow(v).bind(v => t = v, cast(list.bind(v=>[v, -v], v), 1)))
-            .subscribe();
+  .bind((v: number): any => v+1)
+  .let((v: number): any => new Flow(v).bind((v: number) => r = v+e))
+  .bind((v: number): any => cast(list.bind((v: number) => [v-1, v, v+1], [-v, v ]), 1))
+  .let((v: number)=> new Flow(v).bind((v: number[]) => t = v, cast(list.bind((v: number)=>[v, -v], [v]), 2)))
+  .subscribe();
 console.log(r); // 56
 console.log(t); // [ -7, 7, -6, 6, -5, 5, 5, -5, 6, -6, 7, -7 ]
 console.log(z); // [ -7, -6, -5, 5, 6, 7 ]

@@ -7,10 +7,10 @@ import { ErrorM } from "./error";
  */
 export declare class State<T> extends Monad<T> {
     /**
-     * @type {T}
+     * @type {any}
      * @protected
      */
-    protected state: T;
+    protected state: any;
     /**
      * @type {Maybe<T>}
      * @protected
@@ -27,10 +27,10 @@ export declare class State<T> extends Monad<T> {
      */
     constructor(state: T);
     /**
-     * @param {function(v: any)} f - function.
-     * @return {Object} this (current context) value.
+     * @param {function(v: T)=> T} f - app. state transformation function.
+     * @return {State}
      */
-    put(f: (v: any) => T): this;
+    put(f: (v: T) => T): this;
     /**
      * @return {T} The state of app.
      */

@@ -48,10 +48,30 @@
 <div class="content" data-ice="content"><h1 data-ice="title">src/identity.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { Monad } from &quot;./monad&quot;;
 /**
- * Class Identity.
+ * Class Identity - wrap underlying value into the monadic value and computing results from a monadic value.
  * @extends {Monad}
  */
 export class Identity extends Monad {
+    /**
+     * Create an instance of class Identity.
+     * @param {T} v - The initial state of app.
+     * */
+    constructor(v) {
+        super();
+        /**
+         * it hold underlying value of a monad.
+         * @type {T}
+         */
+        this.v = v;
+    }
+    /**
+     * chains the operations on a monadic values.
+     * @param {function(v: T) =&gt; Pr&lt;U&gt;} f - transformation function for a monad.
+     * @return {Pr&lt;U&gt;} monadic value from v or transformed value by f(v).
+     */
+    bind(f) {
+        return f(this.v);
+    }
 }
 //Copyright (c) 2017 Alex Tranchenko. All rights reserved.
 </code></pre>

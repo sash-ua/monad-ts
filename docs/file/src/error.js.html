@@ -48,7 +48,7 @@
 <div class="content" data-ice="content"><h1 data-ice="title">src/error.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { Monad } from &quot;./monad&quot;;
 /**
- * Class ErrorM.
+ * Class ErrorM - return given value or produce Error if take Error or get Error after execution of f(v).
  * @extends {Monad}
  */
 export class ErrorM extends Monad {
@@ -59,10 +59,10 @@ export class ErrorM extends Monad {
         super();
     }
     /**
-     * Method that chains the operations on a monadic values
-     * @param {function(v: any)} f - transformation function for a monad
+     * Method that chains the operations on a monadic values.
+     * @param {function(v: T) =&gt; Pr&lt;U&gt;} f - transformation function for a monad.
      * @param {any} v - underlying value for a monad.
-     * @return {Pr&lt;U&gt;  | Error} given value v or transformed value by f(v) or throw Error
+     * @return {Pr&lt;U&gt;  | Error} monadic value from v or transformed value by f(v) or throw Error.
      */
     bind(f, v) {
         if (v !== v || v === Infinity || v === -Infinity || v instanceof Error) {
