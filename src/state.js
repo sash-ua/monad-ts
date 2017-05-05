@@ -14,7 +14,7 @@ var monad_1 = require("./monad");
 var maybe_1 = require("./maybe");
 var error_1 = require("./error");
 /**
- * Class State. For app. state manipulations.
+ * Class State - for app. state manipulations.
  * @extends {Monad}
  */
 var State = (function (_super) {

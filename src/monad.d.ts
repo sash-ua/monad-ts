@@ -14,7 +14,7 @@ export interface M<T> {
     errorHandler(e: Error | string): Error;
 }
 /**
- * class Monad. Base class.
+ * class Monad - base class.
  * @implements {M}
  */
 export declare class Monad<T> implements M<T> {

@@ -4,7 +4,7 @@ import {Maybe} from "./maybe";
 import {ErrorM} from "./error";
 
 /**
- * Class State. For app. state manipulations.
+ * Class State - for app. state manipulations.
  * @extends {Monad}
  */
 export class State<T> extends  Monad<T>{

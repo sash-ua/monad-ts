@@ -2,7 +2,7 @@ import { MF, Monad, Pr } from "./monad";
 import { Maybe } from "./maybe";
 import { ErrorM } from "./error";
 /**
- * Class Flow. For composing monads in a pipe.
+ * Class Flow - for composing monads in a pipe.
  * @extends {Monad}
  */
 export declare class Flow<T> extends Monad<T> {

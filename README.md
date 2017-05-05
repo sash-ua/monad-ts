@@ -11,7 +11,7 @@ Monad-ts is a small (7kb) library implements some of key monads and way to chain
 
 **Introduction**
 * [Intro](#intro)
-* [API](#api)
+* [API](https://sash-ua.github.io/monad-ts/identifiers.html)
 
 **All monads**
 * [Identity](#identity)
@@ -58,10 +58,6 @@ process. Monads allow us to do all the side-effecting computations using pure fu
 using of like monads from Haskell in JS.
 
 ** In TypeScript be attentive to type definitions while coding.
-
-## API
-
-[API - description of classes, methods and utilities.](https://sash-ua.github.io/monad-ts/)
 
 ### Ways to use:
 

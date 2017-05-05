@@ -6,7 +6,7 @@ import {ErrorM} from "./error";
 
 
 /**
- * Class Flow. For composing monads in a pipe.
+ * Class Flow - for composing monads in a pipe.
  * @extends {Monad}
  */
 export class Flow<T> extends Monad<T>{

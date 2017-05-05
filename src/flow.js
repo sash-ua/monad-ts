@@ -15,7 +15,7 @@ var maybe_1 = require("./maybe");
 var clone_1 = require("./services/clone");
 var error_1 = require("./error");
 /**
- * Class Flow. For composing monads in a pipe.
+ * Class Flow - for composing monads in a pipe.
  * @extends {Monad}
  */
 var Flow = (function (_super) {

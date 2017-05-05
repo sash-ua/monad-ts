@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * class Monad. Base class.
+ * class Monad - base class.
  * @implements {M}
  */
 var Monad = (function () {

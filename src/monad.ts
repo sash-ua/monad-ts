@@ -17,7 +17,7 @@ export interface M<T>{
 }
 
 /**
- * class Monad. Base class.
+ * class Monad - base class.
  * @implements {M}
  */
 export class Monad<T> implements M<T>{
