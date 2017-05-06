@@ -1,3 +1,10 @@
+# 0.2.1 (2017-05-06)
+
+### Changes
+
+* Added monad Either.
+* readme and docs updates.
+
 # 0.2.0 (2017-05-05),
 # 0.1.0 (2017-05-05)
 

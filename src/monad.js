@@ -1,4 +1,14 @@
 "use strict";
+/**
+ * Pr<U> - type of returned values.
+ * @public
+ * @typedef {M<U> | U} 'Pr<U>
+ */
+/**
+ * MF<T, U> - transformation function's type.
+ * @public
+ * @typedef {function(v: T): Pr<U>} MF<T, U>
+ */
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * Class Monad - base class.

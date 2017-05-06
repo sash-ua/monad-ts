@@ -17,11 +17,8 @@ var monad_1 = require("./monad");
  */
 var ErrorM = (function (_super) {
     __extends(ErrorM, _super);
-    /**
-     * create an instance of class ErrorM.
-     */
     function ErrorM() {
-        return _super.call(this) || this;
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
      * Method that chains the operations on a monadic values.

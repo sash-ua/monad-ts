@@ -3,7 +3,8 @@
 
 # Monad-ts
 
-Monad-ts is a small (7kb) library implements some of key monads and way to chain them in a pipe (flow) in JavaScript and Typescript.
+Monad-ts is a small library implements some of key monads and way to chain them in a flow (pipe) in JavaScript and
+Typescript.
 
 ## Content
 * [Installation](#installation)
@@ -15,6 +16,7 @@ Monad-ts is a small (7kb) library implements some of key monads and way to chain
 
 **All monads**
 * [Identity](#identity)
+* [Either](#either)
 * [Maybe](#maybe)
 * [ErrorM](#errorm)
 * [List](#list)
@@ -111,7 +113,7 @@ Add library after es6-shim, es5-shim.
 Example:
 ```
 var state = new Monad_ts.State({q:1, w:2});
- console.log(state.get()); // {q:1, w:2}
+ console.log(state.get());                  // {q:1, w:2}
  
  var maybe = new Monad_ts.Maybe();
  var z = {
@@ -123,18 +125,34 @@ var state = new Monad_ts.State({q:1, w:2});
  console.log(maybe.bind(r => r.getUrl(), z)); // http://...
 ```
 
+[UP](#monad-ts)
+
 ## Monads
 
 #### Identity
 
 Examples:
 ```
-const i = new Identity(3); // Identity({v: 3})
-i.bind((v:number) => v);   // 3
+const i = new Identity(3);    // Identity({v: 3})
+i.bind((v:number) => v);      // 3
 ```
 ```
 const i = new Identity();
 i.just((v:number) => v+1, 3); // 4
+```
+
+#### Either
+
+It represents computation with two possibilities, right and left. Attached by bind method dispatcher function decided
+which of them apply to underlying value.
+
+Example:
+```
+const uVal = 10;                                     // underlying value
+const right = (x: number) => x+1;                    // if cond(v) return true, than executed
+const left = (y: string) => y + ' - isn\'t string';  // if cond(v) return false, than executed
+const cond = (v:any) => typeof v === 'string';       // dispatcher function - cond(v)
+const e = new Either(right, left).bind(cond , uVal); // '10 - isn't string'
 ```
 
 #### Maybe
@@ -174,7 +192,7 @@ It get array and return array, to cast array dimension according to entered arra
 Examples:
 ```
 const list = new List();
-const x = [10, 2]; // Entered array
+const x = [10, 2];                                                                         // Entered array
 z = cast(list.bind((v: number) =>list.bind((v: number) => [-v, v], [v-1, v, v+1]), x), 2); // [ -9, 9, -10, 10, -11, 11, -1, 1, -2, 2,
 -3, 3 ]
 ```
@@ -203,6 +221,8 @@ type R = { data: number; children: any[]; arr: number[]; };
             });
     console.log(st.get()); // { data: 10, children: [ Object({ data: 2, parent: 'null' }) ], arr: [ 2.25, 3.25, 4.25 ] }
 ```
+
+[UP](#monad-ts)
 
 ## Additional utilities (class and functions)
 
@@ -239,7 +259,7 @@ console.log(x); // {x:1}
 #### cast
 Function to decreasing the dimension of an array by factor n. It takes array and factor.
 ```
-console.log(cast([10, [11], [12]], 0)); // [10, [11], [12]]
+console.log(cast([10, [11], [12]], 0));           // [10, [11], [12]]
 console.log(cast([10, [[11, [2]], 3], [12]], 2)); // [ 10, 11, [ 2 ], 3, 12 ]
 ```
 

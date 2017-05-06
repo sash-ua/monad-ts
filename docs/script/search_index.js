@@ -1,5 +1,11 @@
 window.esdocSearchIndex = [
   [
+    "monad-ts/src/either.js~either",
+    "class/src/either.js~Either.html",
+    "<span>Either</span> <span class=\"search-result-import-path\">monad-ts/src/either.js</span>",
+    "class"
+  ],
+  [
     "monad-ts/src/error.js~errorm",
     "class/src/error.js~ErrorM.html",
     "<span>ErrorM</span> <span class=\"search-result-import-path\">monad-ts/src/error.js</span>",
@@ -384,6 +390,30 @@ window.esdocSearchIndex = [
     "external"
   ],
   [
+    "src/either.js",
+    "file/src/either.js.html",
+    "src/either.js",
+    "file"
+  ],
+  [
+    "src/either.js~d<t>",
+    "typedef/index.html#static-typedef-D<T>",
+    "src/either.js~D<T>",
+    "typedef"
+  ],
+  [
+    "src/either.js~either#bind",
+    "class/src/either.js~Either.html#instance-method-bind",
+    "src/either.js~Either#bind",
+    "method"
+  ],
+  [
+    "src/either.js~either#constructor",
+    "class/src/either.js~Either.html#instance-constructor-constructor",
+    "src/either.js~Either#constructor",
+    "method"
+  ],
+  [
     "src/error.js",
     "file/src/error.js.html",
     "src/error.js",
@@ -393,12 +423,6 @@ window.esdocSearchIndex = [
     "src/error.js~errorm#bind",
     "class/src/error.js~ErrorM.html#instance-method-bind",
     "src/error.js~ErrorM#bind",
-    "method"
-  ],
-  [
-    "src/error.js~errorm#constructor",
-    "class/src/error.js~ErrorM.html#instance-constructor-constructor",
-    "src/error.js~ErrorM#constructor",
     "method"
   ],
   [
@@ -510,6 +534,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/monad.js~mf<t,",
+    "typedef/index.html#static-typedef-MF<T,",
+    "src/monad.js~MF<T,",
+    "typedef"
+  ],
+  [
     "src/monad.js~monad#errorhandler",
     "class/src/monad.js~Monad.html#instance-method-errorHandler",
     "src/monad.js~Monad#errorHandler",
@@ -520,6 +550,12 @@ window.esdocSearchIndex = [
     "class/src/monad.js~Monad.html#instance-method-just",
     "src/monad.js~Monad#just",
     "method"
+  ],
+  [
+    "src/monad.js~pr<u>",
+    "typedef/index.html#static-typedef-Pr<U>",
+    "src/monad.js~Pr<U>",
+    "typedef"
   ],
   [
     "src/services/cast.js",

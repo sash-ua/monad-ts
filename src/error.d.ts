@@ -5,10 +5,6 @@ import { MF, Monad, Pr } from "./monad";
  */
 export declare class ErrorM<T> extends Monad<T> {
     /**
-     * create an instance of class ErrorM.
-     */
-    constructor();
-    /**
      * Method that chains the operations on a monadic values.
      * @param {function(v: T) => Pr<U>} f - transformation function for a monad.
      * @param {any} v - underlying value for a monad.

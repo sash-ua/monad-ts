@@ -1,9 +1,11 @@
 "use strict";
 /**
  * @description
- * Entry point for all public APIs of the MonadTS package.
+ * Entry point for all public APIs of the Monad-TS package.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+var either_1 = require("./src/either");
+exports.Either = either_1.Either;
 var list_1 = require("./src/list");
 exports.List = list_1.List;
 var identity_1 = require("./src/identity");
@@ -20,4 +22,8 @@ var state_1 = require("./src/state");
 exports.State = state_1.State;
 var monad_1 = require("./src/monad");
 exports.Monad = monad_1.Monad;
+// import {Either} from "./src/either";
+//
+// const e = new Either((x: number) => x+1, (y: string) => y + ' isn\'t string').bind((v: any) => typeof v !== 'string', '10');
+// console.log(e);
 //Copyright (c) 2017 Alex Tranchenko. All rights reserved. 

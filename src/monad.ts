@@ -1,11 +1,16 @@
 /**
- * @typedef {Object} {Pr<U>}
+ * Pr<U> - type of returned values.
+ * @public
+ * @typedef {M<U> | U} 'Pr<U>
  */
-export type Pr<U> = M<U> | U ;
-
 /**
- * @typedef {function(v: T) => Pr<U>} MF<T, U>
+ * MF<T, U> - transformation function's type.
+ * @public
+ * @typedef {function(v: T): Pr<U>} MF<T, U>
  */
+
+/** Comment for ESDoc */
+export type Pr<U> = M<U> | U ;
 export type MF<T, U> = (v: T)=> Pr<U>;
 
 /**
