@@ -1,3 +1,9 @@
+# 0.2.4 (2017-05-08)
+
+### Changes
+
+Equality function update.
+
 # 0.2.3 (2017-05-08)
 
 ### Changes

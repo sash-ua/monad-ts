@@ -4,6 +4,7 @@
  * @param {any} y - argument 2.
  * @returns {boolean | Error}
  */
+
 export  function equality(x: any, y: any): boolean | Error{
     if(!x || !y){
         return new Error('Equal. There isn\'t argument');
@@ -15,13 +16,15 @@ export  function equality(x: any, y: any): boolean | Error{
         return x.length !== y.length ? false : _arrayIterator(x, y);
     } else if(Array.isArray(x) && !Array.isArray(y) || !Array.isArray(x) && Array.isArray(y)){
         return false;
-    } else {
+    } else if(equality(Object.getOwnPropertyNames(x), Object.getOwnPropertyNames(y))){
         for(let key in x){
             if(x.hasOwnProperty(key)){
                 if(!equality(x[key], y[key])) return false;
             }
         }
         return true;
+    } else {
+        return false;
     }
 }
 /**

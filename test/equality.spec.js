@@ -14,6 +14,9 @@ describe('Equal: ', function () {
     it('3) should produce false', function () {
         expect(equality_1.equality({ x1: 0, x: [1, { c: [22, { j: 21, g: 'ert' }, 23] }, NaN, Infinity, undefined, undefined], t: [null, 0] }, { x1: 0, x: [1, { c: [22, { j: 21, g: 'ert' }, 23] }, NaN, Infinity, null, undefined], t: [null, 0] })).toBeFalsy();
     });
+    it('4) should produce false', function () {
+        expect(equality_1.equality({ u: 0, x: [1, { c: [22, { j: 21, g: 'ert' }, 23] }, NaN, Infinity, null, undefined], t: [null, 0] }, { x1: 0, x: [1, { c: [22, { j: 21, g: 'ert' }, 23] }, NaN, Infinity, null, undefined], t: [null, 0] })).toBeFalsy();
+    });
     it('should produce Error', function () {
         expect(equality_1.equality({ x1: 0, x: [1, { c: [22, { j: 21, g: 'ert' }, 23] }, NaN, Infinity, undefined, undefined], t: [null, 0] }, null) instanceof Error).toBeTruthy();
     });

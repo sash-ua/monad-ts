@@ -76,7 +76,7 @@
     else if (Array.isArray(x) &amp;&amp; !Array.isArray(y) || !Array.isArray(x) &amp;&amp; Array.isArray(y)) {
         return false;
     }
-    else {
+    else if (equality(Object.getOwnPropertyNames(x), Object.getOwnPropertyNames(y))) {
         for (let key in x) {
             if (x.hasOwnProperty(key)) {
                 if (!equality(x[key], y[key]))
@@ -84,6 +84,9 @@
             }
         }
         return true;
+    }
+    else {
+        return false;
     }
 }
 /**

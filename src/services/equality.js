@@ -1,11 +1,11 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * function to check equality of data.
  * @param {any} x - argument 1.
  * @param {any} y - argument 2.
  * @returns {boolean | Error}
  */
+Object.defineProperty(exports, "__esModule", { value: true });
 function equality(x, y) {
     if (!x || !y) {
         return new Error('Equal. There isn\'t argument');
@@ -20,7 +20,7 @@ function equality(x, y) {
     else if (Array.isArray(x) && !Array.isArray(y) || !Array.isArray(x) && Array.isArray(y)) {
         return false;
     }
-    else {
+    else if (equality(Object.getOwnPropertyNames(x), Object.getOwnPropertyNames(y))) {
         for (var key in x) {
             if (x.hasOwnProperty(key)) {
                 if (!equality(x[key], y[key]))
@@ -28,6 +28,9 @@ function equality(x, y) {
             }
         }
         return true;
+    }
+    else {
+        return false;
     }
 }
 exports.equality = equality;

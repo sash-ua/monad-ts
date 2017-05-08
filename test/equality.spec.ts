@@ -26,6 +26,12 @@ describe('Equal: ', ()=>{
             {x1: 0, x: [1, {c: [22, {j:21, g: 'ert'}, 23]}, NaN, Infinity, null, undefined], t: [null, 0]}
         )).toBeFalsy();
     });
+    it('4) should produce false', ()=>{
+        expect(equality(
+            {u: 0, x: [1, {c: [22, {j:21, g: 'ert'}, 23]}, NaN, Infinity, null, undefined], t: [null, 0]},
+            {x1: 0, x: [1, {c: [22, {j:21, g: 'ert'}, 23]}, NaN, Infinity, null, undefined], t: [null, 0]}
+        )).toBeFalsy();
+    });
     it('should produce Error', ()=>{
         expect(equality(
             {x1: 0, x: [1, {c: [22, {j:21, g: 'ert'}, 23]}, NaN, Infinity, undefined, undefined], t: [null, 0]},
