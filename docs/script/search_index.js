@@ -60,6 +60,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "monad-ts/src/services/equality.js~equality",
+    "function/index.html#static-function-equality",
+    "<span>equality</span> <span class=\"search-result-import-path\">monad-ts/src/services/equality.js</span>",
+    "function"
+  ],
+  [
     "builtinexternal/ecmascriptexternal.js~array",
     "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
     "BuiltinExternal/ECMAScriptExternal.js~Array",
@@ -396,9 +402,9 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/either.js~d<t>",
-    "typedef/index.html#static-typedef-D<T>",
-    "src/either.js~D<T>",
+    "src/either.js~'d<t>",
+    "typedef/index.html#static-typedef-'D<T>",
+    "src/either.js~'D<T>",
     "typedef"
   ],
   [
@@ -411,6 +417,18 @@ window.esdocSearchIndex = [
     "src/either.js~either#constructor",
     "class/src/either.js~Either.html#instance-constructor-constructor",
     "src/either.js~Either#constructor",
+    "method"
+  ],
+  [
+    "src/either.js~either#left",
+    "class/src/either.js~Either.html#instance-method-left",
+    "src/either.js~Either#left",
+    "method"
+  ],
+  [
+    "src/either.js~either#right",
+    "class/src/either.js~Either.html#instance-method-right",
+    "src/either.js~Either#right",
     "method"
   ],
   [
@@ -534,9 +552,15 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/monad.js~mf<t,",
-    "typedef/index.html#static-typedef-MF<T,",
-    "src/monad.js~MF<T,",
+    "src/monad.js~'mf<t,",
+    "typedef/index.html#static-typedef-'MF<T,",
+    "src/monad.js~'MF<T,",
+    "typedef"
+  ],
+  [
+    "src/monad.js~'pr<u>",
+    "typedef/index.html#static-typedef-'Pr<U>",
+    "src/monad.js~'Pr<U>",
     "typedef"
   ],
   [
@@ -552,12 +576,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/monad.js~pr<u>",
-    "typedef/index.html#static-typedef-Pr<U>",
-    "src/monad.js~Pr<U>",
-    "typedef"
-  ],
-  [
     "src/services/cast.js",
     "file/src/services/cast.js.html",
     "src/services/cast.js",
@@ -567,6 +585,12 @@ window.esdocSearchIndex = [
     "src/services/clone.js",
     "file/src/services/clone.js.html",
     "src/services/clone.js",
+    "file"
+  ],
+  [
+    "src/services/equality.js",
+    "file/src/services/equality.js.html",
+    "src/services/equality.js",
     "file"
   ],
   [

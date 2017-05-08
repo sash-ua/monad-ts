@@ -6,7 +6,7 @@
 /**
  * MF<T, U> - transformation function's type.
  * @public
- * @typedef {function(v: T): Pr<U>} MF<T, U>
+ * @typedef {function(v: T): Pr<U>} 'MF<T, U>
  */
 /** Comment for ESDoc */
 export declare type Pr<U> = M<U> | U;

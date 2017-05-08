@@ -40,17 +40,20 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/maybe.js~Maybe.html">Maybe</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/monad.js~Monad.html">Monad</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/state.js~State.html">State</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-D&lt;T&gt;">D&lt;T&gt;</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-MF&lt;T,">MF&lt;T,</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Pr&lt;U&gt;">Pr&lt;U&gt;</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-&apos;D&lt;T&gt;">&apos;D&lt;T&gt;</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-&apos;MF&lt;T,">&apos;MF&lt;T,</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-&apos;Pr&lt;U&gt;">&apos;Pr&lt;U&gt;</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">services</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cast">cast</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-clone">clone</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-equality">equality</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><p><a href="https://travis-ci.org/sash-ua/monad-ts"><img src="https://travis-ci.org/sash-ua/monad-ts.svg?branch=master" alt="Build Status"></a>
-<a href="https://github.com/sash-ua/monad-ts"><img src="https://img.shields.io/npm/dw/localeval.svg" alt="npm"></a></p>
+<a href="https://github.com/sash-ua/monad-ts"><img src="https://img.shields.io/npm/dw/localeval.svg" alt="npm"></a>
+<a href="https://github.com/sash-ua/monad-ts"><img src="https://img.shields.io/david/expressjs/express.svg" alt="David"></a>
+<a href="https://github.com/sash-ua/monad-ts"><img src="https://img.shields.io/hexpm/l/plug.svg" alt="Hex.pm"></a></p>
 <h1 id="monad-ts">Monad-ts</h1>
 <p>Monad-ts is a small library implements some of key monads and way to chain them in a flow (pipe) in JavaScript and
 Typescript.</p>
@@ -66,21 +69,25 @@ Typescript.</p>
 </ul>
 <p><strong>All monads</strong></p>
 <ul>
-<li><a href="#identity">Identity</a></li>
 <li><a href="#either">Either</a></li>
-<li><a href="#maybe">Maybe</a></li>
 <li><a href="#errorm">ErrorM</a></li>
+<li><a href="#identity">Identity</a></li>
+<li><a href="#maybe">Maybe</a></li>
 <li><a href="#list">List</a></li>
 <li><a href="#state">State</a></li>
 </ul>
 <p><strong>Additional tools (class and functions)</strong></p>
 <ul>
 <li><a href="#flow">Flow</a></li>
-<li><a href="#clone">clone</a></li>
 <li><a href="#cast">cast</a></li>
+<li><a href="#clone">clone</a></li>
+<li><a href="#equality">equality</a></li>
 </ul>
 <h2 id="installation">Installation</h2>
-<p>In library used ES5 (map, reduce), ES6 (Map, Array.from, Object.assign, Object.keys) methods. It&apos;s strongly recommended to always
+<p>In library used ES5 (Array.map, Array.reduce, Array.some, Array.isArray), ES6 (Map, Array.from, Object.assign, Object.keys) methods.
+ It&apos;s
+strongly
+recommended to always
 use ES5-shim and ES6-shim or alternatives.</p>
 <pre><code><code class="source-code prettyprint">npm install monad-ts</code>
 </code></pre><p>or</p>
@@ -142,13 +149,7 @@ console.log(z); // [ -7, -6, -5, 5, 6, 7 ]</code>
  console.log(maybe.bind(r =&gt; r.getUrl(), z)); // http://...</code>
 </code></pre><p><a href="#monad-ts">UP</a></p>
 <h2 id="monads">Monads</h2>
-<h4 id="identity">Identity</h4>
-<p>Examples:</p>
-<pre><code><code class="source-code prettyprint">const i = new Identity(3);    // Identity({v: 3})
-i.bind((v:number) =&gt; v);      // 3</code>
-</code></pre><pre><code><code class="source-code prettyprint">const i = new Identity();
-i.just((v:number) =&gt; v+1, 3); // 4</code>
-</code></pre><h4 id="either">Either</h4>
+<h4 id="either">Either</h4>
 <p>It represents computation with two possibilities, right and left. Attached by bind method dispatcher function decided
 which of them apply to underlying value.</p>
 <p>Example:</p>
@@ -157,6 +158,24 @@ const right = (x: number) =&gt; x+1;                    // if cond(v) return tru
 const left = (y: string) =&gt; y + &apos; - isn\&apos;t string&apos;;  // if cond(v) return false, than executed
 const cond = (v:any) =&gt; typeof v === &apos;string&apos;;       // dispatcher function - cond(v)
 const e = new Either(right, left).bind(cond , uVal); // &apos;10 - isn&apos;t string&apos;</code>
+</code></pre><p>or another way, useful in asynchronous code</p>
+<pre><code><code class="source-code prettyprint">const uVal = 10;                                     // underlying value
+const right = (x: number) =&gt; x+1;                    // if cond(v) return true, than executed
+const left = (y: string) =&gt; y + &apos; - isn\&apos;t string&apos;;  // if cond(v) return false, than executed
+const cond = (v:any) =&gt; typeof v === &apos;string&apos;;       // dispatcher function - cond(v)
+const e = new Either(right, left);                   // to wrap functions in the monad
+const w = cond(uVal) ? right(uVal) : left(uVal);     // &apos;10 - isn&apos;t string&apos;</code>
+</code></pre><h4 id="errorm">ErrorM</h4>
+<p>It similar to the Identity but it can also represent the error. Error monad returns value transformed by given function. If Error monad gets Error in given values it produce Error. If after application of given transformation function monad get Error monad produce Error.</p>
+<p>Examples:</p>
+<pre><code><code class="source-code prettyprint">const e = new ErrorM();
+e.bind((v: number) =&gt; e.bind((v1: number)=&gt;v+v1, 1), 1/0); // Error</code>
+</code></pre><h4 id="identity">Identity</h4>
+<p>Examples:</p>
+<pre><code><code class="source-code prettyprint">const i = new Identity(3);    // Identity({v: 3})
+i.bind((v:number) =&gt; v);      // 3</code>
+</code></pre><pre><code><code class="source-code prettyprint">const i = new Identity();
+i.just((v:number) =&gt; v+1, 3); // 4</code>
 </code></pre><h4 id="maybe">Maybe</h4>
 <p>It similar to the Identity but it can also represent the absence of any value. Monad Maybe returns value transformed
 by given function. If Maybe monad gets null or undefined in given values it produce null. If after application of given transformation function monad get null or undefined monad produce null.</p>
@@ -170,11 +189,6 @@ const z: G = {
     }
 };
 maybe.bind(r =&gt; r.getUrl(), z); // http://...</code>
-</code></pre><h4 id="errorm">ErrorM</h4>
-<p>It similar to the Identity but it can also represent the error. Error monad returns value transformed by given function. If Error monad gets Error in given values it produce Error. If after application of given transformation function monad get Error monad produce Error.</p>
-<p>Examples:</p>
-<pre><code><code class="source-code prettyprint">const e = new ErrorM();
-e.bind((v: number) =&gt; e.bind((v1: number)=&gt;v+v1, 1), 1/0); // Error</code>
 </code></pre><h4 id="list">List</h4>
 <p>The List monad represents a lazily computed list of values. It takes in an input value of type A, and produce a bunch of output values of type B, collected in one container (the array).</p>
 <p>It get array and return array, to cast array dimension according to entered array we can use function <a href="#cast">cast</a>;</p>
@@ -220,6 +234,10 @@ const z = new Flow(5)
 console.log(r); // 56
 console.log(t); // [ -7, 7, -6, 6, -5, 5, 5, -5, 6, -6, 7, -7 ]
 console.log(z); // [ -7, -6, -5, 5, 6, 7 ]</code>
+</code></pre><h4 id="cast">cast</h4>
+<p>Function to decreasing the dimension of an array by factor n. It takes array and factor.</p>
+<pre><code><code class="source-code prettyprint">console.log(cast([10, [11], [12]], 0));           // [10, [11], [12]]
+console.log(cast([10, [[11, [2]], 3], [12]], 2)); // [ 10, 11, [ 2 ], 3, 12 ]</code>
 </code></pre><h4 id="clone">clone</h4>
 <p>Function to clone objects (including Map). It takes objects and primitives.</p>
 <pre><code><code class="source-code prettyprint">const x = {x:1};
@@ -227,10 +245,13 @@ const z = clone(x);
 z.x = 10;
 console.log(z); // {x:10}
 console.log(x); // {x:1}</code>
-</code></pre><h4 id="cast">cast</h4>
-<p>Function to decreasing the dimension of an array by factor n. It takes array and factor.</p>
-<pre><code><code class="source-code prettyprint">console.log(cast([10, [11], [12]], 0));           // [10, [11], [12]]
-console.log(cast([10, [[11, [2]], 3], [12]], 2)); // [ 10, 11, [ 2 ], 3, 12 ]</code>
+</code></pre><h4 id="equality">equality</h4>
+<p>Function to check equality of given data.</p>
+<pre><code><code class="source-code prettyprint">// true
+equality(
+  {x1: 0, x: [1, {c: [22, {j:21, g: &apos;ert&apos;}, 23]}, NaN, Infinity, null, undefined], t: [null, 0]},
+  {x1: 0, x: [1, {c: [22, {j:21, g: &apos;ert&apos;}, 23]}, NaN, Infinity, null, undefined], t: [null, 0]}
+)</code>
 </code></pre><p><a href="#monad-ts">UP</a></p>
 <h2 id="license">License</h2>
 <p>Monad_ts is copyright (c) 2017 - present Alex Tranchenko tranchenkoa@gmail.com .</p>

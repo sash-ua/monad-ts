@@ -1,7 +1,7 @@
 {
   "name": "monad-ts",
-  "version": "0.2.0",
-  "description": "Monad-ts is a small (7kb) library implements some of key monads and way to chain them in a pipe (flow) in JavaScript and TypeScript",
+  "version": "0.2.2",
+  "description": "Monad-ts is a small library implements some of key monads and way to chain them in a pipe (flow) in JavaScript and TypeScript",
   "homepage": "https://github.com/sash-ua/monad-ts",
   "keywords": [
     "monad-library",

@@ -40,11 +40,12 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/maybe.js~Maybe.html">Maybe</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/monad.js~Monad.html">Monad</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/state.js~State.html">State</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-D&lt;T&gt;">D&lt;T&gt;</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-MF&lt;T,">MF&lt;T,</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Pr&lt;U&gt;">Pr&lt;U&gt;</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-&apos;D&lt;T&gt;">&apos;D&lt;T&gt;</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-&apos;MF&lt;T,">&apos;MF&lt;T,</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-&apos;Pr&lt;U&gt;">&apos;Pr&lt;U&gt;</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">services</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cast">cast</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-clone">clone</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-equality">equality</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -157,7 +158,7 @@
       <div>
         
         
-        <div data-ice="description"><p>Class Identity - wrap underlying value into the monadic value and computing results from a monadic value.</p>
+        <div data-ice="description"><p>Class Identity - wraps underlying value into the monadic value and compute results from a monadic value.</p>
 </div>
       </div>
     </td>
@@ -299,7 +300,7 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="function/index.html#static-function-cast">cast</a></span></span><span data-ice="signature">(arr: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>&lt;<span>T</span>&gt;, n: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>&lt;<span>any</span>&gt;</span>
+          <span data-ice="name"><span><a href="function/index.html#static-function-cast">cast</a></span></span><span data-ice="signature">(arr: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>&lt;<span>T</span>&gt;, n: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>&lt;<span>U</span>&gt;</span>
         </p>
       </div>
       <div>
@@ -327,13 +328,41 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="function/index.html#static-function-clone">clone</a></span></span><span data-ice="signature">(Object: <span>any</span>, object: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></span>): <span>any</span></span>
+          <span data-ice="name"><span><a href="function/index.html#static-function-clone">clone</a></span></span><span data-ice="signature">(obj: <span>T</span>): <span>T</span></span>
         </p>
       </div>
       <div>
         
         
         <div data-ice="description"><p>this is service to clone object, including Map.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          <span data-ice="name"><span><a href="function/index.html#static-function-equality">equality</a></span></span><span data-ice="signature">(x: <span>any</span>, y: <span>any</span>): <span>boolean </span> | <span> Error</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>function to check equality of data.</p>
 </div>
       </div>
     </td>
@@ -363,7 +392,7 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="typedef/index.html#static-typedef-D&lt;T&gt;">D&lt;T&gt;</a></span></span><span data-ice="signature">: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(v: <span>T</span>)</span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></span></span></span>
+          <span data-ice="name"><span><a href="typedef/index.html#static-typedef-&apos;D&lt;T&gt;">&apos;D&lt;T&gt;</a></span></span><span data-ice="signature">: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(v: <span>T</span>)</span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></span></span></span>
         </p>
       </div>
       <div>
@@ -391,7 +420,7 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="typedef/index.html#static-typedef-MF&lt;T,">MF&lt;T,</a></span></span><span data-ice="signature">: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(v: <span>T</span>)</span>: <span>Pr</span>&lt;<span>U</span>&gt;</span></span>
+          <span data-ice="name"><span><a href="typedef/index.html#static-typedef-&apos;MF&lt;T,">&apos;MF&lt;T,</a></span></span><span data-ice="signature">: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(v: <span>T</span>)</span>: <span>Pr</span>&lt;<span>U</span>&gt;</span></span>
         </p>
       </div>
       <div>
@@ -419,7 +448,7 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="typedef/index.html#static-typedef-Pr&lt;U&gt;">Pr&lt;U&gt;</a></span></span><span data-ice="signature">: <span>M&lt;U&gt; </span> | <span> U</span></span>
+          <span data-ice="name"><span><a href="typedef/index.html#static-typedef-&apos;Pr&lt;U&gt;">&apos;Pr&lt;U&gt;</a></span></span><span data-ice="signature">: <span>M&lt;U&gt; </span> | <span> U</span></span>
         </p>
       </div>
       <div>

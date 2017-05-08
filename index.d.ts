@@ -2,6 +2,7 @@
  * @description
  * Entry point for all public APIs of the Monad-TS package.
  */
+export { equality } from "./src/services/equality";
 export { Either } from "./src/either";
 export { List } from "./src/list";
 export { Identity } from "./src/identity";

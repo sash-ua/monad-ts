@@ -1,11 +1,11 @@
 {
   "coverage": "100%",
-  "expectCount": 34,
-  "actualCount": 34,
+  "expectCount": 37,
+  "actualCount": 37,
   "files": {
     "src/either.js": {
-      "expectCount": 3,
-      "actualCount": 3,
+      "expectCount": 5,
+      "actualCount": 5,
       "undocumentLines": []
     },
     "src/error.js": {
@@ -49,6 +49,11 @@
       "undocumentLines": []
     },
     "src/services/clone.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/services/equality.js": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []

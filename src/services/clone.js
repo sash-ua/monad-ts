@@ -2,9 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * this is service to clone object, including Map.
- * @param {any} Object or Primitives to clone.
- * @param {Map} object Map, serve object in function.
- * @return {any} Returns Primitives or clone Object.
+ * @param {T} obj - Object or Primitives to clone.
+ * @return {T}
  */
 function clone(obj, map) {
     if (map === void 0) { map = new Map(); }
@@ -35,9 +34,8 @@ function clone(obj, map) {
 }
 exports.clone = clone;
 /**
- * @param {any} Object or Primitives to clone.
- * @param {Map} object Map, serve object in function.
- * @returns {T} returns Primitives or clone Object.
+ * @param {T} obj - Object or Primitives to clone.
+ * @return {T}
  * @private
  */
 function _toTail(obj, map) {

@@ -12,13 +12,13 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var monad_1 = require("./monad");
 /**
- * Class Identity - wrap underlying value into the monadic value and computing results from a monadic value.
+ * Class Identity - wraps underlying value into the monadic value and compute results from a monadic value.
  * @extends {Monad}
  */
 var Identity = (function (_super) {
     __extends(Identity, _super);
     /**
-     * Create an instance of class Identity.
+     * create an instance of class Identity.
      * @param {T} v - The initial state of app.
      * */
     function Identity(v) {

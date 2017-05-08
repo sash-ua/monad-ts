@@ -1,3 +1,10 @@
+# 0.2.3 (2017-05-08)
+
+### Changes
+
+* Added function equality - to check equality of data.
+* readme and docs updates.
+
 # 0.2.2 (2017-05-06),
 # 0.2.1 (2017-05-06)
 

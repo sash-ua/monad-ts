@@ -1,8 +1,7 @@
 /**
  * this is service to clone object, including Map.
- * @param {any} Object or Primitives to clone.
- * @param {Map} object Map, serve object in function.
- * @return {any} Returns Primitives or clone Object.
+ * @param {T} obj - Object or Primitives to clone.
+ * @return {T}
  */
 export function clone<T>(obj: T, map: any = new Map()): T {
     // Primitives are immutable, no need to clone them.
@@ -22,9 +21,8 @@ export function clone<T>(obj: T, map: any = new Map()): T {
     }
 }
 /**
- * @param {any} Object or Primitives to clone.
- * @param {Map} object Map, serve object in function.
- * @returns {T} returns Primitives or clone Object.
+ * @param {T} obj - Object or Primitives to clone.
+ * @return {T}
  * @private
  */
 function _toTail<T>(obj: T, map: any){

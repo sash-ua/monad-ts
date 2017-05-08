@@ -8,6 +8,14 @@ describe('Either: ', function () {
         var right = function (x) { return x + 1; };
         var left = function (y) { return y + ' - isn\'t string'; };
         var cond = function (v) { return typeof v === 'string'; };
+        var e = new index_1.Either(right, left);
+        var w = cond(uVal) ? right(uVal) : left(uVal);
+        expect(w).toEqual(testStr);
+    });
+    it('should produce string', function () {
+        var right = function (x) { return x + 1; };
+        var left = function (y) { return y + ' - isn\'t string'; };
+        var cond = function (v) { return typeof v === 'string'; };
         var e = new index_1.Either(right, left).bind(cond, uVal);
         expect(e).toEqual(testStr);
     });

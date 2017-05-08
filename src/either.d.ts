@@ -1,7 +1,7 @@
 /**
  * D<T> - dispatcher's type function.
  * @public
- * @typedef {function(v: T): Boolean} D<T>
+ * @typedef {function(v: T): Boolean} 'D<T>
  */
 import { Monad, Pr } from "./monad";
 /** Comment for ESDoc */
@@ -13,6 +13,10 @@ export declare type D<T> = (v: T) => boolean;
 export declare class Either<T, U> extends Monad<T> {
     private r;
     private l;
+    /**
+     * @type {T} uVal - keep underlying value in the monad
+     */
+    private uVal;
     /**
      * Create an instance of class Either.
      * @param {function(v: T) => Pr<Z>} r - right function.
@@ -27,4 +31,16 @@ export declare class Either<T, U> extends Monad<T> {
      * @returns {Pr<any> | Error}
      */
     bind(f: D<T>, v: T): Pr<any> | Error;
+    /**
+     * extract result of left(v) computation.
+     * @param {T} v - underlying value.
+     * @return {Pr<N>}
+     */
+    left<T, N>(v: T): Pr<any>;
+    /**
+     * extract result of right(v) computation.
+     * @param {T} v - underlying value.
+     * @return {Pr<Z>}
+     */
+    right<T, Z>(v: T): Pr<any>;
 }

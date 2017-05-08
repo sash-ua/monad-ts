@@ -3,9 +3,9 @@
  * decreasing the dimension of an array by n.
  * @param {Array<T>} arr - input array.
  * @param {number} n - decreasing factor.
- * @return {Array<any>}
+ * @return {Array<U>}
  */
-export function cast<T>(arr: T[], n: number): Array<any> {
+export function cast<T, U>(arr: T[], n: number): Array<U> {
     return (n === 0 || n === undefined || n === null) ? arr : _reduser(arr, n);
 }
 

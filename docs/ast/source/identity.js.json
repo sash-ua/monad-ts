@@ -1,7 +1,7 @@
 {
   "type": "File",
   "start": 0,
-  "end": 832,
+  "end": 831,
   "loc": {
     "start": {
       "line": 1,
@@ -15,7 +15,7 @@
   "program": {
     "type": "Program",
     "start": 0,
-    "end": 832,
+    "end": 831,
     "loc": {
       "start": {
         "line": 1,
@@ -116,9 +116,9 @@
         "trailingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * Class Identity - wrap underlying value into the monadic value and computing results from a monadic value.\r\n * @extends {Monad}\r\n ",
+            "value": "*\r\n * Class Identity - wraps underlying value into the monadic value and compute results from a monadic value.\r\n * @extends {Monad}\r\n ",
             "start": 34,
-            "end": 173,
+            "end": 172,
             "loc": {
               "start": {
                 "line": 2,
@@ -134,8 +134,8 @@
       },
       {
         "type": "ExportNamedDeclaration",
-        "start": 175,
-        "end": 770,
+        "start": 174,
+        "end": 769,
         "loc": {
           "start": {
             "line": 6,
@@ -150,8 +150,8 @@
         "source": null,
         "declaration": {
           "type": "ClassDeclaration",
-          "start": 182,
-          "end": 770,
+          "start": 181,
+          "end": 769,
           "loc": {
             "start": {
               "line": 6,
@@ -164,8 +164,8 @@
           },
           "id": {
             "type": "Identifier",
-            "start": 188,
-            "end": 196,
+            "start": 187,
+            "end": 195,
             "loc": {
               "start": {
                 "line": 6,
@@ -182,8 +182,8 @@
           },
           "superClass": {
             "type": "Identifier",
-            "start": 205,
-            "end": 210,
+            "start": 204,
+            "end": 209,
             "loc": {
               "start": {
                 "line": 6,
@@ -199,8 +199,8 @@
           },
           "body": {
             "type": "ClassBody",
-            "start": 211,
-            "end": 770,
+            "start": 210,
+            "end": 769,
             "loc": {
               "start": {
                 "line": 6,
@@ -214,8 +214,8 @@
             "body": [
               {
                 "type": "ClassMethod",
-                "start": 333,
-                "end": 492,
+                "start": 332,
+                "end": 491,
                 "loc": {
                   "start": {
                     "line": 11,
@@ -229,8 +229,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 333,
-                  "end": 344,
+                  "start": 332,
+                  "end": 343,
                   "loc": {
                     "start": {
                       "line": 11,
@@ -254,8 +254,8 @@
                 "params": [
                   {
                     "type": "Identifier",
-                    "start": 345,
-                    "end": 346,
+                    "start": 344,
+                    "end": 345,
                     "loc": {
                       "start": {
                         "line": 11,
@@ -272,8 +272,8 @@
                 ],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 348,
-                  "end": 492,
+                  "start": 347,
+                  "end": 491,
                   "loc": {
                     "start": {
                       "line": 11,
@@ -287,8 +287,8 @@
                   "body": [
                     {
                       "type": "ExpressionStatement",
-                      "start": 359,
-                      "end": 367,
+                      "start": 358,
+                      "end": 366,
                       "loc": {
                         "start": {
                           "line": 12,
@@ -301,8 +301,8 @@
                       },
                       "expression": {
                         "type": "CallExpression",
-                        "start": 359,
-                        "end": 366,
+                        "start": 358,
+                        "end": 365,
                         "loc": {
                           "start": {
                             "line": 12,
@@ -315,8 +315,8 @@
                         },
                         "callee": {
                           "type": "Super",
-                          "start": 359,
-                          "end": 364,
+                          "start": 358,
+                          "end": 363,
                           "loc": {
                             "start": {
                               "line": 12,
@@ -334,8 +334,8 @@
                         {
                           "type": "CommentBlock",
                           "value": "*\r\n         * it hold underlying value of a monad.\r\n         * @type {T}\r\n         ",
-                          "start": 377,
-                          "end": 464,
+                          "start": 376,
+                          "end": 463,
                           "loc": {
                             "start": {
                               "line": 13,
@@ -351,8 +351,8 @@
                     },
                     {
                       "type": "ExpressionStatement",
-                      "start": 474,
-                      "end": 485,
+                      "start": 473,
+                      "end": 484,
                       "loc": {
                         "start": {
                           "line": 17,
@@ -365,8 +365,8 @@
                       },
                       "expression": {
                         "type": "AssignmentExpression",
-                        "start": 474,
-                        "end": 484,
+                        "start": 473,
+                        "end": 483,
                         "loc": {
                           "start": {
                             "line": 17,
@@ -380,8 +380,8 @@
                         "operator": "=",
                         "left": {
                           "type": "MemberExpression",
-                          "start": 474,
-                          "end": 480,
+                          "start": 473,
+                          "end": 479,
                           "loc": {
                             "start": {
                               "line": 17,
@@ -394,8 +394,8 @@
                           },
                           "object": {
                             "type": "ThisExpression",
-                            "start": 474,
-                            "end": 478,
+                            "start": 473,
+                            "end": 477,
                             "loc": {
                               "start": {
                                 "line": 17,
@@ -410,8 +410,8 @@
                           },
                           "property": {
                             "type": "Identifier",
-                            "start": 479,
-                            "end": 480,
+                            "start": 478,
+                            "end": 479,
                             "loc": {
                               "start": {
                                 "line": 17,
@@ -430,8 +430,8 @@
                         },
                         "right": {
                           "type": "Identifier",
-                          "start": 483,
-                          "end": 484,
+                          "start": 482,
+                          "end": 483,
                           "loc": {
                             "start": {
                               "line": 17,
@@ -451,8 +451,8 @@
                         {
                           "type": "CommentBlock",
                           "value": "*\r\n         * it hold underlying value of a monad.\r\n         * @type {T}\r\n         ",
-                          "start": 377,
-                          "end": 464,
+                          "start": 376,
+                          "end": 463,
                           "loc": {
                             "start": {
                               "line": 13,
@@ -473,9 +473,9 @@
                 "leadingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\r\n     * Create an instance of class Identity.\r\n     * @param {T} v - The initial state of app.\r\n     * ",
-                    "start": 218,
-                    "end": 327,
+                    "value": "*\r\n     * create an instance of class Identity.\r\n     * @param {T} v - The initial state of app.\r\n     * ",
+                    "start": 217,
+                    "end": 326,
                     "loc": {
                       "start": {
                         "line": 7,
@@ -492,8 +492,8 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\r\n     * chains the operations on a monadic values.\r\n     * @param {function(v: T) => Pr<U>} f - transformation function for a monad.\r\n     * @return {Pr<U>} monadic value from v or transformed value by f(v).\r\n     ",
-                    "start": 498,
-                    "end": 718,
+                    "start": 497,
+                    "end": 717,
                     "loc": {
                       "start": {
                         "line": 19,
@@ -509,8 +509,8 @@
               },
               {
                 "type": "ClassMethod",
-                "start": 724,
-                "end": 767,
+                "start": 723,
+                "end": 766,
                 "loc": {
                   "start": {
                     "line": 24,
@@ -524,8 +524,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 724,
-                  "end": 728,
+                  "start": 723,
+                  "end": 727,
                   "loc": {
                     "start": {
                       "line": 24,
@@ -549,8 +549,8 @@
                 "params": [
                   {
                     "type": "Identifier",
-                    "start": 729,
-                    "end": 730,
+                    "start": 728,
+                    "end": 729,
                     "loc": {
                       "start": {
                         "line": 24,
@@ -567,8 +567,8 @@
                 ],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 732,
-                  "end": 767,
+                  "start": 731,
+                  "end": 766,
                   "loc": {
                     "start": {
                       "line": 24,
@@ -582,8 +582,8 @@
                   "body": [
                     {
                       "type": "ReturnStatement",
-                      "start": 743,
-                      "end": 760,
+                      "start": 742,
+                      "end": 759,
                       "loc": {
                         "start": {
                           "line": 25,
@@ -596,8 +596,8 @@
                       },
                       "argument": {
                         "type": "CallExpression",
-                        "start": 750,
-                        "end": 759,
+                        "start": 749,
+                        "end": 758,
                         "loc": {
                           "start": {
                             "line": 25,
@@ -610,8 +610,8 @@
                         },
                         "callee": {
                           "type": "Identifier",
-                          "start": 750,
-                          "end": 751,
+                          "start": 749,
+                          "end": 750,
                           "loc": {
                             "start": {
                               "line": 25,
@@ -628,8 +628,8 @@
                         "arguments": [
                           {
                             "type": "MemberExpression",
-                            "start": 752,
-                            "end": 758,
+                            "start": 751,
+                            "end": 757,
                             "loc": {
                               "start": {
                                 "line": 25,
@@ -642,8 +642,8 @@
                             },
                             "object": {
                               "type": "ThisExpression",
-                              "start": 752,
-                              "end": 756,
+                              "start": 751,
+                              "end": 755,
                               "loc": {
                                 "start": {
                                   "line": 25,
@@ -657,8 +657,8 @@
                             },
                             "property": {
                               "type": "Identifier",
-                              "start": 757,
-                              "end": 758,
+                              "start": 756,
+                              "end": 757,
                               "loc": {
                                 "start": {
                                   "line": 25,
@@ -684,8 +684,8 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\r\n     * chains the operations on a monadic values.\r\n     * @param {function(v: T) => Pr<U>} f - transformation function for a monad.\r\n     * @return {Pr<U>} monadic value from v or transformed value by f(v).\r\n     ",
-                    "start": 498,
-                    "end": 718,
+                    "start": 497,
+                    "end": 717,
                     "loc": {
                       "start": {
                         "line": 19,
@@ -705,9 +705,9 @@
           "leadingComments": [
             {
               "type": "CommentBlock",
-              "value": "*\r\n * Class Identity - wrap underlying value into the monadic value and computing results from a monadic value.\r\n * @extends {Monad}\r\n ",
+              "value": "*\r\n * Class Identity - wraps underlying value into the monadic value and compute results from a monadic value.\r\n * @extends {Monad}\r\n ",
               "start": 34,
-              "end": 173,
+              "end": 172,
               "loc": {
                 "start": {
                   "line": 2,
@@ -724,8 +724,8 @@
             {
               "type": "CommentLine",
               "value": "Copyright (c) 2017 Alex Tranchenko. All rights reserved.",
-              "start": 772,
-              "end": 830,
+              "start": 771,
+              "end": 829,
               "loc": {
                 "start": {
                   "line": 28,
@@ -742,9 +742,9 @@
         "leadingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * Class Identity - wrap underlying value into the monadic value and computing results from a monadic value.\r\n * @extends {Monad}\r\n ",
+            "value": "*\r\n * Class Identity - wraps underlying value into the monadic value and compute results from a monadic value.\r\n * @extends {Monad}\r\n ",
             "start": 34,
-            "end": 173,
+            "end": 172,
             "loc": {
               "start": {
                 "line": 2,
@@ -761,8 +761,8 @@
           {
             "type": "CommentLine",
             "value": "Copyright (c) 2017 Alex Tranchenko. All rights reserved.",
-            "start": 772,
-            "end": 830,
+            "start": 771,
+            "end": 829,
             "loc": {
               "start": {
                 "line": 28,
@@ -782,9 +782,9 @@
   "comments": [
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Class Identity - wrap underlying value into the monadic value and computing results from a monadic value.\r\n * @extends {Monad}\r\n ",
+      "value": "*\r\n * Class Identity - wraps underlying value into the monadic value and compute results from a monadic value.\r\n * @extends {Monad}\r\n ",
       "start": 34,
-      "end": 173,
+      "end": 172,
       "loc": {
         "start": {
           "line": 2,
@@ -798,9 +798,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * Create an instance of class Identity.\r\n     * @param {T} v - The initial state of app.\r\n     * ",
-      "start": 218,
-      "end": 327,
+      "value": "*\r\n     * create an instance of class Identity.\r\n     * @param {T} v - The initial state of app.\r\n     * ",
+      "start": 217,
+      "end": 326,
       "loc": {
         "start": {
           "line": 7,
@@ -815,8 +815,8 @@
     {
       "type": "CommentBlock",
       "value": "*\r\n         * it hold underlying value of a monad.\r\n         * @type {T}\r\n         ",
-      "start": 377,
-      "end": 464,
+      "start": 376,
+      "end": 463,
       "loc": {
         "start": {
           "line": 13,
@@ -831,8 +831,8 @@
     {
       "type": "CommentBlock",
       "value": "*\r\n     * chains the operations on a monadic values.\r\n     * @param {function(v: T) => Pr<U>} f - transformation function for a monad.\r\n     * @return {Pr<U>} monadic value from v or transformed value by f(v).\r\n     ",
-      "start": 498,
-      "end": 718,
+      "start": 497,
+      "end": 717,
       "loc": {
         "start": {
           "line": 19,
@@ -847,8 +847,8 @@
     {
       "type": "CommentLine",
       "value": "Copyright (c) 2017 Alex Tranchenko. All rights reserved.",
-      "start": 772,
-      "end": 830,
+      "start": 771,
+      "end": 829,
       "loc": {
         "start": {
           "line": 28,
@@ -1047,9 +1047,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Class Identity - wrap underlying value into the monadic value and computing results from a monadic value.\r\n * @extends {Monad}\r\n ",
+      "value": "*\r\n * Class Identity - wraps underlying value into the monadic value and compute results from a monadic value.\r\n * @extends {Monad}\r\n ",
       "start": 34,
-      "end": 173,
+      "end": 172,
       "loc": {
         "start": {
           "line": 2,
@@ -1076,8 +1076,8 @@
         "updateContext": null
       },
       "value": "export",
-      "start": 175,
-      "end": 181,
+      "start": 174,
+      "end": 180,
       "loc": {
         "start": {
           "line": 6,
@@ -1104,8 +1104,8 @@
         "updateContext": null
       },
       "value": "class",
-      "start": 182,
-      "end": 187,
+      "start": 181,
+      "end": 186,
       "loc": {
         "start": {
           "line": 6,
@@ -1130,8 +1130,8 @@
         "binop": null
       },
       "value": "Identity",
-      "start": 188,
-      "end": 196,
+      "start": 187,
+      "end": 195,
       "loc": {
         "start": {
           "line": 6,
@@ -1158,8 +1158,8 @@
         "updateContext": null
       },
       "value": "extends",
-      "start": 197,
-      "end": 204,
+      "start": 196,
+      "end": 203,
       "loc": {
         "start": {
           "line": 6,
@@ -1184,8 +1184,8 @@
         "binop": null
       },
       "value": "Monad",
-      "start": 205,
-      "end": 210,
+      "start": 204,
+      "end": 209,
       "loc": {
         "start": {
           "line": 6,
@@ -1209,8 +1209,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 211,
-      "end": 212,
+      "start": 210,
+      "end": 211,
       "loc": {
         "start": {
           "line": 6,
@@ -1224,9 +1224,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * Create an instance of class Identity.\r\n     * @param {T} v - The initial state of app.\r\n     * ",
-      "start": 218,
-      "end": 327,
+      "value": "*\r\n     * create an instance of class Identity.\r\n     * @param {T} v - The initial state of app.\r\n     * ",
+      "start": 217,
+      "end": 326,
       "loc": {
         "start": {
           "line": 7,
@@ -1251,8 +1251,8 @@
         "binop": null
       },
       "value": "constructor",
-      "start": 333,
-      "end": 344,
+      "start": 332,
+      "end": 343,
       "loc": {
         "start": {
           "line": 11,
@@ -1276,8 +1276,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 344,
-      "end": 345,
+      "start": 343,
+      "end": 344,
       "loc": {
         "start": {
           "line": 11,
@@ -1302,8 +1302,8 @@
         "binop": null
       },
       "value": "v",
-      "start": 345,
-      "end": 346,
+      "start": 344,
+      "end": 345,
       "loc": {
         "start": {
           "line": 11,
@@ -1327,8 +1327,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 346,
-      "end": 347,
+      "start": 345,
+      "end": 346,
       "loc": {
         "start": {
           "line": 11,
@@ -1352,8 +1352,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 348,
-      "end": 349,
+      "start": 347,
+      "end": 348,
       "loc": {
         "start": {
           "line": 11,
@@ -1380,8 +1380,8 @@
         "updateContext": null
       },
       "value": "super",
-      "start": 359,
-      "end": 364,
+      "start": 358,
+      "end": 363,
       "loc": {
         "start": {
           "line": 12,
@@ -1405,8 +1405,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 364,
-      "end": 365,
+      "start": 363,
+      "end": 364,
       "loc": {
         "start": {
           "line": 12,
@@ -1430,8 +1430,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 365,
-      "end": 366,
+      "start": 364,
+      "end": 365,
       "loc": {
         "start": {
           "line": 12,
@@ -1456,8 +1456,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 366,
-      "end": 367,
+      "start": 365,
+      "end": 366,
       "loc": {
         "start": {
           "line": 12,
@@ -1472,8 +1472,8 @@
     {
       "type": "CommentBlock",
       "value": "*\r\n         * it hold underlying value of a monad.\r\n         * @type {T}\r\n         ",
-      "start": 377,
-      "end": 464,
+      "start": 376,
+      "end": 463,
       "loc": {
         "start": {
           "line": 13,
@@ -1500,8 +1500,8 @@
         "updateContext": null
       },
       "value": "this",
-      "start": 474,
-      "end": 478,
+      "start": 473,
+      "end": 477,
       "loc": {
         "start": {
           "line": 17,
@@ -1526,8 +1526,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 478,
-      "end": 479,
+      "start": 477,
+      "end": 478,
       "loc": {
         "start": {
           "line": 17,
@@ -1552,8 +1552,8 @@
         "binop": null
       },
       "value": "v",
-      "start": 479,
-      "end": 480,
+      "start": 478,
+      "end": 479,
       "loc": {
         "start": {
           "line": 17,
@@ -1579,8 +1579,8 @@
         "updateContext": null
       },
       "value": "=",
-      "start": 481,
-      "end": 482,
+      "start": 480,
+      "end": 481,
       "loc": {
         "start": {
           "line": 17,
@@ -1605,8 +1605,8 @@
         "binop": null
       },
       "value": "v",
-      "start": 483,
-      "end": 484,
+      "start": 482,
+      "end": 483,
       "loc": {
         "start": {
           "line": 17,
@@ -1631,8 +1631,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 484,
-      "end": 485,
+      "start": 483,
+      "end": 484,
       "loc": {
         "start": {
           "line": 17,
@@ -1656,8 +1656,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 491,
-      "end": 492,
+      "start": 490,
+      "end": 491,
       "loc": {
         "start": {
           "line": 18,
@@ -1672,8 +1672,8 @@
     {
       "type": "CommentBlock",
       "value": "*\r\n     * chains the operations on a monadic values.\r\n     * @param {function(v: T) => Pr<U>} f - transformation function for a monad.\r\n     * @return {Pr<U>} monadic value from v or transformed value by f(v).\r\n     ",
-      "start": 498,
-      "end": 718,
+      "start": 497,
+      "end": 717,
       "loc": {
         "start": {
           "line": 19,
@@ -1698,8 +1698,8 @@
         "binop": null
       },
       "value": "bind",
-      "start": 724,
-      "end": 728,
+      "start": 723,
+      "end": 727,
       "loc": {
         "start": {
           "line": 24,
@@ -1723,8 +1723,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 728,
-      "end": 729,
+      "start": 727,
+      "end": 728,
       "loc": {
         "start": {
           "line": 24,
@@ -1749,8 +1749,8 @@
         "binop": null
       },
       "value": "f",
-      "start": 729,
-      "end": 730,
+      "start": 728,
+      "end": 729,
       "loc": {
         "start": {
           "line": 24,
@@ -1774,8 +1774,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 730,
-      "end": 731,
+      "start": 729,
+      "end": 730,
       "loc": {
         "start": {
           "line": 24,
@@ -1799,8 +1799,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 732,
-      "end": 733,
+      "start": 731,
+      "end": 732,
       "loc": {
         "start": {
           "line": 24,
@@ -1827,8 +1827,8 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 743,
-      "end": 749,
+      "start": 742,
+      "end": 748,
       "loc": {
         "start": {
           "line": 25,
@@ -1853,8 +1853,8 @@
         "binop": null
       },
       "value": "f",
-      "start": 750,
-      "end": 751,
+      "start": 749,
+      "end": 750,
       "loc": {
         "start": {
           "line": 25,
@@ -1878,8 +1878,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 751,
-      "end": 752,
+      "start": 750,
+      "end": 751,
       "loc": {
         "start": {
           "line": 25,
@@ -1906,8 +1906,8 @@
         "updateContext": null
       },
       "value": "this",
-      "start": 752,
-      "end": 756,
+      "start": 751,
+      "end": 755,
       "loc": {
         "start": {
           "line": 25,
@@ -1932,8 +1932,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 756,
-      "end": 757,
+      "start": 755,
+      "end": 756,
       "loc": {
         "start": {
           "line": 25,
@@ -1958,8 +1958,8 @@
         "binop": null
       },
       "value": "v",
-      "start": 757,
-      "end": 758,
+      "start": 756,
+      "end": 757,
       "loc": {
         "start": {
           "line": 25,
@@ -1983,8 +1983,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 758,
-      "end": 759,
+      "start": 757,
+      "end": 758,
       "loc": {
         "start": {
           "line": 25,
@@ -2009,8 +2009,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 759,
-      "end": 760,
+      "start": 758,
+      "end": 759,
       "loc": {
         "start": {
           "line": 25,
@@ -2034,8 +2034,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 766,
-      "end": 767,
+      "start": 765,
+      "end": 766,
       "loc": {
         "start": {
           "line": 26,
@@ -2059,8 +2059,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 769,
-      "end": 770,
+      "start": 768,
+      "end": 769,
       "loc": {
         "start": {
           "line": 27,
@@ -2075,8 +2075,8 @@
     {
       "type": "CommentLine",
       "value": "Copyright (c) 2017 Alex Tranchenko. All rights reserved.",
-      "start": 772,
-      "end": 830,
+      "start": 771,
+      "end": 829,
       "loc": {
         "start": {
           "line": 28,
@@ -2101,8 +2101,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 832,
-      "end": 832,
+      "start": 831,
+      "end": 831,
       "loc": {
         "start": {
           "line": 29,

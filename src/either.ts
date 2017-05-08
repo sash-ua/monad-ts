@@ -1,10 +1,11 @@
 /**
  * D<T> - dispatcher's type function.
  * @public
- * @typedef {function(v: T): Boolean} D<T>
+ * @typedef {function(v: T): Boolean} 'D<T>
  */
 
 import {Monad, Pr} from "./monad";
+import {equality} from "./services/equality";
 
 /** Comment for ESDoc */
 export type D<T> = (v: T) => boolean;
@@ -14,6 +15,10 @@ export type D<T> = (v: T) => boolean;
  * @extends {Monad}
  */
 export class Either<T, U> extends  Monad<T>{
+    /**
+     * @type {T} uVal - keep underlying value in the monad
+     */
+    private uVal: T;
     /**
      * Create an instance of class Either.
      * @param {function(v: T) => Pr<Z>} r - right function.
@@ -34,6 +39,7 @@ export class Either<T, U> extends  Monad<T>{
      * @returns {Pr<any> | Error}
      */
     bind(f: D<T>, v: T): Pr<any> | Error{
+        this.uVal = v;
         switch (f(v)){
             case true:
                 return this.r(v);
@@ -42,6 +48,24 @@ export class Either<T, U> extends  Monad<T>{
             default:
                 return this.errorHandler('Either. Binding error');
         }
+    }
+
+    /**
+     * extract result of left(v) computation.
+     * @param {T} v - underlying value.
+     * @return {Pr<N>}
+     */
+    left<T, N>(v: T): Pr<any>{
+        return this.uVal ? equality(this.uVal, v) ? this.l(v) : this.errorHandler('Either.left. v have been binded with bind method') : this.l(v);
+    }
+
+    /**
+     * extract result of right(v) computation.
+     * @param {T} v - underlying value.
+     * @return {Pr<Z>}
+     */
+    right<T, Z>(v: T): Pr<any>{
+        return this.uVal ? equality(this.uVal, v) ? this.r(v) : this.errorHandler('Either.right. v have been binded with bind method') : this.r(v);
     }
 }
 

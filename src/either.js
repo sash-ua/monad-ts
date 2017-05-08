@@ -2,7 +2,7 @@
 /**
  * D<T> - dispatcher's type function.
  * @public
- * @typedef {function(v: T): Boolean} D<T>
+ * @typedef {function(v: T): Boolean} 'D<T>
  */
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -16,6 +16,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var monad_1 = require("./monad");
+var equality_1 = require("./services/equality");
 /**
  * Class Either - represents computation with two possibilities.
  * @extends {Monad}
@@ -41,6 +42,7 @@ var Either = (function (_super) {
      * @returns {Pr<any> | Error}
      */
     Either.prototype.bind = function (f, v) {
+        this.uVal = v;
         switch (f(v)) {
             case true:
                 return this.r(v);
@@ -49,6 +51,22 @@ var Either = (function (_super) {
             default:
                 return this.errorHandler('Either. Binding error');
         }
+    };
+    /**
+     * extract result of left(v) computation.
+     * @param {T} v - underlying value.
+     * @return {Pr<N>}
+     */
+    Either.prototype.left = function (v) {
+        return this.uVal ? equality_1.equality(this.uVal, v) ? this.l(v) : this.errorHandler('Either.left. v have been binded with bind method') : this.l(v);
+    };
+    /**
+     * extract result of right(v) computation.
+     * @param {T} v - underlying value.
+     * @return {Pr<Z>}
+     */
+    Either.prototype.right = function (v) {
+        return this.uVal ? equality_1.equality(this.uVal, v) ? this.r(v) : this.errorHandler('Either.right. v have been binded with bind method') : this.r(v);
     };
     return Either;
 }(monad_1.Monad));

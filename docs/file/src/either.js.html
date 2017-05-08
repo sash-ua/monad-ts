@@ -40,11 +40,12 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/maybe.js~Maybe.html">Maybe</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/monad.js~Monad.html">Monad</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/state.js~State.html">State</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-D&lt;T&gt;">D&lt;T&gt;</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-MF&lt;T,">MF&lt;T,</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Pr&lt;U&gt;">Pr&lt;U&gt;</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-&apos;D&lt;T&gt;">&apos;D&lt;T&gt;</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-&apos;MF&lt;T,">&apos;MF&lt;T,</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-&apos;Pr&lt;U&gt;">&apos;Pr&lt;U&gt;</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">services</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cast">cast</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-clone">clone</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-equality">equality</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -53,9 +54,10 @@
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
  * D&lt;T&gt; - dispatcher&apos;s type function.
  * @public
- * @typedef {function(v: T): Boolean} D&lt;T&gt;
+ * @typedef {function(v: T): Boolean} &apos;D&lt;T&gt;
  */
 import { Monad } from &quot;./monad&quot;;
+import { equality } from &quot;./services/equality&quot;;
 /**
  * Class Either - represents computation with two possibilities.
  * @extends {Monad}
@@ -79,6 +81,7 @@ export class Either extends Monad {
      * @returns {Pr&lt;any&gt; | Error}
      */
     bind(f, v) {
+        this.uVal = v;
         switch (f(v)) {
             case true:
                 return this.r(v);
@@ -87,6 +90,22 @@ export class Either extends Monad {
             default:
                 return this.errorHandler(&apos;Either. Binding error&apos;);
         }
+    }
+    /**
+     * extract result of left(v) computation.
+     * @param {T} v - underlying value.
+     * @return {Pr&lt;N&gt;}
+     */
+    left(v) {
+        return this.uVal ? equality(this.uVal, v) ? this.l(v) : this.errorHandler(&apos;Either.left. v have been binded with bind method&apos;) : this.l(v);
+    }
+    /**
+     * extract result of right(v) computation.
+     * @param {T} v - underlying value.
+     * @return {Pr&lt;Z&gt;}
+     */
+    right(v) {
+        return this.uVal ? equality(this.uVal, v) ? this.r(v) : this.errorHandler(&apos;Either.right. v have been binded with bind method&apos;) : this.r(v);
     }
 }
 //Copyright (c) 2017 Alex Tranchenko. All rights reserved. 

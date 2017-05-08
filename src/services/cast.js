@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * decreasing the dimension of an array by n.
  * @param {Array<T>} arr - input array.
  * @param {number} n - decreasing factor.
- * @return {Array<any>}
+ * @return {Array<U>}
  */
 function cast(arr, n) {
     return (n === 0 || n === undefined || n === null) ? arr : _reduser(arr, n);

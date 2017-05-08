@@ -8,6 +8,14 @@ describe('Either: ', ()=>{
         const right = (x: number) => x+1;
         const left = (y: string) => y + ' - isn\'t string';
         const cond = (v:any) => typeof v === 'string';
+        const e = new Either(right, left);
+        const w = cond(uVal) ? right(uVal) : left(uVal);
+        expect(w).toEqual(testStr);
+    });
+    it('should produce string', ()=>{
+        const right = (x: number) => x+1;
+        const left = (y: string) => y + ' - isn\'t string';
+        const cond = (v:any) => typeof v === 'string';
         const e = new Either(right, left).bind(cond , uVal);
         expect(e).toEqual(testStr);
     });

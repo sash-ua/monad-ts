@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">src/monad.js | API Document</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/services/equality.js | API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -50,43 +50,55 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/monad.js</h1>
+<div class="content" data-ice="content"><h1 data-ice="title">src/services/equality.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
- * Pr&lt;U&gt; - type of returned values.
- * @public
- * @typedef {M&lt;U&gt; | U} &apos;Pr&lt;U&gt;
+ * function to check equality of data.
+ * @param {any} x - argument 1.
+ * @param {any} y - argument 2.
+ * @returns {boolean | Error}
  */
 /**
- * MF&lt;T, U&gt; - transformation function&apos;s type.
- * @public
- * @typedef {function(v: T): Pr&lt;U&gt;} &apos;MF&lt;T, U&gt;
- */
-/**
- * Class Monad - base class.
- * @implements {M}
- */
-export class Monad {
-    /**
-     * get Error or string return Error.
-     * @param {Error | string} e - Error obj. or string.
-     * @return {Error} throw Error.
-     * @protected
-     */
-    errorHandler(e) {
-        return e instanceof Error ? e : new Error(e);
+ * function to check equality of data.
+ * @param {any} x - argument 1.
+ * @param {any} y - argument 2.
+ * @returns {boolean | Error}
+ */ export function equality(x, y) {
+    if (!x || !y) {
+        return new Error(&apos;Equal. There isn\&apos;t argument&apos;);
     }
-    /**
-     * produce result after execution f(v).
-     * @param {function(v: T) =&gt; Pr&lt;U&gt;} f - transformation function for a monad.
-     * @param {T} v - underlying value.
-     * @return {Pr&lt;U&gt;} monadic value from v or transformed value by f(v).
-     * @protected
-     */
-    just(f, v) {
-        return f(v);
+    // Primitives equality
+    if (Object(x) !== x &amp;&amp; Object(y) !== y) {
+        return Object.is(x, y);
+    }
+    else if (Array.isArray(x) &amp;&amp; Array.isArray(y)) {
+        return x.length !== y.length ? false : _arrayIterator(x, y);
+    }
+    else if (Array.isArray(x) &amp;&amp; !Array.isArray(y) || !Array.isArray(x) &amp;&amp; Array.isArray(y)) {
+        return false;
+    }
+    else {
+        for (let key in x) {
+            if (x.hasOwnProperty(key)) {
+                if (!equality(x[key], y[key]))
+                    return false;
+            }
+        }
+        return true;
     }
 }
-//Copyright (c) 2017 Alex Tranchenko. All rights reserved.
+/**
+ * iterate array controller.
+ * @param {Array&lt;any&gt;} x
+ * @param {Array&lt;any&gt;} y
+ * @return {boolean}
+ * @private
+ */
+function _arrayIterator(x, y) {
+    return !x.some((v, i) =&gt; {
+        return Array.isArray(v) ? _arrayIterator(v, y[i]) : (typeof v === &apos;object&apos;) ? !equality(v, y[i]) : !Object.is(v, y[i]);
+    });
+}
+//Copyright (c) 2017 Alex Tranchenko. All rights reserved. 
 </code></pre>
 
 </div>

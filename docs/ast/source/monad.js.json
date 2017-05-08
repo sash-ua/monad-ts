@@ -1,7 +1,7 @@
 {
   "type": "File",
   "start": 0,
-  "end": 935,
+  "end": 937,
   "loc": {
     "start": {
       "line": 1,
@@ -15,7 +15,7 @@
   "program": {
     "type": "Program",
     "start": 0,
-    "end": 935,
+    "end": 937,
     "loc": {
       "start": {
         "line": 1,
@@ -30,8 +30,8 @@
     "body": [
       {
         "type": "ExportNamedDeclaration",
-        "start": 264,
-        "end": 873,
+        "start": 266,
+        "end": 875,
         "loc": {
           "start": {
             "line": 15,
@@ -46,8 +46,8 @@
         "source": null,
         "declaration": {
           "type": "ClassDeclaration",
-          "start": 271,
-          "end": 873,
+          "start": 273,
+          "end": 875,
           "loc": {
             "start": {
               "line": 15,
@@ -60,8 +60,8 @@
           },
           "id": {
             "type": "Identifier",
-            "start": 277,
-            "end": 282,
+            "start": 279,
+            "end": 284,
             "loc": {
               "start": {
                 "line": 15,
@@ -79,8 +79,8 @@
           "superClass": null,
           "body": {
             "type": "ClassBody",
-            "start": 283,
-            "end": 873,
+            "start": 285,
+            "end": 875,
             "loc": {
               "start": {
                 "line": 15,
@@ -94,8 +94,8 @@
             "body": [
               {
                 "type": "ClassMethod",
-                "start": 464,
-                "end": 543,
+                "start": 466,
+                "end": 545,
                 "loc": {
                   "start": {
                     "line": 22,
@@ -109,8 +109,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 464,
-                  "end": 476,
+                  "start": 466,
+                  "end": 478,
                   "loc": {
                     "start": {
                       "line": 22,
@@ -134,8 +134,8 @@
                 "params": [
                   {
                     "type": "Identifier",
-                    "start": 477,
-                    "end": 478,
+                    "start": 479,
+                    "end": 480,
                     "loc": {
                       "start": {
                         "line": 22,
@@ -152,8 +152,8 @@
                 ],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 480,
-                  "end": 543,
+                  "start": 482,
+                  "end": 545,
                   "loc": {
                     "start": {
                       "line": 22,
@@ -167,8 +167,8 @@
                   "body": [
                     {
                       "type": "ReturnStatement",
-                      "start": 491,
-                      "end": 536,
+                      "start": 493,
+                      "end": 538,
                       "loc": {
                         "start": {
                           "line": 23,
@@ -181,8 +181,8 @@
                       },
                       "argument": {
                         "type": "ConditionalExpression",
-                        "start": 498,
-                        "end": 535,
+                        "start": 500,
+                        "end": 537,
                         "loc": {
                           "start": {
                             "line": 23,
@@ -195,8 +195,8 @@
                         },
                         "test": {
                           "type": "BinaryExpression",
-                          "start": 498,
-                          "end": 516,
+                          "start": 500,
+                          "end": 518,
                           "loc": {
                             "start": {
                               "line": 23,
@@ -209,8 +209,8 @@
                           },
                           "left": {
                             "type": "Identifier",
-                            "start": 498,
-                            "end": 499,
+                            "start": 500,
+                            "end": 501,
                             "loc": {
                               "start": {
                                 "line": 23,
@@ -227,8 +227,8 @@
                           "operator": "instanceof",
                           "right": {
                             "type": "Identifier",
-                            "start": 511,
-                            "end": 516,
+                            "start": 513,
+                            "end": 518,
                             "loc": {
                               "start": {
                                 "line": 23,
@@ -245,8 +245,8 @@
                         },
                         "consequent": {
                           "type": "Identifier",
-                          "start": 519,
-                          "end": 520,
+                          "start": 521,
+                          "end": 522,
                           "loc": {
                             "start": {
                               "line": 23,
@@ -262,8 +262,8 @@
                         },
                         "alternate": {
                           "type": "NewExpression",
-                          "start": 523,
-                          "end": 535,
+                          "start": 525,
+                          "end": 537,
                           "loc": {
                             "start": {
                               "line": 23,
@@ -276,8 +276,8 @@
                           },
                           "callee": {
                             "type": "Identifier",
-                            "start": 527,
-                            "end": 532,
+                            "start": 529,
+                            "end": 534,
                             "loc": {
                               "start": {
                                 "line": 23,
@@ -294,8 +294,8 @@
                           "arguments": [
                             {
                               "type": "Identifier",
-                              "start": 533,
-                              "end": 534,
+                              "start": 535,
+                              "end": 536,
                               "loc": {
                                 "start": {
                                   "line": 23,
@@ -321,8 +321,8 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\r\n     * get Error or string return Error.\r\n     * @param {Error | string} e - Error obj. or string.\r\n     * @return {Error} throw Error.\r\n     * @protected\r\n     ",
-                    "start": 290,
-                    "end": 458,
+                    "start": 292,
+                    "end": 460,
                     "loc": {
                       "start": {
                         "line": 16,
@@ -339,8 +339,8 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\r\n     * produce result after execution f(v).\r\n     * @param {function(v: T) => Pr<U>} f - transformation function for a monad.\r\n     * @param {T} v - underlying value.\r\n     * @return {Pr<U>} monadic value from v or transformed value by f(v).\r\n     * @protected\r\n     ",
-                    "start": 549,
-                    "end": 823,
+                    "start": 551,
+                    "end": 825,
                     "loc": {
                       "start": {
                         "line": 25,
@@ -356,8 +356,8 @@
               },
               {
                 "type": "ClassMethod",
-                "start": 829,
-                "end": 870,
+                "start": 831,
+                "end": 872,
                 "loc": {
                   "start": {
                     "line": 32,
@@ -371,8 +371,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 829,
-                  "end": 833,
+                  "start": 831,
+                  "end": 835,
                   "loc": {
                     "start": {
                       "line": 32,
@@ -396,8 +396,8 @@
                 "params": [
                   {
                     "type": "Identifier",
-                    "start": 834,
-                    "end": 835,
+                    "start": 836,
+                    "end": 837,
                     "loc": {
                       "start": {
                         "line": 32,
@@ -413,8 +413,8 @@
                   },
                   {
                     "type": "Identifier",
-                    "start": 837,
-                    "end": 838,
+                    "start": 839,
+                    "end": 840,
                     "loc": {
                       "start": {
                         "line": 32,
@@ -431,8 +431,8 @@
                 ],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 840,
-                  "end": 870,
+                  "start": 842,
+                  "end": 872,
                   "loc": {
                     "start": {
                       "line": 32,
@@ -446,8 +446,8 @@
                   "body": [
                     {
                       "type": "ReturnStatement",
-                      "start": 851,
-                      "end": 863,
+                      "start": 853,
+                      "end": 865,
                       "loc": {
                         "start": {
                           "line": 33,
@@ -460,8 +460,8 @@
                       },
                       "argument": {
                         "type": "CallExpression",
-                        "start": 858,
-                        "end": 862,
+                        "start": 860,
+                        "end": 864,
                         "loc": {
                           "start": {
                             "line": 33,
@@ -474,8 +474,8 @@
                         },
                         "callee": {
                           "type": "Identifier",
-                          "start": 858,
-                          "end": 859,
+                          "start": 860,
+                          "end": 861,
                           "loc": {
                             "start": {
                               "line": 33,
@@ -492,8 +492,8 @@
                         "arguments": [
                           {
                             "type": "Identifier",
-                            "start": 860,
-                            "end": 861,
+                            "start": 862,
+                            "end": 863,
                             "loc": {
                               "start": {
                                 "line": 33,
@@ -517,8 +517,8 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\r\n     * produce result after execution f(v).\r\n     * @param {function(v: T) => Pr<U>} f - transformation function for a monad.\r\n     * @param {T} v - underlying value.\r\n     * @return {Pr<U>} monadic value from v or transformed value by f(v).\r\n     * @protected\r\n     ",
-                    "start": 549,
-                    "end": 823,
+                    "start": 551,
+                    "end": 825,
                     "loc": {
                       "start": {
                         "line": 25,
@@ -538,9 +538,9 @@
           "leadingComments": [
             {
               "type": "CommentBlock",
-              "value": "*\r\n * Pr<U> - type of returned values.\r\n * @public\r\n * @typedef {M<U> | U} Pr<U>\r\n ",
+              "value": "*\r\n * Pr<U> - type of returned values.\r\n * @public\r\n * @typedef {M<U> | U} 'Pr<U>\r\n ",
               "start": 0,
-              "end": 87,
+              "end": 88,
               "loc": {
                 "start": {
                   "line": 1,
@@ -554,9 +554,9 @@
             },
             {
               "type": "CommentBlock",
-              "value": "*\r\n * MF<T, U> - transformation function's type.\r\n * @public\r\n * @typedef {function(v: T): Pr<U>} MF<T, U>\r\n ",
-              "start": 89,
-              "end": 202,
+              "value": "*\r\n * MF<T, U> - transformation function's type.\r\n * @public\r\n * @typedef {function(v: T): Pr<U>} 'MF<T, U>\r\n ",
+              "start": 90,
+              "end": 204,
               "loc": {
                 "start": {
                   "line": 6,
@@ -571,8 +571,8 @@
             {
               "type": "CommentBlock",
               "value": "*\r\n * Class Monad - base class.\r\n * @implements {M}\r\n ",
-              "start": 204,
-              "end": 262,
+              "start": 206,
+              "end": 264,
               "loc": {
                 "start": {
                   "line": 11,
@@ -589,8 +589,8 @@
             {
               "type": "CommentLine",
               "value": "Copyright (c) 2017 Alex Tranchenko. All rights reserved.",
-              "start": 875,
-              "end": 933,
+              "start": 877,
+              "end": 935,
               "loc": {
                 "start": {
                   "line": 36,
@@ -607,9 +607,9 @@
         "leadingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * Pr<U> - type of returned values.\r\n * @public\r\n * @typedef {M<U> | U} Pr<U>\r\n ",
+            "value": "*\r\n * Pr<U> - type of returned values.\r\n * @public\r\n * @typedef {M<U> | U} 'Pr<U>\r\n ",
             "start": 0,
-            "end": 87,
+            "end": 88,
             "loc": {
               "start": {
                 "line": 1,
@@ -623,9 +623,9 @@
           },
           {
             "type": "CommentBlock",
-            "value": "*\r\n * MF<T, U> - transformation function's type.\r\n * @public\r\n * @typedef {function(v: T): Pr<U>} MF<T, U>\r\n ",
-            "start": 89,
-            "end": 202,
+            "value": "*\r\n * MF<T, U> - transformation function's type.\r\n * @public\r\n * @typedef {function(v: T): Pr<U>} 'MF<T, U>\r\n ",
+            "start": 90,
+            "end": 204,
             "loc": {
               "start": {
                 "line": 6,
@@ -640,8 +640,8 @@
           {
             "type": "CommentBlock",
             "value": "*\r\n * Class Monad - base class.\r\n * @implements {M}\r\n ",
-            "start": 204,
-            "end": 262,
+            "start": 206,
+            "end": 264,
             "loc": {
               "start": {
                 "line": 11,
@@ -658,8 +658,8 @@
           {
             "type": "CommentLine",
             "value": "Copyright (c) 2017 Alex Tranchenko. All rights reserved.",
-            "start": 875,
-            "end": 933,
+            "start": 877,
+            "end": 935,
             "loc": {
               "start": {
                 "line": 36,
@@ -679,9 +679,9 @@
   "comments": [
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Pr<U> - type of returned values.\r\n * @public\r\n * @typedef {M<U> | U} Pr<U>\r\n ",
+      "value": "*\r\n * Pr<U> - type of returned values.\r\n * @public\r\n * @typedef {M<U> | U} 'Pr<U>\r\n ",
       "start": 0,
-      "end": 87,
+      "end": 88,
       "loc": {
         "start": {
           "line": 1,
@@ -695,9 +695,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * MF<T, U> - transformation function's type.\r\n * @public\r\n * @typedef {function(v: T): Pr<U>} MF<T, U>\r\n ",
-      "start": 89,
-      "end": 202,
+      "value": "*\r\n * MF<T, U> - transformation function's type.\r\n * @public\r\n * @typedef {function(v: T): Pr<U>} 'MF<T, U>\r\n ",
+      "start": 90,
+      "end": 204,
       "loc": {
         "start": {
           "line": 6,
@@ -712,8 +712,8 @@
     {
       "type": "CommentBlock",
       "value": "*\r\n * Class Monad - base class.\r\n * @implements {M}\r\n ",
-      "start": 204,
-      "end": 262,
+      "start": 206,
+      "end": 264,
       "loc": {
         "start": {
           "line": 11,
@@ -728,8 +728,8 @@
     {
       "type": "CommentBlock",
       "value": "*\r\n     * get Error or string return Error.\r\n     * @param {Error | string} e - Error obj. or string.\r\n     * @return {Error} throw Error.\r\n     * @protected\r\n     ",
-      "start": 290,
-      "end": 458,
+      "start": 292,
+      "end": 460,
       "loc": {
         "start": {
           "line": 16,
@@ -744,8 +744,8 @@
     {
       "type": "CommentBlock",
       "value": "*\r\n     * produce result after execution f(v).\r\n     * @param {function(v: T) => Pr<U>} f - transformation function for a monad.\r\n     * @param {T} v - underlying value.\r\n     * @return {Pr<U>} monadic value from v or transformed value by f(v).\r\n     * @protected\r\n     ",
-      "start": 549,
-      "end": 823,
+      "start": 551,
+      "end": 825,
       "loc": {
         "start": {
           "line": 25,
@@ -760,8 +760,8 @@
     {
       "type": "CommentLine",
       "value": "Copyright (c) 2017 Alex Tranchenko. All rights reserved.",
-      "start": 875,
-      "end": 933,
+      "start": 877,
+      "end": 935,
       "loc": {
         "start": {
           "line": 36,
@@ -777,9 +777,9 @@
   "tokens": [
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Pr<U> - type of returned values.\r\n * @public\r\n * @typedef {M<U> | U} Pr<U>\r\n ",
+      "value": "*\r\n * Pr<U> - type of returned values.\r\n * @public\r\n * @typedef {M<U> | U} 'Pr<U>\r\n ",
       "start": 0,
-      "end": 87,
+      "end": 88,
       "loc": {
         "start": {
           "line": 1,
@@ -793,9 +793,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * MF<T, U> - transformation function's type.\r\n * @public\r\n * @typedef {function(v: T): Pr<U>} MF<T, U>\r\n ",
-      "start": 89,
-      "end": 202,
+      "value": "*\r\n * MF<T, U> - transformation function's type.\r\n * @public\r\n * @typedef {function(v: T): Pr<U>} 'MF<T, U>\r\n ",
+      "start": 90,
+      "end": 204,
       "loc": {
         "start": {
           "line": 6,
@@ -810,8 +810,8 @@
     {
       "type": "CommentBlock",
       "value": "*\r\n * Class Monad - base class.\r\n * @implements {M}\r\n ",
-      "start": 204,
-      "end": 262,
+      "start": 206,
+      "end": 264,
       "loc": {
         "start": {
           "line": 11,
@@ -838,8 +838,8 @@
         "updateContext": null
       },
       "value": "export",
-      "start": 264,
-      "end": 270,
+      "start": 266,
+      "end": 272,
       "loc": {
         "start": {
           "line": 15,
@@ -866,8 +866,8 @@
         "updateContext": null
       },
       "value": "class",
-      "start": 271,
-      "end": 276,
+      "start": 273,
+      "end": 278,
       "loc": {
         "start": {
           "line": 15,
@@ -892,8 +892,8 @@
         "binop": null
       },
       "value": "Monad",
-      "start": 277,
-      "end": 282,
+      "start": 279,
+      "end": 284,
       "loc": {
         "start": {
           "line": 15,
@@ -917,8 +917,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 283,
-      "end": 284,
+      "start": 285,
+      "end": 286,
       "loc": {
         "start": {
           "line": 15,
@@ -933,8 +933,8 @@
     {
       "type": "CommentBlock",
       "value": "*\r\n     * get Error or string return Error.\r\n     * @param {Error | string} e - Error obj. or string.\r\n     * @return {Error} throw Error.\r\n     * @protected\r\n     ",
-      "start": 290,
-      "end": 458,
+      "start": 292,
+      "end": 460,
       "loc": {
         "start": {
           "line": 16,
@@ -959,8 +959,8 @@
         "binop": null
       },
       "value": "errorHandler",
-      "start": 464,
-      "end": 476,
+      "start": 466,
+      "end": 478,
       "loc": {
         "start": {
           "line": 22,
@@ -984,8 +984,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 476,
-      "end": 477,
+      "start": 478,
+      "end": 479,
       "loc": {
         "start": {
           "line": 22,
@@ -1010,8 +1010,8 @@
         "binop": null
       },
       "value": "e",
-      "start": 477,
-      "end": 478,
+      "start": 479,
+      "end": 480,
       "loc": {
         "start": {
           "line": 22,
@@ -1035,8 +1035,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 478,
-      "end": 479,
+      "start": 480,
+      "end": 481,
       "loc": {
         "start": {
           "line": 22,
@@ -1060,8 +1060,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 480,
-      "end": 481,
+      "start": 482,
+      "end": 483,
       "loc": {
         "start": {
           "line": 22,
@@ -1088,8 +1088,8 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 491,
-      "end": 497,
+      "start": 493,
+      "end": 499,
       "loc": {
         "start": {
           "line": 23,
@@ -1114,8 +1114,8 @@
         "binop": null
       },
       "value": "e",
-      "start": 498,
-      "end": 499,
+      "start": 500,
+      "end": 501,
       "loc": {
         "start": {
           "line": 23,
@@ -1142,8 +1142,8 @@
         "updateContext": null
       },
       "value": "instanceof",
-      "start": 500,
-      "end": 510,
+      "start": 502,
+      "end": 512,
       "loc": {
         "start": {
           "line": 23,
@@ -1168,8 +1168,8 @@
         "binop": null
       },
       "value": "Error",
-      "start": 511,
-      "end": 516,
+      "start": 513,
+      "end": 518,
       "loc": {
         "start": {
           "line": 23,
@@ -1194,8 +1194,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 517,
-      "end": 518,
+      "start": 519,
+      "end": 520,
       "loc": {
         "start": {
           "line": 23,
@@ -1220,8 +1220,8 @@
         "binop": null
       },
       "value": "e",
-      "start": 519,
-      "end": 520,
+      "start": 521,
+      "end": 522,
       "loc": {
         "start": {
           "line": 23,
@@ -1246,8 +1246,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 521,
-      "end": 522,
+      "start": 523,
+      "end": 524,
       "loc": {
         "start": {
           "line": 23,
@@ -1274,8 +1274,8 @@
         "updateContext": null
       },
       "value": "new",
-      "start": 523,
-      "end": 526,
+      "start": 525,
+      "end": 528,
       "loc": {
         "start": {
           "line": 23,
@@ -1300,8 +1300,8 @@
         "binop": null
       },
       "value": "Error",
-      "start": 527,
-      "end": 532,
+      "start": 529,
+      "end": 534,
       "loc": {
         "start": {
           "line": 23,
@@ -1325,8 +1325,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 532,
-      "end": 533,
+      "start": 534,
+      "end": 535,
       "loc": {
         "start": {
           "line": 23,
@@ -1351,8 +1351,8 @@
         "binop": null
       },
       "value": "e",
-      "start": 533,
-      "end": 534,
+      "start": 535,
+      "end": 536,
       "loc": {
         "start": {
           "line": 23,
@@ -1376,8 +1376,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 534,
-      "end": 535,
+      "start": 536,
+      "end": 537,
       "loc": {
         "start": {
           "line": 23,
@@ -1402,8 +1402,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 535,
-      "end": 536,
+      "start": 537,
+      "end": 538,
       "loc": {
         "start": {
           "line": 23,
@@ -1427,8 +1427,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 542,
-      "end": 543,
+      "start": 544,
+      "end": 545,
       "loc": {
         "start": {
           "line": 24,
@@ -1443,8 +1443,8 @@
     {
       "type": "CommentBlock",
       "value": "*\r\n     * produce result after execution f(v).\r\n     * @param {function(v: T) => Pr<U>} f - transformation function for a monad.\r\n     * @param {T} v - underlying value.\r\n     * @return {Pr<U>} monadic value from v or transformed value by f(v).\r\n     * @protected\r\n     ",
-      "start": 549,
-      "end": 823,
+      "start": 551,
+      "end": 825,
       "loc": {
         "start": {
           "line": 25,
@@ -1469,8 +1469,8 @@
         "binop": null
       },
       "value": "just",
-      "start": 829,
-      "end": 833,
+      "start": 831,
+      "end": 835,
       "loc": {
         "start": {
           "line": 32,
@@ -1494,8 +1494,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 833,
-      "end": 834,
+      "start": 835,
+      "end": 836,
       "loc": {
         "start": {
           "line": 32,
@@ -1520,8 +1520,8 @@
         "binop": null
       },
       "value": "f",
-      "start": 834,
-      "end": 835,
+      "start": 836,
+      "end": 837,
       "loc": {
         "start": {
           "line": 32,
@@ -1546,8 +1546,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 835,
-      "end": 836,
+      "start": 837,
+      "end": 838,
       "loc": {
         "start": {
           "line": 32,
@@ -1572,8 +1572,8 @@
         "binop": null
       },
       "value": "v",
-      "start": 837,
-      "end": 838,
+      "start": 839,
+      "end": 840,
       "loc": {
         "start": {
           "line": 32,
@@ -1597,8 +1597,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 838,
-      "end": 839,
+      "start": 840,
+      "end": 841,
       "loc": {
         "start": {
           "line": 32,
@@ -1622,8 +1622,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 840,
-      "end": 841,
+      "start": 842,
+      "end": 843,
       "loc": {
         "start": {
           "line": 32,
@@ -1650,8 +1650,8 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 851,
-      "end": 857,
+      "start": 853,
+      "end": 859,
       "loc": {
         "start": {
           "line": 33,
@@ -1676,8 +1676,8 @@
         "binop": null
       },
       "value": "f",
-      "start": 858,
-      "end": 859,
+      "start": 860,
+      "end": 861,
       "loc": {
         "start": {
           "line": 33,
@@ -1701,8 +1701,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 859,
-      "end": 860,
+      "start": 861,
+      "end": 862,
       "loc": {
         "start": {
           "line": 33,
@@ -1727,8 +1727,8 @@
         "binop": null
       },
       "value": "v",
-      "start": 860,
-      "end": 861,
+      "start": 862,
+      "end": 863,
       "loc": {
         "start": {
           "line": 33,
@@ -1752,8 +1752,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 861,
-      "end": 862,
+      "start": 863,
+      "end": 864,
       "loc": {
         "start": {
           "line": 33,
@@ -1778,8 +1778,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 862,
-      "end": 863,
+      "start": 864,
+      "end": 865,
       "loc": {
         "start": {
           "line": 33,
@@ -1803,8 +1803,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 869,
-      "end": 870,
+      "start": 871,
+      "end": 872,
       "loc": {
         "start": {
           "line": 34,
@@ -1828,8 +1828,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 872,
-      "end": 873,
+      "start": 874,
+      "end": 875,
       "loc": {
         "start": {
           "line": 35,
@@ -1844,8 +1844,8 @@
     {
       "type": "CommentLine",
       "value": "Copyright (c) 2017 Alex Tranchenko. All rights reserved.",
-      "start": 875,
-      "end": 933,
+      "start": 877,
+      "end": 935,
       "loc": {
         "start": {
           "line": 36,
@@ -1870,8 +1870,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 935,
-      "end": 935,
+      "start": 937,
+      "end": 937,
       "loc": {
         "start": {
           "line": 37,

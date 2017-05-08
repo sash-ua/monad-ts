@@ -1,6 +1,6 @@
 import { MF, Monad, Pr } from "./monad";
 /**
- * Class Identity - wrap underlying value into the monadic value and computing results from a monadic value.
+ * Class Identity - wraps underlying value into the monadic value and compute results from a monadic value.
  * @extends {Monad}
  */
 export declare class Identity<T> extends Monad<T> {
@@ -10,7 +10,7 @@ export declare class Identity<T> extends Monad<T> {
      */
     protected v: any;
     /**
-     * Create an instance of class Identity.
+     * create an instance of class Identity.
      * @param {T} v - The initial state of app.
      * */
     constructor(v?: T);

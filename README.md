@@ -1,5 +1,8 @@
 [![Build Status](https://travis-ci.org/sash-ua/monad-ts.svg?branch=master)](https://travis-ci.org/sash-ua/monad-ts)
 [![npm](https://img.shields.io/npm/dw/localeval.svg)](https://github.com/sash-ua/monad-ts)
+[![David](https://img.shields.io/david/expressjs/express.svg)](https://github.com/sash-ua/monad-ts)
+[![Hex.pm](https://img.shields.io/hexpm/l/plug.svg)](https://github.com/sash-ua/monad-ts)
+
 
 # Monad-ts
 
@@ -15,21 +18,25 @@ Typescript.
 * [API](https://sash-ua.github.io/monad-ts/identifiers.html)
 
 **All monads**
-* [Identity](#identity)
 * [Either](#either)
-* [Maybe](#maybe)
 * [ErrorM](#errorm)
+* [Identity](#identity)
+* [Maybe](#maybe)
 * [List](#list)
 * [State](#state)
 
 **Additional tools (class and functions)**
 * [Flow](#flow)
-* [clone](#clone)
 * [cast](#cast)
+* [clone](#clone)
+* [equality](#equality)
 
 ## Installation
 
-In library used ES5 (map, reduce), ES6 (Map, Array.from, Object.assign, Object.keys) methods. It's strongly recommended to always
+In library used ES5 (Array.map, Array.reduce, Array.some, Array.isArray), ES6 (Map, Array.from, Object.assign, Object.keys) methods.
+ It's
+strongly
+recommended to always
 use ES5-shim and ES6-shim or alternatives.
 ```
 npm install monad-ts
@@ -129,18 +136,6 @@ var state = new Monad_ts.State({q:1, w:2});
 
 ## Monads
 
-#### Identity
-
-Examples:
-```
-const i = new Identity(3);    // Identity({v: 3})
-i.bind((v:number) => v);      // 3
-```
-```
-const i = new Identity();
-i.just((v:number) => v+1, 3); // 4
-```
-
 #### Either
 
 It represents computation with two possibilities, right and left. Attached by bind method dispatcher function decided
@@ -153,6 +148,38 @@ const right = (x: number) => x+1;                    // if cond(v) return true, 
 const left = (y: string) => y + ' - isn\'t string';  // if cond(v) return false, than executed
 const cond = (v:any) => typeof v === 'string';       // dispatcher function - cond(v)
 const e = new Either(right, left).bind(cond , uVal); // '10 - isn't string'
+```
+or another way, useful in asynchronous code
+```
+const uVal = 10;                                     // underlying value
+const right = (x: number) => x+1;                    // if cond(v) return true, than executed
+const left = (y: string) => y + ' - isn\'t string';  // if cond(v) return false, than executed
+const cond = (v:any) => typeof v === 'string';       // dispatcher function - cond(v)
+const e = new Either(right, left);                   // to wrap functions in the monad
+const w = cond(uVal) ? right(uVal) : left(uVal);     // '10 - isn't string'
+
+```
+
+#### ErrorM
+
+It similar to the Identity but it can also represent the error. Error monad returns value transformed by given function. If Error monad gets Error in given values it produce Error. If after application of given transformation function monad get Error monad produce Error.
+
+Examples:
+```
+const e = new ErrorM();
+e.bind((v: number) => e.bind((v1: number)=>v+v1, 1), 1/0); // Error
+```
+
+#### Identity
+
+Examples:
+```
+const i = new Identity(3);    // Identity({v: 3})
+i.bind((v:number) => v);      // 3
+```
+```
+const i = new Identity();
+i.just((v:number) => v+1, 3); // 4
 ```
 
 #### Maybe
@@ -171,16 +198,6 @@ const z: G = {
     }
 };
 maybe.bind(r => r.getUrl(), z); // http://...
-```
-
-#### ErrorM
-
-It similar to the Identity but it can also represent the error. Error monad returns value transformed by given function. If Error monad gets Error in given values it produce Error. If after application of given transformation function monad get Error monad produce Error.
-
-Examples:
-```
-const e = new ErrorM();
-e.bind((v: number) => e.bind((v1: number)=>v+v1, 1), 1/0); // Error
 ```
 
 #### List
@@ -246,6 +263,13 @@ console.log(t); // [ -7, 7, -6, 6, -5, 5, 5, -5, 6, -6, 7, -7 ]
 console.log(z); // [ -7, -6, -5, 5, 6, 7 ]
 ```
 
+#### cast
+Function to decreasing the dimension of an array by factor n. It takes array and factor.
+```
+console.log(cast([10, [11], [12]], 0));           // [10, [11], [12]]
+console.log(cast([10, [[11, [2]], 3], [12]], 2)); // [ 10, 11, [ 2 ], 3, 12 ]
+```
+
 #### clone
 Function to clone objects (including Map). It takes objects and primitives.
 ```
@@ -256,11 +280,14 @@ console.log(z); // {x:10}
 console.log(x); // {x:1}
 ```
 
-#### cast
-Function to decreasing the dimension of an array by factor n. It takes array and factor.
+#### equality
+Function to check equality of given data.
 ```
-console.log(cast([10, [11], [12]], 0));           // [10, [11], [12]]
-console.log(cast([10, [[11, [2]], 3], [12]], 2)); // [ 10, 11, [ 2 ], 3, 12 ]
+// true
+equality(
+  {x1: 0, x: [1, {c: [22, {j:21, g: 'ert'}, 23]}, NaN, Infinity, null, undefined], t: [null, 0]},
+  {x1: 0, x: [1, {c: [22, {j:21, g: 'ert'}, 23]}, NaN, Infinity, null, undefined], t: [null, 0]}
+)
 ```
 
 [UP](#monad-ts)
