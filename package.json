@@ -1,6 +1,6 @@
 {
   "name": "monad-ts",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Monad-ts is a small library implements some of key monads and way to chain them in a pipe (flow) in JavaScript and TypeScript",
   "homepage": "https://github.com/sash-ua/monad-ts",
   "keywords": [
@@ -34,8 +34,7 @@
       "type": "Apache 2.0"
     }
   ],
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/async": "^2.0.40",
     "@types/browser-sync": "^0.0.34",
