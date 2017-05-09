@@ -4,6 +4,8 @@
  * Entry point for all public APIs of the Monad-TS package.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+var m_1 = require("./src/interfaces/m");
+exports.M = m_1.M;
 var equality_1 = require("./src/services/equality");
 exports.equality = equality_1.equality;
 var either_1 = require("./src/either");

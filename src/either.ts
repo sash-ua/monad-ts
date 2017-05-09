@@ -1,14 +1,8 @@
-/**
- * D<T> - dispatcher's type function.
- * @public
- * @typedef {function(v: T): Boolean} 'D<T>
- */
 
-import {Monad, Pr} from "./monad";
+import {Monad} from "./monad";
 import {equality} from "./services/equality";
-
-/** Comment for ESDoc */
-export type D<T> = (v: T) => boolean;
+import {Pr} from "./types/PR";
+import {D} from "./types/D";
 
 /**
  * Class Either - represents computation with two possibilities.
@@ -55,7 +49,7 @@ export class Either<T, U> extends  Monad<T>{
      * @param {T} v - underlying value.
      * @return {Pr<N>}
      */
-    left<T, N>(v: T): Pr<any>{
+    left<T>(v: T): Pr<any>{
         return this.uVal ? equality(this.uVal, v) ? this.l(v) : this.errorHandler('Either.left. v have been binded with bind method') : this.l(v);
     }
 
@@ -64,7 +58,7 @@ export class Either<T, U> extends  Monad<T>{
      * @param {T} v - underlying value.
      * @return {Pr<Z>}
      */
-    right<T, Z>(v: T): Pr<any>{
+    right<T>(v: T): Pr<any>{
         return this.uVal ? equality(this.uVal, v) ? this.r(v) : this.errorHandler('Either.right. v have been binded with bind method') : this.r(v);
     }
 }

@@ -3,7 +3,7 @@
     "__docId__": 0,
     "kind": "file",
     "name": "src/either.js",
-    "content": "/**\r\n * D<T> - dispatcher's type function.\r\n * @public\r\n * @typedef {function(v: T): Boolean} 'D<T>\r\n */\r\nimport { Monad } from \"./monad\";\r\nimport { equality } from \"./services/equality\";\r\n/**\r\n * Class Either - represents computation with two possibilities.\r\n * @extends {Monad}\r\n */\r\nexport class Either extends Monad {\r\n    /**\r\n     * Create an instance of class Either.\r\n     * @param {function(v: T) => Pr<Z>} r - right function.\r\n     * @param {function(v: U) => Pr<N>} l - left function.\r\n     */\r\n    constructor(r, l) {\r\n        super();\r\n        this.r = r;\r\n        this.l = l;\r\n    }\r\n    /**\r\n     * binds controller function and underlying value to the monad.\r\n     * @param {function (v: T) => boolean} f - controller function, after execution f(v) produce true (execute right\r\n     func-n) or false (execute left func-n).\r\n     * @param {T} v - underlying value for the monad.\r\n     * @returns {Pr<any> | Error}\r\n     */\r\n    bind(f, v) {\r\n        this.uVal = v;\r\n        switch (f(v)) {\r\n            case true:\r\n                return this.r(v);\r\n            case false:\r\n                return this.l(v);\r\n            default:\r\n                return this.errorHandler('Either. Binding error');\r\n        }\r\n    }\r\n    /**\r\n     * extract result of left(v) computation.\r\n     * @param {T} v - underlying value.\r\n     * @return {Pr<N>}\r\n     */\r\n    left(v) {\r\n        return this.uVal ? equality(this.uVal, v) ? this.l(v) : this.errorHandler('Either.left. v have been binded with bind method') : this.l(v);\r\n    }\r\n    /**\r\n     * extract result of right(v) computation.\r\n     * @param {T} v - underlying value.\r\n     * @return {Pr<Z>}\r\n     */\r\n    right(v) {\r\n        return this.uVal ? equality(this.uVal, v) ? this.r(v) : this.errorHandler('Either.right. v have been binded with bind method') : this.r(v);\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
+    "content": "import { Monad } from \"./monad\";\r\nimport { equality } from \"./services/equality\";\r\n/**\r\n * Class Either - represents computation with two possibilities.\r\n * @extends {Monad}\r\n */\r\nexport class Either extends Monad {\r\n    /**\r\n     * Create an instance of class Either.\r\n     * @param {function(v: T) => Pr<Z>} r - right function.\r\n     * @param {function(v: U) => Pr<N>} l - left function.\r\n     */\r\n    constructor(r, l) {\r\n        super();\r\n        this.r = r;\r\n        this.l = l;\r\n    }\r\n    /**\r\n     * binds controller function and underlying value to the monad.\r\n     * @param {function (v: T) => boolean} f - controller function, after execution f(v) produce true (execute right\r\n     func-n) or false (execute left func-n).\r\n     * @param {T} v - underlying value for the monad.\r\n     * @returns {Pr<any> | Error}\r\n     */\r\n    bind(f, v) {\r\n        this.uVal = v;\r\n        switch (f(v)) {\r\n            case true:\r\n                return this.r(v);\r\n            case false:\r\n                return this.l(v);\r\n            default:\r\n                return this.errorHandler('Either. Binding error');\r\n        }\r\n    }\r\n    /**\r\n     * extract result of left(v) computation.\r\n     * @param {T} v - underlying value.\r\n     * @return {Pr<N>}\r\n     */\r\n    left(v) {\r\n        return this.uVal ? equality(this.uVal, v) ? this.l(v) : this.errorHandler('Either.left. v have been binded with bind method') : this.l(v);\r\n    }\r\n    /**\r\n     * extract result of right(v) computation.\r\n     * @param {T} v - underlying value.\r\n     * @return {Pr<Z>}\r\n     */\r\n    right(v) {\r\n        return this.uVal ? equality(this.uVal, v) ? this.r(v) : this.errorHandler('Either.right. v have been binded with bind method') : this.r(v);\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
     "static": true,
     "longname": "src/either.js",
     "access": null,
@@ -12,24 +12,6 @@
   },
   {
     "__docId__": 1,
-    "kind": "typedef",
-    "name": "'D<T>",
-    "memberof": "src/either.js",
-    "static": true,
-    "longname": "src/either.js~'D<T>",
-    "access": "public",
-    "description": "D<T> - dispatcher's type function.",
-    "lineNumber": 6,
-    "type": {
-      "types": [
-        "function(v: T): Boolean"
-      ],
-      "optional": false,
-      "name": "'D<T>"
-    }
-  },
-  {
-    "__docId__": 2,
     "kind": "class",
     "name": "Either",
     "memberof": "src/either.js",
@@ -40,14 +22,14 @@
     "importPath": "monad-ts/src/either.js",
     "importStyle": "{Either}",
     "description": "Class Either - represents computation with two possibilities.",
-    "lineNumber": 12,
+    "lineNumber": 7,
     "interface": false,
     "extends": [
       "Monad"
     ]
   },
   {
-    "__docId__": 3,
+    "__docId__": 2,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/either.js~Either",
@@ -57,7 +39,7 @@
     "longname": "src/either.js~Either#constructor",
     "access": null,
     "description": "Create an instance of class Either.",
-    "lineNumber": 18,
+    "lineNumber": 13,
     "params": [
       {
         "nullable": null,
@@ -82,7 +64,7 @@
     ]
   },
   {
-    "__docId__": 4,
+    "__docId__": 3,
     "kind": "member",
     "name": "r",
     "memberof": "src/either.js~Either",
@@ -90,7 +72,30 @@
     "longname": "src/either.js~Either#r",
     "access": null,
     "description": null,
-    "lineNumber": 20,
+    "lineNumber": 15,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 4,
+    "kind": "member",
+    "name": "l",
+    "memberof": "src/either.js~Either",
+    "static": false,
+    "longname": "src/either.js~Either#l",
+    "access": null,
+    "description": null,
+    "lineNumber": 16,
     "undocument": true,
     "unknown": [
       {
@@ -106,29 +111,6 @@
   },
   {
     "__docId__": 5,
-    "kind": "member",
-    "name": "l",
-    "memberof": "src/either.js~Either",
-    "static": false,
-    "longname": "src/either.js~Either#l",
-    "access": null,
-    "description": null,
-    "lineNumber": 21,
-    "undocument": true,
-    "unknown": [
-      {
-        "tagName": "@_undocument",
-        "tagValue": ""
-      }
-    ],
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 6,
     "kind": "method",
     "name": "bind",
     "memberof": "src/either.js~Either",
@@ -138,7 +120,7 @@
     "longname": "src/either.js~Either#bind",
     "access": null,
     "description": "binds controller function and underlying value to the monad.",
-    "lineNumber": 30,
+    "lineNumber": 25,
     "unknown": [
       {
         "tagName": "@returns",
@@ -178,7 +160,7 @@
     }
   },
   {
-    "__docId__": 7,
+    "__docId__": 6,
     "kind": "member",
     "name": "uVal",
     "memberof": "src/either.js~Either",
@@ -186,7 +168,7 @@
     "longname": "src/either.js~Either#uVal",
     "access": null,
     "description": null,
-    "lineNumber": 31,
+    "lineNumber": 26,
     "undocument": true,
     "unknown": [
       {
@@ -201,7 +183,7 @@
     }
   },
   {
-    "__docId__": 8,
+    "__docId__": 7,
     "kind": "method",
     "name": "left",
     "memberof": "src/either.js~Either",
@@ -211,7 +193,7 @@
     "longname": "src/either.js~Either#left",
     "access": null,
     "description": "extract result of left(v) computation.",
-    "lineNumber": 46,
+    "lineNumber": 41,
     "params": [
       {
         "nullable": null,
@@ -234,7 +216,7 @@
     }
   },
   {
-    "__docId__": 9,
+    "__docId__": 8,
     "kind": "method",
     "name": "right",
     "memberof": "src/either.js~Either",
@@ -244,7 +226,7 @@
     "longname": "src/either.js~Either#right",
     "access": null,
     "description": "extract result of right(v) computation.",
-    "lineNumber": 54,
+    "lineNumber": 49,
     "params": [
       {
         "nullable": null,
@@ -267,7 +249,7 @@
     }
   },
   {
-    "__docId__": 10,
+    "__docId__": 9,
     "kind": "file",
     "name": "src/error.js",
     "content": "import { Monad } from \"./monad\";\r\n/**\r\n * Class ErrorM - return given value or produce Error if take Error or get Error after execution of f(v).\r\n * @extends {Monad}\r\n */\r\nexport class ErrorM extends Monad {\r\n    /**\r\n     * Method that chains the operations on a monadic values.\r\n     * @param {function(v: T) => Pr<U>} f - transformation function for a monad.\r\n     * @param {any} v - underlying value for a monad.\r\n     * @return {Pr<U>  | Error} monadic value from v or transformed value by f(v) or throw Error.\r\n     */\r\n    bind(f, v) {\r\n        if (v !== v || v === Infinity || v === -Infinity || v instanceof Error) {\r\n            return this.errorHandler(v);\r\n        }\r\n        else {\r\n            const vL = this.just(f, v);\r\n            return (vL !== vL || vL === Infinity || vL === -Infinity || vL instanceof Error) ? this.errorHandler(vL) : vL;\r\n        }\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
@@ -278,7 +260,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 11,
+    "__docId__": 10,
     "kind": "class",
     "name": "ErrorM",
     "memberof": "src/error.js",
@@ -296,7 +278,7 @@
     ]
   },
   {
-    "__docId__": 12,
+    "__docId__": 11,
     "kind": "method",
     "name": "bind",
     "memberof": "src/error.js~ErrorM",
@@ -340,7 +322,7 @@
     }
   },
   {
-    "__docId__": 13,
+    "__docId__": 12,
     "kind": "file",
     "name": "src/flow.js",
     "content": "import { Monad } from \"./monad\";\r\nimport { Maybe } from \"./maybe\";\r\nimport { clone } from \"./services/clone\";\r\nimport { ErrorM } from \"./error\";\r\n/**\r\n * Class Flow - for composing monads in a pipe.\r\n * @extends {Monad}\r\n */\r\nexport class Flow extends Monad {\r\n    /**\r\n     * create an instance of class Flow.\r\n     * @param {any} flow - initial value when start new pipe.\r\n     */\r\n    constructor(flow) {\r\n        super();\r\n        /**\r\n         * it hold pipe value.\r\n         * @type {any}\r\n         */\r\n        this.flow = flow;\r\n        /**\r\n         * the instance of Maybe.\r\n         * @type {Maybe}\r\n         */\r\n        this.maybe = new Maybe();\r\n        /**\r\n         * the instance of ErrorM.\r\n         * @type {ErrorM}\r\n         */\r\n        this.err = new ErrorM();\r\n    }\r\n    /**\r\n     * chain the operations on a monadic values.\r\n     * @param {function(v: T) => Pr<U>} f - transformation function for a main flow value.\r\n     * @param {any} [v= this.flow] - underlying value for a monad.\r\n     * @return {any} monadic value from v or transformed value by f(v) or throw Error.\r\n     */\r\n    bind(f, v = this.flow) {\r\n        this.flow = f ? this.err.bind(v => this.maybe.bind((v) => f(v), v), v) : this.err.bind(v => v, v);\r\n        return this;\r\n    }\r\n    /**\r\n     * create branch from a pipe.\r\n     * @param {function(v: T) => Pr<U>} f - transformation function for a main flow value.\r\n     * @return {Flow}\r\n     */\r\n    let(f) {\r\n        f(clone(this.flow));\r\n        return this;\r\n    }\r\n    /**\r\n     * extract value from a pipe.\r\n     * @return {any}\r\n     */\r\n    subscribe() {\r\n        return this.flow;\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
@@ -351,7 +333,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 14,
+    "__docId__": 13,
     "kind": "class",
     "name": "Flow",
     "memberof": "src/flow.js",
@@ -369,7 +351,7 @@
     ]
   },
   {
-    "__docId__": 15,
+    "__docId__": 14,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/flow.js~Flow",
@@ -394,7 +376,7 @@
     ]
   },
   {
-    "__docId__": 16,
+    "__docId__": 15,
     "kind": "member",
     "name": "flow",
     "memberof": "src/flow.js~Flow",
@@ -413,7 +395,7 @@
     }
   },
   {
-    "__docId__": 17,
+    "__docId__": 16,
     "kind": "member",
     "name": "maybe",
     "memberof": "src/flow.js~Flow",
@@ -432,7 +414,7 @@
     }
   },
   {
-    "__docId__": 18,
+    "__docId__": 17,
     "kind": "member",
     "name": "err",
     "memberof": "src/flow.js~Flow",
@@ -451,7 +433,7 @@
     }
   },
   {
-    "__docId__": 19,
+    "__docId__": 18,
     "kind": "method",
     "name": "bind",
     "memberof": "src/flow.js~Flow",
@@ -496,7 +478,7 @@
     }
   },
   {
-    "__docId__": 20,
+    "__docId__": 19,
     "kind": "member",
     "name": "flow",
     "memberof": "src/flow.js~Flow",
@@ -519,7 +501,7 @@
     }
   },
   {
-    "__docId__": 21,
+    "__docId__": 20,
     "kind": "method",
     "name": "let",
     "memberof": "src/flow.js~Flow",
@@ -552,7 +534,7 @@
     }
   },
   {
-    "__docId__": 22,
+    "__docId__": 21,
     "kind": "method",
     "name": "subscribe",
     "memberof": "src/flow.js~Flow",
@@ -574,7 +556,7 @@
     }
   },
   {
-    "__docId__": 23,
+    "__docId__": 22,
     "kind": "file",
     "name": "src/identity.js",
     "content": "import { Monad } from \"./monad\";\r\n/**\r\n * Class Identity - wraps underlying value into the monadic value and compute results from a monadic value.\r\n * @extends {Monad}\r\n */\r\nexport class Identity extends Monad {\r\n    /**\r\n     * create an instance of class Identity.\r\n     * @param {T} v - The initial state of app.\r\n     * */\r\n    constructor(v) {\r\n        super();\r\n        /**\r\n         * it hold underlying value of a monad.\r\n         * @type {T}\r\n         */\r\n        this.v = v;\r\n    }\r\n    /**\r\n     * chains the operations on a monadic values.\r\n     * @param {function(v: T) => Pr<U>} f - transformation function for a monad.\r\n     * @return {Pr<U>} monadic value from v or transformed value by f(v).\r\n     */\r\n    bind(f) {\r\n        return f(this.v);\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
@@ -585,7 +567,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 24,
+    "__docId__": 23,
     "kind": "class",
     "name": "Identity",
     "memberof": "src/identity.js",
@@ -603,7 +585,7 @@
     ]
   },
   {
-    "__docId__": 25,
+    "__docId__": 24,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/identity.js~Identity",
@@ -628,7 +610,7 @@
     ]
   },
   {
-    "__docId__": 26,
+    "__docId__": 25,
     "kind": "member",
     "name": "v",
     "memberof": "src/identity.js~Identity",
@@ -647,7 +629,7 @@
     }
   },
   {
-    "__docId__": 27,
+    "__docId__": 26,
     "kind": "method",
     "name": "bind",
     "memberof": "src/identity.js~Identity",
@@ -680,7 +662,116 @@
     }
   },
   {
+    "__docId__": 27,
+    "kind": "file",
+    "name": "src/interfaces/m.js",
+    "content": "/**\r\n * interface M<T>{\r\n *\r\n *  just<T,U>(f: MF<T, U>, v: T): Pr<U>;\r\n *\r\n *  errorHandler(e: Error | string): Error;\r\n *\r\n * }\r\n * @interface\r\n * @name M - monads interface, {@link Monad}.\r\n * @noimport true\r\n */\r\nexport class M {\r\n    /**\r\n     * extracts value from monad.\r\n     * @param {function(v: T) => Pr<U>} f - transformation function for a monad.\r\n     * @param {T} v - underlying value.\r\n     * @return {Pr<U>} extracts transformed value by f(v).\r\n     */\r\n    just(f, v) {\r\n        return void 0;\r\n    }\r\n    ;\r\n    /**\r\n     * errors handler.\r\n     * @param {Error | string} e - Error obj. or string.\r\n     * @return {Error}\r\n     */\r\n    errorHandler(e) {\r\n        return void 0;\r\n    }\r\n    ;\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
+    "static": true,
+    "longname": "src/interfaces/m.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
     "__docId__": 28,
+    "kind": "class",
+    "name": "M",
+    "memberof": "src/interfaces/m.js",
+    "static": true,
+    "longname": "src/interfaces/m.js~M",
+    "access": null,
+    "export": true,
+    "importPath": "monad-ts/src/interfaces/m.js",
+    "importStyle": "{M}",
+    "description": "interface M<T>{\n\n just<T,U>(f: MF<T, U>, v: T): Pr<U>;\n\n errorHandler(e: Error | string): Error;\n\n}",
+    "lineNumber": 13,
+    "unknown": [
+      {
+        "tagName": "@noimport",
+        "tagValue": "true"
+      }
+    ],
+    "interface": true
+  },
+  {
+    "__docId__": 29,
+    "kind": "method",
+    "name": "just",
+    "memberof": "src/interfaces/m.js~M",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/interfaces/m.js~M#just",
+    "access": null,
+    "description": "extracts value from monad.",
+    "lineNumber": 20,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "function(v: T) => Pr<U>"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "f",
+        "description": "transformation function for a monad."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "T"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "v",
+        "description": "underlying value."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Pr<U>"
+      ],
+      "spread": false,
+      "description": "extracts transformed value by f(v)."
+    }
+  },
+  {
+    "__docId__": 30,
+    "kind": "method",
+    "name": "errorHandler",
+    "memberof": "src/interfaces/m.js~M",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/interfaces/m.js~M#errorHandler",
+    "access": null,
+    "description": "errors handler.",
+    "lineNumber": 29,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Error ",
+          " string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "e",
+        "description": "Error obj. or string."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Error"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 31,
     "kind": "file",
     "name": "src/list.js",
     "content": "import { Monad } from \"./monad\";\r\n/**\r\n * Class List - transform every element of array with given function \"contemporaneously\".\r\n * @extends {Monad}\r\n */\r\nexport class List extends Monad {\r\n    /**\r\n     * Method to transform every element of array with given function \"contemporaneously\".\r\n     * @param {function(n: T) => U} f - transformation function for a monad.\r\n     * @param {Array<T>} v - underlying value for a monad.\r\n     * @return {Array<U>} monadic value from v or transformed value by F(v).\r\n     */\r\n    bind(f, v) {\r\n        return this._disp(f, v);\r\n    }\r\n    /**\r\n     * @param {function(n: T) => U} f - transformation function for a monad.\r\n     * @param {any} v - underlying value for a monad.\r\n     * @return {Array<U>} given value v or transformed value by F(v).\r\n     * @private\r\n     */\r\n    _disp(f, v) {\r\n        return v.map((vL) => {\r\n            return !Array.isArray(vL) ? f(vL) : this._disp(f, vL);\r\n        });\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
@@ -691,7 +782,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 29,
+    "__docId__": 32,
     "kind": "class",
     "name": "List",
     "memberof": "src/list.js",
@@ -709,7 +800,7 @@
     ]
   },
   {
-    "__docId__": 30,
+    "__docId__": 33,
     "kind": "method",
     "name": "bind",
     "memberof": "src/list.js~List",
@@ -752,7 +843,7 @@
     }
   },
   {
-    "__docId__": 31,
+    "__docId__": 34,
     "kind": "method",
     "name": "_disp",
     "memberof": "src/list.js~List",
@@ -795,7 +886,7 @@
     }
   },
   {
-    "__docId__": 32,
+    "__docId__": 35,
     "kind": "file",
     "name": "src/maybe.js",
     "content": "import { Monad } from \"./monad\";\r\n/**\r\n * Class Maybe - return given value or produce null if take nothing or get nothing after execution of f(v).\r\n * @extends {Monad}\r\n */\r\nexport class Maybe extends Monad {\r\n    /**\r\n     * chains the operations on a monadic values.\r\n     * @param {function(v: T) => Pr<U>} f - transformation function for a monad.\r\n     * @param {T} v - underlying value for a monad.\r\n     * @return {Pr<U>} monadic value from v or transformed value by f(v).\r\n     */\r\n    bind(f, v) {\r\n        if (v === null || v === undefined) {\r\n            return this.nothing();\r\n        }\r\n        else {\r\n            const vL = this.just(f, v);\r\n            return (vL === null || vL === undefined) ? this.nothing() : vL;\r\n        }\r\n    }\r\n    /**\r\n     * return nothing (null).\r\n     * @return {null}\r\n     */\r\n    nothing() {\r\n        return null;\r\n    }\r\n    ;\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
@@ -806,7 +897,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 33,
+    "__docId__": 36,
     "kind": "class",
     "name": "Maybe",
     "memberof": "src/maybe.js",
@@ -824,7 +915,7 @@
     ]
   },
   {
-    "__docId__": 34,
+    "__docId__": 37,
     "kind": "method",
     "name": "bind",
     "memberof": "src/maybe.js~Maybe",
@@ -867,7 +958,7 @@
     }
   },
   {
-    "__docId__": 35,
+    "__docId__": 38,
     "kind": "method",
     "name": "nothing",
     "memberof": "src/maybe.js~Maybe",
@@ -889,10 +980,10 @@
     }
   },
   {
-    "__docId__": 36,
+    "__docId__": 39,
     "kind": "file",
     "name": "src/monad.js",
-    "content": "/**\r\n * Pr<U> - type of returned values.\r\n * @public\r\n * @typedef {M<U> | U} 'Pr<U>\r\n */\r\n/**\r\n * MF<T, U> - transformation function's type.\r\n * @public\r\n * @typedef {function(v: T): Pr<U>} 'MF<T, U>\r\n */\r\n/**\r\n * Class Monad - base class.\r\n * @implements {M}\r\n */\r\nexport class Monad {\r\n    /**\r\n     * get Error or string return Error.\r\n     * @param {Error | string} e - Error obj. or string.\r\n     * @return {Error} throw Error.\r\n     * @protected\r\n     */\r\n    errorHandler(e) {\r\n        return e instanceof Error ? e : new Error(e);\r\n    }\r\n    /**\r\n     * produce result after execution f(v).\r\n     * @param {function(v: T) => Pr<U>} f - transformation function for a monad.\r\n     * @param {T} v - underlying value.\r\n     * @return {Pr<U>} monadic value from v or transformed value by f(v).\r\n     * @protected\r\n     */\r\n    just(f, v) {\r\n        return f(v);\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
+    "content": "/**\r\n * Class Monad - base class.\r\n * @implements {M}\r\n */\r\nexport class Monad {\r\n    /**\r\n     * get Error or string return Error.\r\n     * @param {Error | string} e - Error obj. or string.\r\n     * @return {Error} throw Error.\r\n     * @protected\r\n     */\r\n    errorHandler(e) {\r\n        return e instanceof Error ? e : new Error(e);\r\n    }\r\n    /**\r\n     * produce result after execution f(v).\r\n     * @param {function(v: T) => Pr<U>} f - transformation function for a monad.\r\n     * @param {T} v - underlying value.\r\n     * @return {Pr<U>} extracts transformed value by f(v).\r\n     * @protected\r\n     */\r\n    just(f, v) {\r\n        return f(v);\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
     "static": true,
     "longname": "src/monad.js",
     "access": null,
@@ -900,42 +991,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 37,
-    "kind": "typedef",
-    "name": "'Pr<U>",
-    "memberof": "src/monad.js",
-    "static": true,
-    "longname": "src/monad.js~'Pr<U>",
-    "access": "public",
-    "description": "Pr<U> - type of returned values.",
-    "type": {
-      "types": [
-        "M<U> ",
-        " U"
-      ],
-      "optional": false,
-      "name": "'Pr<U>"
-    }
-  },
-  {
-    "__docId__": 38,
-    "kind": "typedef",
-    "name": "'MF<T,",
-    "memberof": "src/monad.js",
-    "static": true,
-    "longname": "src/monad.js~'MF<T,",
-    "access": "public",
-    "description": "MF<T, U> - transformation function's type.",
-    "type": {
-      "types": [
-        "function(v: T): Pr<U>"
-      ],
-      "optional": false,
-      "name": "'MF<T,"
-    }
-  },
-  {
-    "__docId__": 39,
+    "__docId__": 40,
     "kind": "class",
     "name": "Monad",
     "memberof": "src/monad.js",
@@ -946,14 +1002,14 @@
     "importPath": "monad-ts/src/monad.js",
     "importStyle": "{Monad}",
     "description": "Class Monad - base class.",
-    "lineNumber": 15,
+    "lineNumber": 5,
     "interface": false,
     "implements": [
       "M"
     ]
   },
   {
-    "__docId__": 40,
+    "__docId__": 41,
     "kind": "method",
     "name": "errorHandler",
     "memberof": "src/monad.js~Monad",
@@ -963,7 +1019,7 @@
     "longname": "src/monad.js~Monad#errorHandler",
     "access": "protected",
     "description": "get Error or string return Error.",
-    "lineNumber": 22,
+    "lineNumber": 12,
     "params": [
       {
         "nullable": null,
@@ -987,7 +1043,7 @@
     }
   },
   {
-    "__docId__": 41,
+    "__docId__": 42,
     "kind": "method",
     "name": "just",
     "memberof": "src/monad.js~Monad",
@@ -997,7 +1053,7 @@
     "longname": "src/monad.js~Monad#just",
     "access": "protected",
     "description": "produce result after execution f(v).",
-    "lineNumber": 32,
+    "lineNumber": 22,
     "params": [
       {
         "nullable": null,
@@ -1026,11 +1082,11 @@
         "Pr<U>"
       ],
       "spread": false,
-      "description": "monadic value from v or transformed value by f(v)."
+      "description": "extracts transformed value by f(v)."
     }
   },
   {
-    "__docId__": 42,
+    "__docId__": 43,
     "kind": "file",
     "name": "src/services/cast.js",
     "content": "/**\r\n * decreasing the dimension of an array by n.\r\n * @param {Array<T>} arr - input array.\r\n * @param {number} n - decreasing factor.\r\n * @return {Array<U>}\r\n */\r\nexport function cast(arr, n) {\r\n    return (n === 0 || n === undefined || n === null) ? arr : _reduser(arr, n);\r\n}\r\n/**\r\n * @param {Array<T>} arr - input array.\r\n * @param {number} n - decreasing factor.\r\n * @return {Array<any>}\r\n * @private\r\n */\r\nfunction _reduser(arr, n) {\r\n    return arr.length\r\n        ? arr.reduce((acc, vL) => {\r\n            return acc.concat(_fact(vL, n));\r\n        }, [])\r\n        : arr;\r\n}\r\n/**\r\n * @param {Array<any>} arr - input array.\r\n * @param {number} n - decreasing factor.\r\n * @return {Array<any>}\r\n * @private\r\n */\r\nfunction _fact(arr, n) {\r\n    return (n === 1) ? arr : _reduser(arr, n - 1);\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
@@ -1041,7 +1097,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 43,
+    "__docId__": 44,
     "kind": "function",
     "name": "cast",
     "memberof": "src/services/cast.js",
@@ -1087,7 +1143,7 @@
     }
   },
   {
-    "__docId__": 44,
+    "__docId__": 45,
     "kind": "function",
     "name": "_reduser",
     "memberof": "src/services/cast.js",
@@ -1133,7 +1189,7 @@
     }
   },
   {
-    "__docId__": 45,
+    "__docId__": 46,
     "kind": "function",
     "name": "_fact",
     "memberof": "src/services/cast.js",
@@ -1179,7 +1235,7 @@
     }
   },
   {
-    "__docId__": 46,
+    "__docId__": 47,
     "kind": "file",
     "name": "src/services/clone.js",
     "content": "/**\r\n * this is service to clone object, including Map.\r\n * @param {T} obj - Object or Primitives to clone.\r\n * @return {T}\r\n */\r\n/**\r\n * this is service to clone object, including Map.\r\n * @param {T} obj - Object or Primitives to clone.\r\n * @return {T}\r\n */ export function clone(obj, map = new Map()) {\r\n    // Primitives are immutable, no need to clone them.\r\n    if (Object(obj) !== obj) {\r\n        return obj;\r\n    }\r\n    else if (map.has(obj)) {\r\n        // Cyclic reference handling\r\n        return map.get(obj);\r\n    }\r\n    else {\r\n        let result = Array.isArray(obj) ? [] : obj.constructor ? new obj.constructor() : Object.create(null);\r\n        map.set(obj, result);\r\n        if (obj instanceof Map) {\r\n            return Array().from(obj, ([key, val]) => result.set(key, _toTail(val, map)))[0];\r\n        }\r\n        else {\r\n            return Object.assign(result, ...Object.keys(obj).map(key => ({ [key]: _toTail(obj[key], map) })));\r\n        }\r\n    }\r\n}\r\n/**\r\n * @param {T} obj - Object or Primitives to clone.\r\n * @return {T}\r\n * @private\r\n */\r\nfunction _toTail(obj, map) {\r\n    return clone(obj, map);\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
@@ -1190,7 +1246,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 47,
+    "__docId__": 48,
     "kind": "function",
     "name": "clone",
     "memberof": "src/services/clone.js",
@@ -1226,7 +1282,7 @@
     }
   },
   {
-    "__docId__": 48,
+    "__docId__": 49,
     "kind": "function",
     "name": "_toTail",
     "memberof": "src/services/clone.js",
@@ -1262,7 +1318,7 @@
     }
   },
   {
-    "__docId__": 49,
+    "__docId__": 50,
     "kind": "file",
     "name": "src/services/equality.js",
     "content": "/**\r\n * function to check equality of data.\r\n * @param {any} x - argument 1.\r\n * @param {any} y - argument 2.\r\n * @returns {boolean | Error}\r\n */\r\n/**\r\n * function to check equality of data.\r\n * @param {any} x - argument 1.\r\n * @param {any} y - argument 2.\r\n * @returns {boolean | Error}\r\n */ export function equality(x, y) {\r\n    if (!x || !y) {\r\n        return new Error('Equal. There isn\\'t argument');\r\n    }\r\n    // Primitives equality\r\n    if (Object(x) !== x && Object(y) !== y) {\r\n        return Object.is(x, y);\r\n    }\r\n    else if (Array.isArray(x) && Array.isArray(y)) {\r\n        return x.length !== y.length ? false : _arrayIterator(x, y);\r\n    }\r\n    else if (Array.isArray(x) && !Array.isArray(y) || !Array.isArray(x) && Array.isArray(y)) {\r\n        return false;\r\n    }\r\n    else if (equality(Object.getOwnPropertyNames(x), Object.getOwnPropertyNames(y))) {\r\n        for (let key in x) {\r\n            if (x.hasOwnProperty(key)) {\r\n                if (!equality(x[key], y[key]))\r\n                    return false;\r\n            }\r\n        }\r\n        return true;\r\n    }\r\n    else {\r\n        return false;\r\n    }\r\n}\r\n/**\r\n * iterate array controller.\r\n * @param {Array<any>} x\r\n * @param {Array<any>} y\r\n * @return {boolean}\r\n * @private\r\n */\r\nfunction _arrayIterator(x, y) {\r\n    return !x.some((v, i) => {\r\n        return Array.isArray(v) ? _arrayIterator(v, y[i]) : (typeof v === 'object') ? !equality(v, y[i]) : !Object.is(v, y[i]);\r\n    });\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
@@ -1273,7 +1329,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 50,
+    "__docId__": 51,
     "kind": "function",
     "name": "equality",
     "memberof": "src/services/equality.js",
@@ -1326,7 +1382,7 @@
     }
   },
   {
-    "__docId__": 51,
+    "__docId__": 52,
     "kind": "function",
     "name": "_arrayIterator",
     "memberof": "src/services/equality.js",
@@ -1372,7 +1428,7 @@
     }
   },
   {
-    "__docId__": 52,
+    "__docId__": 53,
     "kind": "file",
     "name": "src/state.js",
     "content": "import { Monad } from \"./monad\";\r\nimport { Maybe } from \"./maybe\";\r\nimport { ErrorM } from \"./error\";\r\n/**\r\n * Class State - for application state manipulations.\r\n * @extends {Monad}\r\n */\r\nexport class State extends Monad {\r\n    /**\r\n     * Create an instance of class State.\r\n     * @param {Object} state - The initial state of app.\r\n     */\r\n    constructor(state) {\r\n        super();\r\n        /**\r\n         * it hold app. state.\r\n         * @type {T}\r\n         */\r\n        this.state = state;\r\n        /**\r\n         * The instance of Maybe.\r\n         * @type {Maybe}\r\n         */\r\n        this.maybe = new Maybe();\r\n        /**\r\n         * The instance of ErrorM.\r\n         * @type {ErrorM}\r\n         */\r\n        this.err = new ErrorM();\r\n    }\r\n    /**\r\n     * @param {function(v: T)=> T} f - app. state transformation function.\r\n     * @return {State}\r\n     */\r\n    put(f) {\r\n        this.state = this.err.bind((v) => v, this.maybe.bind((v) => f(v), this.state));\r\n        return this;\r\n    }\r\n    /**\r\n     * @return {T} The state of app.\r\n     */\r\n    get() {\r\n        return this.state;\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
@@ -1383,7 +1439,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 53,
+    "__docId__": 54,
     "kind": "class",
     "name": "State",
     "memberof": "src/state.js",
@@ -1401,7 +1457,7 @@
     ]
   },
   {
-    "__docId__": 54,
+    "__docId__": 55,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/state.js~State",
@@ -1426,7 +1482,7 @@
     ]
   },
   {
-    "__docId__": 55,
+    "__docId__": 56,
     "kind": "member",
     "name": "state",
     "memberof": "src/state.js~State",
@@ -1445,7 +1501,7 @@
     }
   },
   {
-    "__docId__": 56,
+    "__docId__": 57,
     "kind": "member",
     "name": "maybe",
     "memberof": "src/state.js~State",
@@ -1464,7 +1520,7 @@
     }
   },
   {
-    "__docId__": 57,
+    "__docId__": 58,
     "kind": "member",
     "name": "err",
     "memberof": "src/state.js~State",
@@ -1483,7 +1539,7 @@
     }
   },
   {
-    "__docId__": 58,
+    "__docId__": 59,
     "kind": "method",
     "name": "put",
     "memberof": "src/state.js~State",
@@ -1516,7 +1572,7 @@
     }
   },
   {
-    "__docId__": 59,
+    "__docId__": 60,
     "kind": "member",
     "name": "state",
     "memberof": "src/state.js~State",
@@ -1539,7 +1595,7 @@
     }
   },
   {
-    "__docId__": 60,
+    "__docId__": 61,
     "kind": "method",
     "name": "get",
     "memberof": "src/state.js~State",
@@ -1562,6 +1618,91 @@
   },
   {
     "__docId__": 62,
+    "kind": "file",
+    "name": "src/types/D.js",
+    "content": "/**\r\n * D<T> - dispatcher's type function.\r\n * @public\r\n * @typedef {function(v: T): Boolean} 'D<T>\r\n */\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
+    "static": true,
+    "longname": "src/types/D.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 63,
+    "kind": "typedef",
+    "name": "'D<T>",
+    "memberof": "src/types/D.js",
+    "static": true,
+    "longname": "src/types/D.js~'D<T>",
+    "access": "public",
+    "description": "D<T> - dispatcher's type function.",
+    "type": {
+      "types": [
+        "function(v: T): Boolean"
+      ],
+      "optional": false,
+      "name": "'D<T>"
+    }
+  },
+  {
+    "__docId__": 64,
+    "kind": "file",
+    "name": "src/types/MF.js",
+    "content": "/**\r\n * MF<T, U> - transformation function's type.\r\n * @public\r\n * @typedef {function(v: T): Pr<U>} 'MF<T, U>\r\n */\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
+    "static": true,
+    "longname": "src/types/MF.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 65,
+    "kind": "typedef",
+    "name": "'MF<T,",
+    "memberof": "src/types/MF.js",
+    "static": true,
+    "longname": "src/types/MF.js~'MF<T,",
+    "access": "public",
+    "description": "MF<T, U> - transformation function's type.",
+    "type": {
+      "types": [
+        "function(v: T): Pr<U>"
+      ],
+      "optional": false,
+      "name": "'MF<T,"
+    }
+  },
+  {
+    "__docId__": 66,
+    "kind": "file",
+    "name": "src/types/PR.js",
+    "content": "/**\r\n * Pr<U> - type of returned values.\r\n * @public\r\n * @typedef {M<U> | U} 'Pr<U>\r\n */\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
+    "static": true,
+    "longname": "src/types/PR.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 67,
+    "kind": "typedef",
+    "name": "'Pr<U>",
+    "memberof": "src/types/PR.js",
+    "static": true,
+    "longname": "src/types/PR.js~'Pr<U>",
+    "access": "public",
+    "description": "Pr<U> - type of returned values.",
+    "type": {
+      "types": [
+        "M<U> ",
+        " U"
+      ],
+      "optional": false,
+      "name": "'Pr<U>"
+    }
+  },
+  {
+    "__docId__": 69,
     "kind": "external",
     "name": "Infinity",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
@@ -1573,7 +1714,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 63,
+    "__docId__": 70,
     "kind": "external",
     "name": "NaN",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
@@ -1585,7 +1726,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 64,
+    "__docId__": 71,
     "kind": "external",
     "name": "undefined",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
@@ -1597,7 +1738,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 65,
+    "__docId__": 72,
     "kind": "external",
     "name": "null",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
@@ -1609,7 +1750,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 66,
+    "__docId__": 73,
     "kind": "external",
     "name": "Object",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
@@ -1621,7 +1762,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 67,
+    "__docId__": 74,
     "kind": "external",
     "name": "object",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
@@ -1633,7 +1774,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 68,
+    "__docId__": 75,
     "kind": "external",
     "name": "Function",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
@@ -1645,7 +1786,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 69,
+    "__docId__": 76,
     "kind": "external",
     "name": "function",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
@@ -1657,7 +1798,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 70,
+    "__docId__": 77,
     "kind": "external",
     "name": "Boolean",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
@@ -1669,7 +1810,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 71,
+    "__docId__": 78,
     "kind": "external",
     "name": "boolean",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
@@ -1681,7 +1822,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 72,
+    "__docId__": 79,
     "kind": "external",
     "name": "Symbol",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
@@ -1693,7 +1834,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 73,
+    "__docId__": 80,
     "kind": "external",
     "name": "Error",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
@@ -1705,7 +1846,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 74,
+    "__docId__": 81,
     "kind": "external",
     "name": "EvalError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
@@ -1717,7 +1858,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 75,
+    "__docId__": 82,
     "kind": "external",
     "name": "InternalError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
@@ -1729,7 +1870,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 76,
+    "__docId__": 83,
     "kind": "external",
     "name": "RangeError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
@@ -1741,7 +1882,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 77,
+    "__docId__": 84,
     "kind": "external",
     "name": "ReferenceError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
@@ -1753,7 +1894,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 78,
+    "__docId__": 85,
     "kind": "external",
     "name": "SyntaxError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
@@ -1765,7 +1906,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 79,
+    "__docId__": 86,
     "kind": "external",
     "name": "TypeError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
@@ -1777,7 +1918,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 80,
+    "__docId__": 87,
     "kind": "external",
     "name": "URIError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
@@ -1789,7 +1930,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 81,
+    "__docId__": 88,
     "kind": "external",
     "name": "Number",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
@@ -1801,7 +1942,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 82,
+    "__docId__": 89,
     "kind": "external",
     "name": "number",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
@@ -1813,7 +1954,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 83,
+    "__docId__": 90,
     "kind": "external",
     "name": "Date",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
@@ -1825,7 +1966,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 84,
+    "__docId__": 91,
     "kind": "external",
     "name": "String",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
@@ -1837,7 +1978,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 85,
+    "__docId__": 92,
     "kind": "external",
     "name": "string",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
@@ -1849,7 +1990,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 86,
+    "__docId__": 93,
     "kind": "external",
     "name": "RegExp",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
@@ -1861,7 +2002,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 87,
+    "__docId__": 94,
     "kind": "external",
     "name": "Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
@@ -1873,7 +2014,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 88,
+    "__docId__": 95,
     "kind": "external",
     "name": "Int8Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
@@ -1885,7 +2026,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 89,
+    "__docId__": 96,
     "kind": "external",
     "name": "Uint8Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
@@ -1897,7 +2038,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 90,
+    "__docId__": 97,
     "kind": "external",
     "name": "Uint8ClampedArray",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
@@ -1909,7 +2050,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 91,
+    "__docId__": 98,
     "kind": "external",
     "name": "Int16Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
@@ -1921,7 +2062,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 92,
+    "__docId__": 99,
     "kind": "external",
     "name": "Uint16Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
@@ -1933,7 +2074,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 93,
+    "__docId__": 100,
     "kind": "external",
     "name": "Int32Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
@@ -1945,7 +2086,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 94,
+    "__docId__": 101,
     "kind": "external",
     "name": "Uint32Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
@@ -1957,7 +2098,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 95,
+    "__docId__": 102,
     "kind": "external",
     "name": "Float32Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
@@ -1969,7 +2110,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 96,
+    "__docId__": 103,
     "kind": "external",
     "name": "Float64Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
@@ -1981,7 +2122,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 97,
+    "__docId__": 104,
     "kind": "external",
     "name": "Map",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
@@ -1993,7 +2134,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 98,
+    "__docId__": 105,
     "kind": "external",
     "name": "Set",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
@@ -2005,7 +2146,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 99,
+    "__docId__": 106,
     "kind": "external",
     "name": "WeakMap",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
@@ -2017,7 +2158,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 100,
+    "__docId__": 107,
     "kind": "external",
     "name": "WeakSet",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
@@ -2029,7 +2170,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 101,
+    "__docId__": 108,
     "kind": "external",
     "name": "ArrayBuffer",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
@@ -2041,7 +2182,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 102,
+    "__docId__": 109,
     "kind": "external",
     "name": "DataView",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
@@ -2053,7 +2194,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 103,
+    "__docId__": 110,
     "kind": "external",
     "name": "JSON",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
@@ -2065,7 +2206,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 104,
+    "__docId__": 111,
     "kind": "external",
     "name": "Promise",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
@@ -2077,7 +2218,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 105,
+    "__docId__": 112,
     "kind": "external",
     "name": "Generator",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
@@ -2089,7 +2230,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 106,
+    "__docId__": 113,
     "kind": "external",
     "name": "GeneratorFunction",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
@@ -2101,7 +2242,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 107,
+    "__docId__": 114,
     "kind": "external",
     "name": "Reflect",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
@@ -2113,7 +2254,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 108,
+    "__docId__": 115,
     "kind": "external",
     "name": "Proxy",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
@@ -2126,7 +2267,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 110,
+    "__docId__": 117,
     "kind": "external",
     "name": "CanvasRenderingContext2D",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D",
@@ -2138,7 +2279,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 111,
+    "__docId__": 118,
     "kind": "external",
     "name": "DocumentFragment",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment",
@@ -2150,7 +2291,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 112,
+    "__docId__": 119,
     "kind": "external",
     "name": "Element",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Element",
@@ -2162,7 +2303,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 113,
+    "__docId__": 120,
     "kind": "external",
     "name": "Event",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Event",
@@ -2174,7 +2315,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 114,
+    "__docId__": 121,
     "kind": "external",
     "name": "Node",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Node",
@@ -2186,7 +2327,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 115,
+    "__docId__": 122,
     "kind": "external",
     "name": "NodeList",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/NodeList",
@@ -2198,7 +2339,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 116,
+    "__docId__": 123,
     "kind": "external",
     "name": "XMLHttpRequest",
     "externalLink": "https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest",
@@ -2210,7 +2351,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 117,
+    "__docId__": 124,
     "kind": "external",
     "name": "AudioContext",
     "externalLink": "https://developer.mozilla.org/en/docs/Web/API/AudioContext",

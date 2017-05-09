@@ -1,6 +1,8 @@
-import { MF, Monad, Pr } from "./monad";
+import { Monad } from "./monad";
 import { Maybe } from "./maybe";
 import { ErrorM } from "./error";
+import { MF } from "./types/MF";
+import { Pr } from "./types/PR";
 /**
  * Class Flow - for composing monads in a pipe.
  * @extends {Monad}

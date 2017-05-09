@@ -1,7 +1,7 @@
 {
   "coverage": "100%",
-  "expectCount": 37,
-  "actualCount": 37,
+  "expectCount": 40,
+  "actualCount": 40,
   "files": {
     "src/either.js": {
       "expectCount": 5,
@@ -26,6 +26,11 @@
     "src/list.js": {
       "expectCount": 2,
       "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/interfaces/m.js": {
+      "expectCount": 3,
+      "actualCount": 3,
       "undocumentLines": []
     },
     "src/maybe.js": {

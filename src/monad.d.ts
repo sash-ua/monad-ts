@@ -1,23 +1,6 @@
-/**
- * Pr<U> - type of returned values.
- * @public
- * @typedef {M<U> | U} 'Pr<U>
- */
-/**
- * MF<T, U> - transformation function's type.
- * @public
- * @typedef {function(v: T): Pr<U>} 'MF<T, U>
- */
-/** Comment for ESDoc */
-export declare type Pr<U> = M<U> | U;
-export declare type MF<T, U> = (v: T) => Pr<U>;
-/**
- * @interface {M}
- */
-export interface M<T> {
-    just<T, U>(f: MF<T, U>, v: T): Pr<U>;
-    errorHandler(e: Error | string): Error;
-}
+import { M } from "./interfaces/m";
+import { MF } from "./types/MF";
+import { Pr } from "./types/PR";
 /**
  * Class Monad - base class.
  * @implements {M}
@@ -34,7 +17,7 @@ export declare class Monad<T> implements M<T> {
      * produce result after execution f(v).
      * @param {function(v: T) => Pr<U>} f - transformation function for a monad.
      * @param {T} v - underlying value.
-     * @return {Pr<U>} monadic value from v or transformed value by f(v).
+     * @return {Pr<U>} extracts transformed value by f(v).
      * @protected
      */
     just<T, U>(f: MF<T, U>, v: T): Pr<U>;

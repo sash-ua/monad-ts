@@ -1,3 +1,10 @@
+# 0.2.5 (2017-05-09)
+
+### Changes
+
+* changed files structure.
+* readme and docs updates.
+
 # 0.2.4 (2017-05-08)
 
 ### Changes

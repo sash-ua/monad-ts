@@ -30,6 +30,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "monad-ts/src/interfaces/m.js~m",
+    "class/src/interfaces/m.js~M.html",
+    "<span>M</span> <span class=\"search-result-import-path\">monad-ts/src/interfaces/m.js</span>",
+    "class"
+  ],
+  [
     "monad-ts/src/maybe.js~maybe",
     "class/src/maybe.js~Maybe.html",
     "<span>Maybe</span> <span class=\"search-result-import-path\">monad-ts/src/maybe.js</span>",
@@ -402,12 +408,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/either.js~'d<t>",
-    "typedef/index.html#static-typedef-'D<T>",
-    "src/either.js~'D<T>",
-    "typedef"
-  ],
-  [
     "src/either.js~either#bind",
     "class/src/either.js~Either.html#instance-method-bind",
     "src/either.js~Either#bind",
@@ -516,6 +516,24 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "src/interfaces/m.js",
+    "file/src/interfaces/m.js.html",
+    "src/interfaces/m.js",
+    "file"
+  ],
+  [
+    "src/interfaces/m.js~m#errorhandler",
+    "class/src/interfaces/m.js~M.html#instance-method-errorHandler",
+    "src/interfaces/m.js~M#errorHandler",
+    "method"
+  ],
+  [
+    "src/interfaces/m.js~m#just",
+    "class/src/interfaces/m.js~M.html#instance-method-just",
+    "src/interfaces/m.js~M#just",
+    "method"
+  ],
+  [
     "src/list.js",
     "file/src/list.js.html",
     "src/list.js",
@@ -550,18 +568,6 @@ window.esdocSearchIndex = [
     "file/src/monad.js.html",
     "src/monad.js",
     "file"
-  ],
-  [
-    "src/monad.js~'mf<t,",
-    "typedef/index.html#static-typedef-'MF<T,",
-    "src/monad.js~'MF<T,",
-    "typedef"
-  ],
-  [
-    "src/monad.js~'pr<u>",
-    "typedef/index.html#static-typedef-'Pr<U>",
-    "src/monad.js~'Pr<U>",
-    "typedef"
   ],
   [
     "src/monad.js~monad#errorhandler",
@@ -634,5 +640,41 @@ window.esdocSearchIndex = [
     "class/src/state.js~State.html#instance-member-state",
     "src/state.js~State#state",
     "member"
+  ],
+  [
+    "src/types/d.js",
+    "file/src/types/D.js.html",
+    "src/types/D.js",
+    "file"
+  ],
+  [
+    "src/types/d.js~'d<t>",
+    "typedef/index.html#static-typedef-'D<T>",
+    "src/types/D.js~'D<T>",
+    "typedef"
+  ],
+  [
+    "src/types/mf.js",
+    "file/src/types/MF.js.html",
+    "src/types/MF.js",
+    "file"
+  ],
+  [
+    "src/types/mf.js~'mf<t,",
+    "typedef/index.html#static-typedef-'MF<T,",
+    "src/types/MF.js~'MF<T,",
+    "typedef"
+  ],
+  [
+    "src/types/pr.js",
+    "file/src/types/PR.js.html",
+    "src/types/PR.js",
+    "file"
+  ],
+  [
+    "src/types/pr.js~'pr<u>",
+    "typedef/index.html#static-typedef-'Pr<U>",
+    "src/types/PR.js~'Pr<U>",
+    "typedef"
   ]
 ]

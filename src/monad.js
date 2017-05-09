@@ -1,14 +1,4 @@
 "use strict";
-/**
- * Pr<U> - type of returned values.
- * @public
- * @typedef {M<U> | U} 'Pr<U>
- */
-/**
- * MF<T, U> - transformation function's type.
- * @public
- * @typedef {function(v: T): Pr<U>} 'MF<T, U>
- */
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * Class Monad - base class.
@@ -30,7 +20,7 @@ var Monad = (function () {
      * produce result after execution f(v).
      * @param {function(v: T) => Pr<U>} f - transformation function for a monad.
      * @param {T} v - underlying value.
-     * @return {Pr<U>} monadic value from v or transformed value by f(v).
+     * @return {Pr<U>} extracts transformed value by f(v).
      * @protected
      */
     Monad.prototype.just = function (f, v) {
