@@ -1,3 +1,13 @@
+# 0.2.6 (2017-05-09)
+
+### Changes
+
+* readme and docs updates.
+
+### Bug fixed
+
+* **Flow, State** the changing of the variable with initial state of classes was able change internal state of classes after instances of  them have been created.
+
 # 0.2.5 (2017-05-09)
 
 ### Changes

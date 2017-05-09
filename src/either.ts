@@ -14,7 +14,7 @@ export class Either<T, U> extends  Monad<T>{
      */
     private uVal: T;
     /**
-     * Create an instance of class Either.
+     * creates an instance of class Either.
      * @param {function(v: T) => Pr<Z>} r - right function.
      * @param {function(v: U) => Pr<N>} l - left function.
      */

@@ -4,11 +4,10 @@ import {Maybe} from "./maybe";
 import {clone} from "./services/clone";
 import {ErrorM} from "./error";
 import {MF} from "./types/MF";
-import {Pr} from "./types/PR";
 
 
 /**
- * Class Flow - for composing monads in a pipe.
+ * Class Flow - for composing monads in a flow (pipe).
  * @extends {Monad}
  */
 export class Flow<T> extends Monad<T>{
@@ -29,17 +28,17 @@ export class Flow<T> extends Monad<T>{
     protected err: ErrorM<T>;
     /**
      * create an instance of class Flow.
-     * @param {any} flow - initial value when start new pipe.
+     * @param {any} flow - initial value of new flow (pipe).
      */
     constructor(
         flow: any
     ){
         super();
         /**
-         * it hold pipe value.
+         * keep initial flow (pipe) value.
          * @type {any}
          */
-        this.flow = flow;
+        this.flow = clone(flow);
         /**
          * the instance of Maybe.
          * @type {Maybe}
@@ -52,27 +51,27 @@ export class Flow<T> extends Monad<T>{
         this.err = new ErrorM();
     }
     /**
-     * chain the operations on a monadic values.
+     * chains the operations on a monadic values.
      * @param {function(v: T) => Pr<U>} f - transformation function for a main flow value.
      * @param {any} [v= this.flow] - underlying value for a monad.
-     * @return {any} monadic value from v or transformed value by f(v) or throw Error.
+     * @return {Flow<T>} transformed by f() value v or throw Error or null.
      */
-    bind<T, U>(f?: MF<T, U>, v: any = this.flow){
+    bind<T, U>(f?: MF<T, U>, v: any = this.flow): Flow<T>{
         this.flow = f ? this.err.bind(v => this.maybe.bind((v: any) => f(v), v), v) : this.err.bind(v => v, v);
         return this;
     }
     /**
-     * create branch from a pipe.
+     * create branch from a flow (pipe).
      * @param {function(v: T) => Pr<U>} f - transformation function for a main flow value.
-     * @return {Flow}
+     * @return {Flow<T>}
      */
-    let<T, U>(f: MF<T, U>): Pr<U>{
+    let<T, U>(f: MF<T, U>): Flow<T>{
         f(clone(this.flow));
         return this;
     }
     /**
-     * extract value from a pipe.
-     * @return {any}
+     * extract value from a flow (pipe).
+     * @return {T}
      */
     subscribe<T>(): T{
         return this.flow;

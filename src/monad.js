@@ -8,16 +8,16 @@ var Monad = (function () {
     function Monad() {
     }
     /**
-     * get Error or string return Error.
+     * takes Error or string return Error.
      * @param {Error | string} e - Error obj. or string.
-     * @return {Error} throw Error.
+     * @return {Error}
      * @protected
      */
     Monad.prototype.errorHandler = function (e) {
         return e instanceof Error ? e : new Error(e);
     };
     /**
-     * produce result after execution f(v).
+     * produces result after execution f(v).
      * @param {function(v: T) => Pr<U>} f - transformation function for a monad.
      * @param {T} v - underlying value.
      * @return {Pr<U>} extracts transformed value by f(v).

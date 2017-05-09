@@ -19,7 +19,7 @@ var equality_1 = require("./services/equality");
 var Either = (function (_super) {
     __extends(Either, _super);
     /**
-     * Create an instance of class Either.
+     * creates an instance of class Either.
      * @param {function(v: T) => Pr<Z>} r - right function.
      * @param {function(v: U) => Pr<N>} l - left function.
      */

@@ -13,6 +13,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var monad_1 = require("./monad");
 var maybe_1 = require("./maybe");
 var error_1 = require("./error");
+var clone_1 = require("./services/clone");
 /**
  * Class State - for application state manipulations.
  * @extends {Monad}
@@ -20,38 +21,40 @@ var error_1 = require("./error");
 var State = (function (_super) {
     __extends(State, _super);
     /**
-     * Create an instance of class State.
-     * @param {Object} state - The initial state of app.
+     * creates an instance of class State.
+     * @param {Object} state - the initial state of app.
      */
     function State(state) {
         var _this = _super.call(this) || this;
         /**
-         * it hold app. state.
+         * keeps the state of application variables.
          * @type {T}
          */
-        _this.state = state;
+        _this.state = clone_1.clone(state);
         /**
-         * The instance of Maybe.
+         * the instance of Maybe.
          * @type {Maybe}
          */
         _this.maybe = new maybe_1.Maybe();
         /**
-         * The instance of ErrorM.
+         * the instance of ErrorM.
          * @type {ErrorM}
          */
         _this.err = new error_1.ErrorM();
         return _this;
     }
     /**
+     * changes the state of application variables.
      * @param {function(v: T)=> T} f - app. state transformation function.
-     * @return {State}
+     * @return {State<T>}
      */
     State.prototype.put = function (f) {
         this.state = this.err.bind(function (v) { return v; }, this.maybe.bind(function (v) { return f(v); }, this.state));
         return this;
     };
     /**
-     * @return {T} The state of app.
+     * extracts the state of application variables.
+     * @return {T}
      */
     State.prototype.get = function () {
         return this.state;

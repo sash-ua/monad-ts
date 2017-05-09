@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * this is service to clone object, including Map.
+ * the service to clone object, including Map.
  * @param {T} obj - Object or Primitives to clone.
  * @return {T}
  */

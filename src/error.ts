@@ -9,10 +9,10 @@ import {Pr} from "./types/PR";
  */
 export class ErrorM<T> extends Monad<T>{
     /**
-     * Method that chains the operations on a monadic values.
+     * chains the operations on a monadic values.
      * @param {function(v: T) => Pr<U>} f - transformation function for a monad.
      * @param {any} v - underlying value for a monad.
-     * @return {Pr<U>  | Error} monadic value from v or transformed value by f(v) or throw Error.
+     * @return {Pr<U>  | Error} transformed by f() value v or Error.
      */
     bind<T, U>(f: MF<T, U>, v: any): Pr<U> | Error{
         if(v !== v || v === Infinity|| v === -Infinity || v instanceof Error){

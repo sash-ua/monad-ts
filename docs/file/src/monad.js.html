@@ -58,16 +58,16 @@
  */
 export class Monad {
     /**
-     * get Error or string return Error.
+     * takes Error or string return Error.
      * @param {Error | string} e - Error obj. or string.
-     * @return {Error} throw Error.
+     * @return {Error}
      * @protected
      */
     errorHandler(e) {
         return e instanceof Error ? e : new Error(e);
     }
     /**
-     * produce result after execution f(v).
+     * produces result after execution f(v).
      * @param {function(v: T) =&gt; Pr&lt;U&gt;} f - transformation function for a monad.
      * @param {T} v - underlying value.
      * @return {Pr&lt;U&gt;} extracts transformed value by f(v).

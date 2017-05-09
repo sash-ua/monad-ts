@@ -53,27 +53,28 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/identity.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { Monad } from &quot;./monad&quot;;
+import { clone } from &quot;./services/clone&quot;;
 /**
  * Class Identity - wraps underlying value into the monadic value and compute results from a monadic value.
  * @extends {Monad}
  */
 export class Identity extends Monad {
     /**
-     * create an instance of class Identity.
+     * creates an instance of class Identity.
      * @param {T} v - The initial state of app.
      * */
     constructor(v) {
         super();
         /**
-         * it hold underlying value of a monad.
+         * keeps underlying value of a monad.
          * @type {T}
          */
-        this.v = v;
+        this.v = clone(v);
     }
     /**
      * chains the operations on a monadic values.
      * @param {function(v: T) =&gt; Pr&lt;U&gt;} f - transformation function for a monad.
-     * @return {Pr&lt;U&gt;} monadic value from v or transformed value by f(v).
+     * @return {Pr&lt;U&gt;} transformed by f() value v.
      */
     bind(f) {
         return f(this.v);

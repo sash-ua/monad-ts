@@ -21,10 +21,10 @@ var List = (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
-     * Method to transform every element of array with given function "contemporaneously".
+     * method transforms every element of array with given function "contemporaneously".
      * @param {function(n: T) => U} f - transformation function for a monad.
      * @param {Array<T>} v - underlying value for a monad.
-     * @return {Array<U>} monadic value from v or transformed value by F(v).
+     * @return {Array<U>} transformed by f() value v.
      */
     List.prototype.bind = function (f, v) {
         return this._disp(f, v);
@@ -32,7 +32,7 @@ var List = (function (_super) {
     /**
      * @param {function(n: T) => U} f - transformation function for a monad.
      * @param {any} v - underlying value for a monad.
-     * @return {Array<U>} given value v or transformed value by F(v).
+     * @return {Array<U>} transformed by f() value v.
      * @private
      */
     List.prototype._disp = function (f, v) {

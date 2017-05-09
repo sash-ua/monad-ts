@@ -57,21 +57,21 @@ import { Maybe } from &quot;./maybe&quot;;
 import { clone } from &quot;./services/clone&quot;;
 import { ErrorM } from &quot;./error&quot;;
 /**
- * Class Flow - for composing monads in a pipe.
+ * Class Flow - for composing monads in a flow (pipe).
  * @extends {Monad}
  */
 export class Flow extends Monad {
     /**
      * create an instance of class Flow.
-     * @param {any} flow - initial value when start new pipe.
+     * @param {any} flow - initial value of new flow (pipe).
      */
     constructor(flow) {
         super();
         /**
-         * it hold pipe value.
+         * keep initial flow (pipe) value.
          * @type {any}
          */
-        this.flow = flow;
+        this.flow = clone(flow);
         /**
          * the instance of Maybe.
          * @type {Maybe}
@@ -84,27 +84,27 @@ export class Flow extends Monad {
         this.err = new ErrorM();
     }
     /**
-     * chain the operations on a monadic values.
+     * chains the operations on a monadic values.
      * @param {function(v: T) =&gt; Pr&lt;U&gt;} f - transformation function for a main flow value.
      * @param {any} [v= this.flow] - underlying value for a monad.
-     * @return {any} monadic value from v or transformed value by f(v) or throw Error.
+     * @return {Flow&lt;T&gt;} transformed by f() value v or throw Error or null.
      */
     bind(f, v = this.flow) {
         this.flow = f ? this.err.bind(v =&gt; this.maybe.bind((v) =&gt; f(v), v), v) : this.err.bind(v =&gt; v, v);
         return this;
     }
     /**
-     * create branch from a pipe.
+     * create branch from a flow (pipe).
      * @param {function(v: T) =&gt; Pr&lt;U&gt;} f - transformation function for a main flow value.
-     * @return {Flow}
+     * @return {Flow&lt;T&gt;}
      */
     let(f) {
         f(clone(this.flow));
         return this;
     }
     /**
-     * extract value from a pipe.
-     * @return {any}
+     * extract value from a flow (pipe).
+     * @return {T}
      */
     subscribe() {
         return this.flow;

@@ -22,17 +22,19 @@ export declare class State<T> extends Monad<T> {
      */
     protected err: ErrorM<T>;
     /**
-     * Create an instance of class State.
-     * @param {Object} state - The initial state of app.
+     * creates an instance of class State.
+     * @param {Object} state - the initial state of app.
      */
     constructor(state: T);
     /**
+     * changes the state of application variables.
      * @param {function(v: T)=> T} f - app. state transformation function.
-     * @return {State}
+     * @return {State<T>}
      */
-    put(f: (v: T) => T): this;
+    put(f: (v: T) => T): State<T>;
     /**
-     * @return {T} The state of app.
+     * extracts the state of application variables.
+     * @return {T}
      */
     get(): T;
 }

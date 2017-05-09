@@ -59,10 +59,10 @@
  */
 export class ErrorM extends Monad {
     /**
-     * Method that chains the operations on a monadic values.
+     * chains the operations on a monadic values.
      * @param {function(v: T) =&gt; Pr&lt;U&gt;} f - transformation function for a monad.
      * @param {any} v - underlying value for a monad.
-     * @return {Pr&lt;U&gt;  | Error} monadic value from v or transformed value by f(v) or throw Error.
+     * @return {Pr&lt;U&gt;  | Error} transformed by f() value v or Error.
      */
     bind(f, v) {
         if (v !== v || v === Infinity || v === -Infinity || v instanceof Error) {

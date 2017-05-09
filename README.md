@@ -33,7 +33,8 @@ Typescript.
 
 ## Installation
 
-In library used ES5 (Array.map, Array.reduce, Array.some, Array.isArray), ES6 (Map, Array.from, Object.assign, Object.keys) methods.
+In library used ES5 (Array.map, Array.reduce, Array.some, Array.isArray, Object.getOwnPropertyNames), ES6 (Map, Array.from, Object.assign, Object
+.keys) methods.
  It's
 strongly
 recommended to always

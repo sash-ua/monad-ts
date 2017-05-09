@@ -15,22 +15,22 @@ var maybe_1 = require("./maybe");
 var clone_1 = require("./services/clone");
 var error_1 = require("./error");
 /**
- * Class Flow - for composing monads in a pipe.
+ * Class Flow - for composing monads in a flow (pipe).
  * @extends {Monad}
  */
 var Flow = (function (_super) {
     __extends(Flow, _super);
     /**
      * create an instance of class Flow.
-     * @param {any} flow - initial value when start new pipe.
+     * @param {any} flow - initial value of new flow (pipe).
      */
     function Flow(flow) {
         var _this = _super.call(this) || this;
         /**
-         * it hold pipe value.
+         * keep initial flow (pipe) value.
          * @type {any}
          */
-        _this.flow = flow;
+        _this.flow = clone_1.clone(flow);
         /**
          * the instance of Maybe.
          * @type {Maybe}
@@ -44,10 +44,10 @@ var Flow = (function (_super) {
         return _this;
     }
     /**
-     * chain the operations on a monadic values.
+     * chains the operations on a monadic values.
      * @param {function(v: T) => Pr<U>} f - transformation function for a main flow value.
      * @param {any} [v= this.flow] - underlying value for a monad.
-     * @return {any} monadic value from v or transformed value by f(v) or throw Error.
+     * @return {Flow<T>} transformed by f() value v or throw Error or null.
      */
     Flow.prototype.bind = function (f, v) {
         var _this = this;
@@ -56,17 +56,17 @@ var Flow = (function (_super) {
         return this;
     };
     /**
-     * create branch from a pipe.
+     * create branch from a flow (pipe).
      * @param {function(v: T) => Pr<U>} f - transformation function for a main flow value.
-     * @return {Flow}
+     * @return {Flow<T>}
      */
     Flow.prototype.let = function (f) {
         f(clone_1.clone(this.flow));
         return this;
     };
     /**
-     * extract value from a pipe.
-     * @return {any}
+     * extract value from a flow (pipe).
+     * @return {T}
      */
     Flow.prototype.subscribe = function () {
         return this.flow;

@@ -59,10 +59,10 @@
  */
 export class List extends Monad {
     /**
-     * Method to transform every element of array with given function &quot;contemporaneously&quot;.
+     * method transforms every element of array with given function &quot;contemporaneously&quot;.
      * @param {function(n: T) =&gt; U} f - transformation function for a monad.
      * @param {Array&lt;T&gt;} v - underlying value for a monad.
-     * @return {Array&lt;U&gt;} monadic value from v or transformed value by F(v).
+     * @return {Array&lt;U&gt;} transformed by f() value v.
      */
     bind(f, v) {
         return this._disp(f, v);
@@ -70,7 +70,7 @@ export class List extends Monad {
     /**
      * @param {function(n: T) =&gt; U} f - transformation function for a monad.
      * @param {any} v - underlying value for a monad.
-     * @return {Array&lt;U&gt;} given value v or transformed value by F(v).
+     * @return {Array&lt;U&gt;} transformed by f() value v.
      * @private
      */
     _disp(f, v) {

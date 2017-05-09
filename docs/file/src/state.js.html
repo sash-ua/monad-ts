@@ -55,43 +55,46 @@
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { Monad } from &quot;./monad&quot;;
 import { Maybe } from &quot;./maybe&quot;;
 import { ErrorM } from &quot;./error&quot;;
+import { clone } from &quot;./services/clone&quot;;
 /**
  * Class State - for application state manipulations.
  * @extends {Monad}
  */
 export class State extends Monad {
     /**
-     * Create an instance of class State.
-     * @param {Object} state - The initial state of app.
+     * creates an instance of class State.
+     * @param {Object} state - the initial state of app.
      */
     constructor(state) {
         super();
         /**
-         * it hold app. state.
+         * keeps the state of application variables.
          * @type {T}
          */
-        this.state = state;
+        this.state = clone(state);
         /**
-         * The instance of Maybe.
+         * the instance of Maybe.
          * @type {Maybe}
          */
         this.maybe = new Maybe();
         /**
-         * The instance of ErrorM.
+         * the instance of ErrorM.
          * @type {ErrorM}
          */
         this.err = new ErrorM();
     }
     /**
+     * changes the state of application variables.
      * @param {function(v: T)=&gt; T} f - app. state transformation function.
-     * @return {State}
+     * @return {State&lt;T&gt;}
      */
     put(f) {
         this.state = this.err.bind((v) =&gt; v, this.maybe.bind((v) =&gt; f(v), this.state));
         return this;
     }
     /**
-     * @return {T} The state of app.
+     * extracts the state of application variables.
+     * @return {T}
      */
     get() {
         return this.state;

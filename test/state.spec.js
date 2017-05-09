@@ -15,6 +15,7 @@ describe('State: ', function () {
     var list = new list_1.List();
     var f = 1.25;
     it('should return changed given object', function () {
+        initState.data = 100;
         expect(st.get()).toEqual({ data: 1, children: [Object({ data: 2, parent: 'null' })], arr: [1, 2, 3] });
         st.put(function (v) {
             v.data = 10;

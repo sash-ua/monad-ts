@@ -11,6 +11,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var monad_1 = require("./monad");
+var clone_1 = require("./services/clone");
 /**
  * Class Identity - wraps underlying value into the monadic value and compute results from a monadic value.
  * @extends {Monad}
@@ -18,22 +19,22 @@ var monad_1 = require("./monad");
 var Identity = (function (_super) {
     __extends(Identity, _super);
     /**
-     * create an instance of class Identity.
+     * creates an instance of class Identity.
      * @param {T} v - The initial state of app.
      * */
     function Identity(v) {
         var _this = _super.call(this) || this;
         /**
-         * it hold underlying value of a monad.
+         * keeps underlying value of a monad.
          * @type {T}
          */
-        _this.v = v;
+        _this.v = clone_1.clone(v);
         return _this;
     }
     /**
      * chains the operations on a monadic values.
      * @param {function(v: T) => Pr<U>} f - transformation function for a monad.
-     * @return {Pr<U>} monadic value from v or transformed value by f(v).
+     * @return {Pr<U>} transformed by f() value v.
      */
     Identity.prototype.bind = function (f) {
         return f(this.v);
