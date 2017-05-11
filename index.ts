@@ -4,10 +4,11 @@
  * Entry point for all public APIs of the Monad-TS package.
  */
 
-export {D} from "./src/types/D";
+import {State} from "./src/state";
+export {D} from "./src/types/d";
 export {M} from "./src/interfaces/m";
-export {MF} from "./src/types/MF";
-export {Pr} from "./src/types/PR";
+export {MF} from "./src/types/mf";
+export {Pr} from "./src/types/pr";
 export {equality} from "./src/services/equality";
 export {Either} from "./src/either";
 export {List} from "./src/list";
@@ -20,4 +21,3 @@ export {State} from "./src/state";
 export {Monad} from "./src/monad";
 
 //Copyright (c) 2017 Alex Tranchenko. All rights reserved.
-

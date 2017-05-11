@@ -1431,7 +1431,7 @@
     "__docId__": 53,
     "kind": "file",
     "name": "src/state.js",
-    "content": "import { Monad } from \"./monad\";\r\nimport { Maybe } from \"./maybe\";\r\nimport { ErrorM } from \"./error\";\r\nimport { clone } from \"./services/clone\";\r\n/**\r\n * Class State - for application state manipulations.\r\n * @extends {Monad}\r\n */\r\nexport class State extends Monad {\r\n    /**\r\n     * creates an instance of class State.\r\n     * @param {Object} state - the initial state of app.\r\n     */\r\n    constructor(state) {\r\n        super();\r\n        /**\r\n         * keeps the state of application variables.\r\n         * @type {T}\r\n         */\r\n        this.state = clone(state);\r\n        /**\r\n         * the instance of Maybe.\r\n         * @type {Maybe}\r\n         */\r\n        this.maybe = new Maybe();\r\n        /**\r\n         * the instance of ErrorM.\r\n         * @type {ErrorM}\r\n         */\r\n        this.err = new ErrorM();\r\n    }\r\n    /**\r\n     * changes the state of application variables.\r\n     * @param {function(v: T)=> T} f - app. state transformation function.\r\n     * @return {State<T>}\r\n     */\r\n    put(f) {\r\n        this.state = this.err.bind((v) => v, this.maybe.bind((v) => f(v), this.state));\r\n        return this;\r\n    }\r\n    /**\r\n     * extracts the state of application variables.\r\n     * @return {T}\r\n     */\r\n    get() {\r\n        return this.state;\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
+    "content": "import { Monad } from \"./monad\";\r\nimport { Maybe } from \"./maybe\";\r\nimport { ErrorM } from \"./error\";\r\nimport { clone } from \"./services/clone\";\r\n/**\r\n * Class State - for application state manipulations.\r\n * @extends {Monad}\r\n */\r\nexport class State extends Monad {\r\n    /**\r\n     * creates an instance of class State.\r\n     * @param {Object} state - the initial state of app.\r\n     */\r\n    constructor(state) {\r\n        super();\r\n        /**\r\n         * keeps the state of application variables.\r\n         * @type {T}\r\n         */\r\n        this.state = clone(state);\r\n        /**\r\n         * the instance of Maybe.\r\n         * @type {Maybe}\r\n         */\r\n        this.maybe = new Maybe();\r\n        /**\r\n         * the instance of ErrorM.\r\n         * @type {ErrorM}\r\n         */\r\n        this.err = new ErrorM();\r\n    }\r\n    /**\r\n     * changes the state of application variables.\r\n     * @param {function(v: T)=> T} f - app. state transformation function.\r\n     */\r\n    put(f) {\r\n        this.state = this.err.bind((v) => v, this.maybe.bind((v) => f(v), this.state));\r\n    }\r\n    /**\r\n     * extracts the state of application variables.\r\n     * @return {T}\r\n     */\r\n    get() {\r\n        return this.state;\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
     "static": true,
     "longname": "src/state.js",
     "access": null,
@@ -1549,7 +1549,7 @@
     "longname": "src/state.js~State#put",
     "access": null,
     "description": "changes the state of application variables.",
-    "lineNumber": 37,
+    "lineNumber": 36,
     "params": [
       {
         "nullable": null,
@@ -1561,15 +1561,7 @@
         "name": "f",
         "description": "app. state transformation function."
       }
-    ],
-    "return": {
-      "nullable": null,
-      "types": [
-        "State<T>"
-      ],
-      "spread": false,
-      "description": ""
-    }
+    ]
   },
   {
     "__docId__": 60,
@@ -1580,7 +1572,7 @@
     "longname": "src/state.js~State#state",
     "access": null,
     "description": null,
-    "lineNumber": 38,
+    "lineNumber": 37,
     "undocument": true,
     "unknown": [
       {
@@ -1605,7 +1597,7 @@
     "longname": "src/state.js~State#get",
     "access": null,
     "description": "extracts the state of application variables.",
-    "lineNumber": 45,
+    "lineNumber": 43,
     "params": [],
     "return": {
       "nullable": null,
@@ -1619,10 +1611,10 @@
   {
     "__docId__": 62,
     "kind": "file",
-    "name": "src/types/D.js",
+    "name": "src/types/d.js",
     "content": "/**\r\n * D<T> - dispatcher's type function.\r\n * @public\r\n * @typedef {function(v: T): Boolean} 'D<T>\r\n */\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
     "static": true,
-    "longname": "src/types/D.js",
+    "longname": "src/types/d.js",
     "access": null,
     "description": null,
     "lineNumber": 1
@@ -1631,9 +1623,9 @@
     "__docId__": 63,
     "kind": "typedef",
     "name": "'D<T>",
-    "memberof": "src/types/D.js",
+    "memberof": "src/types/d.js",
     "static": true,
-    "longname": "src/types/D.js~'D<T>",
+    "longname": "src/types/d.js~'D<T>",
     "access": "public",
     "description": "D<T> - dispatcher's type function.",
     "type": {
@@ -1647,10 +1639,10 @@
   {
     "__docId__": 64,
     "kind": "file",
-    "name": "src/types/MF.js",
+    "name": "src/types/mf.js",
     "content": "/**\r\n * MF<T, U> - transformation function's type.\r\n * @public\r\n * @typedef {function(v: T): Pr<U>} 'MF<T, U>\r\n */\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
     "static": true,
-    "longname": "src/types/MF.js",
+    "longname": "src/types/mf.js",
     "access": null,
     "description": null,
     "lineNumber": 1
@@ -1659,9 +1651,9 @@
     "__docId__": 65,
     "kind": "typedef",
     "name": "'MF<T,",
-    "memberof": "src/types/MF.js",
+    "memberof": "src/types/mf.js",
     "static": true,
-    "longname": "src/types/MF.js~'MF<T,",
+    "longname": "src/types/mf.js~'MF<T,",
     "access": "public",
     "description": "MF<T, U> - transformation function's type.",
     "type": {
@@ -1675,10 +1667,10 @@
   {
     "__docId__": 66,
     "kind": "file",
-    "name": "src/types/PR.js",
+    "name": "src/types/pr.js",
     "content": "/**\r\n * Pr<U> - type of returned values.\r\n * @public\r\n * @typedef {M<U> | U} 'Pr<U>\r\n */\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
     "static": true,
-    "longname": "src/types/PR.js",
+    "longname": "src/types/pr.js",
     "access": null,
     "description": null,
     "lineNumber": 1
@@ -1687,9 +1679,9 @@
     "__docId__": 67,
     "kind": "typedef",
     "name": "'Pr<U>",
-    "memberof": "src/types/PR.js",
+    "memberof": "src/types/pr.js",
     "static": true,
-    "longname": "src/types/PR.js~'Pr<U>",
+    "longname": "src/types/pr.js~'Pr<U>",
     "access": "public",
     "description": "Pr<U> - type of returned values.",
     "type": {

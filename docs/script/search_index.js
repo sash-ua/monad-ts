@@ -643,38 +643,38 @@ window.esdocSearchIndex = [
   ],
   [
     "src/types/d.js",
-    "file/src/types/D.js.html",
-    "src/types/D.js",
+    "file/src/types/d.js.html",
+    "src/types/d.js",
     "file"
   ],
   [
     "src/types/d.js~'d<t>",
     "typedef/index.html#static-typedef-'D<T>",
-    "src/types/D.js~'D<T>",
+    "src/types/d.js~'D<T>",
     "typedef"
   ],
   [
     "src/types/mf.js",
-    "file/src/types/MF.js.html",
-    "src/types/MF.js",
+    "file/src/types/mf.js.html",
+    "src/types/mf.js",
     "file"
   ],
   [
     "src/types/mf.js~'mf<t,",
     "typedef/index.html#static-typedef-'MF<T,",
-    "src/types/MF.js~'MF<T,",
+    "src/types/mf.js~'MF<T,",
     "typedef"
   ],
   [
     "src/types/pr.js",
-    "file/src/types/PR.js.html",
-    "src/types/PR.js",
+    "file/src/types/pr.js.html",
+    "src/types/pr.js",
     "file"
   ],
   [
     "src/types/pr.js~'pr<u>",
     "typedef/index.html#static-typedef-'Pr<U>",
-    "src/types/PR.js~'Pr<U>",
+    "src/types/pr.js~'Pr<U>",
     "typedef"
   ]
 ]

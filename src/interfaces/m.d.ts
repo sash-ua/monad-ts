@@ -1,5 +1,5 @@
-import { MF } from "../types/MF";
-import { Pr } from "../types/PR";
+import { MF } from "../types/mf";
+import { Pr } from "../types/pr";
 /**
  * interface M<T>{
  *

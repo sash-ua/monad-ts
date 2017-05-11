@@ -6,7 +6,7 @@
  */
 
 /** Comment for ESDoc */
-import {Pr} from "./PR";
+import {Pr} from "./pr";
 
 export type MF<T, U> = (v: T)=> Pr<U>;
 

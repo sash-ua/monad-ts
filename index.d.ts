@@ -1,11 +1,7 @@
-/**
- * @description
- * Entry point for all public APIs of the Monad-TS package.
- */
-export { D } from "./src/types/D";
+export { D } from "./src/types/d";
 export { M } from "./src/interfaces/m";
-export { MF } from "./src/types/MF";
-export { Pr } from "./src/types/PR";
+export { MF } from "./src/types/mf";
+export { Pr } from "./src/types/pr";
 export { equality } from "./src/services/equality";
 export { Either } from "./src/either";
 export { List } from "./src/list";

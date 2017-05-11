@@ -3,7 +3,7 @@ import {Monad} from "./monad";
 import {Maybe} from "./maybe";
 import {clone} from "./services/clone";
 import {ErrorM} from "./error";
-import {MF} from "./types/MF";
+import {MF} from "./types/mf";
 
 
 /**

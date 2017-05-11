@@ -1,6 +1,8 @@
 import {M} from "./interfaces/m";
-import {MF} from "./types/MF";
-import {Pr} from "./types/PR";
+import {MF} from "./types/mf";
+import {Pr} from "./types/pr";
+
+
 /**
  * Class Monad - base class.
  * @implements {M}

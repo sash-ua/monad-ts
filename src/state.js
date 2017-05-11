@@ -46,11 +46,9 @@ var State = (function (_super) {
     /**
      * changes the state of application variables.
      * @param {function(v: T)=> T} f - app. state transformation function.
-     * @return {State<T>}
      */
     State.prototype.put = function (f) {
         this.state = this.err.bind(function (v) { return v; }, this.maybe.bind(function (v) { return f(v); }, this.state));
-        return this;
     };
     /**
      * extracts the state of application variables.

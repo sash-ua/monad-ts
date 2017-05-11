@@ -19,7 +19,7 @@
   <a href="identifiers.html">Reference</a>
   <a href="source.html">Source</a>
   
-  
+  <a data-ice="repoURL" href="https://github.com/sash-ua/monad-ts" class="repo-url-github">Repository</a>
   <div class="search-box">
   <span>
     <img src="./image/search.png">
@@ -57,7 +57,7 @@
 <a href="https://github.com/sash-ua/monad-ts"><img src="https://img.shields.io/hexpm/l/plug.svg" alt="Hex.pm"></a></p>
 <h1 id="monad-ts">Monad-ts</h1>
 <p>Monad-ts is a small library implements some of key monads and way to chain them in a flow (pipe) in JavaScript and
-Typescript.</p>
+Typescript. Angular 2+ compatible <a href="https://sash-ua.github.io/gen_drift_monad-ts_a4/">example app</a>.</p>
 <h2 id="content">Content</h2>
 <ul>
 <li><a href="#installation">Installation</a></li>
@@ -136,7 +136,7 @@ console.log(z); // [ -7, -6, -5, 5, 6, 7 ]</code>
 <p>Type: UMD.</p>
 <p>Library name: Monad_ts.</p>
 <p>Add library after es6-shim, es5-shim.</p>
-<pre><code><code class="source-code prettyprint">&lt;script type=&quot;text/javascript&quot; src=&quot;lib/monad-ts.min.js&quot;&gt;&lt;/script&gt;</code>
+<pre><code><code class="source-code prettyprint">&lt;script type=&quot;text/javascript&quot; src=&quot;lib/monad-ts.umd.min.js&quot;&gt;&lt;/script&gt;</code>
 </code></pre><p>Example:</p>
 <pre><code><code class="source-code prettyprint">var state = new Monad_ts.State({q:1, w:2});
  console.log(state.get());                  // {q:1, w:2}

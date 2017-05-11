@@ -1,6 +1,6 @@
 import {Monad} from "./monad";
-import {MF} from "./types/MF";
-import {Pr} from "./types/PR";
+import {MF} from "./types/mf";
+import {Pr} from "./types/pr";
 
 /**
  * Class Maybe - return given value or produce null if take nothing or get nothing after execution of f(v).

@@ -1,6 +1,6 @@
 import { Monad } from "./monad";
-import { MF } from "./types/MF";
-import { Pr } from "./types/PR";
+import { Pr } from "./types/pr";
+import { MF } from "./types/mf";
 /**
  * Class ErrorM - return given value or produce Error if take Error or get Error after execution of f(v).
  * @extends {Monad}

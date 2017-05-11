@@ -1,0 +1,32 @@
+[{"__symbolic":"module","version":3,"metadata":{},"exports":[
+  {"from":"./src/types/d","export":["D"]},
+  {"from":"./src/interfaces/m","export":["M"]},
+  {"from":"./src/types/mf","export":["MF"]},
+  {"from":"./src/types/pr","export":["Pr"]},
+  {"from":"./src/services/equality","export":["equality"]},
+  {"from":"./src/either","export":["Either"]},
+  {"from":"./src/list","export":["List"]},
+  {"from":"./src/identity","export":["Identity"]},
+  {"from":"./src/flow","export":["Flow"]},
+  {"from":"./src/services/clone","export":["clone"]},
+  {"from":"./src/services/cast","export":["cast"]},
+  {"from":"./src/maybe","export":["Maybe"]},
+  {"from":"./src/state","export":["State"]},
+  {"from":"./src/monad","export":["Monad"]}
+]}
+,{"__symbolic":"module","version":1,"metadata":{},"exports":[
+  {"from":"./src/types/d","export":["D"]},
+  {"from":"./src/interfaces/m","export":["M"]},
+  {"from":"./src/types/mf","export":["MF"]},
+  {"from":"./src/types/pr","export":["Pr"]},
+  {"from":"./src/services/equality","export":["equality"]},
+  {"from":"./src/either","export":["Either"]},
+  {"from":"./src/list","export":["List"]},
+  {"from":"./src/identity","export":["Identity"]},
+  {"from":"./src/flow","export":["Flow"]},
+  {"from":"./src/services/clone","export":["clone"]},
+  {"from":"./src/services/cast","export":["cast"]},
+  {"from":"./src/maybe","export":["Maybe"]},
+  {"from":"./src/state","export":["State"]},
+  {"from":"./src/monad","export":["Monad"]}]
+}]

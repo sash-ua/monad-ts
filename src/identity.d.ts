@@ -1,6 +1,6 @@
 import { Monad } from "./monad";
-import { MF } from "./types/MF";
-import { Pr } from "./types/PR";
+import { MF } from "./types/mf";
+import { Pr } from "./types/pr";
 /**
  * Class Identity - wraps underlying value into the monadic value and compute results from a monadic value.
  * @extends {Monad}

@@ -8,7 +8,12 @@
     "experimentalDecorators": true,
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
-    "removeComments": false
+    "removeComments": false,
+    "stripInternal": true,
+    "skipLibCheck": true
+  },
+  "angularCompilerOptions": {
+    "genDir": "compiled"
   },
   "filesGlob": [
     "./**/*.ts",
@@ -16,6 +21,7 @@
   ],
   "exclude": [
     "node_modules",
-    "lib"
+    "lib",
+    "./**/*.spec.ts"
   ]
 }

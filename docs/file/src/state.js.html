@@ -19,7 +19,7 @@
   <a href="identifiers.html">Reference</a>
   <a href="source.html">Source</a>
   
-  
+  <a data-ice="repoURL" href="https://github.com/sash-ua/monad-ts" class="repo-url-github">Repository</a>
   <div class="search-box">
   <span>
     <img src="./image/search.png">
@@ -86,11 +86,9 @@ export class State extends Monad {
     /**
      * changes the state of application variables.
      * @param {function(v: T)=&gt; T} f - app. state transformation function.
-     * @return {State&lt;T&gt;}
      */
     put(f) {
         this.state = this.err.bind((v) =&gt; v, this.maybe.bind((v) =&gt; f(v), this.state));
-        return this;
     }
     /**
      * extracts the state of application variables.

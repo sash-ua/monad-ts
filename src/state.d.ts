@@ -29,9 +29,8 @@ export declare class State<T> extends Monad<T> {
     /**
      * changes the state of application variables.
      * @param {function(v: T)=> T} f - app. state transformation function.
-     * @return {State<T>}
      */
-    put(f: (v: T) => T): State<T>;
+    put(f: (v: T) => T): void;
     /**
      * extracts the state of application variables.
      * @return {T}

@@ -1,8 +1,8 @@
 
 import {Monad} from "./monad";
 import {equality} from "./services/equality";
-import {Pr} from "./types/PR";
-import {D} from "./types/D";
+import {Pr} from "./types/pr";
+import {D} from "./types/d";
 
 /**
  * Class Either - represents computation with two possibilities.

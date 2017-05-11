@@ -7,7 +7,7 @@
 # Monad-ts
 
 Monad-ts is a small library implements some of key monads and way to chain them in a flow (pipe) in JavaScript and
-Typescript.
+Typescript. Angular 2+ compatible [example app](https://sash-ua.github.io/gen_drift_monad-ts_a4/).
 
 ## Content
 * [Installation](#installation)
@@ -115,7 +115,7 @@ Library name: Monad_ts.
 
 Add library after es6-shim, es5-shim.
 ```
-<script type="text/javascript" src="lib/monad-ts.min.js"></script>
+<script type="text/javascript" src="lib/monad-ts.umd.min.js"></script>
 ```
 
 Example:

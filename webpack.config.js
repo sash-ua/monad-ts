@@ -5,7 +5,7 @@ var webpack = require('webpack');
 module.exports = {
     entry: './index.js',
     output: {
-        filename: 'monad_ts.js',
+        filename: 'monad_ts.umd.js',
         path: path.resolve(__dirname, 'lib'),
         library: 'Monad_ts',
         libraryTarget: 'umd'

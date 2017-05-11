@@ -48,14 +48,13 @@ export class State<T> extends  Monad<T>{
          */
         this.err = new ErrorM();
     }
+
     /**
      * changes the state of application variables.
      * @param {function(v: T)=> T} f - app. state transformation function.
-     * @return {State<T>}
      */
-    put(f: (v: T)=> T): State<T>{
+    put(f: (v: T)=> T): void {
         this.state = this.err.bind((v: T) => v, this.maybe.bind((v: T) => f(v), this.state));
-        return this;
     }
     /**
      * extracts the state of application variables.

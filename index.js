@@ -26,4 +26,4 @@ var state_1 = require("./src/state");
 exports.State = state_1.State;
 var monad_1 = require("./src/monad");
 exports.Monad = monad_1.Monad;
-//Copyright (c) 2017 Alex Tranchenko. All rights reserved.
+//Copyright (c) 2017 Alex Tranchenko. All rights reserved. 
