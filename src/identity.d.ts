@@ -17,9 +17,10 @@ export declare class Identity<T> extends Monad<T> {
      * */
     constructor(v?: T);
     /**
-     * chains the operations on a monadic values.
-     * @param {function(v: T) => Pr<U>} f - transformation function for a monad.
-     * @return {Pr<U>} transformed by f() value v.
+     * chains the operations on a monadic value.
+     * @param {function(v: T) => Pr<U>} f - transformation function for the monad.
+     * @param {T} [v = this.v] v - underlying value for the monad.
+     * @return {Pr<U> | Error}
      */
-    bind<T, U>(f: MF<T, U>): Pr<U>;
+    bind<T, U>(f: MF<T, U>, v?: T): Pr<U> | Error;
 }

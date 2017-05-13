@@ -559,7 +559,7 @@
     "__docId__": 22,
     "kind": "file",
     "name": "src/identity.js",
-    "content": "import { Monad } from \"./monad\";\r\nimport { clone } from \"./services/clone\";\r\n/**\r\n * Class Identity - wraps underlying value into the monadic value and compute results from a monadic value.\r\n * @extends {Monad}\r\n */\r\nexport class Identity extends Monad {\r\n    /**\r\n     * creates an instance of class Identity.\r\n     * @param {T} v - The initial state of app.\r\n     * */\r\n    constructor(v) {\r\n        super();\r\n        /**\r\n         * keeps underlying value of a monad.\r\n         * @type {T}\r\n         */\r\n        this.v = clone(v);\r\n    }\r\n    /**\r\n     * chains the operations on a monadic values.\r\n     * @param {function(v: T) => Pr<U>} f - transformation function for a monad.\r\n     * @return {Pr<U>} transformed by f() value v.\r\n     */\r\n    bind(f) {\r\n        return f(this.v);\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
+    "content": "import { Monad } from \"./monad\";\r\nimport { clone } from \"./services/clone\";\r\nimport { equality } from \"./services/equality\";\r\n/**\r\n * Class Identity - wraps underlying value into the monadic value and compute results from a monadic value.\r\n * @extends {Monad}\r\n */\r\nexport class Identity extends Monad {\r\n    /**\r\n     * creates an instance of class Identity.\r\n     * @param {T} v - The initial state of app.\r\n     * */\r\n    constructor(v) {\r\n        super();\r\n        /**\r\n         * keeps underlying value of a monad.\r\n         * @type {T}\r\n         */\r\n        this.v = clone(v);\r\n    }\r\n    /**\r\n     * chains the operations on a monadic value.\r\n     * @param {function(v: T) => Pr<U>} f - transformation function for the monad.\r\n     * @param {T} [v = this.v] v - underlying value for the monad.\r\n     * @return {Pr<U> | Error}\r\n     */\r\n    bind(f, v = this.v) {\r\n        return this.v && v\r\n            ? equality(this.v, v)\r\n                ? f(v)\r\n                : new Error('Identity. Underlying value of the monad is defined in constructor yet')\r\n            : f(v);\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
     "static": true,
     "longname": "src/identity.js",
     "access": null,
@@ -578,7 +578,7 @@
     "importPath": "monad-ts/src/identity.js",
     "importStyle": "{Identity}",
     "description": "Class Identity - wraps underlying value into the monadic value and compute results from a monadic value.",
-    "lineNumber": 7,
+    "lineNumber": 8,
     "interface": false,
     "extends": [
       "Monad"
@@ -595,7 +595,7 @@
     "longname": "src/identity.js~Identity#constructor",
     "access": null,
     "description": "creates an instance of class Identity.",
-    "lineNumber": 12,
+    "lineNumber": 13,
     "params": [
       {
         "nullable": null,
@@ -618,7 +618,7 @@
     "longname": "src/identity.js~Identity#v",
     "access": null,
     "description": "keeps underlying value of a monad.",
-    "lineNumber": 18,
+    "lineNumber": 19,
     "type": {
       "nullable": null,
       "types": [
@@ -638,8 +638,8 @@
     "static": false,
     "longname": "src/identity.js~Identity#bind",
     "access": null,
-    "description": "chains the operations on a monadic values.",
-    "lineNumber": 25,
+    "description": "chains the operations on a monadic value.",
+    "lineNumber": 27,
     "params": [
       {
         "nullable": null,
@@ -649,16 +649,29 @@
         "spread": false,
         "optional": false,
         "name": "f",
-        "description": "transformation function for a monad."
+        "description": "transformation function for the monad."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "T"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": " this.v",
+        "defaultRaw": " this.v",
+        "name": "v",
+        "description": "v - underlying value for the monad."
       }
     ],
     "return": {
       "nullable": null,
       "types": [
-        "Pr<U>"
+        "Pr<U> ",
+        " Error"
       ],
       "spread": false,
-      "description": "transformed by f() value v."
+      "description": ""
     }
   },
   {
@@ -1431,7 +1444,7 @@
     "__docId__": 53,
     "kind": "file",
     "name": "src/state.js",
-    "content": "import { Monad } from \"./monad\";\r\nimport { Maybe } from \"./maybe\";\r\nimport { ErrorM } from \"./error\";\r\nimport { clone } from \"./services/clone\";\r\n/**\r\n * Class State - for application state manipulations.\r\n * @extends {Monad}\r\n */\r\nexport class State extends Monad {\r\n    /**\r\n     * creates an instance of class State.\r\n     * @param {Object} state - the initial state of app.\r\n     */\r\n    constructor(state) {\r\n        super();\r\n        /**\r\n         * keeps the state of application variables.\r\n         * @type {T}\r\n         */\r\n        this.state = clone(state);\r\n        /**\r\n         * the instance of Maybe.\r\n         * @type {Maybe}\r\n         */\r\n        this.maybe = new Maybe();\r\n        /**\r\n         * the instance of ErrorM.\r\n         * @type {ErrorM}\r\n         */\r\n        this.err = new ErrorM();\r\n    }\r\n    /**\r\n     * changes the state of application variables.\r\n     * @param {function(v: T)=> T} f - app. state transformation function.\r\n     */\r\n    put(f) {\r\n        this.state = this.err.bind((v) => v, this.maybe.bind((v) => f(v), this.state));\r\n    }\r\n    /**\r\n     * extracts the state of application variables.\r\n     * @return {T}\r\n     */\r\n    get() {\r\n        return this.state;\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
+    "content": "import { Monad } from \"./monad\";\r\nimport { Maybe } from \"./maybe\";\r\nimport { ErrorM } from \"./error\";\r\nimport { clone } from \"./services/clone\";\r\nimport { equality } from \"./services/equality\";\r\n/**\r\n * Class State - for application state manipulations.\r\n * @extends {Monad}\r\n */\r\nexport class State extends Monad {\r\n    /**\r\n     * creates an instance of class State.\r\n     * @param {Object} state - the initial state of app.\r\n     */\r\n    constructor(state) {\r\n        super();\r\n        /**\r\n         * keeps the state of application variables.\r\n         * @type {T}\r\n         */\r\n        this.state = clone(state);\r\n        /**\r\n         * the instance of Maybe.\r\n         * @type {Maybe}\r\n         */\r\n        this.maybe = new Maybe();\r\n        /**\r\n         * the instance of ErrorM.\r\n         * @type {ErrorM}\r\n         */\r\n        this.err = new ErrorM();\r\n    }\r\n    /**\r\n     * changes the state of application variables, if you try add new key with put() to state object it'll be assigned\r\n     * with Error instance.\r\n     * @param {function(v: T)=> T} f - app. state transformation function.\r\n     */\r\n    put(f) {\r\n        const buffer = clone(this.state);\r\n        this.state = this.err.bind((v) => equality(Object.getOwnPropertyNames(buffer), Object.getOwnPropertyNames(v))\r\n            ? v\r\n            : new Error('State. After init we can not add / remove keys in state obj.'), this.maybe.bind((v) => f(v), this.state));\r\n    }\r\n    /**\r\n     * extracts the state of application variables.\r\n     * @return {T}\r\n     */\r\n    get() {\r\n        return this.state;\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
     "static": true,
     "longname": "src/state.js",
     "access": null,
@@ -1450,7 +1463,7 @@
     "importPath": "monad-ts/src/state.js",
     "importStyle": "{State}",
     "description": "Class State - for application state manipulations.",
-    "lineNumber": 9,
+    "lineNumber": 10,
     "interface": false,
     "extends": [
       "Monad"
@@ -1467,7 +1480,7 @@
     "longname": "src/state.js~State#constructor",
     "access": null,
     "description": "creates an instance of class State.",
-    "lineNumber": 14,
+    "lineNumber": 15,
     "params": [
       {
         "nullable": null,
@@ -1490,7 +1503,7 @@
     "longname": "src/state.js~State#state",
     "access": null,
     "description": "keeps the state of application variables.",
-    "lineNumber": 20,
+    "lineNumber": 21,
     "type": {
       "nullable": null,
       "types": [
@@ -1509,7 +1522,7 @@
     "longname": "src/state.js~State#maybe",
     "access": null,
     "description": "the instance of Maybe.",
-    "lineNumber": 25,
+    "lineNumber": 26,
     "type": {
       "nullable": null,
       "types": [
@@ -1528,7 +1541,7 @@
     "longname": "src/state.js~State#err",
     "access": null,
     "description": "the instance of ErrorM.",
-    "lineNumber": 30,
+    "lineNumber": 31,
     "type": {
       "nullable": null,
       "types": [
@@ -1548,8 +1561,8 @@
     "static": false,
     "longname": "src/state.js~State#put",
     "access": null,
-    "description": "changes the state of application variables.",
-    "lineNumber": 36,
+    "description": "changes the state of application variables, if you try add new key with put() to state object it'll be assigned\nwith Error instance.",
+    "lineNumber": 38,
     "params": [
       {
         "nullable": null,
@@ -1572,7 +1585,7 @@
     "longname": "src/state.js~State#state",
     "access": null,
     "description": null,
-    "lineNumber": 37,
+    "lineNumber": 40,
     "undocument": true,
     "unknown": [
       {
@@ -1597,7 +1610,7 @@
     "longname": "src/state.js~State#get",
     "access": null,
     "description": "extracts the state of application variables.",
-    "lineNumber": 43,
+    "lineNumber": 48,
     "params": [],
     "return": {
       "nullable": null,

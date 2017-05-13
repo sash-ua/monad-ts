@@ -173,6 +173,8 @@ e.bind((v: number) => e.bind((v1: number)=>v+v1, 1), 1/0); // Error
 
 #### Identity
 
+It returns underlying value transformed by given function. We can add underlying value in constructor or in bind method.
+
 Examples:
 ```
 const i = new Identity(3);    // Identity({v: 3})
@@ -217,7 +219,10 @@ z = cast(list.bind((v: number) =>list.bind((v: number) => [-v, v], [v-1, v, v+1]
 
 #### State
 
-The State monad interact with local and global state variables to transform them.
+	The State monad interact with local and global state variables to transform them. After creating an instance of State
+monad we can not add new keys to the state object.
+ 
+ It take object.
 
 Examples:
 ```

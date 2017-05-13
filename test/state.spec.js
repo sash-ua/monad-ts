@@ -29,5 +29,13 @@ describe('State: ', function () {
         });
         expect(st.get()).toEqual({ data: 11, children: [Object({ data: 2, parent: 'null' })], arr: [2.25, 3.25, 4.25] });
     });
+    it('should produce Error', function () {
+        st.put(function (v) {
+            v.test = 10;
+            v.arr = list.bind(function (x) { return x + f; }, v.arr);
+            return v;
+        });
+        expect(st.get() instanceof Error).toBeTruthy();
+    });
 });
 //Copyright (c) 2017 Alex Tranchenko. All rights reserved.

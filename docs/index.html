@@ -173,6 +173,7 @@ const w = cond(uVal) ? right(uVal) : left(uVal);     // &apos;10 - isn&apos;t st
 <pre><code><code class="source-code prettyprint">const e = new ErrorM();
 e.bind((v: number) =&gt; e.bind((v1: number)=&gt;v+v1, 1), 1/0); // Error</code>
 </code></pre><h4 id="identity">Identity</h4>
+<p>It returns underlying value transformed by given function. We can add underlying value in constructor or in bind method.</p>
 <p>Examples:</p>
 <pre><code><code class="source-code prettyprint">const i = new Identity(3);    // Identity({v: 3})
 i.bind((v:number) =&gt; v);      // 3</code>
@@ -200,7 +201,9 @@ const x = [10, 2];                                                              
 z = cast(list.bind((v: number) =&gt;list.bind((v: number) =&gt; [-v, v], [v-1, v, v+1]), x), 2); // [ -9, 9, -10, 10, -11, 11, -1, 1, -2, 2,
 -3, 3 ]</code>
 </code></pre><h4 id="state">State</h4>
-<p>The State monad interact with local and global state variables to transform them.</p>
+<pre><code><code class="source-code prettyprint">The State monad interact with local and global state variables to transform them. After creating an instance of State</code>
+</code></pre><p>monad we can not add new keys to the state object.</p>
+<p> It take object.</p>
 <p>Examples:</p>
 <pre><code><code class="source-code prettyprint">type R = { data: number; children: any[]; arr: number[]; };
     const initState: R = {

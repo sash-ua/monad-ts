@@ -27,7 +27,8 @@ export declare class State<T> extends Monad<T> {
      */
     constructor(state: T);
     /**
-     * changes the state of application variables.
+     * changes the state of application variables, if you try add new key with put() to state object it'll be assigned
+     * with Error instance.
      * @param {function(v: T)=> T} f - app. state transformation function.
      */
     put(f: (v: T) => T): void;

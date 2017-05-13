@@ -18,5 +18,9 @@ describe('Identity: ', function () {
         expect(i.bind(function (v) { return v + 2; })).toEqual(5);
         expect(i.bind(function (x) { return i.bind(function (v) { return x + 2; }); })).toEqual(5);
     });
+    it('should ', function () {
+        var i = new identity_1.Identity(3);
+        expect(i.bind(function (v) { return v; }, 5) instanceof Error).toBeTruthy();
+    });
 });
 //Copyright (c) 2017 Alex Tranchenko. All rights reserved.

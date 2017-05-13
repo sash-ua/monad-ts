@@ -18,6 +18,10 @@ describe('Identity: ', ()=>{
         expect(i.bind((v:number) => v+2)).toEqual(5);
         expect(i.bind((x:number) => i.bind(v => x+2))).toEqual(5);
     });
+    it('should ', ()=>{
+        const i = new Identity(3);
+        expect(i.bind((v:number)=>v, 5) instanceof Error).toBeTruthy();
+    });
 });
 
 //Copyright (c) 2017 Alex Tranchenko. All rights reserved.

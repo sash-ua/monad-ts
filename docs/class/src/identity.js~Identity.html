@@ -52,13 +52,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Identity} from &apos;<span><a href="file/src/identity.js.html#lineNumber7">monad-ts/src/identity.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Identity} from &apos;<span><a href="file/src/identity.js.html#lineNumber8">monad-ts/src/identity.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/identity.js.html#lineNumber7">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/identity.js.html#lineNumber8">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -180,13 +180,13 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/identity.js~Identity.html#instance-method-bind">bind</a></span></span><span data-ice="signature">(f: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(v: <span>T</span>)</span></span>): <span>Pr</span>&lt;<span>U</span>&gt;</span>
+          <span data-ice="name"><span><a href="class/src/identity.js~Identity.html#instance-method-bind">bind</a></span></span><span data-ice="signature">(f: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(v: <span>T</span>)</span></span>, v: <span>T</span>): <span>Pr&lt;U&gt; </span> | <span> Error</span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>chains the operations on a monadic values.</p>
+        <div data-ice="description"><p>chains the operations on a monadic value.</p>
 </div>
       </div>
     </td>
@@ -279,7 +279,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/identity.js.html#lineNumber12">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/identity.js.html#lineNumber13">source</a></span></span>
     </span>
   </h3>
 
@@ -343,7 +343,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/identity.js.html#lineNumber18">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/identity.js.html#lineNumber19">source</a></span></span>
     </span>
   </h3>
 
@@ -386,18 +386,18 @@
     
     
     
-    <span data-ice="name">bind</span><span data-ice="signature">(f: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(v: <span>T</span>)</span></span>): <span>Pr</span>&lt;<span>U</span>&gt;</span>
+    <span data-ice="name">bind</span><span data-ice="signature">(f: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(v: <span>T</span>)</span></span>, v: <span>T</span>): <span>Pr&lt;U&gt; </span> | <span> Error</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/identity.js.html#lineNumber25">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/identity.js.html#lineNumber27">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>chains the operations on a monadic values.</p>
+  <div data-ice="description"><p>chains the operations on a monadic value.</p>
 </div>
 
   
@@ -414,7 +414,15 @@
       <td data-ice="name" data-depth="0">f</td>
       <td data-ice="type"><span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(v: <span>T</span>)</span></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>transformation function for a monad.</p>
+      <td data-ice="description"><p>transformation function for the monad.</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">v</td>
+      <td data-ice="type"><span>T</span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default:  this.v</li></ul></td>
+      <td data-ice="description"><p>v - underlying value for the monad.</p>
 </td>
     </tr>
 </tbody>
@@ -427,9 +435,8 @@
     <table>
       <tbody>
         <tr>
-          <td class="return-type" data-ice="returnType"><span>Pr</span>&lt;<span>U</span>&gt;</td>
-          <td class="return-desc" data-ice="returnDescription"><p>transformed by f() value v.</p>
-</td>
+          <td class="return-type" data-ice="returnType"><span>Pr&lt;U&gt; </span> | <span> Error</span></td>
+          
         </tr>
       </tbody>
     </table>

@@ -3,6 +3,7 @@ import {Monad} from "./monad";
 import {clone} from "./services/clone";
 import {MF} from "./types/mf";
 import {Pr} from "./types/pr";
+import {equality} from "./services/equality";
 
 /**
  * Class Identity - wraps underlying value into the monadic value and compute results from a monadic value.
@@ -27,12 +28,17 @@ export class Identity<T> extends Monad<T> {
         this.v = clone(v);
     }
     /**
-     * chains the operations on a monadic values.
-     * @param {function(v: T) => Pr<U>} f - transformation function for a monad.
-     * @return {Pr<U>} transformed by f() value v.
+     * chains the operations on a monadic value.
+     * @param {function(v: T) => Pr<U>} f - transformation function for the monad.
+     * @param {T} [v = this.v] v - underlying value for the monad.
+     * @return {Pr<U> | Error}
      */
-    bind<T, U>(f: MF<T, U>): Pr<U>{
-        return f(this.v);
+    bind<T, U>(f: MF<T, U>, v: T = this.v): Pr<U> | Error{
+        return this.v && v
+            ? equality(this.v, v)
+                ? f(v)
+                : new Error('Identity. Underlying value of the monad is defined in constructor yet')
+            : f(v);
     }
     /**
      * Inherit method just() from Monad.

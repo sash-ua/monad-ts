@@ -1,3 +1,21 @@
+# 0.2.8 (2017-05-13)
+
+### Changes
+
+* readme and docs updates.
+
+### Bug fixed
+
+* **State.put()**  was able to add new key to internal state object after instance of State have been created.
+
+# 0.2.7 (2017-05-11)
+
+### Changes
+
+* **State.put()** doesn't return nothing change state only.
+* added Angular 2+ compatibility (JIT, AOT).
+* readme and docs updates.
+
 # 0.2.6 (2017-05-09)
 
 ### Changes
@@ -6,7 +24,7 @@
 
 ### Bug fixed
 
-* **Flow, State** the changing of the variable with initial state of classes was able change internal state of classes after instances of  them have been created.
+* **Flow, State** the changing of the variable with initial state of classes was able change internal state of classes after instances of them have been created.
 
 # 0.2.5 (2017-05-09)
 

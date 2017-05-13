@@ -14,6 +14,7 @@ var monad_1 = require("./monad");
 var maybe_1 = require("./maybe");
 var error_1 = require("./error");
 var clone_1 = require("./services/clone");
+var equality_1 = require("./services/equality");
 /**
  * Class State - for application state manipulations.
  * @extends {Monad}
@@ -44,11 +45,15 @@ var State = (function (_super) {
         return _this;
     }
     /**
-     * changes the state of application variables.
+     * changes the state of application variables, if you try add new key with put() to state object it'll be assigned
+     * with Error instance.
      * @param {function(v: T)=> T} f - app. state transformation function.
      */
     State.prototype.put = function (f) {
-        this.state = this.err.bind(function (v) { return v; }, this.maybe.bind(function (v) { return f(v); }, this.state));
+        var buffer = clone_1.clone(this.state);
+        this.state = this.err.bind(function (v) { return equality_1.equality(Object.getOwnPropertyNames(buffer), Object.getOwnPropertyNames(v))
+            ? v
+            : new Error('State. After init we can not add / remove keys in state obj.'); }, this.maybe.bind(function (v) { return f(v); }, this.state));
     };
     /**
      * extracts the state of application variables.

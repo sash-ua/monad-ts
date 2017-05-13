@@ -12,6 +12,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var monad_1 = require("./monad");
 var clone_1 = require("./services/clone");
+var equality_1 = require("./services/equality");
 /**
  * Class Identity - wraps underlying value into the monadic value and compute results from a monadic value.
  * @extends {Monad}
@@ -32,12 +33,18 @@ var Identity = (function (_super) {
         return _this;
     }
     /**
-     * chains the operations on a monadic values.
-     * @param {function(v: T) => Pr<U>} f - transformation function for a monad.
-     * @return {Pr<U>} transformed by f() value v.
+     * chains the operations on a monadic value.
+     * @param {function(v: T) => Pr<U>} f - transformation function for the monad.
+     * @param {T} [v = this.v] v - underlying value for the monad.
+     * @return {Pr<U> | Error}
      */
-    Identity.prototype.bind = function (f) {
-        return f(this.v);
+    Identity.prototype.bind = function (f, v) {
+        if (v === void 0) { v = this.v; }
+        return this.v && v
+            ? equality_1.equality(this.v, v)
+                ? f(v)
+                : new Error('Identity. Underlying value of the monad is defined in constructor yet')
+            : f(v);
     };
     return Identity;
 }(monad_1.Monad));

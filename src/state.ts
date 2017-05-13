@@ -3,6 +3,7 @@ import {Monad} from "./monad";
 import {Maybe} from "./maybe";
 import {ErrorM} from "./error";
 import {clone} from "./services/clone";
+import {equality} from "./services/equality";
 
 /**
  * Class State - for application state manipulations.
@@ -50,11 +51,18 @@ export class State<T> extends  Monad<T>{
     }
 
     /**
-     * changes the state of application variables.
+     * changes the state of application variables, if you try add new key with put() to state object it'll be assigned
+     * with Error instance.
      * @param {function(v: T)=> T} f - app. state transformation function.
      */
     put(f: (v: T)=> T): void {
-        this.state = this.err.bind((v: T) => v, this.maybe.bind((v: T) => f(v), this.state));
+        const buffer = clone(this.state);
+        this.state = this.err.bind(
+            (v: T) => equality(Object.getOwnPropertyNames(buffer), Object.getOwnPropertyNames(v))
+                ? v
+                : new Error('State. After init we can not add / remove keys in state obj.'),
+            this.maybe.bind((v: T) => f(v),this.state)
+        );
     }
     /**
      * extracts the state of application variables.

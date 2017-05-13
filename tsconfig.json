@@ -21,7 +21,6 @@
   ],
   "exclude": [
     "node_modules",
-    "lib",
-    "./**/*.spec.ts"
+    "lib"
   ]
 }
