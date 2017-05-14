@@ -109,7 +109,17 @@ using of like monads from Haskell in JS.</p>
 <h3 id="ways-to-use-">Ways to use:</h3>
 <h4 id="1-as-a-dependency-">1. As a dependency.</h4>
 <p>Import library or class in compatible for you way:</p>
-<pre><code><code class="source-code prettyprint">import * as Monad from &quot;/node_modules/monad-ts/index&quot;</code>
+<pre><code><code class="source-code prettyprint">SystemJS.config({
+    map:{
+        ...
+        &apos;monad-ts&apos;: &apos;node_modules/monad-ts/lib/monad_ts.umd.js&apos;
+        ...
+    }
+})
+...
+import {State} from &quot;monad-ts&quot;;
+...</code>
+</code></pre><pre><code><code class="source-code prettyprint">import * as Monad from &quot;/node_modules/monad-ts/index&quot;</code>
 </code></pre><p>or</p>
 <pre><code><code class="source-code prettyprint">import {State} from &quot;/node_modules/monad-ts/index&quot;</code>
 </code></pre><p>or</p>

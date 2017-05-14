@@ -24,6 +24,8 @@
     "tsc:watch": "tsc -w -d",
     "webpack": "webpack --watch",
     "webpack:prod": "webpack --watch -p --config ./webpack.config.prod.js",
+    "webpack:state": "webpack --watch --config ./webpack.config.state.js",
+    "webpack:state:prod": "webpack --watch -p --config ./webpack.config.state.prod.js",
     "lite": "lite-server -o",
     "map": "source-map-explorer dist/bundle.js",
     "tsc": "tsc",
@@ -44,7 +46,8 @@
       "email": "tranchenkoa@gmail.com"
     }
   ],
-  "dependencies": {},
+  "dependencies": {
+  },
   "devDependencies": {
     "@types/async": "^2.0.40",
     "@types/browser-sync": "^0.0.34",

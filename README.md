@@ -75,6 +75,18 @@ using of like monads from Haskell in JS.
 
 Import library or class in compatible for you way:
 ```
+SystemJS.config({
+	map:{
+		...
+		'monad-ts': 'node_modules/monad-ts/lib/monad_ts.umd.js'
+		...
+	}
+})
+...
+import {State} from "monad-ts";
+...
+```
+```
 import * as Monad from "/node_modules/monad-ts/index"
 ```
 or

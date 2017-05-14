@@ -1,3 +1,8 @@
+/**
+ * @description
+ * Entry point for all public APIs of the Monad-TS package.
+ */
+export { ErrorM } from "./src/error";
 export { D } from "./src/types/d";
 export { M } from "./src/interfaces/m";
 export { MF } from "./src/types/mf";

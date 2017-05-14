@@ -1,3 +1,9 @@
+# 0.2.9 (2017-05-14)
+
+### Bug fixed
+
+* **ErrorM monad** was absent in a lib bundle.
+
 # 0.2.8 (2017-05-13)
 
 ### Changes

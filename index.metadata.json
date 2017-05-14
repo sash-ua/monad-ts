@@ -12,6 +12,7 @@
   {"from":"./src/services/cast","export":["cast"]},
   {"from":"./src/maybe","export":["Maybe"]},
   {"from":"./src/state","export":["State"]},
+  {"from":"./src/error","export":["ErrorM"]},
   {"from":"./src/monad","export":["Monad"]}
 ]}
 ,{"__symbolic":"module","version":1,"metadata":{},"exports":[
@@ -28,5 +29,6 @@
   {"from":"./src/services/cast","export":["cast"]},
   {"from":"./src/maybe","export":["Maybe"]},
   {"from":"./src/state","export":["State"]},
+  {"from":"./src/error","export":["ErrorM"]},
   {"from":"./src/monad","export":["Monad"]}]
 }]
