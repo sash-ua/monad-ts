@@ -5,7 +5,6 @@ import {clone} from "./services/clone";
 import {ErrorM} from "./error";
 import {MF} from "./types/mf";
 
-
 /**
  * Class Flow - for composing monads in a flow (pipe).
  * @extends {Monad}
@@ -27,18 +26,20 @@ export class Flow<T> extends Monad<T>{
      */
     protected err: ErrorM<T>;
     /**
-     * create an instance of class Flow.
-     * @param {any} flow - initial value of new flow (pipe).
+     * create an instance of class AsyncFlow.
+     * @param {any} initV - initial value of new flow (pipe).
+     * @param {boolean} [encapsulate = true] encapsulate - flag, if true then the init value will be cloned.
      */
     constructor(
-        flow: any
+        initV: any,
+        encapsulate: boolean = true
     ){
         super();
         /**
          * keep initial flow (pipe) value.
          * @type {any}
          */
-        this.flow = clone(flow);
+        this.flow = encapsulate ? clone(initV) : initV;
         /**
          * the instance of Maybe.
          * @type {Maybe}
@@ -56,12 +57,12 @@ export class Flow<T> extends Monad<T>{
      * @param {any} [v= this.flow] - underlying value for a monad.
      * @return {Flow<T>} transformed by f() value v or throw Error or null.
      */
-    bind<T, U>(f?: MF<T, U>, v: any = this.flow): Flow<T>{
-        this.flow = f ? this.err.bind(v => this.maybe.bind((v: any) => f(v), v), v) : this.err.bind(v => v, v);
+    bind<T, U>(f: MF<T, U>, v: any = this.flow): Flow<T>{
+        this.flow = this.err.bind(v => this.maybe.bind((v: any) => f(v), v), v);
         return this;
     }
     /**
-     * create branch from a flow (pipe).
+     * creates branch from a flow (pipe).
      * @param {function(v: T) => Pr<U>} f - transformation function for a main flow value.
      * @return {Flow<T>}
      */
@@ -77,5 +78,4 @@ export class Flow<T> extends Monad<T>{
         return this.flow;
     }
 }
-
 //Copyright (c) 2017 Alex Tranchenko. All rights reserved.

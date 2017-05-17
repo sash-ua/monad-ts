@@ -21,16 +21,18 @@ var error_1 = require("./error");
 var Flow = (function (_super) {
     __extends(Flow, _super);
     /**
-     * create an instance of class Flow.
-     * @param {any} flow - initial value of new flow (pipe).
+     * create an instance of class AsyncFlow.
+     * @param {any} initV - initial value of new flow (pipe).
+     * @param {boolean} [encapsulate = true] encapsulate - flag, if true then the init value will be cloned.
      */
-    function Flow(flow) {
+    function Flow(initV, encapsulate) {
+        if (encapsulate === void 0) { encapsulate = true; }
         var _this = _super.call(this) || this;
         /**
          * keep initial flow (pipe) value.
          * @type {any}
          */
-        _this.flow = clone_1.clone(flow);
+        _this.flow = encapsulate ? clone_1.clone(initV) : initV;
         /**
          * the instance of Maybe.
          * @type {Maybe}
@@ -52,11 +54,11 @@ var Flow = (function (_super) {
     Flow.prototype.bind = function (f, v) {
         var _this = this;
         if (v === void 0) { v = this.flow; }
-        this.flow = f ? this.err.bind(function (v) { return _this.maybe.bind(function (v) { return f(v); }, v); }, v) : this.err.bind(function (v) { return v; }, v);
+        this.flow = this.err.bind(function (v) { return _this.maybe.bind(function (v) { return f(v); }, v); }, v);
         return this;
     };
     /**
-     * create branch from a flow (pipe).
+     * creates branch from a flow (pipe).
      * @param {function(v: T) => Pr<U>} f - transformation function for a main flow value.
      * @return {Flow<T>}
      */

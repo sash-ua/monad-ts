@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">src/maybe.js | API Document</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/services/wait.js | API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -53,38 +53,26 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/maybe.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { Monad } from &quot;./monad&quot;;
-/**
- * Class Maybe - return given value or produce null if take nothing or get nothing after execution of f(v).
- * @extends {Monad}
+<div class="content" data-ice="content"><h1 data-ice="title">src/services/wait.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * converts timeout in a Promise, resolved when specified amount of time passes.
+ * @param {any} v - value should be returned.
+ * @param {number} [t = 0] t - amount of time, in millis.
+ * @return {Promise&lt;T&gt; | Error}
  */
-export class Maybe extends Monad {
-    /**
-     * chains the operations on a monadic values.
-     * @param {function(v: T) =&gt; Pr&lt;U&gt;} f - transformation function for a monad.
-     * @param {T} v - underlying value for a monad.
-     * @return {Pr&lt;U&gt;} transformed by f() value v.
-     */
-    bind(f, v) {
-        if (v === null || v === undefined) {
-            return this.nothing();
-        }
-        else {
-            const vL = this.just(f, v);
-            return (vL === null || vL === undefined) ? this.nothing() : vL;
-        }
-    }
-    /**
-     * return nothing (null).
-     * @return {null}
-     */
-    nothing() {
-        return null;
-    }
-    ;
+/**
+ * converts timeout in a Promise, resolved when specified amount of time passes.
+ * @param {any} v - value should be returned.
+ * @param {number} [t = 0] t - amount of time, in millis.
+ * @return {Promise&lt;T&gt; | Error}
+ */ export function wait(v, t = 0) {
+    return typeof t === &apos;number&apos; &amp;&amp; t &gt;= 0
+        ? new Promise(function (resolve) {
+            setTimeout(() =&gt; resolve(v), t);
+        })
+        : new Error(&apos;Function wait. Timeout must be number &gt;= 0.&apos;);
 }
-//Copyright (c) 2017 Alex Tranchenko. All rights reserved.
+//Copyright (c) 2017 Alex Tranchenko. All rights reserved. 
 </code></pre>
 
 </div>

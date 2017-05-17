@@ -53,5 +53,8 @@ describe('List: ', function () {
         var s = cast_1.cast(list.bind(function (x) { return list.bind(function (x) { return x === 'tt' ? x : x = ' '; }, [x + 't']); }, t), 2).join('');
         expect(s).toEqual('tt  tt');
     });
+    it('should produce an error', function () {
+        expect(list.bind(function (v) { return v; }, 'abc') instanceof Error).toBeTruthy();
+    });
 });
 //Copyright (c) 2017 Alex Tranchenko. All rights reserved.

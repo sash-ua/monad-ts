@@ -9,11 +9,11 @@ export class List<T> extends Monad<T> {
     /**
      * method transforms every element of array with given function "contemporaneously".
      * @param {function(n: T) => U} f - transformation function for a monad.
-     * @param {Array<T>} v - underlying value for a monad.
-     * @return {Array<U>} transformed by f() value v.
+     * @param {any} v - underlying value for a monad.
+     * @return {Array<U> | Error} transformed by f() value v or error if input arg is not array.
      */
-    bind<U>(f: (n: T)=> U, v: Array<T>): Array<U>{
-        return this._disp(f, v);
+    bind<U>(f: (n: T)=> U, v: any): Array<U> | Error{
+        return Array.isArray(v) ? this._disp(f, v): this.errorHandler('List. Input must be array.');
     }
     /**
      * @param {function(n: T) => U} f - transformation function for a monad.

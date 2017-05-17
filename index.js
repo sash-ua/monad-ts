@@ -4,6 +4,10 @@
  * Entry point for all public APIs of the Monad-TS package.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+var wait_1 = require("./src/services/wait");
+exports.wait = wait_1.wait;
+var asyncFlow_1 = require("./src/asyncFlow");
+exports.AsyncFlow = asyncFlow_1.AsyncFlow;
 var error_1 = require("./src/error");
 exports.ErrorM = error_1.ErrorM;
 var m_1 = require("./src/interfaces/m");

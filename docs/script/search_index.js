@@ -1,5 +1,11 @@
 window.esdocSearchIndex = [
   [
+    "monad-ts/src/asyncflow.js~asyncflow",
+    "class/src/asyncFlow.js~AsyncFlow.html",
+    "<span>AsyncFlow</span> <span class=\"search-result-import-path\">monad-ts/src/asyncFlow.js</span>",
+    "class"
+  ],
+  [
     "monad-ts/src/either.js~either",
     "class/src/either.js~Either.html",
     "<span>Either</span> <span class=\"search-result-import-path\">monad-ts/src/either.js</span>",
@@ -69,6 +75,12 @@ window.esdocSearchIndex = [
     "monad-ts/src/services/equality.js~equality",
     "function/index.html#static-function-equality",
     "<span>equality</span> <span class=\"search-result-import-path\">monad-ts/src/services/equality.js</span>",
+    "function"
+  ],
+  [
+    "monad-ts/src/services/wait.js~wait",
+    "function/index.html#static-function-wait",
+    "<span>wait</span> <span class=\"search-result-import-path\">monad-ts/src/services/wait.js</span>",
     "function"
   ],
   [
@@ -402,6 +414,42 @@ window.esdocSearchIndex = [
     "external"
   ],
   [
+    "src/asyncflow.js",
+    "file/src/asyncFlow.js.html",
+    "src/asyncFlow.js",
+    "file"
+  ],
+  [
+    "src/asyncflow.js~asyncflow#bind",
+    "class/src/asyncFlow.js~AsyncFlow.html#instance-method-bind",
+    "src/asyncFlow.js~AsyncFlow#bind",
+    "method"
+  ],
+  [
+    "src/asyncflow.js~asyncflow#constructor",
+    "class/src/asyncFlow.js~AsyncFlow.html#instance-constructor-constructor",
+    "src/asyncFlow.js~AsyncFlow#constructor",
+    "method"
+  ],
+  [
+    "src/asyncflow.js~asyncflow#err",
+    "class/src/asyncFlow.js~AsyncFlow.html#instance-member-err",
+    "src/asyncFlow.js~AsyncFlow#err",
+    "member"
+  ],
+  [
+    "src/asyncflow.js~asyncflow#flow",
+    "class/src/asyncFlow.js~AsyncFlow.html#instance-member-flow",
+    "src/asyncFlow.js~AsyncFlow#flow",
+    "member"
+  ],
+  [
+    "src/asyncflow.js~asyncflow#maybe",
+    "class/src/asyncFlow.js~AsyncFlow.html#instance-member-maybe",
+    "src/asyncFlow.js~AsyncFlow#maybe",
+    "member"
+  ],
+  [
     "src/either.js",
     "file/src/either.js.html",
     "src/either.js",
@@ -597,6 +645,12 @@ window.esdocSearchIndex = [
     "src/services/equality.js",
     "file/src/services/equality.js.html",
     "src/services/equality.js",
+    "file"
+  ],
+  [
+    "src/services/wait.js",
+    "file/src/services/wait.js.html",
+    "src/services/wait.js",
     "file"
   ],
   [

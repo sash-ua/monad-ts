@@ -13,6 +13,27 @@ describe('Flow: ', function () {
             .subscribe();
         expect(z instanceof Error).toBeTruthy();
     });
+    it('shouldn\'t change inner state if was changed init object. Default encapsulation mode.', function () {
+        var init = Object({ data: 1, children: [Object({ data: 2, parent: 'null' })], arr: [1, 2, 3] });
+        var res = Object({ data: 100, children: [Object({ data: 2, parent: 'null' })], arr: [1, 2, 3] });
+        var z = new flow_1.Flow(init)
+            .bind(function (v) { v.data = 100; return v; })
+            .subscribe();
+        expect(z).toEqual(res);
+        init.data = 50;
+        expect(z).toEqual(res);
+    });
+    it('should change inner state if was changed init object. No encapsulation mode.', function () {
+        var init = Object({ data: 1, children: [Object({ data: 2, parent: 'null' })], arr: [1, 2, 3] });
+        var res = Object({ data: 100, children: [Object({ data: 2, parent: 'null' })], arr: [1, 2, 3] });
+        var resChanged = Object({ data: 50, children: [Object({ data: 2, parent: 'null' })], arr: [1, 2, 3] });
+        var z = new flow_1.Flow(init, false)
+            .bind(function (v) { v.data = 100; return v; })
+            .subscribe();
+        expect(z).toEqual(res);
+        init.data = 50;
+        expect(z).toEqual(resChanged);
+    });
     it('1. should return null', function () {
         var z = new flow_1.Flow(5)
             .bind(function (v) { return v + 1; })
@@ -58,12 +79,6 @@ describe('Flow: ', function () {
         expect(r).toEqual(56);
         expect(t).toEqual([-7, 7, -6, 6, -5, 5, 5, -5, 6, -6, 7, -7]);
         expect(z).toEqual([-7, -6, -5, 5, 6, 7]);
-    });
-    it('should return given value', function () {
-        var z = new flow_1.Flow(5).bind().bind().bind().subscribe();
-        expect(z).toEqual(5);
-        var z1 = new flow_1.Flow('test').bind().bind().bind().subscribe();
-        expect(z1).toEqual('test');
     });
 });
 //Copyright (c) 2017 Alex Tranchenko. All rights reserved.

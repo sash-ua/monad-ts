@@ -32,7 +32,8 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/either.js~Either.html">Either</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/asyncFlow.js~AsyncFlow.html">AsyncFlow</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/either.js~Either.html">Either</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/error.js~ErrorM.html">ErrorM</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/flow.js~Flow.html">Flow</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/identity.js~Identity.html">Identity</a></span></span></li>
@@ -44,6 +45,7 @@
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">services</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cast">cast</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-clone">clone</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-equality">equality</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-wait">wait</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">types</div><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-&apos;D&lt;T&gt;">&apos;D&lt;T&gt;</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-&apos;MF&lt;T,">&apos;MF&lt;T,</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-&apos;Pr&lt;U&gt;">&apos;Pr&lt;U&gt;</a></span></span></li>
@@ -79,14 +81,16 @@ Typescript. Angular 2+ compatible <a href="https://sash-ua.github.io/gen_drift_m
 </ul>
 <p><strong>Additional tools (class and functions)</strong></p>
 <ul>
+<li><a href="#asyncflow">AsyncFlow</a></li>
 <li><a href="#flow">Flow</a></li>
 <li><a href="#cast">cast</a></li>
 <li><a href="#clone">clone</a></li>
 <li><a href="#equality">equality</a></li>
+<li><a href="#wait">wait</a></li>
 </ul>
 <h2 id="installation">Installation</h2>
 <p>In library used ES5 (Array.map, Array.reduce, Array.some, Array.isArray, Object.getOwnPropertyNames), ES6 (Map, Array.from, Object.assign, Object
-.keys) methods.
+.keys, Object.is) methods.
  It&apos;s
 strongly
 recommended to always
@@ -105,9 +109,8 @@ don&apos;t do any kind of side-effects. At the same time the majority of program
 process. Monads allow us to do all the side-effecting computations using pure functions effectively.</p>
 <p>** This monads implementation aren&apos;t exact copy of Haskell monads. My goal was to reach results comparable with the
 using of like monads from Haskell in JS.</p>
-<p>** In TypeScript be attentive to type definitions while coding.</p>
 <h3 id="ways-to-use-">Ways to use:</h3>
-<h4 id="1-as-a-dependency-">1. As a dependency.</h4>
+<h4 id="as-a-dependency-">As a dependency.</h4>
 <p>Import library or class in compatible for you way:</p>
 <pre><code><code class="source-code prettyprint">SystemJS.config({
     map:{
@@ -125,7 +128,7 @@ import {State} from &quot;monad-ts&quot;;
 </code></pre><p>or</p>
 <pre><code><code class="source-code prettyprint">import {List} from &quot;monad-ts/src/list&quot;</code>
 </code></pre><p>Example:</p>
-<pre><code><code class="source-code prettyprint">import {Flow, List} from &quot;/node_modules/monad-ts/index&quot;
+<pre><code><code class="source-code prettyprint">import {Flow, List} from &quot;monad-ts&quot;
 
 const list = new List();
 const e: number = 50;
@@ -142,23 +145,6 @@ const z = new Flow(5)
 console.log(r); // 56
 console.log(t); // [ -7, 7, -6, 6, -5, 5, 5, -5, 6, -6, 7, -7 ]
 console.log(z); // [ -7, -6, -5, 5, 6, 7 ]</code>
-</code></pre><h4 id="2-add-to-html-page-">2. Add to html page.</h4>
-<p>Type: UMD.</p>
-<p>Library name: Monad_ts.</p>
-<p>Add library after es6-shim, es5-shim.</p>
-<pre><code><code class="source-code prettyprint">&lt;script type=&quot;text/javascript&quot; src=&quot;lib/monad-ts.umd.min.js&quot;&gt;&lt;/script&gt;</code>
-</code></pre><p>Example:</p>
-<pre><code><code class="source-code prettyprint">var state = new Monad_ts.State({q:1, w:2});
- console.log(state.get());                  // {q:1, w:2}
-
- var maybe = new Monad_ts.Maybe();
- var z = {
-     url: &apos;http://...&apos;,
-     getUrl: function (){
-         return this.url;
-     }
- };
- console.log(maybe.bind(r =&gt; r.getUrl(), z)); // http://...</code>
 </code></pre><p><a href="#monad-ts">UP</a></p>
 <h2 id="monads">Monads</h2>
 <h4 id="either">Either</h4>
@@ -203,7 +189,7 @@ const z: G = {
 };
 maybe.bind(r =&gt; r.getUrl(), z); // http://...</code>
 </code></pre><h4 id="list">List</h4>
-<p>The List monad represents a lazily computed list of values. It takes in an input value of type A, and produce a bunch of output values of type B, collected in one container (the array).</p>
+<p>The List monad represents a computed list of values. It takes in an input value of type A, and produce a bunch of output values of type B, collected in one container (the array).</p>
 <p>It get array and return array, to cast array dimension according to entered array we can use function <a href="#cast">cast</a>;</p>
 <p>Examples:</p>
 <pre><code><code class="source-code prettyprint">const list = new List();
@@ -234,9 +220,21 @@ z = cast(list.bind((v: number) =&gt;list.bind((v: number) =&gt; [-v, v], [v-1, v
     console.log(st.get()); // { data: 10, children: [ Object({ data: 2, parent: &apos;null&apos; }) ], arr: [ 2.25, 3.25, 4.25 ] }</code>
 </code></pre><p><a href="#monad-ts">UP</a></p>
 <h2 id="additional-utilities-class-and-functions-">Additional utilities (class and functions)</h2>
-<h4 id="flow">Flow</h4>
-<p>For composing monads in a flow (pipe).</p>
-<p>Examples:</p>
+<h4 id="asyncflow">AsyncFlow</h4>
+<p>For composing monads in an async flow (pipe), based on Promise. Class instance creation <code>new AsyncFlow(initV,
+encapsulate?)</code>. Initial value (initV) encapsulated in the class instance by default. If set encapsulate = false, then
+initial value wouldn&apos;t be encapsulated and we will be able to change inner state of the class instance by changing
+<code>initV</code>.</p>
+<pre><code><code class="source-code prettyprint">new AsyncFlow(5)
+  .bind((v) =&gt; v)
+  .then((v) =&gt; v)
+  .then((v) =&gt; cast(list.bind((v:number) =&gt; [v-1, v, v+1], [v]), 1))
+  .then(v=&gt; wait(v,100))
+  .then((v)=&gt; {
+      console.log(v);                 // v = [4,5,6], emitted after 100 ms
+  });</code>
+</code></pre><h4 id="flow">Flow</h4>
+<p>For composing monads in a flow (pipe). Class instance creation is identical to AsyncFlow.</p>
 <pre><code><code class="source-code prettyprint">const e: number = 50;
 let r : number;
 let t : number[];
@@ -267,6 +265,12 @@ equality(
   {x1: 0, x: [1, {c: [22, {j:21, g: &apos;ert&apos;}, 23]}, NaN, Infinity, null, undefined], t: [null, 0]},
   {x1: 0, x: [1, {c: [22, {j:21, g: &apos;ert&apos;}, 23]}, NaN, Infinity, null, undefined], t: [null, 0]}
 )</code>
+</code></pre><h4 id="wait">wait</h4>
+<p>Function to convert timeout in a Promise, resolved when specified amount of time passes. It take value (v) end emit
+Promise after t timeout with value (v). <code>wait(v, t)</code></p>
+<pre><code><code class="source-code prettyprint">const s = wait(1, 300).then((v: number)=&gt;{
+            console.log(v);                 // v = 1, emitted after 300 ms
+        })</code>
 </code></pre><p><a href="#monad-ts">UP</a></p>
 <h2 id="license">License</h2>
 <p>Monad_ts is copyright (c) 2017 - present Alex Tranchenko tranchenkoa@gmail.com .</p>

@@ -1,8 +1,13 @@
 {
   "coverage": "100%",
-  "expectCount": 40,
-  "actualCount": 40,
+  "expectCount": 47,
+  "actualCount": 47,
   "files": {
+    "src/asyncFlow.js": {
+      "expectCount": 6,
+      "actualCount": 6,
+      "undocumentLines": []
+    },
     "src/either.js": {
       "expectCount": 5,
       "actualCount": 5,
@@ -59,6 +64,11 @@
       "undocumentLines": []
     },
     "src/services/equality.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/services/wait.js": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []

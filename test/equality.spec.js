@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var equality_1 = require("../src/services/equality");
-describe('Equal: ', function () {
+describe('Equality: ', function () {
     it('should produce true', function () {
         expect(equality_1.equality({ x1: 0, x: [1, { c: [22, { j: 21, g: 'ert' }, 23] }, NaN, Infinity, null, undefined], t: [null, 0] }, { x1: 0, x: [1, { c: [22, { j: 21, g: 'ert' }, 23] }, NaN, Infinity, null, undefined], t: [null, 0] })).toBeTruthy();
     });

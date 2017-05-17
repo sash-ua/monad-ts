@@ -8,7 +8,7 @@ describe('List: ', ()=>{
         const answ =  [ -9, 9, -10, 10, -11, 11 ] ;
         const answ1 = [ -9, 9, -10, 10, -11, 11, -1, 1, -2, 2, -3, 3 ];
 
-        let z = list.bind((v: number) =>v, [1]);
+        let z: any = list.bind((v: number) =>v, [1]);
         expect(z).toEqual([1]);
         z = cast(list.bind((v: number) =>v, [1]), 0);
         expect(z).toEqual([1]);
@@ -42,10 +42,13 @@ describe('List: ', ()=>{
     });
     it('should produce string', ()=>{
         const t: Array<string> = 'test'.split('');
-        const z = cast(list.bind((x: string) => list.bind((x: string) => x === 't' ? x : x=' ', [x]), t), 2).join('');
+        const z: any = cast(list.bind((x: string) => list.bind((x: string) => x === 't' ? x : x=' ', [x]), t), 2).join('');
         expect(z).toEqual('t  t');
-        const s = cast(list.bind((x: string) => list.bind((x: string) => x === 'tt' ? x : x=' ', [x+'t']), t), 2).join('');
+        const s: any = cast(list.bind((x: string) => list.bind((x: string) => x === 'tt' ? x : x=' ', [x+'t']), t), 2).join('');
         expect(s).toEqual('tt  tt');
+    });
+    it('should produce an error', ()=>{
+        expect(list.bind(v=>v, 'abc') instanceof Error).toBeTruthy();
     });
 });
 

@@ -1,12 +1,14 @@
 
 /**
  * decreasing the dimension of an array by n.
- * @param {Array<T>} arr - input array.
+ * @param {any} arr - input array.
  * @param {number} n - decreasing factor.
- * @return {Array<U>}
+ * @return {Array<any>|T[]|Error}
  */
-export function cast<T, U>(arr: T[], n: number): Array<U> {
-    return (n === 0 || n === undefined || n === null) ? arr : _reduser(arr, n);
+export function cast<T, U>(arr: any, n: number = 0): Array<T> | Array<U> | Error {
+    return typeof n === 'number' && Array.isArray(arr)
+        ? n > 0 ? _reduser(arr, n) : arr
+        : new Error('Function cast. Input  must  be array and factor - number.');
 }
 
 /**

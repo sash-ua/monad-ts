@@ -32,7 +32,8 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/either.js~Either.html">Either</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/asyncFlow.js~AsyncFlow.html">AsyncFlow</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/either.js~Either.html">Either</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/error.js~ErrorM.html">ErrorM</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/flow.js~Flow.html">Flow</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/identity.js~Identity.html">Identity</a></span></span></li>
@@ -44,6 +45,7 @@
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">services</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cast">cast</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-clone">clone</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-equality">equality</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-wait">wait</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">types</div><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-&apos;D&lt;T&gt;">&apos;D&lt;T&gt;</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-&apos;MF&lt;T,">&apos;MF&lt;T,</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-&apos;Pr&lt;U&gt;">&apos;Pr&lt;U&gt;</a></span></span></li>
@@ -62,16 +64,17 @@ import { ErrorM } from &quot;./error&quot;;
  */
 export class Flow extends Monad {
     /**
-     * create an instance of class Flow.
-     * @param {any} flow - initial value of new flow (pipe).
+     * create an instance of class AsyncFlow.
+     * @param {any} initV - initial value of new flow (pipe).
+     * @param {boolean} [encapsulate = true] encapsulate - flag, if true then the init value will be cloned.
      */
-    constructor(flow) {
+    constructor(initV, encapsulate = true) {
         super();
         /**
          * keep initial flow (pipe) value.
          * @type {any}
          */
-        this.flow = clone(flow);
+        this.flow = encapsulate ? clone(initV) : initV;
         /**
          * the instance of Maybe.
          * @type {Maybe}
@@ -90,11 +93,11 @@ export class Flow extends Monad {
      * @return {Flow&lt;T&gt;} transformed by f() value v or throw Error or null.
      */
     bind(f, v = this.flow) {
-        this.flow = f ? this.err.bind(v =&gt; this.maybe.bind((v) =&gt; f(v), v), v) : this.err.bind(v =&gt; v, v);
+        this.flow = this.err.bind(v =&gt; this.maybe.bind((v) =&gt; f(v), v), v);
         return this;
     }
     /**
-     * create branch from a flow (pipe).
+     * creates branch from a flow (pipe).
      * @param {function(v: T) =&gt; Pr&lt;U&gt;} f - transformation function for a main flow value.
      * @return {Flow&lt;T&gt;}
      */

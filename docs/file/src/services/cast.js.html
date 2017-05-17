@@ -32,7 +32,8 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/either.js~Either.html">Either</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/asyncFlow.js~AsyncFlow.html">AsyncFlow</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/either.js~Either.html">Either</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/error.js~ErrorM.html">ErrorM</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/flow.js~Flow.html">Flow</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/identity.js~Identity.html">Identity</a></span></span></li>
@@ -44,6 +45,7 @@
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">services</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cast">cast</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-clone">clone</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-equality">equality</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-wait">wait</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">types</div><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-&apos;D&lt;T&gt;">&apos;D&lt;T&gt;</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-&apos;MF&lt;T,">&apos;MF&lt;T,</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-&apos;Pr&lt;U&gt;">&apos;Pr&lt;U&gt;</a></span></span></li>
@@ -54,12 +56,14 @@
 <div class="content" data-ice="content"><h1 data-ice="title">src/services/cast.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
  * decreasing the dimension of an array by n.
- * @param {Array&lt;T&gt;} arr - input array.
+ * @param {any} arr - input array.
  * @param {number} n - decreasing factor.
- * @return {Array&lt;U&gt;}
+ * @return {Array&lt;any&gt;|T[]|Error}
  */
-export function cast(arr, n) {
-    return (n === 0 || n === undefined || n === null) ? arr : _reduser(arr, n);
+export function cast(arr, n = 0) {
+    return typeof n === &apos;number&apos; &amp;&amp; Array.isArray(arr)
+        ? n &gt; 0 ? _reduser(arr, n) : arr
+        : new Error(&apos;Function cast. Input  must  be array and factor - number.&apos;);
 }
 /**
  * @param {Array&lt;T&gt;} arr - input array.

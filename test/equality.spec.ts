@@ -1,7 +1,7 @@
 
 import {equality} from "../src/services/equality";
 
-describe('Equal: ', ()=>{
+describe('Equality: ', ()=>{
     it('should produce true', ()=>{
         expect(equality(
             {x1: 0, x: [1, {c: [22, {j:21, g: 'ert'}, 23]}, NaN, Infinity, null, undefined], t: [null, 0]},

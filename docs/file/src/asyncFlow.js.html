@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">src/maybe.js | API Document</title>
+  <title data-ice="title">src/asyncFlow.js | API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -53,38 +53,50 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/maybe.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { Monad } from &quot;./monad&quot;;
+<div class="content" data-ice="content"><h1 data-ice="title">src/asyncFlow.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { Maybe } from &quot;./maybe&quot;;
+import { ErrorM } from &quot;./error&quot;;
+import { clone } from &quot;./services/clone&quot;;
+import { Monad } from &quot;./monad&quot;;
 /**
- * Class Maybe - return given value or produce null if take nothing or get nothing after execution of f(v).
- * @extends {Monad}
+ * Class AsyncFlow - for composing monads in an async flow (pipe), based on Promise.
  */
-export class Maybe extends Monad {
+export class AsyncFlow extends Monad {
     /**
-     * chains the operations on a monadic values.
-     * @param {function(v: T) =&gt; Pr&lt;U&gt;} f - transformation function for a monad.
-     * @param {T} v - underlying value for a monad.
-     * @return {Pr&lt;U&gt;} transformed by f() value v.
+     * creates an instance of class AsyncFlow.
+     * @param {any} [initV = 0] initV - initial value of new flow (pipe).
+     * @param {boolean} [encapsulate = true] encapsulate - flag, if true then the init value will be cloned.
      */
-    bind(f, v) {
-        if (v === null || v === undefined) {
-            return this.nothing();
-        }
-        else {
-            const vL = this.just(f, v);
-            return (vL === null || vL === undefined) ? this.nothing() : vL;
-        }
+    constructor(initV = 0, encapsulate = true) {
+        super();
+        /**
+         * keep initial flow (pipe) value.
+         * @type {any}
+         */
+        this.flow = encapsulate ? clone(initV) : initV;
+        /**
+         * the instance of Maybe.
+         * @type {Maybe}
+         */
+        this.maybe = new Maybe();
+        /**
+         * the instance of ErrorM.
+         * @type {ErrorM}
+         */
+        this.err = new ErrorM();
     }
     /**
-     * return nothing (null).
-     * @return {null}
+     * binds initial value to the transformation function
+     * @param {function(v: T) =&gt; Pr&lt;U&gt;} f - transformation function.
+     * @return {Promise&lt;T&gt;}
      */
-    nothing() {
-        return null;
+    bind(f) {
+        return new Promise((resolve) =&gt; {
+            resolve(this.err.bind(v =&gt; this.maybe.bind((v) =&gt; f(v), v), this.flow));
+        });
     }
-    ;
 }
-//Copyright (c) 2017 Alex Tranchenko. All rights reserved.
+//Copyright (c) 2017 Alex Tranchenko. All rights reserved. 
 </code></pre>
 
 </div>

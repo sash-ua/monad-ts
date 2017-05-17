@@ -1,3 +1,12 @@
+# 0.3.0 (2017-05-17)
+
+### Changes
+
+* added class **AsyncFlow**, function **wait**
+* **AsyncFlow, Flow** added the ability not to encapsulate the initial value.
+* **List, Flow** changed error handling.
+* readme and docs updates.
+
 # 0.2.9 (2017-05-14)
 
 ### Bug fixed
@@ -18,7 +27,7 @@
 
 ### Changes
 
-* **State.put()** doesn't return nothing change state only.
+* **State.put()** doesn't return nothing, change state only.
 * added Angular 2+ compatibility (JIT, AOT).
 * readme and docs updates.
 

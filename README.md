@@ -26,15 +26,17 @@ Typescript. Angular 2+ compatible [example app](https://sash-ua.github.io/gen_dr
 * [State](#state)
 
 **Additional tools (class and functions)**
+* [AsyncFlow](#asyncflow)
 * [Flow](#flow)
 * [cast](#cast)
 * [clone](#clone)
 * [equality](#equality)
+* [wait](#wait)
 
 ## Installation
 
 In library used ES5 (Array.map, Array.reduce, Array.some, Array.isArray, Object.getOwnPropertyNames), ES6 (Map, Array.from, Object.assign, Object
-.keys) methods.
+.keys, Object.is) methods.
  It's
 strongly
 recommended to always
@@ -67,11 +69,9 @@ process. Monads allow us to do all the side-effecting computations using pure fu
 ** This monads implementation aren't exact copy of Haskell monads. My goal was to reach results comparable with the
 using of like monads from Haskell in JS.
 
-** In TypeScript be attentive to type definitions while coding.
-
 ### Ways to use:
 
-#### 1. As a dependency.
+#### As a dependency.
 
 Import library or class in compatible for you way:
 ```
@@ -100,7 +100,7 @@ import {List} from "monad-ts/src/list"
 
 Example:
 ```
-import {Flow, List} from "/node_modules/monad-ts/index"
+import {Flow, List} from "monad-ts"
 
 const list = new List();
 const e: number = 50;
@@ -117,32 +117,6 @@ const z = new Flow(5)
 console.log(r); // 56
 console.log(t); // [ -7, 7, -6, 6, -5, 5, 5, -5, 6, -6, 7, -7 ]
 console.log(z); // [ -7, -6, -5, 5, 6, 7 ]
-```
-
-#### 2. Add to html page.
-
-Type: UMD.
-
-Library name: Monad_ts.
-
-Add library after es6-shim, es5-shim.
-```
-<script type="text/javascript" src="lib/monad-ts.umd.min.js"></script>
-```
-
-Example:
-```
-var state = new Monad_ts.State({q:1, w:2});
- console.log(state.get());                  // {q:1, w:2}
- 
- var maybe = new Monad_ts.Maybe();
- var z = {
-     url: 'http://...',
-     getUrl: function (){
-         return this.url;
-     }
- };
- console.log(maybe.bind(r => r.getUrl(), z)); // http://...
 ```
 
 [UP](#monad-ts)
@@ -217,7 +191,7 @@ maybe.bind(r => r.getUrl(), z); // http://...
 
 #### List
 
-The List monad represents a lazily computed list of values. It takes in an input value of type A, and produce a bunch of output values of type B, collected in one container (the array).
+The List monad represents a computed list of values. It takes in an input value of type A, and produce a bunch of output values of type B, collected in one container (the array).
 
 It get array and return array, to cast array dimension according to entered array we can use function [cast](#cast);
 
@@ -261,11 +235,24 @@ type R = { data: number; children: any[]; arr: number[]; };
 
 ## Additional utilities (class and functions)
 
+#### AsyncFlow
+For composing monads in an async flow (pipe), based on Promise. Class instance creation `new AsyncFlow(initV,
+encapsulate?)`. Initial value (initV) encapsulated in the class instance by default. If set encapsulate = false, then
+initial value wouldn't be encapsulated and we will be able to change inner state of the class instance by changing
+`initV`.
+```
+new AsyncFlow(5)
+  .bind((v) => v)
+  .then((v) => v)
+  .then((v) => cast(list.bind((v:number) => [v-1, v, v+1], [v]), 1))
+  .then(v=> wait(v,100))
+  .then((v)=> {
+      console.log(v);                 // v = [4,5,6], emitted after 100 ms
+  });
+```
+
 #### Flow
-
-For composing monads in a flow (pipe).
-
-Examples:
+For composing monads in a flow (pipe). Class instance creation is identical to AsyncFlow.
 ```
 const e: number = 50;
 let r : number;
@@ -306,6 +293,15 @@ equality(
   {x1: 0, x: [1, {c: [22, {j:21, g: 'ert'}, 23]}, NaN, Infinity, null, undefined], t: [null, 0]},
   {x1: 0, x: [1, {c: [22, {j:21, g: 'ert'}, 23]}, NaN, Infinity, null, undefined], t: [null, 0]}
 )
+```
+
+#### wait
+Function to convert timeout in a Promise, resolved when specified amount of time passes. It take value (v) end emit
+Promise after t timeout with value (v). `wait(v, t)`
+```
+const s = wait(1, 300).then((v: number)=>{
+            console.log(v);                 // v = 1, emitted after 300 ms
+        })
 ```
 
 [UP](#monad-ts)

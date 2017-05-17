@@ -32,7 +32,8 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/either.js~Either.html">Either</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/asyncFlow.js~AsyncFlow.html">AsyncFlow</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/either.js~Either.html">Either</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/error.js~ErrorM.html">ErrorM</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/flow.js~Flow.html">Flow</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/identity.js~Identity.html">Identity</a></span></span></li>
@@ -44,6 +45,7 @@
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">services</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cast">cast</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-clone">clone</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-equality">equality</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-wait">wait</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">types</div><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-&apos;D&lt;T&gt;">&apos;D&lt;T&gt;</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-&apos;MF&lt;T,">&apos;MF&lt;T,</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-&apos;Pr&lt;U&gt;">&apos;Pr&lt;U&gt;</a></span></span></li>
@@ -110,13 +112,13 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/flow.js~Flow.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(flow: <span>any</span>)</span>
+          <span data-ice="name"><span><a href="class/src/flow.js~Flow.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(initV: <span>any</span>, encapsulate: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>create an instance of class Flow.</p>
+        <div data-ice="description"><p>create an instance of class AsyncFlow.</p>
 </div>
       </div>
     </td>
@@ -270,7 +272,7 @@
       <div>
         
         
-        <div data-ice="description"><p>create branch from a flow (pipe).</p>
+        <div data-ice="description"><p>creates branch from a flow (pipe).</p>
 </div>
       </div>
     </td>
@@ -387,18 +389,18 @@
     
     
     
-    <span data-ice="name">constructor</span><span data-ice="signature">(flow: <span>any</span>)</span>
+    <span data-ice="name">constructor</span><span data-ice="signature">(initV: <span>any</span>, encapsulate: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/flow.js.html#lineNumber14">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/flow.js.html#lineNumber15">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>create an instance of class Flow.</p>
+  <div data-ice="description"><p>create an instance of class AsyncFlow.</p>
 </div>
 
   
@@ -412,10 +414,18 @@
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">flow</td>
+      <td data-ice="name" data-depth="0">initV</td>
       <td data-ice="type"><span>any</span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"><p>initial value of new flow (pipe).</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">encapsulate</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default:  true</li></ul></td>
+      <td data-ice="description"><p>encapsulate - flag, if true then the init value will be cloned.</p>
 </td>
     </tr>
 </tbody>
@@ -455,7 +465,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/flow.js.html#lineNumber30">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/flow.js.html#lineNumber31">source</a></span></span>
     </span>
   </h3>
 
@@ -499,7 +509,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/flow.js.html#lineNumber20">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/flow.js.html#lineNumber21">source</a></span></span>
     </span>
   </h3>
 
@@ -543,7 +553,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/flow.js.html#lineNumber25">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/flow.js.html#lineNumber26">source</a></span></span>
     </span>
   </h3>
 
@@ -590,7 +600,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/flow.js.html#lineNumber38">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/flow.js.html#lineNumber39">source</a></span></span>
     </span>
   </h3>
 
@@ -672,14 +682,14 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/flow.js.html#lineNumber47">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/flow.js.html#lineNumber48">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>create branch from a flow (pipe).</p>
+  <div data-ice="description"><p>creates branch from a flow (pipe).</p>
 </div>
 
   
@@ -745,7 +755,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/flow.js.html#lineNumber55">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/flow.js.html#lineNumber56">source</a></span></span>
     </span>
   </h3>
 

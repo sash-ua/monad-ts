@@ -7,23 +7,41 @@
     <script type="text/javascript" src="lib/monad_ts.umd.js"></script>
 </head>
 <body>
+<div class="input">
+    <form>
+        <input id="press" autofocus>
+        <button id="btn" >press</button>
+    </form>
+</div>
 <script>
-    var func = (v) => {
-        v.x=10;
-        return v;
-    };
-    var f = new Monad_ts.Flow({x: 1}).bind(v=>func(v)).subscribe();
-    console.log(f);
-    var m = new Monad_ts.State({q:1, w:2});
-    console.log(m.get());
-    var maybe = new Monad_ts.Maybe();
-    var z = {
-        url: 'http://...',
-        getUrl: function (){
-            return this.url;
-        }
-    };
-    console.log(maybe.bind(r => r.getUrl(), z));
+
+const list = new Monad_ts.List();
+let f1 = new Monad_ts.AsyncFlow(5)
+    .bind((v) => v)
+    .then((v) => v)
+    .then((v) => Monad_ts.cast(list.bind((v) => [v-1, v, v+1], [v]), 1))
+    .then(v=> Monad_ts.wait(v,3000))
+    .then((v)=> console.log(v));
+
+console.log(f1);
+
+var func = (v) => {
+    v.x=10;
+    return v;
+};
+var f = new Monad_ts.Flow({x: 1}).bind(v=>func(v)).subscribe();
+console.log(f);
+var m = new Monad_ts.State({q:1, w:2});
+console.log(m.get());
+var maybe = new Monad_ts.Maybe();
+var z = {
+    url: 'http://...',
+    getUrl: function (){
+        return this.url;
+    }
+};
+console.log(maybe.bind(r => r.getUrl(), z));
+
 </script>
 </body>
 </html>
