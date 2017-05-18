@@ -1,7 +1,7 @@
 {
   "coverage": "100%",
-  "expectCount": 47,
-  "actualCount": 47,
+  "expectCount": 48,
+  "actualCount": 48,
   "files": {
     "src/asyncFlow.js": {
       "expectCount": 6,
@@ -59,6 +59,11 @@
       "undocumentLines": []
     },
     "src/services/clone.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/services/debounceTime.js": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []

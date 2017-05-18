@@ -13,6 +13,8 @@
   {"from":"./src/maybe","export":["Maybe"]},
   {"from":"./src/state","export":["State"]},
   {"from":"./src/error","export":["ErrorM"]},
+  {"from":"./src/services/wait","export":["wait"]},
+  {"from":"./src/services/debounceTime","export":["debounceTime"]},
   {"from":"./src/monad","export":["Monad"]}
 ]}
 ,{"__symbolic":"module","version":1,"metadata":{},"exports":[
@@ -30,5 +32,7 @@
   {"from":"./src/maybe","export":["Maybe"]},
   {"from":"./src/state","export":["State"]},
   {"from":"./src/error","export":["ErrorM"]},
+  {"from":"./src/services/wait","export":["wait"]},
+  {"from":"./src/services/debounceTime","export":["debounceTime"]},
   {"from":"./src/monad","export":["Monad"]}]
 }]

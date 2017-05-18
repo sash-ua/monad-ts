@@ -72,6 +72,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "monad-ts/src/services/debouncetime.js~debouncetime",
+    "function/index.html#static-function-debounceTime",
+    "<span>debounceTime</span> <span class=\"search-result-import-path\">monad-ts/src/services/debounceTime.js</span>",
+    "function"
+  ],
+  [
     "monad-ts/src/services/equality.js~equality",
     "function/index.html#static-function-equality",
     "<span>equality</span> <span class=\"search-result-import-path\">monad-ts/src/services/equality.js</span>",
@@ -639,6 +645,12 @@ window.esdocSearchIndex = [
     "src/services/clone.js",
     "file/src/services/clone.js.html",
     "src/services/clone.js",
+    "file"
+  ],
+  [
+    "src/services/debouncetime.js",
+    "file/src/services/debounceTime.js.html",
+    "src/services/debounceTime.js",
     "file"
   ],
   [

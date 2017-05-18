@@ -44,6 +44,7 @@
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">interfaces</div><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/interfaces/m.js~M.html">M</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">services</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cast">cast</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-clone">clone</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-debounceTime">debounceTime</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-equality">equality</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-wait">wait</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">types</div><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-&apos;D&lt;T&gt;">&apos;D&lt;T&gt;</a></span></span></li>
@@ -85,6 +86,7 @@ Typescript. Angular 2+ compatible <a href="https://sash-ua.github.io/gen_drift_m
 <li><a href="#flow">Flow</a></li>
 <li><a href="#cast">cast</a></li>
 <li><a href="#clone">clone</a></li>
+<li><a href="#debouncetime">debounceTime</a></li>
 <li><a href="#equality">equality</a></li>
 <li><a href="#wait">wait</a></li>
 </ul>
@@ -148,7 +150,7 @@ console.log(z); // [ -7, -6, -5, 5, 6, 7 ]</code>
 </code></pre><p><a href="#monad-ts">UP</a></p>
 <h2 id="monads">Monads</h2>
 <h4 id="either">Either</h4>
-<p>It represents computation with two possibilities, right and left. Attached by bind method dispatcher function decided
+<p>It represents computation with two possibilities, <code>right</code> and <code>left</code>. Attached by bind method dispatcher function decided
 which of them apply to underlying value.</p>
 <p>Example:</p>
 <pre><code><code class="source-code prettyprint">const uVal = 10;                                     // underlying value
@@ -248,7 +250,7 @@ console.log(r); // 56
 console.log(t); // [ -7, 7, -6, 6, -5, 5, 5, -5, 6, -6, 7, -7 ]
 console.log(z); // [ -7, -6, -5, 5, 6, 7 ]</code>
 </code></pre><h4 id="cast">cast</h4>
-<p>Function to decreasing the dimension of an array by factor n. It takes array and factor.</p>
+<p>Function to decreasing the dimension of an array by factor <code>n</code>. It takes array and factor.</p>
 <pre><code><code class="source-code prettyprint">console.log(cast([10, [11], [12]], 0));           // [10, [11], [12]]
 console.log(cast([10, [[11, [2]], 3], [12]], 2)); // [ 10, 11, [ 2 ], 3, 12 ]</code>
 </code></pre><h4 id="clone">clone</h4>
@@ -258,7 +260,10 @@ const z = clone(x);
 z.x = 10;
 console.log(z); // {x:10}
 console.log(x); // {x:1}</code>
-</code></pre><h4 id="equality">equality</h4>
+</code></pre><h4 id="debouncetime">debounceTime</h4>
+<p>Execute a function given a delay time. <code>debounceTime(func, d, i?)</code>, <code>func</code> - invoked function, <code>d</code> - a delay time,
+<code>i</code> - delay before <code>func</code> execution, by default is absent.</p>
+<h4 id="equality">equality</h4>
 <p>Function to check equality of given data.</p>
 <pre><code><code class="source-code prettyprint">// true
 equality(

@@ -1,3 +1,9 @@
+# 0.3.1 (2017-05-17)
+
+### Changes
+
+* added function **debounceTime**
+
 # 0.3.0 (2017-05-17)
 
 ### Changes

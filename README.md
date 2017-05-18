@@ -30,6 +30,7 @@ Typescript. Angular 2+ compatible [example app](https://sash-ua.github.io/gen_dr
 * [Flow](#flow)
 * [cast](#cast)
 * [clone](#clone)
+* [debounceTime](#debouncetime)
 * [equality](#equality)
 * [wait](#wait)
 
@@ -125,7 +126,7 @@ console.log(z); // [ -7, -6, -5, 5, 6, 7 ]
 
 #### Either
 
-It represents computation with two possibilities, right and left. Attached by bind method dispatcher function decided
+It represents computation with two possibilities, `right` and `left`. Attached by bind method dispatcher function decided
 which of them apply to underlying value.
 
 Example:
@@ -269,7 +270,7 @@ console.log(z); // [ -7, -6, -5, 5, 6, 7 ]
 ```
 
 #### cast
-Function to decreasing the dimension of an array by factor n. It takes array and factor.
+Function to decreasing the dimension of an array by factor `n`. It takes array and factor.
 ```
 console.log(cast([10, [11], [12]], 0));           // [10, [11], [12]]
 console.log(cast([10, [[11, [2]], 3], [12]], 2)); // [ 10, 11, [ 2 ], 3, 12 ]
@@ -284,6 +285,10 @@ z.x = 10;
 console.log(z); // {x:10}
 console.log(x); // {x:1}
 ```
+
+#### debounceTime
+Execute a function given a delay time. `debounceTime(func, d, i?)`, `func` - invoked function, `d` - a delay time,
+`i` - delay before `func` execution, by default is absent.
 
 #### equality
 Function to check equality of given data.

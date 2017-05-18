@@ -4,6 +4,8 @@
  * Entry point for all public APIs of the Monad-TS package.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+var debounceTime_1 = require("./src/services/debounceTime");
+exports.debounceTime = debounceTime_1.debounceTime;
 var wait_1 = require("./src/services/wait");
 exports.wait = wait_1.wait;
 var asyncFlow_1 = require("./src/asyncFlow");

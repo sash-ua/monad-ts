@@ -4,6 +4,7 @@
  * Entry point for all public APIs of the Monad-TS package.
  */
 
+export {debounceTime} from "./src/services/debounceTime";
 export {wait} from "./src/services/wait";
 export {AsyncFlow} from "./src/asyncFlow";
 export {ErrorM} from "./src/error";
