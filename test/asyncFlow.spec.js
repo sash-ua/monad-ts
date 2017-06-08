@@ -6,7 +6,7 @@ var asyncFlow_1 = require("../src/asyncFlow");
 var wait_1 = require("../src/services/wait");
 describe('AsyncFlow: ', function () {
     var list = new list_1.List();
-    it('should produce value', function () {
+    it('1) should produce value', function () {
         new asyncFlow_1.AsyncFlow(5)
             .bind(function (v) { return v; })
             .then(function (v) { return v; })
@@ -16,7 +16,7 @@ describe('AsyncFlow: ', function () {
             expect(v).toEqual([4, 5, 6]);
         });
     });
-    it('should produce value (async)', function (done) {
+    it('2) should produce value (async)', function (done) {
         new asyncFlow_1.AsyncFlow(5)
             .bind(function (v) { return v; })
             .then(function (v) { return v; })
@@ -27,15 +27,15 @@ describe('AsyncFlow: ', function () {
             done();
         });
     });
-    it('should produce null', function () {
-        var z = new asyncFlow_1.AsyncFlow(null)
+    it('3) should produce null', function () {
+        new asyncFlow_1.AsyncFlow(null)
             .bind(function (v) { return v; })
             .then(function (v) {
             expect(v).toBeNull();
         });
     });
-    it('should produce Error', function () {
-        var z = new asyncFlow_1.AsyncFlow(new Error('f'))
+    it('4) should produce Error', function () {
+        new asyncFlow_1.AsyncFlow(new Error('f'))
             .bind(function (v) { return v; })
             .then(function (v) {
             expect(v instanceof Error).toBeTruthy();

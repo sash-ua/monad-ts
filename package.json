@@ -46,7 +46,8 @@
       "email": "tranchenkoa@gmail.com"
     }
   ],
-  "dependencies": {},
+  "dependencies": {
+  },
   "devDependencies": {
     "@types/async": "^2.0.40",
     "@types/browser-sync": "^0.0.34",

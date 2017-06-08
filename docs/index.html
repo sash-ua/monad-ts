@@ -264,7 +264,9 @@ console.log(x); // {x:1}</code>
 <p>Execute a function given a delay time. <code>debounceTime(func, d, i?)</code>, <code>func</code> - invoked function, <code>d</code> - a delay time,
 <code>i</code> - delay before <code>func</code> execution, by default is absent.</p>
 <h4 id="equality">equality</h4>
-<p>Function to check equality of given data.</p>
+<p>It checks equality of given arguments, arguments must be statically analyzable, therefore there are some constraints,
+look at <strong><a href="https://sash-ua.github.io/monad-ts/function/index.html#static-function-equality">examples</a></strong> to find
+them.</p>
 <pre><code><code class="source-code prettyprint">// true
 equality(
   {x1: 0, x: [1, {c: [22, {j:21, g: &apos;ert&apos;}, 23]}, NaN, Infinity, null, undefined], t: [null, 0]},

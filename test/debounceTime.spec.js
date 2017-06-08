@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var debounceTime_1 = require("../src/services/debounceTime");
 describe('Function debounceTime: ', function () {
-    it('should produce number, mode - delay before first func invoke', function (done) {
+    it('1) should produce number, mode - delay before first func invoke', function (done) {
         var f = function (arg) { return v += arg; };
         var v = 0;
         var dT = debounceTime_1.debounceTime(f, 100, false);
@@ -12,7 +12,7 @@ describe('Function debounceTime: ', function () {
         expect(v).toEqual(0);
         done();
     });
-    it('should produce number, mode - no delay before first func invoke', function (done) {
+    it('2) should produce number, mode - no delay before first func invoke', function (done) {
         var f = function (arg) { return v += arg; };
         var v = 0;
         var dT = debounceTime_1.debounceTime(f, 100);

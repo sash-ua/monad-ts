@@ -156,13 +156,14 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="function/index.html#static-function-equality">equality</a></span></span><span data-ice="signature">(x: <span>any</span>, y: <span>any</span>): <span>boolean </span> | <span> Error</span></span>
+          <span data-ice="name"><span><a href="function/index.html#static-function-equality">equality</a></span></span><span data-ice="signature">(x: <span>any</span>, y: <span>any</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>function to check equality of data.</p>
+        <div data-ice="description"><p>It checks equality of given arguments, arguments must be statically analyzable, therefore there are some constraints,
+look at examples to find them.</p>
 </div>
       </div>
     </td>
@@ -453,18 +454,19 @@
     
     
     
-    <span data-ice="name">equality</span><span data-ice="signature">(x: <span>any</span>, y: <span>any</span>): <span>boolean </span> | <span> Error</span></span>
+    <span data-ice="name">equality</span><span data-ice="signature">(x: <span>any</span>, y: <span>any</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/services/equality.js.html#lineNumber12">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/services/equality.js.html#lineNumber124">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {equality} from &apos;<span><a href="file/src/services/equality.js.html#lineNumber12">monad-ts/src/services/equality.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {equality} from &apos;<span><a href="file/src/services/equality.js.html#lineNumber124">monad-ts/src/services/equality.js</a></span>&apos;</code></pre></div>
   
   
-  <div data-ice="description"><p>function to check equality of data.</p>
+  <div data-ice="description"><p>It checks equality of given arguments, arguments must be statically analyzable, therefore there are some constraints,
+look at examples to find them.</p>
 </div>
 
   
@@ -481,14 +483,14 @@
       <td data-ice="name" data-depth="0">x</td>
       <td data-ice="type"><span>any</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>argument 1.</p>
+      <td data-ice="description"><p>argument 1, can include null, NaN etc.</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">y</td>
       <td data-ice="type"><span>any</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>argument 2.</p>
+      <td data-ice="description"><p>argument 2, can include null, NaN etc.</p>
 </td>
     </tr>
 </tbody>
@@ -501,7 +503,7 @@
     <table>
       <tbody>
         <tr>
-          <td class="return-type" data-ice="returnType"><span>boolean </span> | <span> Error</span></td>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
           
         </tr>
       </tbody>
@@ -518,7 +520,67 @@
 
   
 
-  
+  <div data-ice="example">
+    <h4>Example:</h4>
+    
+  <div class="example-doc" data-ice="exampleDoc">
+      <div class="example-caption" data-ice="exampleCaption">1)</div>
+      <pre class="prettyprint source-code"><code data-ice="exampleCode"> Functions compare by the structure, not by values of variables or other elements it consists of.
+
+ Equal:
+     let d = 20;
+     equality(
+         ()=&gt;{return ()=&gt; {return {&apos;g&apos;: d}};},
+         function(){return function() {return{&apos;g&apos;: d}};}
+     )
+
+ Not Equal:
+     let d = 20;
+     let d2 = 20;
+     equality(
+         ()=&gt;{return ()=&gt; {return {&apos;g&apos;: d}};},
+         function(){return function() {return{&apos;g&apos;: d2}};}
+     )</code></pre>
+    </div>
+<div class="example-doc" data-ice="exampleDoc">
+      <div class="example-caption" data-ice="exampleCaption">2)</div>
+      <pre class="prettyprint source-code"><code data-ice="exampleCode"> Don&apos;t use the creation of some objects by object creation, they will be compared wrong.
+ Never use this constructions in compared objects:
+     new Boolean(*);
+     new Number(*);
+     Error(*);
+     new Error(*);
+     new Date(*);
+     new RegExp(*);
+
+ Equal:
+     equality(new Boolean(true), new Boolean(false));                  // Wrong
+     equality(Error(&apos;true&apos;), Error(&apos;false&apos;));                          // Wrong
+     equality(new Number(1), new Number(11));                          // Wrong
+     equality(new Date(1995, 11, 17), new Date(&apos;1995-12-17T03:24:00&apos;)) // Wrong
+
+ Not Equal (the exception `new` option in some cases can solve the issue):
+     equality(Boolean(true), Boolean(false)); // Wright
+     equality(Number(1), Number(11));         // Wright</code></pre>
+    </div>
+<div class="example-doc" data-ice="exampleDoc">
+      <div class="example-caption" data-ice="exampleCaption">3)</div>
+      <pre class="prettyprint source-code"><code data-ice="exampleCode"> Instances of a user-defined object type that has a constructor function are compared as an object by `key: value`.
+
+     class Test{
+         constructor(private arg: any){    }
+     }
+     class Test2{
+         constructor(private arg: any){    }
+     }
+ Equal:
+     new Test(true) and new Test(true);
+
+ Not Equal:
+     new Test(true) and new Test2(true);
+     new Test(true) and new Test(false);</code></pre>
+    </div>
+</div>
 
   
 

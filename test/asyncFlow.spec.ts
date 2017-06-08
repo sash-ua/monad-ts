@@ -6,7 +6,7 @@ import {wait} from "../src/services/wait";
 
 describe('AsyncFlow: ', ()=>{
     const list = new List();
-    it('should produce value', ()=>{
+    it('1) should produce value', ()=>{
         new AsyncFlow(5)
             .bind((v) => v)
             .then((v) => v)
@@ -16,7 +16,7 @@ describe('AsyncFlow: ', ()=>{
                 expect(v).toEqual([4,5,6])
             });
     });
-    it('should produce value (async)', (done)=>{
+    it('2) should produce value (async)', (done)=>{
         new AsyncFlow(5)
             .bind((v) => v)
             .then((v) => v)
@@ -27,15 +27,15 @@ describe('AsyncFlow: ', ()=>{
                 done();
             });
     });
-    it('should produce null', ()=>{
-        const z = new AsyncFlow(null)
+    it('3) should produce null', ()=>{
+        new AsyncFlow(null)
             .bind((v) => v)
             .then((v: any)=> {
                 expect(v).toBeNull();
             })
     });
-    it('should produce Error', ()=>{
-        const z = new AsyncFlow(new Error('f'))
+    it('4) should produce Error', ()=>{
+        new AsyncFlow(new Error('f'))
             .bind((v) => v)
             .then((v: any)=> {
                 expect(v instanceof Error).toBeTruthy();

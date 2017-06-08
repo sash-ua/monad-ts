@@ -21,16 +21,27 @@ describe('Service Clone: ', function () {
             }],
         arr: [1, 2, 3]
     };
-    it('should produce clone of object', function () {
-        var lo = clone_1.clone(o);
+    it('1) should produce clone of object', function () {
         expect(o).toEqual(o);
+    });
+    it('2) should produce clone of object', function () {
+        var lo = clone_1.clone(o);
         expect(lo).toEqual(o);
+    });
+    it('3) should produce clone of object', function () {
+        var lo = clone_1.clone(o);
         lo.data = 10;
         expect(lo).toEqual(t);
+    });
+    it('4) should produce clone of object', function () {
+        var lo = clone_1.clone(o);
+        lo.data = 10;
         expect(o).not.toEqual(t);
     });
-    it('should return primitive', function () {
+    it('5) should return primitive', function () {
         expect(clone_1.clone(p)).toEqual(p);
+    });
+    it('6) should return primitive', function () {
         expect(clone_1.clone(n)).toEqual(n);
     });
 });

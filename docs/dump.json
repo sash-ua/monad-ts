@@ -1576,7 +1576,7 @@
     "__docId__": 59,
     "kind": "file",
     "name": "src/services/equality.js",
-    "content": "/**\r\n * function to check equality of data.\r\n * @param {any} x - argument 1.\r\n * @param {any} y - argument 2.\r\n * @returns {boolean | Error}\r\n */\r\n/**\r\n * function to check equality of data.\r\n * @param {any} x - argument 1.\r\n * @param {any} y - argument 2.\r\n * @returns {boolean | Error}\r\n */ export function equality(x, y) {\r\n    if (!x || !y) {\r\n        return new Error('Equal. There isn\\'t argument');\r\n    }\r\n    // Primitives equality\r\n    if (Object(x) !== x && Object(y) !== y) {\r\n        return Object.is(x, y);\r\n    }\r\n    else if (Array.isArray(x) && Array.isArray(y)) {\r\n        return x.length !== y.length ? false : _arrayIterator(x, y);\r\n    }\r\n    else if (Array.isArray(x) && !Array.isArray(y) || !Array.isArray(x) && Array.isArray(y)) {\r\n        return false;\r\n    }\r\n    else if (equality(Object.getOwnPropertyNames(x), Object.getOwnPropertyNames(y))) {\r\n        for (let key in x) {\r\n            if (x.hasOwnProperty(key)) {\r\n                if (!equality(x[key], y[key]))\r\n                    return false;\r\n            }\r\n        }\r\n        return true;\r\n    }\r\n    else {\r\n        return false;\r\n    }\r\n}\r\n/**\r\n * iterate array controller.\r\n * @param {Array<any>} x\r\n * @param {Array<any>} y\r\n * @return {boolean}\r\n * @private\r\n */\r\nfunction _arrayIterator(x, y) {\r\n    return !x.some((v, i) => {\r\n        return Array.isArray(v) ? _arrayIterator(v, y[i]) : (typeof v === 'object') ? !equality(v, y[i]) : !Object.is(v, y[i]);\r\n    });\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
+    "content": "/**\r\n * It checks equality of given arguments, arguments must be statically analyzable, therefore there are some constraints,\r\n * look at examples to find them.\r\n *\r\n *  @example <caption>1)</caption>\r\n *  Functions compare by the structure, not by values of variables or other elements it consists of.\r\n *\r\n *  Equal:\r\n *      let d = 20;\r\n *      equality(\r\n *          ()=>{return ()=> {return {'g': d}};},\r\n *          function(){return function() {return{'g': d}};}\r\n *      )\r\n *\r\n *  Not Equal:\r\n *      let d = 20;\r\n *      let d2 = 20;\r\n *      equality(\r\n *          ()=>{return ()=> {return {'g': d}};},\r\n *          function(){return function() {return{'g': d2}};}\r\n *      )\r\n *\r\n *  @example <caption>2)</caption>\r\n *  Don't use the creation of some objects by object creation, they will be compared wrong.\r\n *  Never use this constructions in compared objects:\r\n *      new Boolean(*);\r\n *      new Number(*);\r\n *      Error(*);\r\n *      new Error(*);\r\n *      new Date(*);\r\n *      new RegExp(*);\r\n *\r\n *  Equal:\r\n *      equality(new Boolean(true), new Boolean(false));                  // Wrong\r\n *      equality(Error('true'), Error('false'));                          // Wrong\r\n *      equality(new Number(1), new Number(11));                          // Wrong\r\n *      equality(new Date(1995, 11, 17), new Date('1995-12-17T03:24:00')) // Wrong\r\n *\r\n *  Not Equal (the exception `new` option in some cases can solve the issue):\r\n *      equality(Boolean(true), Boolean(false)); // Wright\r\n *      equality(Number(1), Number(11));         // Wright\r\n *\r\n *  @example <caption>3)</caption>\r\n *  Instances of a user-defined object type that has a constructor function are compared as an object by `key: value`.\r\n *\r\n *      class Test{\r\n *          constructor(private arg: any){    }\r\n *      }\r\n *      class Test2{\r\n *          constructor(private arg: any){    }\r\n *      }\r\n *  Equal:\r\n *      new Test(true) and new Test(true);\r\n *\r\n *  Not Equal:\r\n *      new Test(true) and new Test2(true);\r\n *      new Test(true) and new Test(false);\r\n *\r\n * @param {any} x - argument 1, can include null, NaN etc.\r\n * @param {any} y - argument 2, can include null, NaN etc.\r\n * @returns {boolean}\r\n */\r\n/**\r\n * It checks equality of given arguments, arguments must be statically analyzable, therefore there are some constraints,\r\n * look at examples to find them.\r\n *\r\n *  @example <caption>1)</caption>\r\n *  Functions compare by the structure, not by values of variables or other elements it consists of.\r\n *\r\n *  Equal:\r\n *      let d = 20;\r\n *      equality(\r\n *          ()=>{return ()=> {return {'g': d}};},\r\n *          function(){return function() {return{'g': d}};}\r\n *      )\r\n *\r\n *  Not Equal:\r\n *      let d = 20;\r\n *      let d2 = 20;\r\n *      equality(\r\n *          ()=>{return ()=> {return {'g': d}};},\r\n *          function(){return function() {return{'g': d2}};}\r\n *      )\r\n *\r\n *  @example <caption>2)</caption>\r\n *  Don't use the creation of some objects by object creation, they will be compared wrong.\r\n *  Never use this constructions in compared objects:\r\n *      new Boolean(*);\r\n *      new Number(*);\r\n *      Error(*);\r\n *      new Error(*);\r\n *      new Date(*);\r\n *      new RegExp(*);\r\n *\r\n *  Equal:\r\n *      equality(new Boolean(true), new Boolean(false));                  // Wrong\r\n *      equality(Error('true'), Error('false'));                          // Wrong\r\n *      equality(new Number(1), new Number(11));                          // Wrong\r\n *      equality(new Date(1995, 11, 17), new Date('1995-12-17T03:24:00')) // Wrong\r\n *\r\n *  Not Equal (the exception `new` option in some cases can solve the issue):\r\n *      equality(Boolean(true), Boolean(false)); // Wright\r\n *      equality(Number(1), Number(11));         // Wright\r\n *\r\n *  @example <caption>3)</caption>\r\n *  Instances of a user-defined object type that has a constructor function are compared as an object by `key: value`.\r\n *\r\n *      class Test{\r\n *          constructor(private arg: any){    }\r\n *      }\r\n *      class Test2{\r\n *          constructor(private arg: any){    }\r\n *      }\r\n *  Equal:\r\n *      new Test(true) and new Test(true);\r\n *\r\n *  Not Equal:\r\n *      new Test(true) and new Test2(true);\r\n *      new Test(true) and new Test(false);\r\n *\r\n * @param {any} x - argument 1, can include null, NaN etc.\r\n * @param {any} y - argument 2, can include null, NaN etc.\r\n * @returns {boolean}\r\n */ export function equality(x, y) {\r\n    const isXO = new Object(x);\r\n    const isYO = new Object(y);\r\n    if (isXO !== x && isYO !== y) {\r\n        return Object.is(x, y);\r\n    }\r\n    if (isXO === x && isYO === y) {\r\n        const xN = x.constructor;\r\n        const yN = y.constructor;\r\n        if (xN === yN) {\r\n            if (xN === Array && yN === Array) {\r\n                return x.length !== y.length ? false : _arrayIterator(x, y);\r\n            }\r\n            else if (xN === Function && yN === Function) {\r\n                return x.toString() === y.toString();\r\n            }\r\n            else if (equality(Object.getOwnPropertyNames(x), Object.getOwnPropertyNames(y))) {\r\n                for (let key in x) {\r\n                    if (x.hasOwnProperty(key)) {\r\n                        if (!equality(x[key], y[key]))\r\n                            return false;\r\n                    }\r\n                }\r\n                return true;\r\n            }\r\n        }\r\n        else {\r\n            return false;\r\n        }\r\n    }\r\n    else {\r\n        return false;\r\n    }\r\n}\r\n/**\r\n * iterate array controller.\r\n * @param {Array<any>} x\r\n * @param {Array<any>} y\r\n * @return {boolean}\r\n * @private\r\n */\r\nfunction _arrayIterator(x, y) {\r\n    return !x.some((v, i) => {\r\n        return Array.isArray(v) ? _arrayIterator(v, y[i]) : (typeof v === 'object' || typeof v === \"function\") ? !equality(v, y[i]) : !Object.is(v, y[i]);\r\n    });\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
     "static": true,
     "longname": "src/services/equality.js",
     "access": null,
@@ -1596,12 +1596,17 @@
     "export": true,
     "importPath": "monad-ts/src/services/equality.js",
     "importStyle": "{equality}",
-    "description": "function to check equality of data.",
-    "lineNumber": 12,
+    "description": "It checks equality of given arguments, arguments must be statically analyzable, therefore there are some constraints,\nlook at examples to find them.",
+    "examples": [
+      "<caption>1)</caption>\n Functions compare by the structure, not by values of variables or other elements it consists of.\n\n Equal:\n     let d = 20;\n     equality(\n         ()=>{return ()=> {return {'g': d}};},\n         function(){return function() {return{'g': d}};}\n     )\n\n Not Equal:\n     let d = 20;\n     let d2 = 20;\n     equality(\n         ()=>{return ()=> {return {'g': d}};},\n         function(){return function() {return{'g': d2}};}\n     )",
+      "<caption>2)</caption>\n Don't use the creation of some objects by object creation, they will be compared wrong.\n Never use this constructions in compared objects:\n     new Boolean(*);\n     new Number(*);\n     Error(*);\n     new Error(*);\n     new Date(*);\n     new RegExp(*);\n\n Equal:\n     equality(new Boolean(true), new Boolean(false));                  // Wrong\n     equality(Error('true'), Error('false'));                          // Wrong\n     equality(new Number(1), new Number(11));                          // Wrong\n     equality(new Date(1995, 11, 17), new Date('1995-12-17T03:24:00')) // Wrong\n\n Not Equal (the exception `new` option in some cases can solve the issue):\n     equality(Boolean(true), Boolean(false)); // Wright\n     equality(Number(1), Number(11));         // Wright",
+      "<caption>3)</caption>\n Instances of a user-defined object type that has a constructor function are compared as an object by `key: value`.\n\n     class Test{\n         constructor(private arg: any){    }\n     }\n     class Test2{\n         constructor(private arg: any){    }\n     }\n Equal:\n     new Test(true) and new Test(true);\n\n Not Equal:\n     new Test(true) and new Test2(true);\n     new Test(true) and new Test(false);"
+    ],
+    "lineNumber": 124,
     "unknown": [
       {
         "tagName": "@returns",
-        "tagValue": "{boolean | Error}"
+        "tagValue": "{boolean}"
       }
     ],
     "params": [
@@ -1613,7 +1618,7 @@
         "spread": false,
         "optional": false,
         "name": "x",
-        "description": "argument 1."
+        "description": "argument 1, can include null, NaN etc."
       },
       {
         "nullable": null,
@@ -1623,14 +1628,13 @@
         "spread": false,
         "optional": false,
         "name": "y",
-        "description": "argument 2."
+        "description": "argument 2, can include null, NaN etc."
       }
     ],
     "return": {
       "nullable": null,
       "types": [
-        "boolean ",
-        " Error"
+        "boolean"
       ],
       "spread": false,
       "description": ""
@@ -1650,7 +1654,7 @@
     "importPath": "monad-ts/src/services/equality.js",
     "importStyle": null,
     "description": "iterate array controller.",
-    "lineNumber": 46,
+    "lineNumber": 165,
     "params": [
       {
         "nullable": null,

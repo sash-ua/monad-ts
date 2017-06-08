@@ -2,7 +2,7 @@
 import {debounceTime} from "../src/services/debounceTime";
 
 describe('Function debounceTime: ',()=>{
-    it('should produce number, mode - delay before first func invoke', (done)=>{
+    it('1) should produce number, mode - delay before first func invoke', (done)=>{
         const f = (arg: number): number => v+=arg;
         let v = 0;
         const dT = debounceTime(f, 100, false);
@@ -12,7 +12,7 @@ describe('Function debounceTime: ',()=>{
         expect(v).toEqual(0);
         done();
     });
-    it('should produce number, mode - no delay before first func invoke', (done)=>{
+    it('2) should produce number, mode - no delay before first func invoke', (done)=>{
         const f = (arg: number): number => v+=arg;
         let v = 0;
         const dT = debounceTime(f, 100);
