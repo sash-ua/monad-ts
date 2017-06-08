@@ -291,6 +291,7 @@ Execute a function given a delay time. `debounceTime(func, d, i?)`, `func` - inv
 `i` - delay before `func` execution, by default is absent.
 
 #### equality
+
 It checks equality of given arguments, arguments must be statically analyzable, therefore there are some constraints,
 look at **[examples]( https://sash-ua.github.io/monad-ts/function/index.html#static-function-equality )** to find
 them.
