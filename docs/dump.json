@@ -1689,6 +1689,71 @@
   {
     "__docId__": 62,
     "kind": "file",
+    "name": "src/services/hash.js",
+    "content": "/**\r\n * calculates a hash (32 bit).\r\n * Based on FNV-1a algorithm, ref: http://isthe.com/chongo/tech/comp/fnv/\r\n * @param {string} str - string to hash\r\n * @param {number} [pHash = 2166136261] previous hash.\r\n * @returns {number}\r\n */\r\nexport function hash(str, pHash = 2166136261) {\r\n    if (str.length === 0 || !str)\r\n        return null;\r\n    let n = str.length - 1;\r\n    let hash = pHash;\r\n    while (n >= 0) {\r\n        // xor the bottom with the current chunk.\r\n        hash ^= str.charCodeAt(n--);\r\n        //  multiply with a expression of shifts.\r\n        hash += (hash << 1) + (hash << 4) + (hash << 7) + (hash << 8) + (hash << 24);\r\n    }\r\n    // return non-negative result.\r\n    return hash >>> 0;\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
+    "static": true,
+    "longname": "src/services/hash.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 63,
+    "kind": "function",
+    "name": "hash",
+    "memberof": "src/services/hash.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/services/hash.js~hash",
+    "access": null,
+    "export": true,
+    "importPath": "monad-ts/src/services/hash.js",
+    "importStyle": "{hash}",
+    "description": "calculates a hash (32 bit).\nBased on FNV-1a algorithm, ref: http://isthe.com/chongo/tech/comp/fnv/",
+    "lineNumber": 8,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{number}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "str",
+        "description": "string to hash"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": " 2166136261",
+        "defaultRaw": 2166136261,
+        "name": "pHash",
+        "description": "previous hash."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 64,
+    "kind": "file",
     "name": "src/services/wait.js",
     "content": "/**\r\n * converts timeout in a Promise, resolved when specified amount of time passes.\r\n * @param {any} v - value should be returned.\r\n * @param {number} [t = 0] t - amount of time, in millis.\r\n * @return {Promise<T> | Error}\r\n */\r\n/**\r\n * converts timeout in a Promise, resolved when specified amount of time passes.\r\n * @param {any} v - value should be returned.\r\n * @param {number} [t = 0] t - amount of time, in millis.\r\n * @return {Promise<T> | Error}\r\n */ export function wait(v, t = 0) {\r\n    return typeof t === 'number' && t >= 0\r\n        ? new Promise(function (resolve) {\r\n            setTimeout(() => resolve(v), t);\r\n        })\r\n        : new Error('Function wait. Timeout must be number >= 0.');\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
     "static": true,
@@ -1698,7 +1763,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 63,
+    "__docId__": 65,
     "kind": "function",
     "name": "wait",
     "memberof": "src/services/wait.js",
@@ -1747,7 +1812,7 @@
     }
   },
   {
-    "__docId__": 64,
+    "__docId__": 66,
     "kind": "file",
     "name": "src/state.js",
     "content": "import { Monad } from \"./monad\";\r\nimport { Maybe } from \"./maybe\";\r\nimport { ErrorM } from \"./error\";\r\nimport { clone } from \"./services/clone\";\r\nimport { equality } from \"./services/equality\";\r\n/**\r\n * Class State - for application state manipulations.\r\n * @extends {Monad}\r\n */\r\nexport class State extends Monad {\r\n    /**\r\n     * creates an instance of class State.\r\n     * @param {Object} state - the initial state of app.\r\n     */\r\n    constructor(state) {\r\n        super();\r\n        /**\r\n         * keeps the state of application variables.\r\n         * @type {T}\r\n         */\r\n        this.state = clone(state);\r\n        /**\r\n         * the instance of Maybe.\r\n         * @type {Maybe}\r\n         */\r\n        this.maybe = new Maybe();\r\n        /**\r\n         * the instance of ErrorM.\r\n         * @type {ErrorM}\r\n         */\r\n        this.err = new ErrorM();\r\n    }\r\n    /**\r\n     * changes the state of application variables, if you try add new key with put() to state object it'll be assigned\r\n     * with Error instance.\r\n     * @param {function(v: T)=> T} f - app. state transformation function.\r\n     */\r\n    put(f) {\r\n        const buffer = clone(this.state);\r\n        this.state = this.err.bind((v) => equality(Object.getOwnPropertyNames(buffer), Object.getOwnPropertyNames(v))\r\n            ? v\r\n            : new Error('State. After init we can not add / remove keys in state obj.'), this.maybe.bind((v) => f(v), this.state));\r\n    }\r\n    /**\r\n     * extracts the state of application variables.\r\n     * @return {T}\r\n     */\r\n    get() {\r\n        return this.state;\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
@@ -1758,7 +1823,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 65,
+    "__docId__": 67,
     "kind": "class",
     "name": "State",
     "memberof": "src/state.js",
@@ -1776,7 +1841,7 @@
     ]
   },
   {
-    "__docId__": 66,
+    "__docId__": 68,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/state.js~State",
@@ -1801,7 +1866,7 @@
     ]
   },
   {
-    "__docId__": 67,
+    "__docId__": 69,
     "kind": "member",
     "name": "state",
     "memberof": "src/state.js~State",
@@ -1820,7 +1885,7 @@
     }
   },
   {
-    "__docId__": 68,
+    "__docId__": 70,
     "kind": "member",
     "name": "maybe",
     "memberof": "src/state.js~State",
@@ -1839,7 +1904,7 @@
     }
   },
   {
-    "__docId__": 69,
+    "__docId__": 71,
     "kind": "member",
     "name": "err",
     "memberof": "src/state.js~State",
@@ -1858,7 +1923,7 @@
     }
   },
   {
-    "__docId__": 70,
+    "__docId__": 72,
     "kind": "method",
     "name": "put",
     "memberof": "src/state.js~State",
@@ -1883,7 +1948,7 @@
     ]
   },
   {
-    "__docId__": 71,
+    "__docId__": 73,
     "kind": "member",
     "name": "state",
     "memberof": "src/state.js~State",
@@ -1906,7 +1971,7 @@
     }
   },
   {
-    "__docId__": 72,
+    "__docId__": 74,
     "kind": "method",
     "name": "get",
     "memberof": "src/state.js~State",
@@ -1928,7 +1993,7 @@
     }
   },
   {
-    "__docId__": 73,
+    "__docId__": 75,
     "kind": "file",
     "name": "src/types/d.js",
     "content": "/**\r\n * D<T> - dispatcher's type function.\r\n * @public\r\n * @typedef {function(v: T): Boolean} 'D<T>\r\n */\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
@@ -1939,7 +2004,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 74,
+    "__docId__": 76,
     "kind": "typedef",
     "name": "'D<T>",
     "memberof": "src/types/d.js",
@@ -1956,7 +2021,7 @@
     }
   },
   {
-    "__docId__": 75,
+    "__docId__": 77,
     "kind": "file",
     "name": "src/types/mf.js",
     "content": "/**\r\n * MF<T, U> - transformation function's type.\r\n * @public\r\n * @typedef {function(v: T): Pr<U>} 'MF<T, U>\r\n */\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
@@ -1967,7 +2032,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 76,
+    "__docId__": 78,
     "kind": "typedef",
     "name": "'MF<T,",
     "memberof": "src/types/mf.js",
@@ -1984,7 +2049,7 @@
     }
   },
   {
-    "__docId__": 77,
+    "__docId__": 79,
     "kind": "file",
     "name": "src/types/pr.js",
     "content": "/**\r\n * Pr<U> - type of returned values.\r\n * @public\r\n * @typedef {M<U> | U} 'Pr<U>\r\n */\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
@@ -1995,7 +2060,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 78,
+    "__docId__": 80,
     "kind": "typedef",
     "name": "'Pr<U>",
     "memberof": "src/types/pr.js",
@@ -2013,7 +2078,7 @@
     }
   },
   {
-    "__docId__": 80,
+    "__docId__": 82,
     "kind": "external",
     "name": "Infinity",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
@@ -2025,7 +2090,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 81,
+    "__docId__": 83,
     "kind": "external",
     "name": "NaN",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
@@ -2037,7 +2102,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 82,
+    "__docId__": 84,
     "kind": "external",
     "name": "undefined",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
@@ -2049,7 +2114,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 83,
+    "__docId__": 85,
     "kind": "external",
     "name": "null",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
@@ -2061,7 +2126,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 84,
+    "__docId__": 86,
     "kind": "external",
     "name": "Object",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
@@ -2073,7 +2138,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 85,
+    "__docId__": 87,
     "kind": "external",
     "name": "object",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
@@ -2085,7 +2150,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 86,
+    "__docId__": 88,
     "kind": "external",
     "name": "Function",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
@@ -2097,7 +2162,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 87,
+    "__docId__": 89,
     "kind": "external",
     "name": "function",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
@@ -2109,7 +2174,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 88,
+    "__docId__": 90,
     "kind": "external",
     "name": "Boolean",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
@@ -2121,7 +2186,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 89,
+    "__docId__": 91,
     "kind": "external",
     "name": "boolean",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
@@ -2133,7 +2198,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 90,
+    "__docId__": 92,
     "kind": "external",
     "name": "Symbol",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
@@ -2145,7 +2210,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 91,
+    "__docId__": 93,
     "kind": "external",
     "name": "Error",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
@@ -2157,7 +2222,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 92,
+    "__docId__": 94,
     "kind": "external",
     "name": "EvalError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
@@ -2169,7 +2234,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 93,
+    "__docId__": 95,
     "kind": "external",
     "name": "InternalError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
@@ -2181,7 +2246,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 94,
+    "__docId__": 96,
     "kind": "external",
     "name": "RangeError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
@@ -2193,7 +2258,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 95,
+    "__docId__": 97,
     "kind": "external",
     "name": "ReferenceError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
@@ -2205,7 +2270,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 96,
+    "__docId__": 98,
     "kind": "external",
     "name": "SyntaxError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
@@ -2217,7 +2282,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 97,
+    "__docId__": 99,
     "kind": "external",
     "name": "TypeError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
@@ -2229,7 +2294,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 98,
+    "__docId__": 100,
     "kind": "external",
     "name": "URIError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
@@ -2241,7 +2306,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 99,
+    "__docId__": 101,
     "kind": "external",
     "name": "Number",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
@@ -2253,7 +2318,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 100,
+    "__docId__": 102,
     "kind": "external",
     "name": "number",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
@@ -2265,7 +2330,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 101,
+    "__docId__": 103,
     "kind": "external",
     "name": "Date",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
@@ -2277,7 +2342,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 102,
+    "__docId__": 104,
     "kind": "external",
     "name": "String",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
@@ -2289,7 +2354,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 103,
+    "__docId__": 105,
     "kind": "external",
     "name": "string",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
@@ -2301,7 +2366,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 104,
+    "__docId__": 106,
     "kind": "external",
     "name": "RegExp",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
@@ -2313,7 +2378,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 105,
+    "__docId__": 107,
     "kind": "external",
     "name": "Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
@@ -2325,7 +2390,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 106,
+    "__docId__": 108,
     "kind": "external",
     "name": "Int8Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
@@ -2337,7 +2402,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 107,
+    "__docId__": 109,
     "kind": "external",
     "name": "Uint8Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
@@ -2349,7 +2414,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 108,
+    "__docId__": 110,
     "kind": "external",
     "name": "Uint8ClampedArray",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
@@ -2361,7 +2426,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 109,
+    "__docId__": 111,
     "kind": "external",
     "name": "Int16Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
@@ -2373,7 +2438,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 110,
+    "__docId__": 112,
     "kind": "external",
     "name": "Uint16Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
@@ -2385,7 +2450,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 111,
+    "__docId__": 113,
     "kind": "external",
     "name": "Int32Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
@@ -2397,7 +2462,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 112,
+    "__docId__": 114,
     "kind": "external",
     "name": "Uint32Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
@@ -2409,7 +2474,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 113,
+    "__docId__": 115,
     "kind": "external",
     "name": "Float32Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
@@ -2421,7 +2486,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 114,
+    "__docId__": 116,
     "kind": "external",
     "name": "Float64Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
@@ -2433,7 +2498,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 115,
+    "__docId__": 117,
     "kind": "external",
     "name": "Map",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
@@ -2445,7 +2510,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 116,
+    "__docId__": 118,
     "kind": "external",
     "name": "Set",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
@@ -2457,7 +2522,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 117,
+    "__docId__": 119,
     "kind": "external",
     "name": "WeakMap",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
@@ -2469,7 +2534,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 118,
+    "__docId__": 120,
     "kind": "external",
     "name": "WeakSet",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
@@ -2481,7 +2546,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 119,
+    "__docId__": 121,
     "kind": "external",
     "name": "ArrayBuffer",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
@@ -2493,7 +2558,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 120,
+    "__docId__": 122,
     "kind": "external",
     "name": "DataView",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
@@ -2505,7 +2570,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 121,
+    "__docId__": 123,
     "kind": "external",
     "name": "JSON",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
@@ -2517,7 +2582,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 122,
+    "__docId__": 124,
     "kind": "external",
     "name": "Promise",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
@@ -2529,7 +2594,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 123,
+    "__docId__": 125,
     "kind": "external",
     "name": "Generator",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
@@ -2541,7 +2606,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 124,
+    "__docId__": 126,
     "kind": "external",
     "name": "GeneratorFunction",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
@@ -2553,7 +2618,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 125,
+    "__docId__": 127,
     "kind": "external",
     "name": "Reflect",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
@@ -2565,7 +2630,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 126,
+    "__docId__": 128,
     "kind": "external",
     "name": "Proxy",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
@@ -2578,7 +2643,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 128,
+    "__docId__": 130,
     "kind": "external",
     "name": "CanvasRenderingContext2D",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D",
@@ -2590,7 +2655,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 129,
+    "__docId__": 131,
     "kind": "external",
     "name": "DocumentFragment",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment",
@@ -2602,7 +2667,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 130,
+    "__docId__": 132,
     "kind": "external",
     "name": "Element",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Element",
@@ -2614,7 +2679,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 131,
+    "__docId__": 133,
     "kind": "external",
     "name": "Event",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Event",
@@ -2626,7 +2691,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 132,
+    "__docId__": 134,
     "kind": "external",
     "name": "Node",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Node",
@@ -2638,7 +2703,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 133,
+    "__docId__": 135,
     "kind": "external",
     "name": "NodeList",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/NodeList",
@@ -2650,7 +2715,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 134,
+    "__docId__": 136,
     "kind": "external",
     "name": "XMLHttpRequest",
     "externalLink": "https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest",
@@ -2662,7 +2727,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 135,
+    "__docId__": 137,
     "kind": "external",
     "name": "AudioContext",
     "externalLink": "https://developer.mozilla.org/en/docs/Web/API/AudioContext",

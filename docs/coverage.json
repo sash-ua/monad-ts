@@ -1,7 +1,7 @@
 {
   "coverage": "100%",
-  "expectCount": 48,
-  "actualCount": 48,
+  "expectCount": 49,
+  "actualCount": 49,
   "files": {
     "src/asyncFlow.js": {
       "expectCount": 6,
@@ -69,6 +69,11 @@
       "undocumentLines": []
     },
     "src/services/equality.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/services/hash.js": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []

@@ -32,6 +32,7 @@ Typescript. Angular 2+ compatible [example app](https://sash-ua.github.io/gen_dr
 * [clone](#clone)
 * [debounceTime](#debouncetime)
 * [equality](#equality)
+* [hash](#hash)
 * [wait](#wait)
 
 ## Installation
@@ -291,7 +292,6 @@ Execute a function given a delay time. `debounceTime(func, d, i?)`, `func` - inv
 `i` - delay before `func` execution, by default is absent.
 
 #### equality
-
 It checks equality of given arguments, arguments must be statically analyzable, therefore there are some constraints,
 look at **[examples]( https://sash-ua.github.io/monad-ts/function/index.html#static-function-equality )** to find
 them.
@@ -301,6 +301,11 @@ equality(
   {x1: 0, x: [1, {c: [22, {j:21, g: 'ert'}, 23]}, NaN, Infinity, null, undefined], t: [null, 0]},
   {x1: 0, x: [1, {c: [22, {j:21, g: 'ert'}, 23]}, NaN, Infinity, null, undefined], t: [null, 0]}
 )
+```
+#### hash
+It calculates a hash (32 bit).
+```
+let g = hash('test "#^test "#^test "#^testRrr G!@#$%^&*()__+<>?ZXCV":A'); // g = 2692353561
 ```
 
 #### wait

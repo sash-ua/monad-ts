@@ -116,6 +116,9 @@ describe('Equality: ', function () {
     it('23.2) should produce false', function () {
         expect(equality_1.equality(Boolean(true), Boolean(false))).toBeFalsy();
     });
+    it('23.3) should produce true', function () {
+        expect(equality_1.equality(new Boolean(true), new Boolean(false))).toBeTruthy();
+    });
     it('24) should produce true', function () {
         var d = 20;
         var d2 = 20;

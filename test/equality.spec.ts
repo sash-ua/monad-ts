@@ -204,6 +204,9 @@ describe('Equality: ', ()=>{
     it('23.2) should produce false', ()=>{
         expect(equality(Boolean(true), Boolean(false))).toBeFalsy();
     });
+    it('23.3) should produce true', ()=>{
+        expect(equality(new Boolean(true), new Boolean(false))).toBeTruthy();
+    });
     it('24) should produce true', ()=>{
         let d = 20;
         let d2 = 20;

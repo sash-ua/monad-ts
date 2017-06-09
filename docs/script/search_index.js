@@ -84,6 +84,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "monad-ts/src/services/hash.js~hash",
+    "function/index.html#static-function-hash",
+    "<span>hash</span> <span class=\"search-result-import-path\">monad-ts/src/services/hash.js</span>",
+    "function"
+  ],
+  [
     "monad-ts/src/services/wait.js~wait",
     "function/index.html#static-function-wait",
     "<span>wait</span> <span class=\"search-result-import-path\">monad-ts/src/services/wait.js</span>",
@@ -657,6 +663,12 @@ window.esdocSearchIndex = [
     "src/services/equality.js",
     "file/src/services/equality.js.html",
     "src/services/equality.js",
+    "file"
+  ],
+  [
+    "src/services/hash.js",
+    "file/src/services/hash.js.html",
+    "src/services/hash.js",
     "file"
   ],
   [

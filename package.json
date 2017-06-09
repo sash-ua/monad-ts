@@ -15,7 +15,10 @@
     "state",
     "monad-ts",
     "functional-js",
-    "functional-programming"
+    "functional-programming",
+    "clone",
+    "hash",
+    "equality"
   ],
   "scripts": {
     "build": "npm-run-all -p -r tsc:watch webpack  lite",
@@ -46,7 +49,8 @@
       "email": "tranchenkoa@gmail.com"
     }
   ],
-  "dependencies": {},
+  "dependencies": {
+  },
   "devDependencies": {
     "@types/async": "^2.0.40",
     "@types/browser-sync": "^0.0.34",

@@ -4,23 +4,24 @@
  * Entry point for all public APIs of the Monad-TS package.
  */
 
-export {debounceTime} from "./src/services/debounceTime";
-export {wait} from "./src/services/wait";
 export {AsyncFlow} from "./src/asyncFlow";
-export {ErrorM} from "./src/error";
-export {D} from "./src/types/d";
-export {M} from "./src/interfaces/m";
-export {MF} from "./src/types/mf";
-export {Pr} from "./src/types/pr";
-export {equality} from "./src/services/equality";
-export {Either} from "./src/either";
-export {List} from "./src/list";
-export {Identity} from "./src/identity";
-export {Flow} from "./src/flow";
-export {clone} from "./src/services/clone";
 export {cast} from "./src/services/cast";
+export {clone} from "./src/services/clone";
+export {D} from "./src/types/d";
+export {debounceTime} from "./src/services/debounceTime";
+export {Either} from "./src/either";
+export {ErrorM} from "./src/error";
+export {equality} from "./src/services/equality";
+export {Flow} from "./src/flow";
+export {hash} from "./src/services/hash";
+export {Identity} from "./src/identity";
+export {List} from "./src/list";
+export {M} from "./src/interfaces/m";
 export {Maybe} from "./src/maybe";
-export {State} from "./src/state";
+export {MF} from "./src/types/mf";
 export {Monad} from "./src/monad";
+export {Pr} from "./src/types/pr";
+export {State} from "./src/state";
+export {wait} from "./src/services/wait";
 
 //Copyright (c) 2017 Alex Tranchenko. All rights reserved.

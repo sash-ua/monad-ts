@@ -46,6 +46,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-clone">clone</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-debounceTime">debounceTime</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-equality">equality</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hash">hash</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-wait">wait</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">types</div><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-&apos;D&lt;T&gt;">&apos;D&lt;T&gt;</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-&apos;MF&lt;T,">&apos;MF&lt;T,</a></span></span></li>
@@ -88,6 +89,7 @@ Typescript. Angular 2+ compatible <a href="https://sash-ua.github.io/gen_drift_m
 <li><a href="#clone">clone</a></li>
 <li><a href="#debouncetime">debounceTime</a></li>
 <li><a href="#equality">equality</a></li>
+<li><a href="#hash">hash</a></li>
 <li><a href="#wait">wait</a></li>
 </ul>
 <h2 id="installation">Installation</h2>
@@ -272,6 +274,9 @@ equality(
   {x1: 0, x: [1, {c: [22, {j:21, g: &apos;ert&apos;}, 23]}, NaN, Infinity, null, undefined], t: [null, 0]},
   {x1: 0, x: [1, {c: [22, {j:21, g: &apos;ert&apos;}, 23]}, NaN, Infinity, null, undefined], t: [null, 0]}
 )</code>
+</code></pre><h4 id="hash">hash</h4>
+<p>It calculates a hash (32 bit).</p>
+<pre><code><code class="source-code prettyprint">let g = hash(&apos;test &quot;#^test &quot;#^test &quot;#^testRrr G!@#$%^&amp;*()__+&lt;&gt;?ZXCV&quot;:A&apos;); // g = 2692353561</code>
 </code></pre><h4 id="wait">wait</h4>
 <p>Function to convert timeout in a Promise, resolved when specified amount of time passes. It take value (v) end emit
 Promise after t timeout with value (v). <code>wait(v, t)</code></p>

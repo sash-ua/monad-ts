@@ -1,3 +1,9 @@
+# 0.3.3 (2017-06-09)
+
+### Changes
+
+* **hash** calculates a hash (32 bit, FNV-1a algorithm).
+
 # 0.3.2 (2017-06-08)
 
 ### Changes
