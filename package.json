@@ -1,6 +1,6 @@
 {
   "name": "monad-ts",
-  "version": "0.3.4",
+  "version": "0.3.3",
   "description": "Monad-ts is a small library implements some of key monads and way to chain them in a pipe (flow) in JavaScript and TypeScript. Angular 2+ compatible.",
   "homepage": "https://github.com/sash-ua/monad-ts",
   "repository": {
@@ -24,7 +24,8 @@
     "build": "npm-run-all -p -r tsc:watch webpack  lite",
     "build:prod": "npm-run-all -p -r tsc:watch webpack:prod  lite",
     "test:karma": "karma start karma.conf.js",
-    "test": "npm-run-all -p -r tsc test:karma",
+    "test:local": "npm-run-all -p -r tsc test:karma",
+    "test:ci": "npm run test:karma",
     "webpack": "webpack --watch",
     "webpack:prod": "webpack --watch -p --config ./webpack.config.prod.js",
     "webpack:state": "webpack --watch --config ./webpack.config.state.js",
@@ -51,7 +52,8 @@
       "email": "tranchenkoa@gmail.com"
     }
   ],
-  "dependencies": {},
+  "dependencies": {
+  },
   "devDependencies": {
     "@types/async": "^2.0.40",
     "@types/browser-sync": "^0.0.35",
