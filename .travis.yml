@@ -40,8 +40,8 @@ before_script:
   - if [[ "$TRAVIS_OS_NAME" == "linux" || "$TRAVIS_OS_NAME" == "winows" ]]; then nohup bash -c "webdriver-manager start 2>&1 &"; fi  # Protractor CI
 
 script:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" || "$TRAVIS_OS_NAME" == "winows" ]]; then npm run test; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then npm run test; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" || "$TRAVIS_OS_NAME" == "winows" ]]; then npm run 1.test; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then npm run test:ci:all; fi
 
 notifications:
   email: false
