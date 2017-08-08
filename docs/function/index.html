@@ -107,7 +107,7 @@
       <div>
         
         
-        <div data-ice="description"><p>the service to clone object, including Map.</p>
+        <div data-ice="description"><p>the service to clone the object, including Map.</p>
 </div>
       </div>
     </td>
@@ -333,7 +333,7 @@ look at examples to find them.</p>
   <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {clone} from &apos;<span><a href="file/src/services/clone.js.html#lineNumber10">monad-ts/src/services/clone.js</a></span>&apos;</code></pre></div>
   
   
-  <div data-ice="description"><p>the service to clone object, including Map.</p>
+  <div data-ice="description"><p>the service to clone the object, including Map.</p>
 </div>
 
   
@@ -573,7 +573,7 @@ look at examples to find them.</p>
     </div>
 <div class="example-doc" data-ice="exampleDoc">
       <div class="example-caption" data-ice="exampleCaption">2)</div>
-      <pre class="prettyprint source-code"><code data-ice="exampleCode"> Don&apos;t use the creation of some objects by object creation, they will be compared wrong.
+      <pre class="prettyprint source-code"><code data-ice="exampleCode"> Do not use the creation of some objects by object creation, they will be compared wrong.
  Never use this constructions in compared objects:
      new Boolean(*);
      new Number(*);
@@ -588,13 +588,13 @@ look at examples to find them.</p>
      equality(new Number(1), new Number(11));                          // Wrong
      equality(new Date(1995, 11, 17), new Date(&apos;1995-12-17T03:24:00&apos;)) // Wrong
 
- Not Equal (the exception `new` option in some cases can solve the issue):
-     equality(Boolean(true), Boolean(false)); // Wright
-     equality(Number(1), Number(11));         // Wright</code></pre>
+ Not Equal (the exception of `new` option in some cases can solve the issue):
+     equality(Boolean(true), Boolean(false)); // Right
+     equality(Number(1), Number(11));         // Right</code></pre>
     </div>
 <div class="example-doc" data-ice="exampleDoc">
       <div class="example-caption" data-ice="exampleCaption">3)</div>
-      <pre class="prettyprint source-code"><code data-ice="exampleCode"> Instances of a user-defined object type that has a constructor function are compared as an object by `key: value`.
+      <pre class="prettyprint source-code"><code data-ice="exampleCode"> Instances of a user-defined object type that has a constructor function are compared as objects by `key: value`.
 
      class Test{
          constructor(private arg: any){    }

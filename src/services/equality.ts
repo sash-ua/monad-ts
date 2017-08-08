@@ -21,7 +21,7 @@
  *      )
  *
  *  @example <caption>2)</caption>
- *  Don't use the creation of some objects by object creation, they will be compared wrong.
+ *  Do not use the creation of some objects by object creation, they will be compared wrong.
  *  Never use this constructions in compared objects:
  *      new Boolean(*);
  *      new Number(*);
@@ -36,12 +36,12 @@
  *      equality(new Number(1), new Number(11));                          // Wrong
  *      equality(new Date(1995, 11, 17), new Date('1995-12-17T03:24:00')) // Wrong
  *
- *  Not Equal (the exception `new` option in some cases can solve the issue):
- *      equality(Boolean(true), Boolean(false)); // Wright
- *      equality(Number(1), Number(11));         // Wright
+ *  Not Equal (the exception of `new` option in some cases can solve the issue):
+ *      equality(Boolean(true), Boolean(false)); // Right
+ *      equality(Number(1), Number(11));         // Right
  *
  *  @example <caption>3)</caption>
- *  Instances of a user-defined object type that has a constructor function are compared as an object by `key: value`.
+ *  Instances of a user-defined object type that has a constructor function are compared as objects by `key: value`.
  *
  *      class Test{
  *          constructor(private arg: any){    }
@@ -60,6 +60,7 @@
  * @param {any} y - argument 2, can include null, NaN etc.
  * @returns {boolean}
  */
+
 
 export  function equality(x: any, y: any): boolean{
     const isXO = new Object(x);

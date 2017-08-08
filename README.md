@@ -37,12 +37,9 @@ Typescript. Angular 2+ compatible [example app](https://sash-ua.github.io/gen_dr
 
 ## Installation
 
-In library used ES5 (Array.map, Array.reduce, Array.some, Array.isArray, Object.getOwnPropertyNames), ES6 (Map, Array.from, Object.assign, Object
-.keys, Object.is) methods.
- It's
-strongly
-recommended to always
-use ES5-shim and ES6-shim or alternatives.
+In library used ES5 (Array.map, Array.reduce, Array.some, Array.isArray, Object.getOwnPropertyNames), ES6 (Map, Array.from,
+ Object.assign, Object.keys, Object.is) methods.
+ It's strongly recommended to always use ES5-shim and ES6-shim or alternatives.
 ```
 npm install monad-ts
 ```
@@ -176,7 +173,8 @@ i.just((v:number) => v+1, 3); // 4
 #### Maybe
 
 It similar to the Identity but it can also represent the absence of any value. Monad Maybe returns value transformed
-by given function. If Maybe monad gets null or undefined in given values it produce null. If after application of given transformation function monad get null or undefined monad produce null.
+by given function. If Maybe monad gets null or undefined in given values it produce null. If after application of given
+transformation function monad get null or undefined monad produce null.
 
 Examples:
 ```
@@ -193,7 +191,8 @@ maybe.bind(r => r.getUrl(), z); // http://...
 
 #### List
 
-The List monad represents a computed list of values. It takes in an input value of type A, and produce a bunch of output values of type B, collected in one container (the array).
+The List monad represents a computed list of values. It takes in an input value of type A, and produce a bunch of output
+ values of type B, collected in one container (the array).
 
 It get array and return array, to cast array dimension according to entered array we can use function [cast](#cast);
 
@@ -208,7 +207,7 @@ z = cast(list.bind((v: number) =>list.bind((v: number) => [-v, v], [v-1, v, v+1]
 #### State
 
 	The State monad interact with local and global state variables to transform them. After creating an instance of State
-monad we can not add new keys to the state object.
+	 monad we can not add new keys to the state object.
  
  It take object.
 
@@ -323,4 +322,5 @@ const s = wait(1, 300).then((v: number)=>{
 
 Monad_ts is copyright (c) 2017 - present Alex Tranchenko tranchenkoa@gmail.com .
 
-Monad_ts is free software, licensed under the Apache License, Version 2.0. See the file LICENSE.md in this distribution for more details.
+Monad_ts is free software, licensed under the Apache License, Version 2.0. See the file LICENSE.md in this distribution
+for more details.

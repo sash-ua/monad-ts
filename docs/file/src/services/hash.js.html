@@ -74,8 +74,7 @@ export function hash(str, pHash = 2166136261) {
         //  multiply with a expression of shifts.
         hash += (hash &lt;&lt; 1) + (hash &lt;&lt; 4) + (hash &lt;&lt; 7) + (hash &lt;&lt; 8) + (hash &lt;&lt; 24);
     }
-    // return non-negative result.
-    return hash &gt;&gt;&gt; 0;
+    return hash;
 }
 //Copyright (c) 2017 Alex Tranchenko. All rights reserved. 
 </code></pre>

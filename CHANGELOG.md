@@ -1,3 +1,12 @@
+# 0.3.4 (2017-08-08)
+
+### Changes
+
+* **hash** produced hash can be either positive or negative.
+
+* dependencies updated.
+
+
 # 0.3.3 (2017-06-09)
 
 ### Changes

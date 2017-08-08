@@ -17,8 +17,7 @@ export function hash( str: string, pHash: number = 2166136261): number {
         //  multiply with a expression of shifts.
         hash += (hash << 1) + (hash << 4) + (hash << 7) + (hash << 8) + (hash << 24);
     }
-    // return non-negative result.
-    return hash >>> 0;
+    return hash;
 }
 
 //Copyright (c) 2017 Alex Tranchenko. All rights reserved.

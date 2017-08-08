@@ -1,28 +1,28 @@
 {
   "type": "File",
   "start": 0,
-  "end": 774,
+  "end": 732,
   "loc": {
     "start": {
       "line": 1,
       "column": 0
     },
     "end": {
-      "line": 23,
+      "line": 22,
       "column": 0
     }
   },
   "program": {
     "type": "Program",
     "start": 0,
-    "end": 774,
+    "end": 732,
     "loc": {
       "start": {
         "line": 1,
         "column": 0
       },
       "end": {
-        "line": 23,
+        "line": 22,
         "column": 0
       }
     },
@@ -31,14 +31,14 @@
       {
         "type": "ExportNamedDeclaration",
         "start": 236,
-        "end": 711,
+        "end": 669,
         "loc": {
           "start": {
             "line": 8,
             "column": 0
           },
           "end": {
-            "line": 21,
+            "line": 20,
             "column": 1
           }
         },
@@ -47,14 +47,14 @@
         "declaration": {
           "type": "FunctionDeclaration",
           "start": 243,
-          "end": 711,
+          "end": 669,
           "loc": {
             "start": {
               "line": 8,
               "column": 7
             },
             "end": {
-              "line": 21,
+              "line": 20,
               "column": 1
             }
           },
@@ -153,14 +153,14 @@
           "body": {
             "type": "BlockStatement",
             "start": 282,
-            "end": 711,
+            "end": 669,
             "loc": {
               "start": {
                 "line": 8,
                 "column": 46
               },
               "end": {
-                "line": 21,
+                "line": 20,
                 "column": 1
               }
             },
@@ -1240,115 +1240,40 @@
                       ]
                     }
                   ],
-                  "directives": [],
-                  "trailingComments": null
-                },
-                "trailingComments": [
-                  {
-                    "type": "CommentLine",
-                    "value": " return non-negative result.",
-                    "start": 654,
-                    "end": 684,
-                    "loc": {
-                      "start": {
-                        "line": 19,
-                        "column": 4
-                      },
-                      "end": {
-                        "line": 19,
-                        "column": 34
-                      }
-                    }
-                  }
-                ]
+                  "directives": []
+                }
               },
               {
                 "type": "ReturnStatement",
-                "start": 690,
-                "end": 708,
+                "start": 654,
+                "end": 666,
                 "loc": {
                   "start": {
-                    "line": 20,
+                    "line": 19,
                     "column": 4
                   },
                   "end": {
-                    "line": 20,
-                    "column": 22
+                    "line": 19,
+                    "column": 16
                   }
                 },
                 "argument": {
-                  "type": "BinaryExpression",
-                  "start": 697,
-                  "end": 707,
+                  "type": "Identifier",
+                  "start": 661,
+                  "end": 665,
                   "loc": {
                     "start": {
-                      "line": 20,
+                      "line": 19,
                       "column": 11
                     },
                     "end": {
-                      "line": 20,
-                      "column": 21
-                    }
-                  },
-                  "left": {
-                    "type": "Identifier",
-                    "start": 697,
-                    "end": 701,
-                    "loc": {
-                      "start": {
-                        "line": 20,
-                        "column": 11
-                      },
-                      "end": {
-                        "line": 20,
-                        "column": 15
-                      },
-                      "identifierName": "hash"
+                      "line": 19,
+                      "column": 15
                     },
-                    "name": "hash",
-                    "leadingComments": null
+                    "identifierName": "hash"
                   },
-                  "operator": ">>>",
-                  "right": {
-                    "type": "NumericLiteral",
-                    "start": 706,
-                    "end": 707,
-                    "loc": {
-                      "start": {
-                        "line": 20,
-                        "column": 20
-                      },
-                      "end": {
-                        "line": 20,
-                        "column": 21
-                      }
-                    },
-                    "extra": {
-                      "rawValue": 0,
-                      "raw": "0"
-                    },
-                    "value": 0
-                  },
-                  "leadingComments": null
-                },
-                "leadingComments": [
-                  {
-                    "type": "CommentLine",
-                    "value": " return non-negative result.",
-                    "start": 654,
-                    "end": 684,
-                    "loc": {
-                      "start": {
-                        "line": 19,
-                        "column": 4
-                      },
-                      "end": {
-                        "line": 19,
-                        "column": 34
-                      }
-                    }
-                  }
-                ]
+                  "name": "hash"
+                }
               }
             ],
             "directives": [],
@@ -1376,15 +1301,15 @@
             {
               "type": "CommentLine",
               "value": "Copyright (c) 2017 Alex Tranchenko. All rights reserved. ",
-              "start": 713,
-              "end": 772,
+              "start": 671,
+              "end": 730,
               "loc": {
                 "start": {
-                  "line": 22,
+                  "line": 21,
                   "column": 0
                 },
                 "end": {
-                  "line": 22,
+                  "line": 21,
                   "column": 59
                 }
               }
@@ -1413,15 +1338,15 @@
           {
             "type": "CommentLine",
             "value": "Copyright (c) 2017 Alex Tranchenko. All rights reserved. ",
-            "start": 713,
-            "end": 772,
+            "start": 671,
+            "end": 730,
             "loc": {
               "start": {
-                "line": 22,
+                "line": 21,
                 "column": 0
               },
               "end": {
-                "line": 22,
+                "line": 21,
                 "column": 59
               }
             }
@@ -1482,32 +1407,16 @@
     },
     {
       "type": "CommentLine",
-      "value": " return non-negative result.",
-      "start": 654,
-      "end": 684,
-      "loc": {
-        "start": {
-          "line": 19,
-          "column": 4
-        },
-        "end": {
-          "line": 19,
-          "column": 34
-        }
-      }
-    },
-    {
-      "type": "CommentLine",
       "value": "Copyright (c) 2017 Alex Tranchenko. All rights reserved. ",
-      "start": 713,
-      "end": 772,
+      "start": 671,
+      "end": 730,
       "loc": {
         "start": {
-          "line": 22,
+          "line": 21,
           "column": 0
         },
         "end": {
-          "line": 22,
+          "line": 21,
           "column": 59
         }
       }
@@ -3899,22 +3808,6 @@
       }
     },
     {
-      "type": "CommentLine",
-      "value": " return non-negative result.",
-      "start": 654,
-      "end": 684,
-      "loc": {
-        "start": {
-          "line": 19,
-          "column": 4
-        },
-        "end": {
-          "line": 19,
-          "column": 34
-        }
-      }
-    },
-    {
       "type": {
         "label": "return",
         "keyword": "return",
@@ -3929,15 +3822,15 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 690,
-      "end": 696,
+      "start": 654,
+      "end": 660,
       "loc": {
         "start": {
-          "line": 20,
+          "line": 19,
           "column": 4
         },
         "end": {
-          "line": 20,
+          "line": 19,
           "column": 10
         }
       }
@@ -3955,70 +3848,16 @@
         "binop": null
       },
       "value": "hash",
-      "start": 697,
-      "end": 701,
+      "start": 661,
+      "end": 665,
       "loc": {
         "start": {
-          "line": 20,
+          "line": 19,
           "column": 11
         },
         "end": {
-          "line": 20,
+          "line": 19,
           "column": 15
-        }
-      }
-    },
-    {
-      "type": {
-        "label": "<</>>",
-        "beforeExpr": true,
-        "startsExpr": false,
-        "rightAssociative": false,
-        "isLoop": false,
-        "isAssign": false,
-        "prefix": false,
-        "postfix": false,
-        "binop": 8,
-        "updateContext": null
-      },
-      "value": ">>>",
-      "start": 702,
-      "end": 705,
-      "loc": {
-        "start": {
-          "line": 20,
-          "column": 16
-        },
-        "end": {
-          "line": 20,
-          "column": 19
-        }
-      }
-    },
-    {
-      "type": {
-        "label": "num",
-        "beforeExpr": false,
-        "startsExpr": true,
-        "rightAssociative": false,
-        "isLoop": false,
-        "isAssign": false,
-        "prefix": false,
-        "postfix": false,
-        "binop": null,
-        "updateContext": null
-      },
-      "value": 0,
-      "start": 706,
-      "end": 707,
-      "loc": {
-        "start": {
-          "line": 20,
-          "column": 20
-        },
-        "end": {
-          "line": 20,
-          "column": 21
         }
       }
     },
@@ -4035,16 +3874,16 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 707,
-      "end": 708,
+      "start": 665,
+      "end": 666,
       "loc": {
         "start": {
-          "line": 20,
-          "column": 21
+          "line": 19,
+          "column": 15
         },
         "end": {
-          "line": 20,
-          "column": 22
+          "line": 19,
+          "column": 16
         }
       }
     },
@@ -4060,15 +3899,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 710,
-      "end": 711,
+      "start": 668,
+      "end": 669,
       "loc": {
         "start": {
-          "line": 21,
+          "line": 20,
           "column": 0
         },
         "end": {
-          "line": 21,
+          "line": 20,
           "column": 1
         }
       }
@@ -4076,15 +3915,15 @@
     {
       "type": "CommentLine",
       "value": "Copyright (c) 2017 Alex Tranchenko. All rights reserved. ",
-      "start": 713,
-      "end": 772,
+      "start": 671,
+      "end": 730,
       "loc": {
         "start": {
-          "line": 22,
+          "line": 21,
           "column": 0
         },
         "end": {
-          "line": 22,
+          "line": 21,
           "column": 59
         }
       }
@@ -4102,15 +3941,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 774,
-      "end": 774,
+      "start": 732,
+      "end": 732,
       "loc": {
         "start": {
-          "line": 23,
+          "line": 22,
           "column": 0
         },
         "end": {
-          "line": 23,
+          "line": 22,
           "column": 0
         }
       }
