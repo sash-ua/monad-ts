@@ -1,3 +1,9 @@
+# 0.3.5 (2017-08-10)
+
+### Bug fixed
+
+* **clone** small bugs fixed leading to errors while transpiling to JS in some cases for Webpack bundler.
+
 # 0.3.4 (2017-08-08)
 
 ### Changes

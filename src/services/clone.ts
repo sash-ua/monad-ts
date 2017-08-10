@@ -11,10 +11,10 @@ export function clone<T>(obj: T, map: any = new Map()): T {
         // Cyclic reference handling
         return map.get(obj);
     } else {
-        let result = Array.isArray(obj) ? [] : obj.constructor ? new obj.constructor() : Object.create(null);
+        let result = Array.isArray(obj) ? [] : obj.constructor ? obj.constructor() : Object.create(null);
         map.set(obj, result);
         if (obj instanceof Map) {
-            return Array().from(obj, ([key, val]: Array<any>) => result.set(key, _toTail(val, map)))[0];
+            return Array.from(obj, ([key, val]: Array<any>) => result.set(key, _toTail(val, map)))[0];
         } else {
             return Object.assign(result, ...Object.keys(obj).map(key => ({[key]: _toTail(obj[key], map)})));
         }

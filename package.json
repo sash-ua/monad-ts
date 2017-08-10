@@ -1,6 +1,6 @@
 {
   "name": "monad-ts",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Monad-ts is a small library implements some of key monads and way to chain them in a pipe (flow) in JavaScript and TypeScript. Angular 2+ compatible.",
   "homepage": "https://github.com/sash-ua/monad-ts",
   "repository": {
@@ -46,6 +46,7 @@
       "type": "Apache 2.0"
     }
   ],
+  "author": "Alex Tranchenko",
   "contributors": [
     {
       "name": "Alex Tranchenko",
