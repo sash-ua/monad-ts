@@ -1,3 +1,12 @@
+# 0.3.6 (2017-08-12)
+
+### Changes
+
+* **Identity.bind()** To avoid weird behavior explicitly pointed behavior if it is absent second argument (v). Monad
+tries to execute a function without the argument.
+
+* readme and docs updates.
+
 # 0.3.5 (2017-08-10)
 
 ### Bug fixed

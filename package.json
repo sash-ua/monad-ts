@@ -34,8 +34,8 @@
     "map": "source-map-explorer dist/bundle.js",
     "tsc": "tsc -w",
     "tsc:watch": "tsc -w -d",
-    "tsc:dg": "tsc -w -p tsconfig.gen.docs.json",
     "test:server": "http-server -p 3000 -c-1 --cors",
+    "tsc:dg": "tsc -w -p tsconfig.gen.docs.json",
     "lite:dg": "lite-server -c bs-config-doc-gen.json",
     "esdoc": "esdoc",
     "doc:gen": "npm-run-all -p tsc:dg esdoc lite:dg"
@@ -53,7 +53,8 @@
       "email": "tranchenkoa@gmail.com"
     }
   ],
-  "dependencies": {},
+  "dependencies": {
+  },
   "devDependencies": {
     "@types/async": "^2.0.40",
     "@types/browser-sync": "^0.0.35",

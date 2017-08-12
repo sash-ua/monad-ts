@@ -40,6 +40,13 @@ describe('Identity: ', ()=>{
         const i = new Identity(3);
         expect(i.bind((v:number)=>v, 5) instanceof Error).toBeTruthy();
     });
+    it('10) should produce value', () => {
+        const i = new Identity();
+        const f = () => {
+            return 5;
+        };
+        expect(i.bind(f, null)).toEqual(5);
+    });
 });
 
 //Copyright (c) 2017 Alex Tranchenko. All rights reserved.

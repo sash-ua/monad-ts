@@ -62,12 +62,7 @@
  * @param {number} [t = 0] t - amount of time, in millis.
  * @return {Promise&lt;T&gt; | Error}
  */
-/**
- * converts timeout in a Promise, resolved when specified amount of time passes.
- * @param {any} v - value should be returned.
- * @param {number} [t = 0] t - amount of time, in millis.
- * @return {Promise&lt;T&gt; | Error}
- */ export function wait(v, t = 0) {
+export function wait(v, t = 0) {
     return typeof t === &apos;number&apos; &amp;&amp; t &gt;= 0
         ? new Promise(function (resolve) {
             setTimeout(() =&gt; resolve(v), t);

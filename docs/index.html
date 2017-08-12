@@ -108,8 +108,9 @@ Typescript. Angular 2+ compatible <a href="https://sash-ua.github.io/gen_drift_m
 <p>One of the main ideas of functional programming is to use pure functions as much as possible. But pure functions
 don&apos;t do any kind of side-effects. At the same time the majority of programs should operate with side-effects in
 process. Monads allow us to do all the side-effecting computations using pure functions effectively.</p>
-<p>** This monads implementation aren&apos;t exact copy of Haskell monads. My goal was to reach results comparable with the
+<p><strong>NB</strong> This monads implementation aren&apos;t exact copy of Haskell monads. My goal was to reach results comparable with the
 using of like monads from Haskell in JS.</p>
+<p><strong>NB</strong> For catching Errors, produced within monads you should use monad ErrorM.</p>
 <h3 id="ways-to-use-">Ways to use:</h3>
 <h4 id="as-a-dependency-">As a dependency.</h4>
 <p>Import library or class in compatible for you way:</p>
@@ -165,7 +166,9 @@ const cond = (v:any) =&gt; typeof v === &apos;string&apos;;       // dispatcher 
 const e = new Either(right, left);                   // to wrap functions in the monad
 const w = cond(uVal) ? right(uVal) : left(uVal);     // &apos;10 - isn&apos;t string&apos;</code>
 </code></pre><h4 id="errorm">ErrorM</h4>
-<p>It similar to the Identity but it can also represent the error. Error monad returns value transformed by given function. If Error monad gets Error in given values it produce Error. If after application of given transformation function monad get Error monad produce Error.</p>
+<p>It similar to the Identity but it can also represent the error. Error monad returns value transformed by given function.
+If Error monad gets Error in given values it produce Error. If after application of given transformation function monad
+get Error monad produce Error.</p>
 <p>Examples:</p>
 <pre><code><code class="source-code prettyprint">const e = new ErrorM();
 e.bind((v: number) =&gt; e.bind((v1: number)=&gt;v+v1, 1), 1/0); // Error</code>

@@ -570,6 +570,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/identity.js~identity#err",
+    "class/src/identity.js~Identity.html#instance-member-err",
+    "src/identity.js~Identity#err",
+    "member"
+  ],
+  [
     "src/identity.js~identity#v",
     "class/src/identity.js~Identity.html#instance-member-v",
     "src/identity.js~Identity#v",

@@ -61,11 +61,7 @@
  * @param {T} obj - Object or Primitives to clone.
  * @return {T}
  */
-/**
- * the service to clone the object, including Map.
- * @param {T} obj - Object or Primitives to clone.
- * @return {T}
- */ export function clone(obj, map = new Map()) {
+export function clone(obj, map = new Map()) {
     // Primitives are immutable, no need to clone them.
     if (Object(obj) !== obj) {
         return obj;
@@ -75,10 +71,10 @@
         return map.get(obj);
     }
     else {
-        let result = Array.isArray(obj) ? [] : obj.constructor ? new obj.constructor() : Object.create(null);
+        let result = Array.isArray(obj) ? [] : obj.constructor ? obj.constructor() : Object.create(null);
         map.set(obj, result);
         if (obj instanceof Map) {
-            return Array().from(obj, ([key, val]) =&gt; result.set(key, _toTail(val, map)))[0];
+            return Array.from(obj, ([key, val]) =&gt; result.set(key, _toTail(val, map)))[0];
         }
         else {
             return Object.assign(result, ...Object.keys(obj).map(key =&gt; ({ [key]: _toTail(obj[key], map) })));

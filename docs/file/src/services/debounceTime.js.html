@@ -63,13 +63,7 @@
  * @param {boolean} [immediate = true] immediate - first func call is immediate if true.
  * @return {function(...args:any[])=&gt;void}
  */
-/**
- * execute a function given a delay time.
- * @param {function} f - invoked function.
- * @param {number} d - a delay time.
- * @param {boolean} [immediate = true] immediate - first func call is immediate if true.
- * @return {function(...args:any[])=&gt;void}
- */ export function debounceTime(f, d, immediate = true) {
+export function debounceTime(f, d, immediate = true) {
     let timeout;
     return (...args) =&gt; {
         const later = () =&gt; {

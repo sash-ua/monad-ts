@@ -40,5 +40,12 @@ describe('Identity: ', function () {
         var i = new identity_1.Identity(3);
         expect(i.bind(function (v) { return v; }, 5) instanceof Error).toBeTruthy();
     });
+    it('10) should produce value', function () {
+        var i = new identity_1.Identity();
+        var f = function () {
+            return 5;
+        };
+        expect(i.bind(f, null)).toEqual(5);
+    });
 });
 //Copyright (c) 2017 Alex Tranchenko. All rights reserved.

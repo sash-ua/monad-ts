@@ -118,68 +118,7 @@
  * @param {any} y - argument 2, can include null, NaN etc.
  * @returns {boolean}
  */
-/**
- * It checks equality of given arguments, arguments must be statically analyzable, therefore there are some constraints,
- * look at examples to find them.
- *
- *  @example &lt;caption&gt;1)&lt;/caption&gt;
- *  Functions compare by the structure, not by values of variables or other elements it consists of.
- *
- *  Equal:
- *      let d = 20;
- *      equality(
- *          ()=&gt;{return ()=&gt; {return {&apos;g&apos;: d}};},
- *          function(){return function() {return{&apos;g&apos;: d}};}
- *      )
- *
- *  Not Equal:
- *      let d = 20;
- *      let d2 = 20;
- *      equality(
- *          ()=&gt;{return ()=&gt; {return {&apos;g&apos;: d}};},
- *          function(){return function() {return{&apos;g&apos;: d2}};}
- *      )
- *
- *  @example &lt;caption&gt;2)&lt;/caption&gt;
- *  Do not use the creation of some objects by object creation, they will be compared wrong.
- *  Never use this constructions in compared objects:
- *      new Boolean(*);
- *      new Number(*);
- *      Error(*);
- *      new Error(*);
- *      new Date(*);
- *      new RegExp(*);
- *
- *  Equal:
- *      equality(new Boolean(true), new Boolean(false));                  // Wrong
- *      equality(Error(&apos;true&apos;), Error(&apos;false&apos;));                          // Wrong
- *      equality(new Number(1), new Number(11));                          // Wrong
- *      equality(new Date(1995, 11, 17), new Date(&apos;1995-12-17T03:24:00&apos;)) // Wrong
- *
- *  Not Equal (the exception of `new` option in some cases can solve the issue):
- *      equality(Boolean(true), Boolean(false)); // Right
- *      equality(Number(1), Number(11));         // Right
- *
- *  @example &lt;caption&gt;3)&lt;/caption&gt;
- *  Instances of a user-defined object type that has a constructor function are compared as objects by `key: value`.
- *
- *      class Test{
- *          constructor(private arg: any){    }
- *      }
- *      class Test2{
- *          constructor(private arg: any){    }
- *      }
- *  Equal:
- *      new Test(true) and new Test(true);
- *
- *  Not Equal:
- *      new Test(true) and new Test2(true);
- *      new Test(true) and new Test(false);
- *
- * @param {any} x - argument 1, can include null, NaN etc.
- * @param {any} y - argument 2, can include null, NaN etc.
- * @returns {boolean}
- */ export function equality(x, y) {
+export function equality(x, y) {
     const isXO = new Object(x);
     const isYO = new Object(y);
     if (isXO !== x &amp;&amp; isYO !== y) {

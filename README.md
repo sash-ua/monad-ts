@@ -65,8 +65,10 @@ One of the main ideas of functional programming is to use pure functions as much
 don't do any kind of side-effects. At the same time the majority of programs should operate with side-effects in
 process. Monads allow us to do all the side-effecting computations using pure functions effectively.
 
-** This monads implementation aren't exact copy of Haskell monads. My goal was to reach results comparable with the
+**NB** This monads implementation aren't exact copy of Haskell monads. My goal was to reach results comparable with the
 using of like monads from Haskell in JS.
+
+**NB** For catching Errors, produced within monads you should use monad ErrorM.
 
 ### Ways to use:
 
@@ -148,7 +150,9 @@ const w = cond(uVal) ? right(uVal) : left(uVal);     // '10 - isn't string'
 
 #### ErrorM
 
-It similar to the Identity but it can also represent the error. Error monad returns value transformed by given function. If Error monad gets Error in given values it produce Error. If after application of given transformation function monad get Error monad produce Error.
+It similar to the Identity but it can also represent the error. Error monad returns value transformed by given function.
+If Error monad gets Error in given values it produce Error. If after application of given transformation function monad
+get Error monad produce Error.
 
 Examples:
 ```
