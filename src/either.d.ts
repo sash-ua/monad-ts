@@ -14,10 +14,10 @@ export declare class Either<T, U> extends Monad<T> {
     private uVal;
     /**
      * creates an instance of class Either.
-     * @param {function(v: T) => Pr<Z>} r - right function.
-     * @param {function(v: U) => Pr<N>} l - left function.
+     * @param {function(v: any) => any} r - right function.
+     * @param {function(v: any) => any} l - left function.
      */
-    constructor(r: <T, Z>(v: T) => Pr<Z>, l: <N, U>(v: U) => Pr<N>);
+    constructor(r: (v: any) => any, l: (v: any) => any);
     /**
      * binds controller function and underlying value to the monad.
      * @param {function (v: T) => boolean} f - controller function, after execution f(v) produce true (execute right

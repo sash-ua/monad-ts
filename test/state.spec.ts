@@ -2,7 +2,7 @@
 import {State} from "../src/state";
 import {List} from "../src/list";
 
-export type R = { data: number; children: any[]; arr: number[]; };
+export type R = { data: number; children: any[]; arr: number[] | Error; test?: number};
 
 describe('State: ', ()=>{
 

@@ -1,7 +1,7 @@
 {
   "type": "File",
   "start": 0,
-  "end": 151,
+  "end": 150,
   "loc": {
     "start": {
       "line": 1,
@@ -15,7 +15,7 @@
   "program": {
     "type": "Program",
     "start": 0,
-    "end": 151,
+    "end": 150,
     "loc": {
       "start": {
         "line": 1,
@@ -33,9 +33,9 @@
     "innerComments": [
       {
         "type": "CommentBlock",
-        "value": "*\r\n * Pr<U> - type of returned values.\r\n * @public\r\n * @typedef {M<U> | U} 'Pr<U>\r\n ",
+        "value": "*\r\n * Pr<U> - type of returned values.\r\n * @public\r\n * @typedef {M<U> | U} Pr<U>\r\n ",
         "start": 0,
-        "end": 88,
+        "end": 87,
         "loc": {
           "start": {
             "line": 1,
@@ -50,8 +50,8 @@
       {
         "type": "CommentLine",
         "value": "Copyright (c) 2017 Alex Tranchenko. All rights reserved. ",
-        "start": 90,
-        "end": 149,
+        "start": 89,
+        "end": 148,
         "loc": {
           "start": {
             "line": 6,
@@ -68,9 +68,9 @@
   "comments": [
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Pr<U> - type of returned values.\r\n * @public\r\n * @typedef {M<U> | U} 'Pr<U>\r\n ",
+      "value": "*\r\n * Pr<U> - type of returned values.\r\n * @public\r\n * @typedef {M<U> | U} Pr<U>\r\n ",
       "start": 0,
-      "end": 88,
+      "end": 87,
       "loc": {
         "start": {
           "line": 1,
@@ -85,8 +85,8 @@
     {
       "type": "CommentLine",
       "value": "Copyright (c) 2017 Alex Tranchenko. All rights reserved. ",
-      "start": 90,
-      "end": 149,
+      "start": 89,
+      "end": 148,
       "loc": {
         "start": {
           "line": 6,
@@ -102,9 +102,9 @@
   "tokens": [
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Pr<U> - type of returned values.\r\n * @public\r\n * @typedef {M<U> | U} 'Pr<U>\r\n ",
+      "value": "*\r\n * Pr<U> - type of returned values.\r\n * @public\r\n * @typedef {M<U> | U} Pr<U>\r\n ",
       "start": 0,
-      "end": 88,
+      "end": 87,
       "loc": {
         "start": {
           "line": 1,
@@ -119,8 +119,8 @@
     {
       "type": "CommentLine",
       "value": "Copyright (c) 2017 Alex Tranchenko. All rights reserved. ",
-      "start": 90,
-      "end": 149,
+      "start": 89,
+      "end": 148,
       "loc": {
         "start": {
           "line": 6,
@@ -145,8 +145,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 151,
-      "end": 151,
+      "start": 150,
+      "end": 150,
       "loc": {
         "start": {
           "line": 7,

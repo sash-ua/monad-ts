@@ -2,7 +2,7 @@
 /**
  * Pr<U> - type of returned values.
  * @public
- * @typedef {M<U> | U} 'Pr<U>
+ * @typedef {M<U> | U} Pr<U>
  */
 
 /** Comment for ESDoc */

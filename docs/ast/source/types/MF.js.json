@@ -1,7 +1,7 @@
 {
   "type": "File",
   "start": 0,
-  "end": 177,
+  "end": 175,
   "loc": {
     "start": {
       "line": 1,
@@ -15,7 +15,7 @@
   "program": {
     "type": "Program",
     "start": 0,
-    "end": 177,
+    "end": 175,
     "loc": {
       "start": {
         "line": 1,
@@ -33,9 +33,9 @@
     "innerComments": [
       {
         "type": "CommentBlock",
-        "value": "*\r\n * MF<T, U> - transformation function's type.\r\n * @public\r\n * @typedef {function(v: T): Pr<U>} 'MF<T, U>\r\n ",
+        "value": "*\r\n * MF<T, U> - transformation function's type.\r\n * @public\r\n * @typedef {function(v: T): Pr<U>} MF<T,U>\r\n ",
         "start": 0,
-        "end": 114,
+        "end": 112,
         "loc": {
           "start": {
             "line": 1,
@@ -50,8 +50,8 @@
       {
         "type": "CommentLine",
         "value": "Copyright (c) 2017 Alex Tranchenko. All rights reserved. ",
-        "start": 116,
-        "end": 175,
+        "start": 114,
+        "end": 173,
         "loc": {
           "start": {
             "line": 6,
@@ -68,9 +68,9 @@
   "comments": [
     {
       "type": "CommentBlock",
-      "value": "*\r\n * MF<T, U> - transformation function's type.\r\n * @public\r\n * @typedef {function(v: T): Pr<U>} 'MF<T, U>\r\n ",
+      "value": "*\r\n * MF<T, U> - transformation function's type.\r\n * @public\r\n * @typedef {function(v: T): Pr<U>} MF<T,U>\r\n ",
       "start": 0,
-      "end": 114,
+      "end": 112,
       "loc": {
         "start": {
           "line": 1,
@@ -85,8 +85,8 @@
     {
       "type": "CommentLine",
       "value": "Copyright (c) 2017 Alex Tranchenko. All rights reserved. ",
-      "start": 116,
-      "end": 175,
+      "start": 114,
+      "end": 173,
       "loc": {
         "start": {
           "line": 6,
@@ -102,9 +102,9 @@
   "tokens": [
     {
       "type": "CommentBlock",
-      "value": "*\r\n * MF<T, U> - transformation function's type.\r\n * @public\r\n * @typedef {function(v: T): Pr<U>} 'MF<T, U>\r\n ",
+      "value": "*\r\n * MF<T, U> - transformation function's type.\r\n * @public\r\n * @typedef {function(v: T): Pr<U>} MF<T,U>\r\n ",
       "start": 0,
-      "end": 114,
+      "end": 112,
       "loc": {
         "start": {
           "line": 1,
@@ -119,8 +119,8 @@
     {
       "type": "CommentLine",
       "value": "Copyright (c) 2017 Alex Tranchenko. All rights reserved. ",
-      "start": 116,
-      "end": 175,
+      "start": 114,
+      "end": 173,
       "loc": {
         "start": {
           "line": 6,
@@ -145,8 +145,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 177,
-      "end": 177,
+      "start": 175,
+      "end": 175,
       "loc": {
         "start": {
           "line": 7,

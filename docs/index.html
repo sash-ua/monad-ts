@@ -48,9 +48,9 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-equality">equality</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hash">hash</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-wait">wait</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">types</div><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-&apos;D&lt;T&gt;">&apos;D&lt;T&gt;</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-&apos;MF&lt;T,">&apos;MF&lt;T,</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-&apos;Pr&lt;U&gt;">&apos;Pr&lt;U&gt;</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">types</div><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-D&lt;T&gt;">D&lt;T&gt;</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-MF&lt;T,U&gt;">MF&lt;T,U&gt;</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Pr&lt;U&gt;">Pr&lt;U&gt;</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -70,6 +70,7 @@ Typescript. Angular 2+ compatible <a href="https://sash-ua.github.io/gen_drift_m
 <p><strong>Introduction</strong></p>
 <ul>
 <li><a href="#intro">Intro</a></li>
+<li><a href="#setup">Setup</a></li>
 <li><a href="https://sash-ua.github.io/monad-ts/identifiers.html">API</a></li>
 </ul>
 <p><strong>All monads</strong></p>
@@ -111,25 +112,17 @@ process. Monads allow us to do all the side-effecting computations using pure fu
 <p><strong>NB</strong> This monads implementation aren&apos;t exact copy of Haskell monads. My goal was to reach results comparable with the
 using of like monads from Haskell in JS.</p>
 <p><strong>NB</strong> For catching Errors, produced within monads you should use monad ErrorM.</p>
-<h3 id="ways-to-use-">Ways to use:</h3>
-<h4 id="as-a-dependency-">As a dependency.</h4>
-<p>Import library or class in compatible for you way:</p>
+<h2 id="setup">Setup</h2>
+<p><strong>1.</strong> <strong>SystemJS</strong> Configure <code>systemjs.config.js</code> to register the module.</p>
 <pre><code><code class="source-code prettyprint">SystemJS.config({
     map:{
         ...
         &apos;monad-ts&apos;: &apos;node_modules/monad-ts/lib/monad_ts.umd.js&apos;
         ...
     }
-})
-...
-import {State} from &quot;monad-ts&quot;;
-...</code>
-</code></pre><pre><code><code class="source-code prettyprint">import * as Monad from &quot;/node_modules/monad-ts/index&quot;</code>
-</code></pre><p>or</p>
-<pre><code><code class="source-code prettyprint">import {State} from &quot;/node_modules/monad-ts/index&quot;</code>
-</code></pre><p>or</p>
-<pre><code><code class="source-code prettyprint">import {List} from &quot;monad-ts/src/list&quot;</code>
-</code></pre><p>Example:</p>
+})</code>
+</code></pre><p><strong>2.</strong> <strong>WebPack</strong> No special configuration.</p>
+<p>Example:</p>
 <pre><code><code class="source-code prettyprint">import {Flow, List} from &quot;monad-ts&quot;
 
 const list = new List();

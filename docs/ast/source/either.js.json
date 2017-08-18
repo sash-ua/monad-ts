@@ -633,7 +633,7 @@
                 "leadingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\r\n     * creates an instance of class Either.\r\n     * @param {function(v: T) => Pr<Z>} r - right function.\r\n     * @param {function(v: U) => Pr<N>} l - left function.\r\n     ",
+                    "value": "*\r\n     * creates an instance of class Either.\r\n     * @param {function(v: any) => any} r - right function.\r\n     * @param {function(v: any) => any} l - left function.\r\n     ",
                     "start": 221,
                     "end": 399,
                     "loc": {
@@ -2530,7 +2530,7 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * creates an instance of class Either.\r\n     * @param {function(v: T) => Pr<Z>} r - right function.\r\n     * @param {function(v: U) => Pr<N>} l - left function.\r\n     ",
+      "value": "*\r\n     * creates an instance of class Either.\r\n     * @param {function(v: any) => any} r - right function.\r\n     * @param {function(v: any) => any} l - left function.\r\n     ",
       "start": 221,
       "end": 399,
       "loc": {
@@ -3155,7 +3155,7 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * creates an instance of class Either.\r\n     * @param {function(v: T) => Pr<Z>} r - right function.\r\n     * @param {function(v: U) => Pr<N>} l - left function.\r\n     ",
+      "value": "*\r\n     * creates an instance of class Either.\r\n     * @param {function(v: any) => any} r - right function.\r\n     * @param {function(v: any) => any} l - left function.\r\n     ",
       "start": 221,
       "end": 399,
       "loc": {

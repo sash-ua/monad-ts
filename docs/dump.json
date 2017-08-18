@@ -161,7 +161,7 @@
     "__docId__": 7,
     "kind": "file",
     "name": "src/either.js",
-    "content": "import { Monad } from \"./monad\";\r\nimport { equality } from \"./services/equality\";\r\n/**\r\n * Class Either - represents computation with two possibilities.\r\n * @extends {Monad}\r\n */\r\nexport class Either extends Monad {\r\n    /**\r\n     * creates an instance of class Either.\r\n     * @param {function(v: T) => Pr<Z>} r - right function.\r\n     * @param {function(v: U) => Pr<N>} l - left function.\r\n     */\r\n    constructor(r, l) {\r\n        super();\r\n        this.r = r;\r\n        this.l = l;\r\n    }\r\n    /**\r\n     * binds controller function and underlying value to the monad.\r\n     * @param {function (v: T) => boolean} f - controller function, after execution f(v) produce true (execute right\r\n     func-n) or false (execute left func-n).\r\n     * @param {T} v - underlying value for the monad.\r\n     * @returns {Pr<any> | Error}\r\n     */\r\n    bind(f, v) {\r\n        this.uVal = v;\r\n        switch (f(v)) {\r\n            case true:\r\n                return this.r(v);\r\n            case false:\r\n                return this.l(v);\r\n            default:\r\n                return this.errorHandler('Either. Binding error');\r\n        }\r\n    }\r\n    /**\r\n     * extract result of left(v) computation.\r\n     * @param {T} v - underlying value.\r\n     * @return {Pr<N>}\r\n     */\r\n    left(v) {\r\n        return this.uVal ? equality(this.uVal, v) ? this.l(v) : this.errorHandler('Either.left. v have been binded with bind method') : this.l(v);\r\n    }\r\n    /**\r\n     * extract result of right(v) computation.\r\n     * @param {T} v - underlying value.\r\n     * @return {Pr<Z>}\r\n     */\r\n    right(v) {\r\n        return this.uVal ? equality(this.uVal, v) ? this.r(v) : this.errorHandler('Either.right. v have been binded with bind method') : this.r(v);\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
+    "content": "import { Monad } from \"./monad\";\r\nimport { equality } from \"./services/equality\";\r\n/**\r\n * Class Either - represents computation with two possibilities.\r\n * @extends {Monad}\r\n */\r\nexport class Either extends Monad {\r\n    /**\r\n     * creates an instance of class Either.\r\n     * @param {function(v: any) => any} r - right function.\r\n     * @param {function(v: any) => any} l - left function.\r\n     */\r\n    constructor(r, l) {\r\n        super();\r\n        this.r = r;\r\n        this.l = l;\r\n    }\r\n    /**\r\n     * binds controller function and underlying value to the monad.\r\n     * @param {function (v: T) => boolean} f - controller function, after execution f(v) produce true (execute right\r\n     func-n) or false (execute left func-n).\r\n     * @param {T} v - underlying value for the monad.\r\n     * @returns {Pr<any> | Error}\r\n     */\r\n    bind(f, v) {\r\n        this.uVal = v;\r\n        switch (f(v)) {\r\n            case true:\r\n                return this.r(v);\r\n            case false:\r\n                return this.l(v);\r\n            default:\r\n                return this.errorHandler('Either. Binding error');\r\n        }\r\n    }\r\n    /**\r\n     * extract result of left(v) computation.\r\n     * @param {T} v - underlying value.\r\n     * @return {Pr<N>}\r\n     */\r\n    left(v) {\r\n        return this.uVal ? equality(this.uVal, v) ? this.l(v) : this.errorHandler('Either.left. v have been binded with bind method') : this.l(v);\r\n    }\r\n    /**\r\n     * extract result of right(v) computation.\r\n     * @param {T} v - underlying value.\r\n     * @return {Pr<Z>}\r\n     */\r\n    right(v) {\r\n        return this.uVal ? equality(this.uVal, v) ? this.r(v) : this.errorHandler('Either.right. v have been binded with bind method') : this.r(v);\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
     "static": true,
     "longname": "src/either.js",
     "access": null,
@@ -202,7 +202,7 @@
       {
         "nullable": null,
         "types": [
-          "function(v: T) => Pr<Z>"
+          "function(v: any) => any"
         ],
         "spread": false,
         "optional": false,
@@ -212,7 +212,7 @@
       {
         "nullable": null,
         "types": [
-          "function(v: U) => Pr<N>"
+          "function(v: any) => any"
         ],
         "spread": false,
         "optional": false,
@@ -2015,7 +2015,7 @@
     "__docId__": 76,
     "kind": "file",
     "name": "src/types/d.js",
-    "content": "/**\r\n * D<T> - dispatcher's type function.\r\n * @public\r\n * @typedef {function(v: T): Boolean} 'D<T>\r\n */\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
+    "content": "/**\r\n * D<T> - dispatcher's type function.\r\n * @public\r\n * @typedef {function(v: T): Boolean} D<T>\r\n */\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
     "static": true,
     "longname": "src/types/d.js",
     "access": null,
@@ -2025,10 +2025,10 @@
   {
     "__docId__": 77,
     "kind": "typedef",
-    "name": "'D<T>",
+    "name": "D<T>",
     "memberof": "src/types/d.js",
     "static": true,
-    "longname": "src/types/d.js~'D<T>",
+    "longname": "src/types/d.js~D<T>",
     "access": "public",
     "description": "D<T> - dispatcher's type function.",
     "type": {
@@ -2036,14 +2036,14 @@
         "function(v: T): Boolean"
       ],
       "optional": false,
-      "name": "'D<T>"
+      "name": "D<T>"
     }
   },
   {
     "__docId__": 78,
     "kind": "file",
     "name": "src/types/mf.js",
-    "content": "/**\r\n * MF<T, U> - transformation function's type.\r\n * @public\r\n * @typedef {function(v: T): Pr<U>} 'MF<T, U>\r\n */\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
+    "content": "/**\r\n * MF<T, U> - transformation function's type.\r\n * @public\r\n * @typedef {function(v: T): Pr<U>} MF<T,U>\r\n */\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
     "static": true,
     "longname": "src/types/mf.js",
     "access": null,
@@ -2053,10 +2053,10 @@
   {
     "__docId__": 79,
     "kind": "typedef",
-    "name": "'MF<T,",
+    "name": "MF<T,U>",
     "memberof": "src/types/mf.js",
     "static": true,
-    "longname": "src/types/mf.js~'MF<T,",
+    "longname": "src/types/mf.js~MF<T,U>",
     "access": "public",
     "description": "MF<T, U> - transformation function's type.",
     "type": {
@@ -2064,14 +2064,14 @@
         "function(v: T): Pr<U>"
       ],
       "optional": false,
-      "name": "'MF<T,"
+      "name": "MF<T,U>"
     }
   },
   {
     "__docId__": 80,
     "kind": "file",
     "name": "src/types/pr.js",
-    "content": "/**\r\n * Pr<U> - type of returned values.\r\n * @public\r\n * @typedef {M<U> | U} 'Pr<U>\r\n */\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
+    "content": "/**\r\n * Pr<U> - type of returned values.\r\n * @public\r\n * @typedef {M<U> | U} Pr<U>\r\n */\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
     "static": true,
     "longname": "src/types/pr.js",
     "access": null,
@@ -2081,10 +2081,10 @@
   {
     "__docId__": 81,
     "kind": "typedef",
-    "name": "'Pr<U>",
+    "name": "Pr<U>",
     "memberof": "src/types/pr.js",
     "static": true,
-    "longname": "src/types/pr.js~'Pr<U>",
+    "longname": "src/types/pr.js~Pr<U>",
     "access": "public",
     "description": "Pr<U> - type of returned values.",
     "type": {
@@ -2093,7 +2093,7 @@
         " U"
       ],
       "optional": false,
-      "name": "'Pr<U>"
+      "name": "Pr<U>"
     }
   },
   {

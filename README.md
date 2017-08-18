@@ -15,6 +15,7 @@ Typescript. Angular 2+ compatible [example app](https://sash-ua.github.io/gen_dr
 
 **Introduction**
 * [Intro](#intro)
+* [Setup](#setup)
 * [API](https://sash-ua.github.io/monad-ts/identifiers.html)
 
 **All monads**
@@ -70,11 +71,9 @@ using of like monads from Haskell in JS.
 
 **NB** For catching Errors, produced within monads you should use monad ErrorM.
 
-### Ways to use:
+## Setup
 
-#### As a dependency.
-
-Import library or class in compatible for you way:
+**1.** **SystemJS** Configure `systemjs.config.js` to register the module.
 ```
 SystemJS.config({
 	map:{
@@ -83,21 +82,8 @@ SystemJS.config({
 		...
 	}
 })
-...
-import {State} from "monad-ts";
-...
 ```
-```
-import * as Monad from "/node_modules/monad-ts/index"
-```
-or
-```
-import {State} from "/node_modules/monad-ts/index"
-```
-or
-```
-import {List} from "monad-ts/src/list"
-```
+**2.** **WebPack** No special configuration.
 
 Example:
 ```

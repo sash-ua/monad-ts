@@ -1,3 +1,9 @@
+# 0.3.7 (2017-08-18)
+
+### Changes
+
+* **either** Type of constructor parameters changed to (v: any) => any.
+
 # 0.3.6 (2017-08-12)
 
 ### Changes

@@ -732,9 +732,9 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/types/d.js~'d<t>",
-    "typedef/index.html#static-typedef-'D<T>",
-    "src/types/d.js~'D<T>",
+    "src/types/d.js~d<t>",
+    "typedef/index.html#static-typedef-D<T>",
+    "src/types/d.js~D<T>",
     "typedef"
   ],
   [
@@ -744,9 +744,9 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/types/mf.js~'mf<t,",
-    "typedef/index.html#static-typedef-'MF<T,",
-    "src/types/mf.js~'MF<T,",
+    "src/types/mf.js~mf<t,u>",
+    "typedef/index.html#static-typedef-MF<T,U>",
+    "src/types/mf.js~MF<T,U>",
     "typedef"
   ],
   [
@@ -756,9 +756,9 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/types/pr.js~'pr<u>",
-    "typedef/index.html#static-typedef-'Pr<U>",
-    "src/types/pr.js~'Pr<U>",
+    "src/types/pr.js~pr<u>",
+    "typedef/index.html#static-typedef-Pr<U>",
+    "src/types/pr.js~Pr<U>",
     "typedef"
   ]
 ]
