@@ -231,6 +231,8 @@ For composing monads in an async flow (pipe), based on Promise. Class instance c
 encapsulate?)`. Initial value (initV) encapsulated in the class instance by default. If set encapsulate = false, then
 initial value wouldn't be encapsulated and we will be able to change inner state of the class instance by changing
 `initV`.
+
+**NB** Initial value should be statically analyzable.
 ```
 new AsyncFlow(5)
   .bind((v) => v)

@@ -16,7 +16,11 @@ function clone(obj, map) {
         return map.get(obj);
     }
     else {
-        var result_1 = Array.isArray(obj) ? [] : obj.constructor ? obj.constructor() : Object.create(null);
+        var result_1 = Array.isArray(obj)
+            ? []
+            : obj.constructor && obj.constructor()
+                ? obj.constructor()
+                : Object.create(obj);
         map.set(obj, result_1);
         if (obj instanceof Map) {
             return Array.from(obj, function (_a) {

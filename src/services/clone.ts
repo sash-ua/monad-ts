@@ -11,7 +11,11 @@ export function clone<T>(obj: T, map: any = new Map()): T {
         // Cyclic reference handling
         return map.get(obj);
     } else {
-        let result = Array.isArray(obj) ? [] : obj.constructor ? obj.constructor() : Object.create(null);
+        let result = Array.isArray(obj)
+            ? []
+            : obj.constructor && obj.constructor()
+                         ? obj.constructor()
+                         : Object.create(<any>obj);
         map.set(obj, result);
         if (obj instanceof Map) {
             return Array.from(obj, ([key, val]: Array<any>) => result.set(key, _toTail(val, map)))[0];

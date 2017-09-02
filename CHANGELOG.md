@@ -1,3 +1,9 @@
+# 0.3.8 (2017-09-02)
+
+### Bug fixed
+
+* **clone** to prevent the error "TypeError: Cannot convert undefined or null to object" if cloned `object` hasn't object.constructor().
+
 # 0.3.7 (2017-08-18)
 
 ### Changes
@@ -26,7 +32,6 @@ tries to execute a function without the argument.
 * **hash** produced hash can be either positive or negative.
 
 * dependencies updated.
-
 
 # 0.3.3 (2017-06-09)
 

@@ -224,6 +224,7 @@ z = cast(list.bind((v: number) =&gt;list.bind((v: number) =&gt; [-v, v], [v-1, v
 encapsulate?)</code>. Initial value (initV) encapsulated in the class instance by default. If set encapsulate = false, then
 initial value wouldn&apos;t be encapsulated and we will be able to change inner state of the class instance by changing
 <code>initV</code>.</p>
+<p><strong>NB</strong> Initial value should be statically analyzable.</p>
 <pre><code><code class="source-code prettyprint">new AsyncFlow(5)
   .bind((v) =&gt; v)
   .then((v) =&gt; v)
