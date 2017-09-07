@@ -1,8 +1,14 @@
+# 0.3.9 (2017-09-07)
+
+### Changes
+
+* **clone** added proper handling of objects that returned primitives. Example: new Date().
+
 # 0.3.8 (2017-09-02)
 
 ### Bug fixed
 
-* **clone** to prevent the error "TypeError: Cannot convert undefined or null to object" if cloned `object` hasn't object.constructor().
+* **clone** to prevent the error "TypeError: Cannot convert undefined or null to object" if cloned object.constructor() is undefined.
 
 # 0.3.7 (2017-08-18)
 

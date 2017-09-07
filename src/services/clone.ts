@@ -20,12 +20,17 @@ export function clone<T>(obj: T, map: any = new Map()): T {
         if (obj instanceof Map) {
             return Array.from(obj, ([key, val]: Array<any>) => result.set(key, _toTail(val, map)))[0];
         } else {
-            return Object.assign(result, ...Object.keys(obj).map(key => ({[key]: _toTail(obj[key], map)})));
+            if (Object(result) !== result){
+                return _toTail(result, map);
+            } else {
+                return Object.assign(result, ...Object.keys(obj).map(key => ({[key]: _toTail(obj[key], map)})));
+            }
         }
     }
 }
 /**
  * @param {T} obj - Object or Primitives to clone.
+ * @param {any} map
  * @return {T}
  * @private
  */
