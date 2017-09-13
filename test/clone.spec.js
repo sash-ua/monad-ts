@@ -30,18 +30,21 @@ describe('Service Clone: ', function () {
     };
     var obj = {
         foo: 1,
+        birthday: new Date(1995, 11, 17),
         get bar() {
             return 2;
         }
     };
     var objC = {
         foo: 1,
+        birthday: new Date(1995, 11, 17),
         get sbar() {
             return 2;
         }
     };
     var objC2 = {
         foo: 1,
+        birthday: new Date(1995, 11, 17),
         get bar() {
             return 3;
         }
@@ -75,6 +78,8 @@ describe('Service Clone: ', function () {
         expect(obj).not.toEqual(objC);
         expect(obj).not.toEqual(objC2);
         var z = clone_1.clone(obj);
+        console.log(z);
+        expect(z).toEqual(obj);
         expect(z).not.toEqual(objC);
         obj.foo = 2;
         expect(z).not.toEqual(obj);

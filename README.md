@@ -269,7 +269,7 @@ console.log(cast([10, [[11, [2]], 3], [12]], 2)); // [ 10, 11, [ 2 ], 3, 12 ]
 ```
 
 #### clone
-Function to clone objects (including Map). It takes objects and primitives.
+Function to clone objects (including Map). It takes objects, arrays and primitives.
 ```
 const x = {x:1};
 const z = clone(x);

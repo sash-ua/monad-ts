@@ -28,20 +28,23 @@ describe('Service Clone: ', ()=>{
         }],
         arr:[1,2,3]
     };
-    let obj = {
+    let obj: any = {
         foo: 1,
+        birthday:  new Date(1995, 11, 17),
         get bar() {
             return 2;
         }
     };
-    let objC = {
+    let objC: any = {
         foo: 1,
+        birthday:  new Date(1995, 11, 17),
         get sbar() {
             return 2;
         }
     };
-    let objC2 = {
+    let objC2: any = {
         foo: 1,
+        birthday:  new Date(1995, 11, 17),
         get bar() {
             return 3;
         }
@@ -76,6 +79,8 @@ describe('Service Clone: ', ()=>{
         expect(obj).not.toEqual(objC);
         expect(obj).not.toEqual(objC2);
         let z =clone(obj);
+        console.log(z);
+        expect(z).toEqual(obj);
         expect(z).not.toEqual(objC);
         obj.foo = 2;
         expect(z).not.toEqual(obj);

@@ -57,7 +57,7 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/services/clone.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
- * the service to clone the object, including Map.
+ * the service to clone complex objects, including Map.
  * @param {T} obj - Object or Primitives to clone.
  * @return {T}
  */
@@ -76,7 +76,13 @@ export function clone(obj, map = new Map()) {
             : obj.constructor &amp;&amp; obj.constructor()
                 ? obj.constructor()
                 : Object.create(obj);
-        map.set(obj, result);
+        if (Object(result) !== result) {
+            map.set(obj, obj);
+            result = obj;
+        }
+        else {
+            map.set(obj, result);
+        }
         if (obj instanceof Map) {
             return Array.from(obj, ([key, val]) =&gt; result.set(key, _toTail(val, map)))[0];
         }
@@ -87,6 +93,7 @@ export function clone(obj, map = new Map()) {
 }
 /**
  * @param {T} obj - Object or Primitives to clone.
+ * @param {any} map
  * @return {T}
  * @private
  */

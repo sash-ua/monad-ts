@@ -1,5 +1,5 @@
 /**
- * the service to clone the object, including Map.
+ * the service to clone complex objects, including Map.
  * @param {T} obj - Object or Primitives to clone.
  * @return {T}
  */
@@ -11,20 +11,21 @@ export function clone<T>(obj: T, map: any = new Map()): T {
         // Cyclic reference handling
         return map.get(obj);
     } else {
-        let result = Array.isArray(obj)
+        let result: any = Array.isArray(obj)
             ? []
             : obj.constructor && obj.constructor()
                          ? obj.constructor()
                          : Object.create(<any>obj);
-        map.set(obj, result);
+        if (Object(result) !== result){
+            map.set(obj, obj);
+            result = obj;
+        } else {
+            map.set(obj, result);
+        }
         if (obj instanceof Map) {
             return Array.from(obj, ([key, val]: Array<any>) => result.set(key, _toTail(val, map)))[0];
         } else {
-            if (Object(result) !== result){
-                return _toTail(result, map);
-            } else {
-                return Object.assign(result, ...Object.keys(obj).map(key => ({[key]: _toTail(obj[key], map)})));
-            }
+            return Object.assign(result, ...Object.keys(obj).map(key => ({[key]: _toTail(obj[key], map)})));
         }
     }
 }

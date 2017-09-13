@@ -1443,7 +1443,7 @@
     "__docId__": 55,
     "kind": "file",
     "name": "src/services/clone.js",
-    "content": "/**\r\n * the service to clone the object, including Map.\r\n * @param {T} obj - Object or Primitives to clone.\r\n * @return {T}\r\n */\r\nexport function clone(obj, map = new Map()) {\r\n    // Primitives are immutable, no need to clone them.\r\n    if (Object(obj) !== obj) {\r\n        return obj;\r\n    }\r\n    else if (map.has(obj)) {\r\n        // Cyclic reference handling\r\n        return map.get(obj);\r\n    }\r\n    else {\r\n        let result = Array.isArray(obj)\r\n            ? []\r\n            : obj.constructor && obj.constructor()\r\n                ? obj.constructor()\r\n                : Object.create(obj);\r\n        map.set(obj, result);\r\n        if (obj instanceof Map) {\r\n            return Array.from(obj, ([key, val]) => result.set(key, _toTail(val, map)))[0];\r\n        }\r\n        else {\r\n            return Object.assign(result, ...Object.keys(obj).map(key => ({ [key]: _toTail(obj[key], map) })));\r\n        }\r\n    }\r\n}\r\n/**\r\n * @param {T} obj - Object or Primitives to clone.\r\n * @return {T}\r\n * @private\r\n */\r\nfunction _toTail(obj, map) {\r\n    return clone(obj, map);\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
+    "content": "/**\r\n * the service to clone complex objects, including Map.\r\n * @param {T} obj - Object or Primitives to clone.\r\n * @return {T}\r\n */\r\nexport function clone(obj, map = new Map()) {\r\n    // Primitives are immutable, no need to clone them.\r\n    if (Object(obj) !== obj) {\r\n        return obj;\r\n    }\r\n    else if (map.has(obj)) {\r\n        // Cyclic reference handling\r\n        return map.get(obj);\r\n    }\r\n    else {\r\n        let result = Array.isArray(obj)\r\n            ? []\r\n            : obj.constructor && obj.constructor()\r\n                ? obj.constructor()\r\n                : Object.create(obj);\r\n        if (Object(result) !== result) {\r\n            map.set(obj, obj);\r\n            result = obj;\r\n        }\r\n        else {\r\n            map.set(obj, result);\r\n        }\r\n        if (obj instanceof Map) {\r\n            return Array.from(obj, ([key, val]) => result.set(key, _toTail(val, map)))[0];\r\n        }\r\n        else {\r\n            return Object.assign(result, ...Object.keys(obj).map(key => ({ [key]: _toTail(obj[key], map) })));\r\n        }\r\n    }\r\n}\r\n/**\r\n * @param {T} obj - Object or Primitives to clone.\r\n * @param {any} map\r\n * @return {T}\r\n * @private\r\n */\r\nfunction _toTail(obj, map) {\r\n    return clone(obj, map);\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
     "static": true,
     "longname": "src/services/clone.js",
     "access": null,
@@ -1463,7 +1463,7 @@
     "export": true,
     "importPath": "monad-ts/src/services/clone.js",
     "importStyle": "{clone}",
-    "description": "the service to clone the object, including Map.",
+    "description": "the service to clone complex objects, including Map.",
     "lineNumber": 6,
     "params": [
       {
@@ -1500,7 +1500,7 @@
     "importPath": "monad-ts/src/services/clone.js",
     "importStyle": null,
     "description": "",
-    "lineNumber": 35,
+    "lineNumber": 42,
     "params": [
       {
         "nullable": null,
@@ -1511,6 +1511,16 @@
         "optional": false,
         "name": "obj",
         "description": "Object or Primitives to clone."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "any"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "map",
+        "description": ""
       }
     ],
     "return": {

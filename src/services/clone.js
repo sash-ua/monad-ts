@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * the service to clone the object, including Map.
+ * the service to clone complex objects, including Map.
  * @param {T} obj - Object or Primitives to clone.
  * @return {T}
  */
@@ -21,7 +21,13 @@ function clone(obj, map) {
             : obj.constructor && obj.constructor()
                 ? obj.constructor()
                 : Object.create(obj);
-        map.set(obj, result_1);
+        if (Object(result_1) !== result_1) {
+            map.set(obj, obj);
+            result_1 = obj;
+        }
+        else {
+            map.set(obj, result_1);
+        }
         if (obj instanceof Map) {
             return Array.from(obj, function (_a) {
                 var key = _a[0], val = _a[1];
@@ -29,15 +35,10 @@ function clone(obj, map) {
             })[0];
         }
         else {
-            if (Object(result_1) !== result_1) {
-                return _toTail(result_1, map);
-            }
-            else {
-                return Object.assign.apply(Object, [result_1].concat(Object.keys(obj).map(function (key) {
-                    return (_a = {}, _a[key] = _toTail(obj[key], map), _a);
-                    var _a;
-                })));
-            }
+            return Object.assign.apply(Object, [result_1].concat(Object.keys(obj).map(function (key) {
+                return (_a = {}, _a[key] = _toTail(obj[key], map), _a);
+                var _a;
+            })));
         }
     }
 }
