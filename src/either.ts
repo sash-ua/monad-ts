@@ -29,10 +29,10 @@ export class Either<T, U> extends  Monad<T>{
      * binds controller function and underlying value to the monad.
      * @param {function (v: T) => boolean} f - controller function, after execution f(v) produce true (execute right
      func-n) or false (execute left func-n).
-     * @param {T} v - underlying value for the monad.
+     * @param {any} v - underlying value for the monad.
      * @returns {Pr<any> | Error}
      */
-    bind(f: D<T>, v: T): Pr<any> | Error{
+    bind(f: D<T>, v: any): Pr<any> | Error{
         this.uVal = v;
         switch (f(v)){
             case true:

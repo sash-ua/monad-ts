@@ -50,7 +50,7 @@ var Identity = (function (_super) {
         return this.v && v
             ? equality_1.equality(this.v, v)
                 ? f(v)
-                : new Error('Identity. Underlying value of the monad is defined in constructor yet')
+                : new Error('Identity. Underlying value of the monad have defined in constructor!')
             : v
                 ? f(v)
                 : f();

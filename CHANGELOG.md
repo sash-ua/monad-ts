@@ -1,3 +1,9 @@
+# 0.3.11 (2017-09-17)
+
+### Bug fixed
+
+* **either** Type of `v` - underlying value for the monad can be any type not object only.
+
 # 0.3.9 (2017-09-07), 0.3.10 (2017-09-13)
 
 ### Changes

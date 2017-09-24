@@ -77,7 +77,7 @@ export class Either extends Monad {
      * binds controller function and underlying value to the monad.
      * @param {function (v: T) =&gt; boolean} f - controller function, after execution f(v) produce true (execute right
      func-n) or false (execute left func-n).
-     * @param {T} v - underlying value for the monad.
+     * @param {any} v - underlying value for the monad.
      * @returns {Pr&lt;any&gt; | Error}
      */
     bind(f, v) {

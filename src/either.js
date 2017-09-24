@@ -33,7 +33,7 @@ var Either = (function (_super) {
      * binds controller function and underlying value to the monad.
      * @param {function (v: T) => boolean} f - controller function, after execution f(v) produce true (execute right
      func-n) or false (execute left func-n).
-     * @param {T} v - underlying value for the monad.
+     * @param {any} v - underlying value for the monad.
      * @returns {Pr<any> | Error}
      */
     Either.prototype.bind = function (f, v) {

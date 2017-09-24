@@ -49,7 +49,7 @@ export class Identity<T> extends Monad<T> {
         return this.v && v
             ? equality(this.v, v)
                 ? f(v)
-                : new Error('Identity. Underlying value of the monad is defined in constructor yet')
+                : new Error('Identity. Underlying value of the monad have defined in constructor!')
             : v
                 ? f(v)
                 : f();
