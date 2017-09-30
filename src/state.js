@@ -19,7 +19,7 @@ var equality_1 = require("./services/equality");
  * Class State - for application state manipulations.
  * @extends {Monad}
  */
-var State = (function (_super) {
+var State = /** @class */ (function (_super) {
     __extends(State, _super);
     /**
      * creates an instance of class State.

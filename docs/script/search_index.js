@@ -6,6 +6,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "monad-ts/src/interfaces/binding.js~binding",
+    "class/src/interfaces/binding.js~Binding.html",
+    "<span>Binding</span> <span class=\"search-result-import-path\">monad-ts/src/interfaces/binding.js</span>",
+    "class"
+  ],
+  [
     "monad-ts/src/either.js~either",
     "class/src/either.js~Either.html",
     "<span>Either</span> <span class=\"search-result-import-path\">monad-ts/src/either.js</span>",
@@ -580,6 +586,18 @@ window.esdocSearchIndex = [
     "class/src/identity.js~Identity.html#instance-member-v",
     "src/identity.js~Identity#v",
     "member"
+  ],
+  [
+    "src/interfaces/binding.js",
+    "file/src/interfaces/binding.js.html",
+    "src/interfaces/binding.js",
+    "file"
+  ],
+  [
+    "src/interfaces/binding.js~binding#bind",
+    "class/src/interfaces/binding.js~Binding.html#instance-method-bind",
+    "src/interfaces/binding.js~Binding#bind",
+    "method"
   ],
   [
     "src/interfaces/m.js",

@@ -14,8 +14,9 @@ var monad_1 = require("./monad");
 /**
  * Class ErrorM - return given value or produce Error if take Error or get Error after execution of f(v).
  * @extends {Monad}
+ * @implements {Binding}
  */
-var ErrorM = (function (_super) {
+var ErrorM = /** @class */ (function (_super) {
     __extends(ErrorM, _super);
     function ErrorM() {
         return _super !== null && _super.apply(this, arguments) || this;

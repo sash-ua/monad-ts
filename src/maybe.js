@@ -14,15 +14,16 @@ var monad_1 = require("./monad");
 /**
  * Class Maybe - return given value or produce null if take nothing or get nothing after execution of f(v).
  * @extends {Monad}
+ * @implements {Binding}
  */
-var Maybe = (function (_super) {
+var Maybe = /** @class */ (function (_super) {
     __extends(Maybe, _super);
     function Maybe() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
      * chains the operations on a monadic values.
-     * @param {function(v: T) => Pr<U>} f - transformation function for a monad.
+     * @param {MF<T, U>} f - transformation function for a monad.
      * @param {T} v - underlying value for a monad.
      * @return {Pr<U>} transformed by f() value v.
      */

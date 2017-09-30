@@ -15,8 +15,9 @@ var equality_1 = require("./services/equality");
 /**
  * Class Either - represents computation with two possibilities.
  * @extends {Monad}
+ * @implements {Binding}
  */
-var Either = (function (_super) {
+var Either = /** @class */ (function (_super) {
     __extends(Either, _super);
     /**
      * creates an instance of class Either.
@@ -31,10 +32,9 @@ var Either = (function (_super) {
     }
     /**
      * binds controller function and underlying value to the monad.
-     * @param {function (v: T) => boolean} f - controller function, after execution f(v) produce true (execute right
-     func-n) or false (execute left func-n).
+     * @param {D<T>} f - controller function, after execution f(v) produce true (execute right func-n) or false (execute left func-n).
      * @param {any} v - underlying value for the monad.
-     * @returns {Pr<any> | Error}
+     * @return {boolean | Pr<any> | Error}
      */
     Either.prototype.bind = function (f, v) {
         this.uVal = v;

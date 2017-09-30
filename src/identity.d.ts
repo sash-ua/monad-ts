@@ -2,11 +2,13 @@ import { Monad } from "./monad";
 import { MF } from "./types/mf";
 import { Pr } from "./types/pr";
 import { ErrorM } from "./error";
+import { Binding } from './interfaces/binding';
 /**
  * Class Identity - wraps underlying value into the monadic value and compute results from a monadic value.
  * @extends {Monad}
+ * @implements {Binding}
  */
-export declare class Identity<T> extends Monad<T> {
+export declare class Identity<T> extends Monad<T> implements Binding<T> {
     /**
      * @type {any}
      * @protected

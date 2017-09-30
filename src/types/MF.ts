@@ -8,6 +8,6 @@
 /** Comment for ESDoc */
 import {Pr} from "./pr";
 
-export type MF<T, U> = (v?: T)=> Pr<U>;
+export type MF<T, U> = (v?: any)=> Pr<U>;
 
 //Copyright (c) 2017 Alex Tranchenko. All rights reserved.

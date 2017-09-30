@@ -17,8 +17,9 @@ var error_1 = require("./error");
 /**
  * Class Identity - wraps underlying value into the monadic value and compute results from a monadic value.
  * @extends {Monad}
+ * @implements {Binding}
  */
-var Identity = (function (_super) {
+var Identity = /** @class */ (function (_super) {
     __extends(Identity, _super);
     /**
      * creates an instance of class Identity.
@@ -50,7 +51,7 @@ var Identity = (function (_super) {
         return this.v && v
             ? equality_1.equality(this.v, v)
                 ? f(v)
-                : new Error('Identity. Underlying value of the monad have defined in constructor!')
+                : new Error('Identity. Underlying value of the monad have defined in the constructor!')
             : v
                 ? f(v)
                 : f();

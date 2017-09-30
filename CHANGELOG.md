@@ -1,3 +1,10 @@
+# 0.3.12 (2017-09-30)
+
+### Changes
+
+* type system.
+* docs updated.
+
 # 0.3.11 (2017-09-17)
 
 ### Bug fixed
@@ -29,7 +36,7 @@
 * **Identity.bind()** To avoid weird behavior explicitly pointed behavior if it is absent second argument (v). Monad
 tries to execute a function without the argument.
 
-* readme and docs updates.
+* docs updated.
 
 # 0.3.5 (2017-08-10)
 
@@ -70,7 +77,7 @@ tries to execute a function without the argument.
 * added class **AsyncFlow**, function **wait**
 * **AsyncFlow, Flow** added the ability not to encapsulate the initial value.
 * **List, Flow** changed error handling.
-* readme and docs updates.
+* docs updated.
 
 # 0.2.9 (2017-05-14)
 
@@ -82,7 +89,7 @@ tries to execute a function without the argument.
 
 ### Changes
 
-* readme and docs updates.
+* docs updated.
 
 ### Bug fixed
 
@@ -94,13 +101,13 @@ tries to execute a function without the argument.
 
 * **State.put()** doesn't return nothing, change state only.
 * added Angular 2+ compatibility (JIT, AOT).
-* readme and docs updates.
+* docs updated.
 
 # 0.2.6 (2017-05-09)
 
 ### Changes
 
-* readme and docs updates.
+* docs updated.
 
 ### Bug fixed
 
@@ -111,7 +118,7 @@ tries to execute a function without the argument.
 ### Changes
 
 * changed files structure.
-* readme and docs updates.
+* docs updated.
 
 # 0.2.4 (2017-05-08)
 
@@ -124,7 +131,7 @@ Equality function update.
 ### Changes
 
 * Added function equality - to check equality of data.
-* readme and docs updates.
+* docs updated.
 
 # 0.2.2 (2017-05-06),
 # 0.2.1 (2017-05-06)
@@ -132,7 +139,7 @@ Equality function update.
 ### Changes
 
 * Added monad Either.
-* readme and docs updates.
+* docs updated.
 
 # 0.2.0 (2017-05-05),
 # 0.1.0 (2017-05-05)
@@ -140,7 +147,7 @@ Equality function update.
 ### Changes
 
 * redesigned type system.
-* readme and docs updates.
+* docs updated.
 
 # 0.0.6-0 (2017-05-03),
 # 0.0.5 (2017-05-03),
@@ -148,7 +155,7 @@ Equality function update.
 # 0.0.3 (2017-05-02),
 # 0.0.2 (2017-05-02)
 
-* Commissioning works, readme and docs updates.
+* Commissioning works, docs updated.
 
 # 0.0.1 (2017-05-02)
 

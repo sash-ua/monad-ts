@@ -17,7 +17,7 @@ var monad_1 = require("./monad");
 /**
  * Class AsyncFlow - for composing monads in an async flow (pipe), based on Promise.
  */
-var AsyncFlow = (function (_super) {
+var AsyncFlow = /** @class */ (function (_super) {
     __extends(AsyncFlow, _super);
     /**
      * creates an instance of class AsyncFlow.

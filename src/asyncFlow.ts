@@ -7,7 +7,7 @@ import {Monad} from "./monad";
 /**
  * Class AsyncFlow - for composing monads in an async flow (pipe), based on Promise.
  */
-export class AsyncFlow<T> extends Monad<T>{
+export class AsyncFlow<T> extends Monad<T> {
     /**
      * @type {any}
      * @protected

@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @name M - monads interface, {@link Monad}.
  * @noimport true
  */
-var M = (function () {
+var M = /** @class */ (function () {
     function M() {
     }
     /**

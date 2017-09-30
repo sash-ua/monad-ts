@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var equality_1 = require("../src/services/equality");
-var Test = (function () {
+var Test = /** @class */ (function () {
     function Test(arg) {
         this.arg = arg;
     }
     return Test;
 }());
-var Test2 = (function () {
+var Test2 = /** @class */ (function () {
     function Test2(arg) {
         this.arg = arg;
     }

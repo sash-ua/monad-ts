@@ -1,11 +1,13 @@
 import { Monad } from "./monad";
 import { Pr } from "./types/pr";
-import { D } from "./types/d";
+import { Binding } from './interfaces/binding';
+import { D } from './types/d';
 /**
  * Class Either - represents computation with two possibilities.
  * @extends {Monad}
+ * @implements {Binding}
  */
-export declare class Either<T, U> extends Monad<T> {
+export declare class Either<T, U> extends Monad<T> implements Binding<T> {
     private r;
     private l;
     /**
@@ -20,12 +22,11 @@ export declare class Either<T, U> extends Monad<T> {
     constructor(r: (v: any) => any, l: (v: any) => any);
     /**
      * binds controller function and underlying value to the monad.
-     * @param {function (v: T) => boolean} f - controller function, after execution f(v) produce true (execute right
-     func-n) or false (execute left func-n).
+     * @param {D<T>} f - controller function, after execution f(v) produce true (execute right func-n) or false (execute left func-n).
      * @param {any} v - underlying value for the monad.
-     * @returns {Pr<any> | Error}
+     * @return {boolean | Pr<any> | Error}
      */
-    bind(f: D<T>, v: any): Pr<any> | Error;
+    bind<T, U>(f: D<T>, v: any): boolean | Pr<any> | Error;
     /**
      * extract result of left(v) computation.
      * @param {T} v - underlying value.

@@ -5,12 +5,14 @@ import {MF} from "./types/mf";
 import {Pr} from "./types/pr";
 import {equality} from "./services/equality";
 import {ErrorM} from "./error";
+import {Binding} from './interfaces/binding';
 
 /**
  * Class Identity - wraps underlying value into the monadic value and compute results from a monadic value.
  * @extends {Monad}
+ * @implements {Binding}
  */
-export class Identity<T> extends Monad<T> {
+export class Identity<T> extends Monad<T> implements Binding<T> {
     /**
      * @type {any}
      * @protected
@@ -49,7 +51,7 @@ export class Identity<T> extends Monad<T> {
         return this.v && v
             ? equality(this.v, v)
                 ? f(v)
-                : new Error('Identity. Underlying value of the monad have defined in constructor!')
+                : new Error('Identity. Underlying value of the monad have defined in the constructor!')
             : v
                 ? f(v)
                 : f();

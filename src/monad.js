@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * Class Monad - base class.
  * @implements {M}
  */
-var Monad = (function () {
+var Monad = /** @class */ (function () {
     function Monad() {
     }
     /**

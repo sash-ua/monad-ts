@@ -2,13 +2,15 @@
 import {Monad} from "./monad";
 import {equality} from "./services/equality";
 import {Pr} from "./types/pr";
-import {D} from "./types/d";
+import {Binding} from './interfaces/binding';
+import {D} from './types/d';
 
 /**
  * Class Either - represents computation with two possibilities.
  * @extends {Monad}
+ * @implements {Binding}
  */
-export class Either<T, U> extends  Monad<T>{
+export class Either<T, U> extends  Monad<T> implements Binding<T> {
     /**
      * @type {T} uVal - keep underlying value in the monad
      */
@@ -24,15 +26,13 @@ export class Either<T, U> extends  Monad<T>{
     ){
         super();
     }
-
     /**
      * binds controller function and underlying value to the monad.
-     * @param {function (v: T) => boolean} f - controller function, after execution f(v) produce true (execute right
-     func-n) or false (execute left func-n).
+     * @param {D<T>} f - controller function, after execution f(v) produce true (execute right func-n) or false (execute left func-n).
      * @param {any} v - underlying value for the monad.
-     * @returns {Pr<any> | Error}
+     * @return {boolean | Pr<any> | Error}
      */
-    bind(f: D<T>, v: any): Pr<any> | Error{
+    bind<T, U>(f: D<T>, v: any): boolean | Pr<any> | Error{
         this.uVal = v;
         switch (f(v)){
             case true:

@@ -18,7 +18,7 @@ var error_1 = require("./error");
  * Class Flow - for composing monads in a flow (pipe).
  * @extends {Monad}
  */
-var Flow = (function (_super) {
+var Flow = /** @class */ (function (_super) {
     __extends(Flow, _super);
     /**
      * create an instance of class AsyncFlow.

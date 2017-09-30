@@ -5,4 +5,4 @@
  */
 /** Comment for ESDoc */
 import { Pr } from "./pr";
-export declare type MF<T, U> = (v?: T) => Pr<U>;
+export declare type MF<T, U> = (v?: any) => Pr<U>;
