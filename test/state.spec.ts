@@ -1,11 +1,9 @@
-
 import {State} from "../src/state";
 import {List} from "../src/list";
 
-export type R = { data: number; children: any[]; arr: number[] | Error; test?: number};
+export type R = { data: number; children: any[]; arr: any; test?: number};
 
 describe('State: ', ()=>{
-
     const initState: R = {
         data: 1,
         children: [{

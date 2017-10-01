@@ -1,11 +1,9 @@
-import { Monad } from "./monad";
 import { Maybe } from "./maybe";
 import { ErrorM } from "./error";
 /**
- * Class State - for application state manipulations.
- * @extends {Monad}
+ * Class State - it takes a state and returns an intermediate value and some new state value.
  */
-export declare class State<T> extends Monad<T> {
+export declare class State<T> {
     /**
      * @type {any}
      * @protected

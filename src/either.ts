@@ -1,8 +1,6 @@
-
 import {Monad} from "./monad";
 import {equality} from "./services/equality";
 import {Pr} from "./types/pr";
-import {Binding} from './interfaces/binding';
 import {D} from './types/d';
 
 /**
@@ -10,7 +8,7 @@ import {D} from './types/d';
  * @extends {Monad}
  * @implements {Binding}
  */
-export class Either<T, U> extends  Monad<T> implements Binding<T> {
+export class Either<T, U> extends  Monad<T> {
     /**
      * @type {T} uVal - keep underlying value in the monad
      */
@@ -34,14 +32,19 @@ export class Either<T, U> extends  Monad<T> implements Binding<T> {
      */
     bind<T, U>(f: D<T>, v: any): boolean | Pr<any> | Error{
         this.uVal = v;
-        switch (f(v)){
-            case true:
-                return this.r(v);
-            case false:
-                return this.l(v);
-            default:
-                return this.errorHandler('Either. Binding error');
+        try {
+            switch (f(v)){
+                case true:
+                    return this.r(v);
+                case false:
+                    return this.l(v);
+                default:
+                    return this.errorHandler('Either.bind() - binding error');
+            }
+        } catch (e) {
+            this.errorHandler(`Either.bind().switch - ${e}`);
         }
+        
     }
 
     /**
@@ -50,7 +53,7 @@ export class Either<T, U> extends  Monad<T> implements Binding<T> {
      * @return {Pr<N>}
      */
     left<T>(v: T): Pr<any>{
-        return this.uVal ? equality(this.uVal, v) ? this.l(v) : this.errorHandler('Either.left. v have been binded with bind method') : this.l(v);
+        return this.uVal ? equality(this.uVal, v) ? this.l(v) : this.errorHandler('Either.left() - v have been binded with bind method') : this.l(v);
     }
 
     /**
@@ -59,7 +62,7 @@ export class Either<T, U> extends  Monad<T> implements Binding<T> {
      * @return {Pr<Z>}
      */
     right<T>(v: T): Pr<any>{
-        return this.uVal ? equality(this.uVal, v) ? this.r(v) : this.errorHandler('Either.right. v have been binded with bind method') : this.r(v);
+        return this.uVal ? equality(this.uVal, v) ? this.r(v) : this.errorHandler('Either.right() - v have been binded with bind method') : this.r(v);
     }
 }
 

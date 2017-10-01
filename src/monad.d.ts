@@ -1,11 +1,21 @@
 import { M } from "./interfaces/m";
 import { MF } from "./types/mf";
 import { Pr } from "./types/pr";
+import { D } from './types/d';
 /**
- * Class Monad - base class.
+ * Class Monad - Base abstract class.
  * @implements {M}
+ * @abstract
  */
-export declare class Monad<T> implements M<T> {
+export declare abstract class Monad<T> implements M<T> {
+    /**
+     * Binds transformation function and underlying value to the monad.
+     * @param {MF<T, U> | D<T>} f - transformation function.
+     * @param v - underlying value.
+     * @return {Pr<U> | Error | boolean}
+     * @abstract
+     */
+    bind<T, U>(f: MF<T, U> | D<T>, v: any): Promise<U> | Pr<U> | Error | boolean;
     /**
      * takes Error or string return Error.
      * @param {Error | string} e - Error obj. or string.

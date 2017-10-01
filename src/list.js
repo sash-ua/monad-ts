@@ -14,7 +14,6 @@ var monad_1 = require("./monad");
 /**
  * Class List - transform every element of array with given function "contemporaneously".
  * @extends {Monad}
- * @implements {Binding}
  */
 var List = /** @class */ (function (_super) {
     __extends(List, _super);
@@ -28,7 +27,7 @@ var List = /** @class */ (function (_super) {
      * @return {Pr<U> | Error} transformed by f() value v or error if input arg is not array.
      */
     List.prototype.bind = function (f, v) {
-        return Array.isArray(v) ? this._disp(f, v) : this.errorHandler('List. Input must be an array.');
+        return Array.isArray(v) ? this._disp(f, v) : this.errorHandler('List.bind() - input must be an array.');
     };
     /**
      * @param {function(n: T) => U} f - transformation function for a monad.

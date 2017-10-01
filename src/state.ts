@@ -1,15 +1,12 @@
-
-import {Monad} from "./monad";
 import {Maybe} from "./maybe";
 import {ErrorM} from "./error";
 import {clone} from "./services/clone";
 import {equality} from "./services/equality";
 
 /**
- * Class State - for application state manipulations.
- * @extends {Monad}
+ * Class State - it takes a state and returns an intermediate value and some new state value.
  */
-export class State<T> extends  Monad<T>{
+export class State<T> {
     /**
      * @type {any}
      * @protected
@@ -32,7 +29,6 @@ export class State<T> extends  Monad<T>{
     constructor(
         state: T
     ){
-        super();
         /**
          * keeps the state of application variables.
          * @type {T}
@@ -49,7 +45,6 @@ export class State<T> extends  Monad<T>{
          */
         this.err = new ErrorM();
     }
-
     /**
      * changes the state of application variables, if you try add new key with put() to state object it'll be assigned
      * with Error instance.
@@ -60,7 +55,7 @@ export class State<T> extends  Monad<T>{
         this.state = this.err.bind(
             (v: T) => equality(Object.getOwnPropertyNames(buffer), Object.getOwnPropertyNames(v))
                 ? v
-                : new Error('State. After init we can not add / remove keys in state obj.'),
+                : new Error('State.put() - after init we can not add / remove keys in state obj.'),
             this.maybe.bind((v: T) => f(v),this.state)
         );
     }

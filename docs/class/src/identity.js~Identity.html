@@ -41,8 +41,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/maybe.js~Maybe.html">Maybe</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/monad.js~Monad.html">Monad</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/state.js~State.html">State</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">interfaces</div><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/interfaces/binding.js~Binding.html">Binding</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/interfaces/m.js~M.html">M</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">interfaces</div><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/interfaces/m.js~M.html">M</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">services</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cast">cast</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-clone">clone</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-debounceTime">debounceTime</a></span></span></li>
@@ -57,13 +56,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Identity} from &apos;<span><a href="file/src/identity.js.html#lineNumber10">monad-ts/src/identity.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Identity} from &apos;<span><a href="file/src/identity.js.html#lineNumber9">monad-ts/src/identity.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/identity.js.html#lineNumber10">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/identity.js.html#lineNumber9">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -76,7 +75,7 @@
   <div class="flat-list" data-ice="extendsChain"><h4>Extends:</h4><div><span><a href="class/src/monad.js~Monad.html">Monad</a></span> &#x2192; Identity</div></div>
   
   
-  <div class="flat-list" data-ice="implements"><h4>Implements:</h4><ul><li><span><a href="class/src/interfaces/binding.js~Binding.html">Binding</a></span></li></ul></div>
+  
   <div class="flat-list" data-ice="indirectImplements"><h4>Indirect Implements:</h4><ul><li><span><a href="class/src/interfaces/m.js~M.html">M</a></span></li></ul></div>
   
   
@@ -115,7 +114,7 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/identity.js~Identity.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(v: <span>T</span>)</span>
+          <span data-ice="name"><span><a href="class/src/identity.js~Identity.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(v: <span>any</span>)</span>
         </p>
       </div>
       <div>
@@ -178,7 +177,7 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/identity.js~Identity.html#instance-member-v">v</a></span></span><span data-ice="signature">: <span>T</span></span>
+          <span data-ice="name"><span><a href="class/src/identity.js~Identity.html#instance-member-v">v</a></span></span><span data-ice="signature">: <span>any</span></span>
         </p>
       </div>
       <div>
@@ -213,7 +212,7 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/identity.js~Identity.html#instance-method-bind">bind</a></span></span><span data-ice="signature">(f: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(v: <span>T</span>)</span></span>, v: <span>T</span>): <span>Pr&lt;U&gt; </span> | <span> Error</span></span>
+          <span data-ice="name"><span><a href="class/src/identity.js~Identity.html#instance-method-bind">bind</a></span></span><span data-ice="signature">(f: <span>MF</span>&lt;<span>T</span>, <span>U</span>&gt;, v: <span>any</span>): <span>Pr&lt;U&gt; </span> | <span> Error</span></span>
         </p>
       </div>
       <div>
@@ -237,6 +236,34 @@
   <tbody>
   
   <tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      <span class="abstract" data-ice="abstract">abstract</span>
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          <span data-ice="name"><span><a href="class/src/monad.js~Monad.html#instance-method-bind">bind</a></span></span><span data-ice="signature">(f: <span>MF</span>&lt;<span>T</span>, <span>U&gt;</span>|<span>D&lt;T</span>&gt;, v: <span>*</span>): <span>Pr&lt;U&gt; </span> | <span> Error </span> | <span> boolean</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Binds transformation function and underlying value to the monad.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
     <td>
       <span class="access" data-ice="access">protected</span>
       
@@ -308,11 +335,11 @@
     
     
     
-    <span data-ice="name">constructor</span><span data-ice="signature">(v: <span>T</span>)</span>
+    <span data-ice="name">constructor</span><span data-ice="signature">(v: <span>any</span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/identity.js.html#lineNumber15">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/identity.js.html#lineNumber14">source</a></span></span>
     </span>
   </h3>
 
@@ -334,7 +361,7 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">v</td>
-      <td data-ice="type"><span>T</span></td>
+      <td data-ice="type"><span>any</span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"><p>The initial state of app.</p>
 </td>
@@ -376,7 +403,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/identity.js.html#lineNumber26">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/identity.js.html#lineNumber25">source</a></span></span>
     </span>
   </h3>
 
@@ -416,11 +443,11 @@
     
     
     
-    <span data-ice="name">v</span><span data-ice="signature">: <span>T</span></span>
+    <span data-ice="name">v</span><span data-ice="signature">: <span>any</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/identity.js.html#lineNumber21">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/identity.js.html#lineNumber20">source</a></span></span>
     </span>
   </h3>
 
@@ -463,11 +490,11 @@
     
     
     
-    <span data-ice="name">bind</span><span data-ice="signature">(f: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(v: <span>T</span>)</span></span>, v: <span>T</span>): <span>Pr&lt;U&gt; </span> | <span> Error</span></span>
+    <span data-ice="name">bind</span><span data-ice="signature">(f: <span>MF</span>&lt;<span>T</span>, <span>U</span>&gt;, v: <span>any</span>): <span>Pr&lt;U&gt; </span> | <span> Error</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/identity.js.html#lineNumber34">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/identity.js.html#lineNumber33">source</a></span></span>
     </span>
   </h3>
 
@@ -477,7 +504,7 @@
   <div data-ice="description"><p>chains the operations on a monadic value.</p>
 </div>
 
-  
+  <div data-ice="override"><h4>Override:</h4><span><a href="class/src/monad.js~Monad.html#instance-method-bind">Monad#bind</a></span></div>
 
   <div data-ice="properties"><div data-ice="properties">
   <h4 data-ice="title">Params:</h4>
@@ -489,17 +516,17 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">f</td>
-      <td data-ice="type"><span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(v: <span>T</span>)</span></span></td>
+      <td data-ice="type"><span>MF</span>&lt;<span>T</span>, <span>U</span>&gt;</td>
       <td data-ice="appendix"></td>
       <td data-ice="description"><p>transformation function for the monad.</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">v</td>
-      <td data-ice="type"><span>T</span></td>
+      <td data-ice="type"><span>any</span></td>
       <td data-ice="appendix"><ul><li>optional</li>
 <li>default:  this.v</li></ul></td>
-      <td data-ice="description"><p>underlying value for the monad.</p>
+      <td data-ice="description"><p>underlying value for the monad, Can not be null or undefined.</p>
 </td>
     </tr>
 </tbody>

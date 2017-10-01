@@ -1,18 +1,15 @@
-
 import {Monad} from "./monad";
 import {clone} from "./services/clone";
 import {MF} from "./types/mf";
 import {Pr} from "./types/pr";
 import {equality} from "./services/equality";
 import {ErrorM} from "./error";
-import {Binding} from './interfaces/binding';
 
 /**
  * Class Identity - wraps underlying value into the monadic value and compute results from a monadic value.
  * @extends {Monad}
- * @implements {Binding}
  */
-export class Identity<T> extends Monad<T> implements Binding<T> {
+export class Identity<T> extends Monad<T> {
     /**
      * @type {any}
      * @protected
@@ -25,13 +22,13 @@ export class Identity<T> extends Monad<T> implements Binding<T> {
     protected err: ErrorM<T>;
     /**
      * creates an instance of class Identity.
-     * @param {T} v - The initial state of app.
+     * @param {any} v - The initial state of app.
      * */
-    constructor(v?: T){
+    constructor(v?: any){
         super();
         /**
          * keeps underlying value of a monad.
-         * @type {T}
+         * @type {any}
          */
         this.v = clone(v);
         /**
@@ -42,23 +39,19 @@ export class Identity<T> extends Monad<T> implements Binding<T> {
     }
     /**
      * chains the operations on a monadic value.
-     * @param {function(v: T) => Pr<U>} f - transformation function for the monad.
-     * @param {T} [v = this.v] underlying value for the monad.
+     * @param {MF<T, U>} f - transformation function for the monad.
+     * @param {any} [v = this.v]- underlying value for the monad, Can not be null or undefined.
      * @return {Pr<U> | Error}
      */
-    bind<T, U>(f: MF<T, U>, v: T = this.v): Pr<U> | Error{
-        let b: any;
+    bind<T, U>(f: MF<T, U>, v: any = this.v): Pr<U> | Error{
         return this.v && v
             ? equality(this.v, v)
                 ? f(v)
-                : new Error('Identity. Underlying value of the monad have defined in the constructor!')
-            : v
+                : this.errorHandler('Identity.bind() - underlying value of the monad have defined in the constructor!')
+            : v || v === 0
                 ? f(v)
                 : f();
     }
-    /**
-     * Inherit method just() from Monad.
-     */
 }
 
 //Copyright (c) 2017 Alex Tranchenko. All rights reserved.

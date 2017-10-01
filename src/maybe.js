@@ -14,7 +14,6 @@ var monad_1 = require("./monad");
 /**
  * Class Maybe - return given value or produce null if take nothing or get nothing after execution of f(v).
  * @extends {Monad}
- * @implements {Binding}
  */
 var Maybe = /** @class */ (function (_super) {
     __extends(Maybe, _super);

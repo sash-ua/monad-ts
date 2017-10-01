@@ -1,13 +1,12 @@
 import { Monad } from "./monad";
 import { Pr } from "./types/pr";
-import { Binding } from './interfaces/binding';
 import { D } from './types/d';
 /**
  * Class Either - represents computation with two possibilities.
  * @extends {Monad}
  * @implements {Binding}
  */
-export declare class Either<T, U> extends Monad<T> implements Binding<T> {
+export declare class Either<T, U> extends Monad<T> {
     private r;
     private l;
     /**

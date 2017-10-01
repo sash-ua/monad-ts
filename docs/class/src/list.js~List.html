@@ -41,8 +41,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/maybe.js~Maybe.html">Maybe</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/monad.js~Monad.html">Monad</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/state.js~State.html">State</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">interfaces</div><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/interfaces/binding.js~Binding.html">Binding</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/interfaces/m.js~M.html">M</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">interfaces</div><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/interfaces/m.js~M.html">M</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">services</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cast">cast</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-clone">clone</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-debounceTime">debounceTime</a></span></span></li>
@@ -57,13 +56,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {List} from &apos;<span><a href="file/src/list.js.html#lineNumber7">monad-ts/src/list.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {List} from &apos;<span><a href="file/src/list.js.html#lineNumber6">monad-ts/src/list.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/list.js.html#lineNumber7">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/list.js.html#lineNumber6">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -76,7 +75,7 @@
   <div class="flat-list" data-ice="extendsChain"><h4>Extends:</h4><div><span><a href="class/src/monad.js~Monad.html">Monad</a></span> &#x2192; List</div></div>
   
   
-  <div class="flat-list" data-ice="implements"><h4>Implements:</h4><ul><li><span><a href="class/src/interfaces/binding.js~Binding.html">Binding</a></span></li></ul></div>
+  
   <div class="flat-list" data-ice="indirectImplements"><h4>Indirect Implements:</h4><ul><li><span><a href="class/src/interfaces/m.js~M.html">M</a></span></li></ul></div>
   
   
@@ -140,6 +139,34 @@
   <tbody>
   
   <tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      <span class="abstract" data-ice="abstract">abstract</span>
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          <span data-ice="name"><span><a href="class/src/monad.js~Monad.html#instance-method-bind">bind</a></span></span><span data-ice="signature">(f: <span>MF</span>&lt;<span>T</span>, <span>U&gt;</span>|<span>D&lt;T</span>&gt;, v: <span>*</span>): <span>Pr&lt;U&gt; </span> | <span> Error </span> | <span> boolean</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Binds transformation function and underlying value to the monad.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
     <td>
       <span class="access" data-ice="access">protected</span>
       
@@ -217,16 +244,17 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/list.js.html#lineNumber14">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/list.js.html#lineNumber13">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Binds transformation function and underlying value to the monad.</p>
+</div>
 
-  
+  <div data-ice="override"><h4>Override:</h4><span><a href="class/src/monad.js~Monad.html#instance-method-bind">Monad#bind</a></span></div>
 
   <div data-ice="properties"><div data-ice="properties">
   <h4 data-ice="title">Params:</h4>

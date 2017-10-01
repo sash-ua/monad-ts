@@ -41,8 +41,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/maybe.js~Maybe.html">Maybe</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/monad.js~Monad.html">Monad</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/state.js~State.html">State</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">interfaces</div><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/interfaces/binding.js~Binding.html">Binding</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/interfaces/m.js~M.html">M</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">interfaces</div><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/interfaces/m.js~M.html">M</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">services</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cast">cast</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-clone">clone</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-debounceTime">debounceTime</a></span></span></li>
@@ -83,13 +82,18 @@ export class Either extends Monad {
      */
     bind(f, v) {
         this.uVal = v;
-        switch (f(v)) {
-            case true:
-                return this.r(v);
-            case false:
-                return this.l(v);
-            default:
-                return this.errorHandler(&apos;Either. Binding error&apos;);
+        try {
+            switch (f(v)) {
+                case true:
+                    return this.r(v);
+                case false:
+                    return this.l(v);
+                default:
+                    return this.errorHandler(&apos;Either. Binding error&apos;);
+            }
+        }
+        catch (e) {
+            this.errorHandler(`Either.bind.switch - ${e}`);
         }
     }
     /**

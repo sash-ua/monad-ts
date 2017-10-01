@@ -17,19 +17,18 @@ var error_1 = require("./error");
 /**
  * Class Identity - wraps underlying value into the monadic value and compute results from a monadic value.
  * @extends {Monad}
- * @implements {Binding}
  */
 var Identity = /** @class */ (function (_super) {
     __extends(Identity, _super);
     /**
      * creates an instance of class Identity.
-     * @param {T} v - The initial state of app.
+     * @param {any} v - The initial state of app.
      * */
     function Identity(v) {
         var _this = _super.call(this) || this;
         /**
          * keeps underlying value of a monad.
-         * @type {T}
+         * @type {any}
          */
         _this.v = clone_1.clone(v);
         /**
@@ -41,18 +40,17 @@ var Identity = /** @class */ (function (_super) {
     }
     /**
      * chains the operations on a monadic value.
-     * @param {function(v: T) => Pr<U>} f - transformation function for the monad.
-     * @param {T} [v = this.v] underlying value for the monad.
+     * @param {MF<T, U>} f - transformation function for the monad.
+     * @param {any} [v = this.v]- underlying value for the monad, Can not be null or undefined.
      * @return {Pr<U> | Error}
      */
     Identity.prototype.bind = function (f, v) {
         if (v === void 0) { v = this.v; }
-        var b;
         return this.v && v
             ? equality_1.equality(this.v, v)
                 ? f(v)
-                : new Error('Identity. Underlying value of the monad have defined in the constructor!')
-            : v
+                : this.errorHandler('Identity.bind() - underlying value of the monad have defined in the constructor!')
+            : v || v === 0
                 ? f(v)
                 : f();
     };

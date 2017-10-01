@@ -41,8 +41,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/maybe.js~Maybe.html">Maybe</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/monad.js~Monad.html">Monad</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/state.js~State.html">State</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">interfaces</div><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/interfaces/binding.js~Binding.html">Binding</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/interfaces/m.js~M.html">M</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">interfaces</div><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/interfaces/m.js~M.html">M</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">services</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cast">cast</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-clone">clone</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-debounceTime">debounceTime</a></span></span></li>
@@ -57,22 +56,19 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/state.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { Monad } from &quot;./monad&quot;;
-import { Maybe } from &quot;./maybe&quot;;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { Maybe } from &quot;./maybe&quot;;
 import { ErrorM } from &quot;./error&quot;;
 import { clone } from &quot;./services/clone&quot;;
 import { equality } from &quot;./services/equality&quot;;
 /**
- * Class State - for application state manipulations.
- * @extends {Monad}
+ * Class State - it takes a state and returns an intermediate value and some new state value.
  */
-export class State extends Monad {
+export class State {
     /**
      * creates an instance of class State.
      * @param {Object} state - the initial state of app.
      */
     constructor(state) {
-        super();
         /**
          * keeps the state of application variables.
          * @type {T}
@@ -98,7 +94,7 @@ export class State extends Monad {
         const buffer = clone(this.state);
         this.state = this.err.bind((v) =&gt; equality(Object.getOwnPropertyNames(buffer), Object.getOwnPropertyNames(v))
             ? v
-            : new Error(&apos;State. After init we can not add / remove keys in state obj.&apos;), this.maybe.bind((v) =&gt; f(v), this.state));
+            : new Error(&apos;State.put() - after init we can not add / remove keys in state obj.&apos;), this.maybe.bind((v) =&gt; f(v), this.state));
     }
     /**
      * extracts the state of application variables.

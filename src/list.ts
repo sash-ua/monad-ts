@@ -1,15 +1,12 @@
-
 import {Monad} from "./monad";
-import {Binding} from './interfaces/binding';
 import {MF} from './types/mf';
 import {Pr} from './types/pr';
 
 /**
  * Class List - transform every element of array with given function "contemporaneously".
  * @extends {Monad}
- * @implements {Binding}
  */
-export class List<T> extends Monad<T>  implements Binding<T> {
+export class List<T> extends Monad<T> {
     /**
      *
      * @param {MF<T, U>} f - transformation function for a monad.
@@ -17,7 +14,7 @@ export class List<T> extends Monad<T>  implements Binding<T> {
      * @return {Pr<U> | Error} transformed by f() value v or error if input arg is not array.
      */
     bind<T, U>(f:  MF<T, U>, v: any): Pr<U> | Error{
-        return Array.isArray(v) ? this._disp(f, v): this.errorHandler('List. Input must be an array.');
+        return Array.isArray(v) ? this._disp(f, v): this.errorHandler('List.bind() - input must be an array.');
     }
     /**
      * @param {function(n: T) => U} f - transformation function for a monad.

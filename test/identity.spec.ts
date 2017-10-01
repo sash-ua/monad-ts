@@ -38,7 +38,7 @@ describe('Identity: ', ()=>{
     });
     it('9) should produce true', ()=>{
         const i = new Identity(3);
-        expect(i.bind((v:number)=>v, 5) instanceof Error).toBeTruthy();
+        expect(i.bind((v:number) => v, 5) instanceof Error).toBeTruthy();
     });
     it('10) should produce value', () => {
         const i = new Identity();
@@ -46,6 +46,34 @@ describe('Identity: ', ()=>{
             return 5;
         };
         expect(i.bind(f, null)).toEqual(5);
+    });
+    it('11) should produce value', () => {
+        const i = new Identity(0);
+        const f = (v: number) => {
+            return v;
+        };
+        expect(i.bind(f)).toEqual(0);
+    });
+    it('12) should produce value', () => {
+        const i = new Identity('');
+        const f = (v: number) => {
+            return v;
+        };
+        expect(i.bind(f)).toMatch('');
+    });
+    it('13) should produce value', () => {
+        const i = new Identity();
+        const f = (v: number) => {
+            return v;
+        };
+        expect(i.bind(f, 0)).toEqual(0);
+    });
+    it('14) should produce value', () => {
+        const i = new Identity();
+        const f = (v: number) => {
+            return v;
+        };
+        expect(i.bind(f, '')).toMatch('');
     });
 });
 

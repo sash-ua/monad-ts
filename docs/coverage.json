@@ -1,16 +1,11 @@
 {
   "coverage": "100%",
-  "expectCount": 52,
-  "actualCount": 52,
+  "expectCount": 51,
+  "actualCount": 51,
   "files": {
     "src/asyncFlow.js": {
       "expectCount": 6,
       "actualCount": 6,
-      "undocumentLines": []
-    },
-    "src/interfaces/binding.js": {
-      "expectCount": 2,
-      "actualCount": 2,
       "undocumentLines": []
     },
     "src/either.js": {
@@ -49,8 +44,8 @@
       "undocumentLines": []
     },
     "src/monad.js": {
-      "expectCount": 3,
-      "actualCount": 3,
+      "expectCount": 4,
+      "actualCount": 4,
       "undocumentLines": []
     },
     "src/state.js": {

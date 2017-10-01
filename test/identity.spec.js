@@ -47,5 +47,33 @@ describe('Identity: ', function () {
         };
         expect(i.bind(f, null)).toEqual(5);
     });
+    it('11) should produce value', function () {
+        var i = new identity_1.Identity(0);
+        var f = function (v) {
+            return v;
+        };
+        expect(i.bind(f)).toEqual(0);
+    });
+    it('12) should produce value', function () {
+        var i = new identity_1.Identity('');
+        var f = function (v) {
+            return v;
+        };
+        expect(i.bind(f)).toMatch('');
+    });
+    it('13) should produce value', function () {
+        var i = new identity_1.Identity();
+        var f = function (v) {
+            return v;
+        };
+        expect(i.bind(f, 0)).toEqual(0);
+    });
+    it('14) should produce value', function () {
+        var i = new identity_1.Identity();
+        var f = function (v) {
+            return v;
+        };
+        expect(i.bind(f, '')).toMatch('');
+    });
 });
 //Copyright (c) 2017 Alex Tranchenko. All rights reserved.

@@ -1,13 +1,11 @@
 import { Monad } from "./monad";
-import { Binding } from './interfaces/binding';
 import { MF } from './types/mf';
 import { Pr } from './types/pr';
 /**
  * Class List - transform every element of array with given function "contemporaneously".
  * @extends {Monad}
- * @implements {Binding}
  */
-export declare class List<T> extends Monad<T> implements Binding<T> {
+export declare class List<T> extends Monad<T> {
     /**
      *
      * @param {MF<T, U>} f - transformation function for a monad.

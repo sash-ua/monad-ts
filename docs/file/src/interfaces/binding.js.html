@@ -41,8 +41,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/maybe.js~Maybe.html">Maybe</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/monad.js~Monad.html">Monad</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/state.js~State.html">State</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">interfaces</div><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/interfaces/binding.js~Binding.html">Binding</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/interfaces/m.js~M.html">M</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">interfaces</div><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/interfaces/m.js~M.html">M</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">services</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cast">cast</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-clone">clone</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-debounceTime">debounceTime</a></span></span></li>
@@ -57,28 +56,31 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/interfaces/binding.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/** interface Binding&lt;T&gt;{
-    *
-    * bind&lt;T,U&gt;(f: MF&lt;T, U&gt; | D&lt;T&gt;, v: any): Pr&lt;U&gt; | Error | boolean;
-    *
-    * }
- * @interface
- * @name Binding - monads interface to bind transformation function and underlying value to the monad
- * {@link Maybe}, {@link ErrorM}, {@link Either}, {@link Identity}, {@link List}.
- * @noimport true
- **/
-export class Binding {
-    /**
-     * binds transformation function and underlying value to the monad.
-     * @param {MF&lt;T, U&gt; | D&lt;T&gt;} f - transformation function.
-     * @param v - underlying value.
-     * @return {Pr&lt;U&gt; | Error | boolean}
-     */
-    bind(f, v) {
-        return void 0;
-    }
-    ;
-}
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// import {MF} from &apos;../types/mf&apos;;
+// import {Pr} from &apos;../types/pr&apos;;
+// import {D} from &apos;../types/d&apos;;
+//
+// /** interface Binding&lt;T&gt;{
+//     *
+//     * bind&lt;T,U&gt;(f: MF&lt;T, U&gt; | D&lt;T&gt;, v: any): Pr&lt;U&gt; | Error | boolean;
+//     *
+//     * }
+//  * @interface
+//  * @name Binding - monads interface to bind transformation function and underlying value to the monad
+//  * {@link Maybe}, {@link ErrorM}, {@link Either}, {@link Identity}, {@link List}.
+//  * @noimport true
+//  **/
+// export class Binding&lt;T&gt; {
+//     /**
+//      * binds transformation function and underlying value to the monad.
+//      * @param {MF&lt;T, U&gt; | D&lt;T&gt;} f - transformation function.
+//      * @param v - underlying value.
+//      * @return {Pr&lt;U&gt; | Error | boolean}
+//      */
+//     bind&lt;T,U&gt;(f: MF&lt;T, U&gt; | D&lt;T&gt;, v: any): Pr&lt;U&gt; | Error | boolean{
+//         return void 0;
+//     };
+// }
 // Copyright (c) 2017 Alex Tranchenko. All rights reserved.
 </code></pre>
 

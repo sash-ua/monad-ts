@@ -38,13 +38,18 @@ var Either = /** @class */ (function (_super) {
      */
     Either.prototype.bind = function (f, v) {
         this.uVal = v;
-        switch (f(v)) {
-            case true:
-                return this.r(v);
-            case false:
-                return this.l(v);
-            default:
-                return this.errorHandler('Either. Binding error');
+        try {
+            switch (f(v)) {
+                case true:
+                    return this.r(v);
+                case false:
+                    return this.l(v);
+                default:
+                    return this.errorHandler('Either.bind() - binding error');
+            }
+        }
+        catch (e) {
+            this.errorHandler("Either.bind().switch - " + e);
         }
     };
     /**
@@ -53,7 +58,7 @@ var Either = /** @class */ (function (_super) {
      * @return {Pr<N>}
      */
     Either.prototype.left = function (v) {
-        return this.uVal ? equality_1.equality(this.uVal, v) ? this.l(v) : this.errorHandler('Either.left. v have been binded with bind method') : this.l(v);
+        return this.uVal ? equality_1.equality(this.uVal, v) ? this.l(v) : this.errorHandler('Either.left() - v have been binded with bind method') : this.l(v);
     };
     /**
      * extract result of right(v) computation.
@@ -61,7 +66,7 @@ var Either = /** @class */ (function (_super) {
      * @return {Pr<Z>}
      */
     Either.prototype.right = function (v) {
-        return this.uVal ? equality_1.equality(this.uVal, v) ? this.r(v) : this.errorHandler('Either.right. v have been binded with bind method') : this.r(v);
+        return this.uVal ? equality_1.equality(this.uVal, v) ? this.r(v) : this.errorHandler('Either.right() - v have been binded with bind method') : this.r(v);
     };
     return Either;
 }(monad_1.Monad));

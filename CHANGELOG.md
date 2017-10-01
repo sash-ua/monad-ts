@@ -1,3 +1,15 @@
+# 0.3.13 (2017-09-01)
+
+### Bug fixed
+
+**class Identity** If it get 0 as underlying value it execute transformation function without underlying value.
+
+### Changes
+
+**class Monad** converted to abstract.
+
+**interface Binding** removed.
+
 # 0.3.12 (2017-09-30)
 
 ### Changes

@@ -1,13 +1,11 @@
 import { Monad } from "./monad";
 import { Pr } from "./types/pr";
 import { MF } from "./types/mf";
-import { Binding } from './interfaces/binding';
 /**
  * Class ErrorM - return given value or produce Error if take Error or get Error after execution of f(v).
  * @extends {Monad}
- * @implements {Binding}
  */
-export declare class ErrorM<T> extends Monad<T> implements Binding<T> {
+export declare class ErrorM<T> extends Monad<T> {
     /**
      * chains the operations on a monadic values.
      * @param {function(v: T) => Pr<U>} f - transformation function for a monad.

@@ -79,7 +79,6 @@ describe('Service Clone: ', ()=>{
         expect(obj).not.toEqual(objC);
         expect(obj).not.toEqual(objC2);
         let z =clone(obj);
-        console.log(z);
         expect(z).toEqual(obj);
         expect(z).not.toEqual(objC);
         obj.foo = 2;
