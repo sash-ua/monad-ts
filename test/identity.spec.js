@@ -73,7 +73,21 @@ describe('Identity: ', function () {
         var f = function (v) {
             return v;
         };
-        expect(i.bind(f, '')).toMatch('');
+        expect(i.bind(f, '')).toEqual('');
+    });
+    it('15) should produce value', function () {
+        var i = new identity_1.Identity();
+        var f = function (v) {
+            return v;
+        };
+        expect(i.bind(f, null)).toEqual(null);
+    });
+    it('16) should produce value', function () {
+        var i = new identity_1.Identity(null);
+        var f = function (v) {
+            return v;
+        };
+        expect(i.bind(f)).toEqual(null);
     });
 });
 //Copyright (c) 2017 Alex Tranchenko. All rights reserved.

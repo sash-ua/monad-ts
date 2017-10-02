@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * decreasing the dimension of an array by n.
+ * Decreasing the dimension of an array by n.
+ * @method cast
  * @param {any} arr - input array.
  * @param {number} n - decreasing factor.
  * @return {Array<any>|T[]|Error}
@@ -14,6 +15,7 @@ function cast(arr, n) {
 }
 exports.cast = cast;
 /**
+ * @method _reduser
  * @param {Array<T>} arr - input array.
  * @param {number} n - decreasing factor.
  * @return {Array<any>}
@@ -27,6 +29,7 @@ function _reduser(arr, n) {
         : arr;
 }
 /**
+ * @method _fact
  * @param {Array<any>} arr - input array.
  * @param {number} n - decreasing factor.
  * @return {Array<any>}

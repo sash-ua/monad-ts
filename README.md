@@ -11,7 +11,7 @@ Typescript. Angular 2+ compatible
 
 [Example app 1](https://github.com/sash-ua/gen_drift_monad-ts_a4/).
 
-[Example app 2 with monad transformers](https://sash-ua.github.io/todos-next/).
+[Example app 2 with monad transformers](https://github.com/sash-ua/todos-next).
 
 ## Content
 * [Installation](#installation)
@@ -39,6 +39,12 @@ Typescript. Angular 2+ compatible
 * [equality](#equality)
 * [hash](#hash)
 * [wait](#wait)
+
+**Examples**
+* [Monad examples](https://github.com/sash-ua/monad-ts/tree/master/test)
+* [Monad transformer examples](https://github.com/sash-ua/todos-next/blob/master/src/app/services/monad.service/monad.service.ts)
+* [App 1](https://github.com/sash-ua/gen_drift_monad-ts_a4)
+* [App 2 with Monad transformers](https://github.com/sash-ua/todos-next)
 
 ## Installation
 
@@ -200,12 +206,17 @@ z = cast(list.bind((v: number) =>list.bind((v: number) => [-v, v], [v-1, v, v+1]
 
 #### State
 
-	The State monad interact with local and global state variables to transform them. After creating an instance of State
-	 monad we can not add new keys to the state object.
- 
- It take object.
+The State monad interact with local and global state variables to transform them. After initializing an instance of State monad we can not
+add new keys to the state object.
+It take object usually.
 
-Examples:
+The instance of the State monad can be initialized in two ways.
+
+1. While the instance create - in constructor (Ex.1).
+
+2. After instance created - with `bind()` method (Ex.2).
+
+Example 1:
 ```
 type R = { data: number; children: any[]; arr: number[]; };
     const initState: R = {
@@ -225,7 +236,27 @@ type R = { data: number; children: any[]; arr: number[]; };
             });
     console.log(st.get()); // { data: 10, children: [ Object({ data: 2, parent: 'null' }) ], arr: [ 2.25, 3.25, 4.25 ] }
 ```
-
+Example 2:
+```
+type R = { data: number; children: any[]; arr: number[]; };
+    const initState: R = {
+        data: 1,
+        children: [{
+            data: 2,
+            parent: null
+        }],
+        arr:[1,2,3]
+    };
+    const st = new State();
+    console.log(st.get()); // State -> undefined
+    st.bind(x => x, initState);
+    st.put((v: R) => {
+                v.data = 10;
+                v.arr = list.bind((x:number) => x+f, v.arr);
+                return v;
+            });
+    console.log(st.get()); // State -> { data: 10, children: [ Object({ data: 2, parent: null }) ], arr: [ 2.25, 3.25, 4.25 ] }
+```
 [UP](#monad-ts)
 
 ## Additional utilities (class and functions)

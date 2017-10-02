@@ -57,7 +57,8 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/services/clone.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
- * the service to clone complex objects, including Map.
+ * The service to clone complex objects, including Map.
+ * @method clone
  * @param {T} obj - Object or Primitives to clone.
  * @return {T}
  */
@@ -92,6 +93,7 @@ export function clone(obj, map = new Map()) {
     }
 }
 /**
+ * @method _toTail
  * @param {T} obj - Object or Primitives to clone.
  * @param {any} map
  * @return {T}

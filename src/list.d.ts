@@ -7,13 +7,15 @@ import { Pr } from './types/pr';
  */
 export declare class List<T> extends Monad<T> {
     /**
-     *
+     * Transform every element of array with given function
+     * @method bind
      * @param {MF<T, U>} f - transformation function for a monad.
      * @param v - underlying value for a monad.
      * @return {Pr<U> | Error} transformed by f() value v or error if input arg is not array.
      */
     bind<T, U>(f: MF<T, U>, v: any): Pr<U> | Error;
     /**
+     * @method _disp
      * @param {function(n: T) => U} f - transformation function for a monad.
      * @param {any} v - underlying value for a monad.
      * @return {Array<U>} transformed by f() value v.

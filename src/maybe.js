@@ -21,7 +21,8 @@ var Maybe = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
-     * chains the operations on a monadic values.
+     * Chains the operations on a monadic values.
+     * @method bind
      * @param {MF<T, U>} f - transformation function for a monad.
      * @param {T} v - underlying value for a monad.
      * @return {Pr<U>} transformed by f() value v.
@@ -36,7 +37,8 @@ var Maybe = /** @class */ (function (_super) {
         }
     };
     /**
-     * return nothing (null).
+     * Return nothing (null).
+     * @method nothing
      * @return {null}
      */
     Maybe.prototype.nothing = function () {

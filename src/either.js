@@ -15,12 +15,11 @@ var equality_1 = require("./services/equality");
 /**
  * Class Either - represents computation with two possibilities.
  * @extends {Monad}
- * @implements {Binding}
  */
 var Either = /** @class */ (function (_super) {
     __extends(Either, _super);
     /**
-     * creates an instance of class Either.
+     * Creates an instance of class Either.
      * @param {function(v: any) => any} r - right function.
      * @param {function(v: any) => any} l - left function.
      */
@@ -31,7 +30,8 @@ var Either = /** @class */ (function (_super) {
         return _this;
     }
     /**
-     * binds controller function and underlying value to the monad.
+     * Binds controller function and underlying value to the monad.
+     * @method bind
      * @param {D<T>} f - controller function, after execution f(v) produce true (execute right func-n) or false (execute left func-n).
      * @param {any} v - underlying value for the monad.
      * @return {boolean | Pr<any> | Error}
@@ -53,17 +53,19 @@ var Either = /** @class */ (function (_super) {
         }
     };
     /**
-     * extract result of left(v) computation.
+     * Extract result of left(v) computation.
+     * @method left
      * @param {T} v - underlying value.
-     * @return {Pr<N>}
+     * @return {Pr}
      */
     Either.prototype.left = function (v) {
         return this.uVal ? equality_1.equality(this.uVal, v) ? this.l(v) : this.errorHandler('Either.left() - v have been binded with bind method') : this.l(v);
     };
     /**
-     * extract result of right(v) computation.
+     * Extract result of right(v) computation.
+     * @method right
      * @param {T} v - underlying value.
-     * @return {Pr<Z>}
+     * @return {Pr}
      */
     Either.prototype.right = function (v) {
         return this.uVal ? equality_1.equality(this.uVal, v) ? this.r(v) : this.errorHandler('Either.right() - v have been binded with bind method') : this.r(v);

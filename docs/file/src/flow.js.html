@@ -66,7 +66,7 @@ import { ErrorM } from &quot;./error&quot;;
  */
 export class Flow extends Monad {
     /**
-     * create an instance of class AsyncFlow.
+     * Create an instance of class AsyncFlow.
      * @param {any} initV - initial value of new flow (pipe).
      * @param {boolean} [encapsulate = true] encapsulate - flag, if true then the init value will be cloned.
      */
@@ -89,9 +89,10 @@ export class Flow extends Monad {
         this.err = new ErrorM();
     }
     /**
-     * chains the operations on a monadic values.
+     * Chains the operations on a monadic values.
+     * @method bind
      * @param {function(v: T) =&gt; Pr&lt;U&gt;} f - transformation function for a main flow value.
-     * @param {any} [v= this.flow] - underlying value for a monad.
+     * @param {any} [v = this.flow] - underlying value for a monad.
      * @return {Flow&lt;T&gt;} transformed by f() value v or throw Error or null.
      */
     bind(f, v = this.flow) {
@@ -99,7 +100,8 @@ export class Flow extends Monad {
         return this;
     }
     /**
-     * creates branch from a flow (pipe).
+     * Creates branch from a flow (pipe).
+     * @method let
      * @param {function(v: T) =&gt; Pr&lt;U&gt;} f - transformation function for a main flow value.
      * @return {Flow&lt;T&gt;}
      */
@@ -108,7 +110,8 @@ export class Flow extends Monad {
         return this;
     }
     /**
-     * extract value from a flow (pipe).
+     * Extract value from a flow (pipe).
+     * @method subscribe
      * @return {T}
      */
     subscribe() {

@@ -1,6 +1,7 @@
 
 /**
- * decreasing the dimension of an array by n.
+ * Decreasing the dimension of an array by n.
+ * @method cast
  * @param {any} arr - input array.
  * @param {number} n - decreasing factor.
  * @return {Array<any>|T[]|Error}
@@ -12,6 +13,7 @@ export function cast<T, U>(arr: any, n: number = 0): Array<T> | Array<U> | Error
 }
 
 /**
+ * @method _reduser
  * @param {Array<T>} arr - input array.
  * @param {number} n - decreasing factor.
  * @return {Array<any>}
@@ -26,6 +28,7 @@ function _reduser<T>(arr: T[], n: number): Array<any>{
 }
 
 /**
+ * @method _fact
  * @param {Array<any>} arr - input array.
  * @param {number} n - decreasing factor.
  * @return {Array<any>}

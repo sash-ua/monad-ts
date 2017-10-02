@@ -57,6 +57,7 @@
  *      new Test(true) and new Test2(true);
  *      new Test(true) and new Test(false);
  *
+ * @method equality
  * @param {any} x - argument 1, can include null, NaN etc.
  * @param {any} y - argument 2, can include null, NaN etc.
  * @returns {boolean}
@@ -98,7 +99,8 @@ function equality(x, y) {
 }
 exports.equality = equality;
 /**
- * iterate array controller.
+ * Tterate array controller.
+ * @method _arrayIterator
  * @param {Array<any>} x
  * @param {Array<any>} y
  * @return {boolean}

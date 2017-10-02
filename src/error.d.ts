@@ -7,7 +7,8 @@ import { MF } from "./types/mf";
  */
 export declare class ErrorM<T> extends Monad<T> {
     /**
-     * chains the operations on a monadic values.
+     * Chains the operations on a monadic values.
+     * @method bind
      * @param {function(v: T) => Pr<U>} f - transformation function for a monad.
      * @param {any} v - underlying value for a monad.
      * @return {Pr<U>  | Error} transformed by f() value v or Error.

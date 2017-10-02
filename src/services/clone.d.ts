@@ -1,5 +1,6 @@
 /**
- * the service to clone complex objects, including Map.
+ * The service to clone complex objects, including Map.
+ * @method clone
  * @param {T} obj - Object or Primitives to clone.
  * @return {T}
  */

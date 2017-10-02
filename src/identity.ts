@@ -16,31 +16,32 @@ export class Identity<T> extends Monad<T> {
      */
     protected v: any;
     /**
-     * @type {ErrorM<T>}
+     * @type {ErrorM}
      * @protected
      */
     protected err: ErrorM<T>;
     /**
-     * creates an instance of class Identity.
-     * @param {any} v - The initial state of app.
+     * Creates an instance of class Identity.
+     * @param {any} [v] - The initial state of app.
      * */
     constructor(v?: any){
         super();
         /**
-         * keeps underlying value of a monad.
+         * Keeps underlying value of a monad.
          * @type {any}
          */
         this.v = clone(v);
         /**
-         * the instance of ErrorM.
+         * The instance of ErrorM.
          * @type {ErrorM}
          */
         this.err = new ErrorM();
     }
     /**
-     * chains the operations on a monadic value.
+     * Chains the operations on a monadic value.
+     * @method bind
      * @param {MF<T, U>} f - transformation function for the monad.
-     * @param {any} [v = this.v]- underlying value for the monad, Can not be null or undefined.
+     * @param {any} [v = this.v]- underlying value for the monad, it can be null.
      * @return {Pr<U> | Error}
      */
     bind<T, U>(f: MF<T, U>, v: any = this.v): Pr<U> | Error{
@@ -48,7 +49,7 @@ export class Identity<T> extends Monad<T> {
             ? equality(this.v, v)
                 ? f(v)
                 : this.errorHandler('Identity.bind() - underlying value of the monad have defined in the constructor!')
-            : v || v === 0
+            : v || v === 0 || v === '' || v === null
                 ? f(v)
                 : f();
     }

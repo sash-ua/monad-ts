@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * the service to clone complex objects, including Map.
+ * The service to clone complex objects, including Map.
+ * @method clone
  * @param {T} obj - Object or Primitives to clone.
  * @return {T}
  */
@@ -44,6 +45,7 @@ function clone(obj, map) {
 }
 exports.clone = clone;
 /**
+ * @method _toTail
  * @param {T} obj - Object or Primitives to clone.
  * @param {any} map
  * @return {T}

@@ -6,6 +6,7 @@ import {Monad} from "./monad";
 
 /**
  * Class AsyncFlow - for composing monads in an async flow (pipe), based on Promise.
+ * @extends {Monad}
  */
 export class AsyncFlow<T> extends Monad<T> {
     /**
@@ -14,18 +15,18 @@ export class AsyncFlow<T> extends Monad<T> {
      */
     protected flow: any;
     /**
-     * @type {Maybe<T>}
+     * @type {Maybe}
      * @protected
      */
     protected maybe: Maybe<T>;
     /**
-     * @type {ErrorM<T>}
+     * @type {ErrorM}
      * @protected
      */
     protected err: ErrorM<T>;
 
     /**
-     * creates an instance of class AsyncFlow.
+     * Creates an instance of class AsyncFlow.
      * @param {any} [initV = 0] initV - initial value of new flow (pipe).
      * @param {boolean} [encapsulate = true] encapsulate - flag, if true then the init value will be cloned.
      */
@@ -35,24 +36,25 @@ export class AsyncFlow<T> extends Monad<T> {
     ){
         super();
         /**
-         * keep initial flow (pipe) value.
+         * Keep initial flow (pipe) value.
          * @type {any}
          */
         this.flow = encapsulate ? clone(initV) : initV;
         /**
-         * the instance of Maybe.
+         * The instance of Maybe.
          * @type {Maybe}
          */
         this.maybe = new Maybe();
         /**
-         * the instance of ErrorM.
+         * The instance of ErrorM.
          * @type {ErrorM}
          */
         this.err = new ErrorM();
     }
 
     /**
-     * binds initial value to the transformation function
+     * Binds initial value to the transformation function.
+     * @method bind
      * @param {function(v: T) => Pr<U>} f - transformation function.
      * @return {Promise<T>}
      */

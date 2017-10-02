@@ -636,12 +636,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/monad.js~monad#bind",
-    "class/src/monad.js~Monad.html#instance-method-bind",
-    "src/monad.js~Monad#bind",
-    "method"
-  ],
-  [
     "src/monad.js~monad#errorhandler",
     "class/src/monad.js~Monad.html#instance-method-errorHandler",
     "src/monad.js~Monad#errorHandler",
@@ -694,6 +688,12 @@ window.esdocSearchIndex = [
     "file/src/state.js.html",
     "src/state.js",
     "file"
+  ],
+  [
+    "src/state.js~state#bind",
+    "class/src/state.js~State.html#instance-method-bind",
+    "src/state.js~State#bind",
+    "method"
   ],
   [
     "src/state.js~state#constructor",

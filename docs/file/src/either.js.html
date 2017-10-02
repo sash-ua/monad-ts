@@ -61,11 +61,10 @@ import { equality } from &quot;./services/equality&quot;;
 /**
  * Class Either - represents computation with two possibilities.
  * @extends {Monad}
- * @implements {Binding}
  */
 export class Either extends Monad {
     /**
-     * creates an instance of class Either.
+     * Creates an instance of class Either.
      * @param {function(v: any) =&gt; any} r - right function.
      * @param {function(v: any) =&gt; any} l - left function.
      */
@@ -75,7 +74,8 @@ export class Either extends Monad {
         this.l = l;
     }
     /**
-     * binds controller function and underlying value to the monad.
+     * Binds controller function and underlying value to the monad.
+     * @method bind
      * @param {D&lt;T&gt;} f - controller function, after execution f(v) produce true (execute right func-n) or false (execute left func-n).
      * @param {any} v - underlying value for the monad.
      * @return {boolean | Pr&lt;any&gt; | Error}
@@ -89,28 +89,30 @@ export class Either extends Monad {
                 case false:
                     return this.l(v);
                 default:
-                    return this.errorHandler(&apos;Either. Binding error&apos;);
+                    return this.errorHandler(&apos;Either.bind() - binding error&apos;);
             }
         }
         catch (e) {
-            this.errorHandler(`Either.bind.switch - ${e}`);
+            this.errorHandler(`Either.bind().switch - ${e}`);
         }
     }
     /**
-     * extract result of left(v) computation.
+     * Extract result of left(v) computation.
+     * @method left
      * @param {T} v - underlying value.
-     * @return {Pr&lt;N&gt;}
+     * @return {Pr}
      */
     left(v) {
-        return this.uVal ? equality(this.uVal, v) ? this.l(v) : this.errorHandler(&apos;Either.left. v have been binded with bind method&apos;) : this.l(v);
+        return this.uVal ? equality(this.uVal, v) ? this.l(v) : this.errorHandler(&apos;Either.left() - v have been binded with bind method&apos;) : this.l(v);
     }
     /**
-     * extract result of right(v) computation.
+     * Extract result of right(v) computation.
+     * @method right
      * @param {T} v - underlying value.
-     * @return {Pr&lt;Z&gt;}
+     * @return {Pr}
      */
     right(v) {
-        return this.uVal ? equality(this.uVal, v) ? this.r(v) : this.errorHandler(&apos;Either.right. v have been binded with bind method&apos;) : this.r(v);
+        return this.uVal ? equality(this.uVal, v) ? this.r(v) : this.errorHandler(&apos;Either.right() - v have been binded with bind method&apos;) : this.r(v);
     }
 }
 //Copyright (c) 2017 Alex Tranchenko. All rights reserved. 

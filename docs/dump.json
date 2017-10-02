@@ -3,7 +3,7 @@
     "__docId__": 0,
     "kind": "file",
     "name": "src/asyncFlow.js",
-    "content": "import { Maybe } from \"./maybe\";\r\nimport { ErrorM } from \"./error\";\r\nimport { clone } from \"./services/clone\";\r\nimport { Monad } from \"./monad\";\r\n/**\r\n * Class AsyncFlow - for composing monads in an async flow (pipe), based on Promise.\r\n */\r\nexport class AsyncFlow extends Monad {\r\n    /**\r\n     * creates an instance of class AsyncFlow.\r\n     * @param {any} [initV = 0] initV - initial value of new flow (pipe).\r\n     * @param {boolean} [encapsulate = true] encapsulate - flag, if true then the init value will be cloned.\r\n     */\r\n    constructor(initV = 0, encapsulate = true) {\r\n        super();\r\n        /**\r\n         * keep initial flow (pipe) value.\r\n         * @type {any}\r\n         */\r\n        this.flow = encapsulate ? clone(initV) : initV;\r\n        /**\r\n         * the instance of Maybe.\r\n         * @type {Maybe}\r\n         */\r\n        this.maybe = new Maybe();\r\n        /**\r\n         * the instance of ErrorM.\r\n         * @type {ErrorM}\r\n         */\r\n        this.err = new ErrorM();\r\n    }\r\n    /**\r\n     * binds initial value to the transformation function\r\n     * @param {function(v: T) => Pr<U>} f - transformation function.\r\n     * @return {Promise<T>}\r\n     */\r\n    bind(f) {\r\n        return new Promise((resolve) => {\r\n            resolve(this.err.bind(v => this.maybe.bind((v) => f(v), v), this.flow));\r\n        });\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
+    "content": "import { Maybe } from \"./maybe\";\r\nimport { ErrorM } from \"./error\";\r\nimport { clone } from \"./services/clone\";\r\nimport { Monad } from \"./monad\";\r\n/**\r\n * Class AsyncFlow - for composing monads in an async flow (pipe), based on Promise.\r\n * @extends {Monad}\r\n */\r\nexport class AsyncFlow extends Monad {\r\n    /**\r\n     * Creates an instance of class AsyncFlow.\r\n     * @param {any} [initV = 0] initV - initial value of new flow (pipe).\r\n     * @param {boolean} [encapsulate = true] encapsulate - flag, if true then the init value will be cloned.\r\n     */\r\n    constructor(initV = 0, encapsulate = true) {\r\n        super();\r\n        /**\r\n         * Keep initial flow (pipe) value.\r\n         * @type {any}\r\n         */\r\n        this.flow = encapsulate ? clone(initV) : initV;\r\n        /**\r\n         * The instance of Maybe.\r\n         * @type {Maybe}\r\n         */\r\n        this.maybe = new Maybe();\r\n        /**\r\n         * The instance of ErrorM.\r\n         * @type {ErrorM}\r\n         */\r\n        this.err = new ErrorM();\r\n    }\r\n    /**\r\n     * Binds initial value to the transformation function.\r\n     * @method bind\r\n     * @param {function(v: T) => Pr<U>} f - transformation function.\r\n     * @return {Promise<T>}\r\n     */\r\n    bind(f) {\r\n        return new Promise((resolve) => {\r\n            resolve(this.err.bind(v => this.maybe.bind((v) => f(v), v), this.flow));\r\n        });\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
     "static": true,
     "longname": "src/asyncFlow.js",
     "access": null,
@@ -22,10 +22,10 @@
     "importPath": "monad-ts/src/asyncFlow.js",
     "importStyle": "{AsyncFlow}",
     "description": "Class AsyncFlow - for composing monads in an async flow (pipe), based on Promise.",
-    "lineNumber": 8,
+    "lineNumber": 9,
     "interface": false,
     "extends": [
-      "src/monad.js~Monad"
+      "Monad"
     ]
   },
   {
@@ -38,8 +38,8 @@
     "static": false,
     "longname": "src/asyncFlow.js~AsyncFlow#constructor",
     "access": null,
-    "description": "creates an instance of class AsyncFlow.",
-    "lineNumber": 14,
+    "description": "Creates an instance of class AsyncFlow.",
+    "lineNumber": 15,
     "params": [
       {
         "nullable": null,
@@ -75,8 +75,8 @@
     "static": false,
     "longname": "src/asyncFlow.js~AsyncFlow#flow",
     "access": null,
-    "description": "keep initial flow (pipe) value.",
-    "lineNumber": 20,
+    "description": "Keep initial flow (pipe) value.",
+    "lineNumber": 21,
     "type": {
       "nullable": null,
       "types": [
@@ -94,8 +94,8 @@
     "static": false,
     "longname": "src/asyncFlow.js~AsyncFlow#maybe",
     "access": null,
-    "description": "the instance of Maybe.",
-    "lineNumber": 25,
+    "description": "The instance of Maybe.",
+    "lineNumber": 26,
     "type": {
       "nullable": null,
       "types": [
@@ -113,8 +113,8 @@
     "static": false,
     "longname": "src/asyncFlow.js~AsyncFlow#err",
     "access": null,
-    "description": "the instance of ErrorM.",
-    "lineNumber": 30,
+    "description": "The instance of ErrorM.",
+    "lineNumber": 31,
     "type": {
       "nullable": null,
       "types": [
@@ -134,8 +134,14 @@
     "static": false,
     "longname": "src/asyncFlow.js~AsyncFlow#bind",
     "access": null,
-    "description": "binds initial value to the transformation function",
-    "lineNumber": 37,
+    "description": "Binds initial value to the transformation function.",
+    "lineNumber": 39,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "bind"
+      }
+    ],
     "params": [
       {
         "nullable": null,
@@ -161,7 +167,7 @@
     "__docId__": 7,
     "kind": "file",
     "name": "src/either.js",
-    "content": "import { Monad } from \"./monad\";\r\nimport { equality } from \"./services/equality\";\r\n/**\r\n * Class Either - represents computation with two possibilities.\r\n * @extends {Monad}\r\n * @implements {Binding}\r\n */\r\nexport class Either extends Monad {\r\n    /**\r\n     * creates an instance of class Either.\r\n     * @param {function(v: any) => any} r - right function.\r\n     * @param {function(v: any) => any} l - left function.\r\n     */\r\n    constructor(r, l) {\r\n        super();\r\n        this.r = r;\r\n        this.l = l;\r\n    }\r\n    /**\r\n     * binds controller function and underlying value to the monad.\r\n     * @param {D<T>} f - controller function, after execution f(v) produce true (execute right func-n) or false (execute left func-n).\r\n     * @param {any} v - underlying value for the monad.\r\n     * @return {boolean | Pr<any> | Error}\r\n     */\r\n    bind(f, v) {\r\n        this.uVal = v;\r\n        try {\r\n            switch (f(v)) {\r\n                case true:\r\n                    return this.r(v);\r\n                case false:\r\n                    return this.l(v);\r\n                default:\r\n                    return this.errorHandler('Either. Binding error');\r\n            }\r\n        }\r\n        catch (e) {\r\n            this.errorHandler(`Either.bind.switch - ${e}`);\r\n        }\r\n    }\r\n    /**\r\n     * extract result of left(v) computation.\r\n     * @param {T} v - underlying value.\r\n     * @return {Pr<N>}\r\n     */\r\n    left(v) {\r\n        return this.uVal ? equality(this.uVal, v) ? this.l(v) : this.errorHandler('Either.left. v have been binded with bind method') : this.l(v);\r\n    }\r\n    /**\r\n     * extract result of right(v) computation.\r\n     * @param {T} v - underlying value.\r\n     * @return {Pr<Z>}\r\n     */\r\n    right(v) {\r\n        return this.uVal ? equality(this.uVal, v) ? this.r(v) : this.errorHandler('Either.right. v have been binded with bind method') : this.r(v);\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
+    "content": "import { Monad } from \"./monad\";\r\nimport { equality } from \"./services/equality\";\r\n/**\r\n * Class Either - represents computation with two possibilities.\r\n * @extends {Monad}\r\n */\r\nexport class Either extends Monad {\r\n    /**\r\n     * Creates an instance of class Either.\r\n     * @param {function(v: any) => any} r - right function.\r\n     * @param {function(v: any) => any} l - left function.\r\n     */\r\n    constructor(r, l) {\r\n        super();\r\n        this.r = r;\r\n        this.l = l;\r\n    }\r\n    /**\r\n     * Binds controller function and underlying value to the monad.\r\n     * @method bind\r\n     * @param {D<T>} f - controller function, after execution f(v) produce true (execute right func-n) or false (execute left func-n).\r\n     * @param {any} v - underlying value for the monad.\r\n     * @return {boolean | Pr<any> | Error}\r\n     */\r\n    bind(f, v) {\r\n        this.uVal = v;\r\n        try {\r\n            switch (f(v)) {\r\n                case true:\r\n                    return this.r(v);\r\n                case false:\r\n                    return this.l(v);\r\n                default:\r\n                    return this.errorHandler('Either.bind() - binding error');\r\n            }\r\n        }\r\n        catch (e) {\r\n            this.errorHandler(`Either.bind().switch - ${e}`);\r\n        }\r\n    }\r\n    /**\r\n     * Extract result of left(v) computation.\r\n     * @method left\r\n     * @param {T} v - underlying value.\r\n     * @return {Pr}\r\n     */\r\n    left(v) {\r\n        return this.uVal ? equality(this.uVal, v) ? this.l(v) : this.errorHandler('Either.left() - v have been binded with bind method') : this.l(v);\r\n    }\r\n    /**\r\n     * Extract result of right(v) computation.\r\n     * @method right\r\n     * @param {T} v - underlying value.\r\n     * @return {Pr}\r\n     */\r\n    right(v) {\r\n        return this.uVal ? equality(this.uVal, v) ? this.r(v) : this.errorHandler('Either.right() - v have been binded with bind method') : this.r(v);\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
     "static": true,
     "longname": "src/either.js",
     "access": null,
@@ -180,13 +186,10 @@
     "importPath": "monad-ts/src/either.js",
     "importStyle": "{Either}",
     "description": "Class Either - represents computation with two possibilities.",
-    "lineNumber": 8,
+    "lineNumber": 7,
     "interface": false,
     "extends": [
       "Monad"
-    ],
-    "implements": [
-      "Binding"
     ]
   },
   {
@@ -199,8 +202,8 @@
     "static": false,
     "longname": "src/either.js~Either#constructor",
     "access": null,
-    "description": "creates an instance of class Either.",
-    "lineNumber": 14,
+    "description": "Creates an instance of class Either.",
+    "lineNumber": 13,
     "params": [
       {
         "nullable": null,
@@ -233,7 +236,7 @@
     "longname": "src/either.js~Either#r",
     "access": null,
     "description": null,
-    "lineNumber": 16,
+    "lineNumber": 15,
     "undocument": true,
     "unknown": [
       {
@@ -256,7 +259,7 @@
     "longname": "src/either.js~Either#l",
     "access": null,
     "description": null,
-    "lineNumber": 17,
+    "lineNumber": 16,
     "undocument": true,
     "unknown": [
       {
@@ -280,8 +283,14 @@
     "static": false,
     "longname": "src/either.js~Either#bind",
     "access": null,
-    "description": "binds controller function and underlying value to the monad.",
+    "description": "Binds controller function and underlying value to the monad.",
     "lineNumber": 25,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "bind"
+      }
+    ],
     "params": [
       {
         "nullable": null,
@@ -348,8 +357,14 @@
     "static": false,
     "longname": "src/either.js~Either#left",
     "access": null,
-    "description": "extract result of left(v) computation.",
-    "lineNumber": 46,
+    "description": "Extract result of left(v) computation.",
+    "lineNumber": 47,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "left"
+      }
+    ],
     "params": [
       {
         "nullable": null,
@@ -365,7 +380,7 @@
     "return": {
       "nullable": null,
       "types": [
-        "Pr<N>"
+        "Pr"
       ],
       "spread": false,
       "description": ""
@@ -381,8 +396,14 @@
     "static": false,
     "longname": "src/either.js~Either#right",
     "access": null,
-    "description": "extract result of right(v) computation.",
-    "lineNumber": 54,
+    "description": "Extract result of right(v) computation.",
+    "lineNumber": 56,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "right"
+      }
+    ],
     "params": [
       {
         "nullable": null,
@@ -398,7 +419,7 @@
     "return": {
       "nullable": null,
       "types": [
-        "Pr<Z>"
+        "Pr"
       ],
       "spread": false,
       "description": ""
@@ -408,7 +429,7 @@
     "__docId__": 16,
     "kind": "file",
     "name": "src/error.js",
-    "content": "import { Monad } from \"./monad\";\r\n/**\r\n * Class ErrorM - return given value or produce Error if take Error or get Error after execution of f(v).\r\n * @extends {Monad}\r\n */\r\nexport class ErrorM extends Monad {\r\n    /**\r\n     * chains the operations on a monadic values.\r\n     * @param {function(v: T) => Pr<U>} f - transformation function for a monad.\r\n     * @param {any} v - underlying value for a monad.\r\n     * @return {Pr<U>  | Error} transformed by f() value v or Error.\r\n     */\r\n    bind(f, v) {\r\n        if (v !== v || v === Infinity || v === -Infinity || v instanceof Error) {\r\n            return this.errorHandler(v);\r\n        }\r\n        else {\r\n            const vL = this.just(f, v);\r\n            return (vL !== vL || vL === Infinity || vL === -Infinity || vL instanceof Error) ? this.errorHandler(vL) : vL;\r\n        }\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
+    "content": "import { Monad } from \"./monad\";\r\n/**\r\n * Class ErrorM - return given value or produce Error if take Error or get Error after execution of f(v).\r\n * @extends {Monad}\r\n */\r\nexport class ErrorM extends Monad {\r\n    /**\r\n     * Chains the operations on a monadic values.\r\n     * @method bind\r\n     * @param {function(v: T) => Pr<U>} f - transformation function for a monad.\r\n     * @param {any} v - underlying value for a monad.\r\n     * @return {Pr<U>  | Error} transformed by f() value v or Error.\r\n     */\r\n    bind(f, v) {\r\n        if (v !== v || v === Infinity || v === -Infinity || v instanceof Error) {\r\n            return this.errorHandler(v);\r\n        }\r\n        else {\r\n            const vL = this.just(f, v);\r\n            return (vL !== vL || vL === Infinity || vL === -Infinity || vL instanceof Error) ? this.errorHandler(vL) : vL;\r\n        }\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
     "static": true,
     "longname": "src/error.js",
     "access": null,
@@ -443,8 +464,14 @@
     "static": false,
     "longname": "src/error.js~ErrorM#bind",
     "access": null,
-    "description": "chains the operations on a monadic values.",
-    "lineNumber": 13,
+    "description": "Chains the operations on a monadic values.",
+    "lineNumber": 14,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "bind"
+      }
+    ],
     "params": [
       {
         "nullable": null,
@@ -481,7 +508,7 @@
     "__docId__": 19,
     "kind": "file",
     "name": "src/flow.js",
-    "content": "import { Monad } from \"./monad\";\r\nimport { Maybe } from \"./maybe\";\r\nimport { clone } from \"./services/clone\";\r\nimport { ErrorM } from \"./error\";\r\n/**\r\n * Class Flow - for composing monads in a flow (pipe).\r\n * @extends {Monad}\r\n */\r\nexport class Flow extends Monad {\r\n    /**\r\n     * create an instance of class AsyncFlow.\r\n     * @param {any} initV - initial value of new flow (pipe).\r\n     * @param {boolean} [encapsulate = true] encapsulate - flag, if true then the init value will be cloned.\r\n     */\r\n    constructor(initV, encapsulate = true) {\r\n        super();\r\n        /**\r\n         * keep initial flow (pipe) value.\r\n         * @type {any}\r\n         */\r\n        this.flow = encapsulate ? clone(initV) : initV;\r\n        /**\r\n         * the instance of Maybe.\r\n         * @type {Maybe}\r\n         */\r\n        this.maybe = new Maybe();\r\n        /**\r\n         * the instance of ErrorM.\r\n         * @type {ErrorM}\r\n         */\r\n        this.err = new ErrorM();\r\n    }\r\n    /**\r\n     * chains the operations on a monadic values.\r\n     * @param {function(v: T) => Pr<U>} f - transformation function for a main flow value.\r\n     * @param {any} [v= this.flow] - underlying value for a monad.\r\n     * @return {Flow<T>} transformed by f() value v or throw Error or null.\r\n     */\r\n    bind(f, v = this.flow) {\r\n        this.flow = this.err.bind(v => this.maybe.bind((v) => f(v), v), v);\r\n        return this;\r\n    }\r\n    /**\r\n     * creates branch from a flow (pipe).\r\n     * @param {function(v: T) => Pr<U>} f - transformation function for a main flow value.\r\n     * @return {Flow<T>}\r\n     */\r\n    let(f) {\r\n        f(clone(this.flow));\r\n        return this;\r\n    }\r\n    /**\r\n     * extract value from a flow (pipe).\r\n     * @return {T}\r\n     */\r\n    subscribe() {\r\n        return this.flow;\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
+    "content": "import { Monad } from \"./monad\";\r\nimport { Maybe } from \"./maybe\";\r\nimport { clone } from \"./services/clone\";\r\nimport { ErrorM } from \"./error\";\r\n/**\r\n * Class Flow - for composing monads in a flow (pipe).\r\n * @extends {Monad}\r\n */\r\nexport class Flow extends Monad {\r\n    /**\r\n     * Create an instance of class AsyncFlow.\r\n     * @param {any} initV - initial value of new flow (pipe).\r\n     * @param {boolean} [encapsulate = true] encapsulate - flag, if true then the init value will be cloned.\r\n     */\r\n    constructor(initV, encapsulate = true) {\r\n        super();\r\n        /**\r\n         * keep initial flow (pipe) value.\r\n         * @type {any}\r\n         */\r\n        this.flow = encapsulate ? clone(initV) : initV;\r\n        /**\r\n         * the instance of Maybe.\r\n         * @type {Maybe}\r\n         */\r\n        this.maybe = new Maybe();\r\n        /**\r\n         * the instance of ErrorM.\r\n         * @type {ErrorM}\r\n         */\r\n        this.err = new ErrorM();\r\n    }\r\n    /**\r\n     * Chains the operations on a monadic values.\r\n     * @method bind\r\n     * @param {function(v: T) => Pr<U>} f - transformation function for a main flow value.\r\n     * @param {any} [v = this.flow] - underlying value for a monad.\r\n     * @return {Flow<T>} transformed by f() value v or throw Error or null.\r\n     */\r\n    bind(f, v = this.flow) {\r\n        this.flow = this.err.bind(v => this.maybe.bind((v) => f(v), v), v);\r\n        return this;\r\n    }\r\n    /**\r\n     * Creates branch from a flow (pipe).\r\n     * @method let\r\n     * @param {function(v: T) => Pr<U>} f - transformation function for a main flow value.\r\n     * @return {Flow<T>}\r\n     */\r\n    let(f) {\r\n        f(clone(this.flow));\r\n        return this;\r\n    }\r\n    /**\r\n     * Extract value from a flow (pipe).\r\n     * @method subscribe\r\n     * @return {T}\r\n     */\r\n    subscribe() {\r\n        return this.flow;\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
     "static": true,
     "longname": "src/flow.js",
     "access": null,
@@ -516,7 +543,7 @@
     "static": false,
     "longname": "src/flow.js~Flow#constructor",
     "access": null,
-    "description": "create an instance of class AsyncFlow.",
+    "description": "Create an instance of class AsyncFlow.",
     "lineNumber": 15,
     "params": [
       {
@@ -610,8 +637,14 @@
     "static": false,
     "longname": "src/flow.js~Flow#bind",
     "access": null,
-    "description": "chains the operations on a monadic values.",
-    "lineNumber": 39,
+    "description": "Chains the operations on a monadic values.",
+    "lineNumber": 40,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "bind"
+      }
+    ],
     "params": [
       {
         "nullable": null,
@@ -654,7 +687,7 @@
     "longname": "src/flow.js~Flow#flow",
     "access": null,
     "description": null,
-    "lineNumber": 40,
+    "lineNumber": 41,
     "undocument": true,
     "unknown": [
       {
@@ -678,8 +711,14 @@
     "static": false,
     "longname": "src/flow.js~Flow#let",
     "access": null,
-    "description": "creates branch from a flow (pipe).",
-    "lineNumber": 48,
+    "description": "Creates branch from a flow (pipe).",
+    "lineNumber": 50,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "let"
+      }
+    ],
     "params": [
       {
         "nullable": null,
@@ -711,8 +750,14 @@
     "static": false,
     "longname": "src/flow.js~Flow#subscribe",
     "access": null,
-    "description": "extract value from a flow (pipe).",
-    "lineNumber": 56,
+    "description": "Extract value from a flow (pipe).",
+    "lineNumber": 59,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "subscribe"
+      }
+    ],
     "params": [],
     "return": {
       "nullable": null,
@@ -727,7 +772,7 @@
     "__docId__": 29,
     "kind": "file",
     "name": "src/identity.js",
-    "content": "import { Monad } from \"./monad\";\r\nimport { clone } from \"./services/clone\";\r\nimport { equality } from \"./services/equality\";\r\nimport { ErrorM } from \"./error\";\r\n/**\r\n * Class Identity - wraps underlying value into the monadic value and compute results from a monadic value.\r\n * @extends {Monad}\r\n */\r\nexport class Identity extends Monad {\r\n    /**\r\n     * creates an instance of class Identity.\r\n     * @param {any} v - The initial state of app.\r\n     * */\r\n    constructor(v) {\r\n        super();\r\n        /**\r\n         * keeps underlying value of a monad.\r\n         * @type {any}\r\n         */\r\n        this.v = clone(v);\r\n        /**\r\n         * the instance of ErrorM.\r\n         * @type {ErrorM}\r\n         */\r\n        this.err = new ErrorM();\r\n    }\r\n    /**\r\n     * chains the operations on a monadic value.\r\n     * @param {MF<T, U>} f - transformation function for the monad.\r\n     * @param {any} [v = this.v]- underlying value for the monad, Can not be null or undefined.\r\n     * @return {Pr<U> | Error}\r\n     */\r\n    bind(f, v = this.v) {\r\n        return this.v && v\r\n            ? equality(this.v, v)\r\n                ? f(v)\r\n                : this.errorHandler('Identity.bind() - underlying value of the monad have defined in the constructor!')\r\n            : v || v === 0\r\n                ? f(v)\r\n                : f();\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
+    "content": "import { Monad } from \"./monad\";\r\nimport { clone } from \"./services/clone\";\r\nimport { equality } from \"./services/equality\";\r\nimport { ErrorM } from \"./error\";\r\n/**\r\n * Class Identity - wraps underlying value into the monadic value and compute results from a monadic value.\r\n * @extends {Monad}\r\n */\r\nexport class Identity extends Monad {\r\n    /**\r\n     * Creates an instance of class Identity.\r\n     * @param {any} [v] - The initial state of app.\r\n     * */\r\n    constructor(v) {\r\n        super();\r\n        /**\r\n         * Keeps underlying value of a monad.\r\n         * @type {any}\r\n         */\r\n        this.v = clone(v);\r\n        /**\r\n         * The instance of ErrorM.\r\n         * @type {ErrorM}\r\n         */\r\n        this.err = new ErrorM();\r\n    }\r\n    /**\r\n     * Chains the operations on a monadic value.\r\n     * @method bind\r\n     * @param {MF<T, U>} f - transformation function for the monad.\r\n     * @param {any} [v = this.v]- underlying value for the monad, it can be null.\r\n     * @return {Pr<U> | Error}\r\n     */\r\n    bind(f, v = this.v) {\r\n        return this.v && v\r\n            ? equality(this.v, v)\r\n                ? f(v)\r\n                : this.errorHandler('Identity.bind() - underlying value of the monad have defined in the constructor!')\r\n            : v || v === 0 || v === '' || v === null\r\n                ? f(v)\r\n                : f();\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
     "static": true,
     "longname": "src/identity.js",
     "access": null,
@@ -762,7 +807,7 @@
     "static": false,
     "longname": "src/identity.js~Identity#constructor",
     "access": null,
-    "description": "creates an instance of class Identity.",
+    "description": "Creates an instance of class Identity.",
     "lineNumber": 14,
     "params": [
       {
@@ -771,7 +816,7 @@
           "any"
         ],
         "spread": false,
-        "optional": false,
+        "optional": true,
         "name": "v",
         "description": "The initial state of app."
       }
@@ -785,7 +830,7 @@
     "static": false,
     "longname": "src/identity.js~Identity#v",
     "access": null,
-    "description": "keeps underlying value of a monad.",
+    "description": "Keeps underlying value of a monad.",
     "lineNumber": 20,
     "type": {
       "nullable": null,
@@ -804,7 +849,7 @@
     "static": false,
     "longname": "src/identity.js~Identity#err",
     "access": null,
-    "description": "the instance of ErrorM.",
+    "description": "The instance of ErrorM.",
     "lineNumber": 25,
     "type": {
       "nullable": null,
@@ -825,8 +870,14 @@
     "static": false,
     "longname": "src/identity.js~Identity#bind",
     "access": null,
-    "description": "chains the operations on a monadic value.",
-    "lineNumber": 33,
+    "description": "Chains the operations on a monadic value.",
+    "lineNumber": 34,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "bind"
+      }
+    ],
     "params": [
       {
         "nullable": null,
@@ -848,7 +899,7 @@
         "defaultValue": " this.v",
         "defaultRaw": " this.v",
         "name": "v",
-        "description": "underlying value for the monad, Can not be null or undefined."
+        "description": "underlying value for the monad, it can be null."
       }
     ],
     "return": {
@@ -974,7 +1025,7 @@
     "__docId__": 39,
     "kind": "file",
     "name": "src/list.js",
-    "content": "import { Monad } from \"./monad\";\r\n/**\r\n * Class List - transform every element of array with given function \"contemporaneously\".\r\n * @extends {Monad}\r\n */\r\nexport class List extends Monad {\r\n    /**\r\n     *\r\n     * @param {MF<T, U>} f - transformation function for a monad.\r\n     * @param v - underlying value for a monad.\r\n     * @return {Pr<U> | Error} transformed by f() value v or error if input arg is not array.\r\n     */\r\n    bind(f, v) {\r\n        return Array.isArray(v) ? this._disp(f, v) : this.errorHandler('List. Input must be an array.');\r\n    }\r\n    /**\r\n     * @param {function(n: T) => U} f - transformation function for a monad.\r\n     * @param {any} v - underlying value for a monad.\r\n     * @return {Array<U>} transformed by f() value v.\r\n     * @private\r\n     */\r\n    _disp(f, v) {\r\n        return v.map((vL) => {\r\n            return !Array.isArray(vL) ? f(vL) : this._disp(f, vL);\r\n        });\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
+    "content": "import { Monad } from \"./monad\";\r\n/**\r\n * Class List - transform every element of array with given function \"contemporaneously\".\r\n * @extends {Monad}\r\n */\r\nexport class List extends Monad {\r\n    /**\r\n     * Transform every element of array with given function\r\n     * @method bind\r\n     * @param {MF<T, U>} f - transformation function for a monad.\r\n     * @param v - underlying value for a monad.\r\n     * @return {Pr<U> | Error} transformed by f() value v or error if input arg is not array.\r\n     */\r\n    bind(f, v) {\r\n        return Array.isArray(v) ? this._disp(f, v) : this.errorHandler('List.bind() - input must be an array.');\r\n    }\r\n    /**\r\n     * @method _disp\r\n     * @param {function(n: T) => U} f - transformation function for a monad.\r\n     * @param {any} v - underlying value for a monad.\r\n     * @return {Array<U>} transformed by f() value v.\r\n     * @private\r\n     */\r\n    _disp(f, v) {\r\n        return v.map((vL) => {\r\n            return !Array.isArray(vL) ? f(vL) : this._disp(f, vL);\r\n        });\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
     "static": true,
     "longname": "src/list.js",
     "access": null,
@@ -1009,8 +1060,14 @@
     "static": false,
     "longname": "src/list.js~List#bind",
     "access": null,
-    "description": "",
-    "lineNumber": 13,
+    "description": "Transform every element of array with given function",
+    "lineNumber": 14,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "bind"
+      }
+    ],
     "params": [
       {
         "nullable": null,
@@ -1054,7 +1111,13 @@
     "longname": "src/list.js~List#_disp",
     "access": "private",
     "description": "",
-    "lineNumber": 22,
+    "lineNumber": 24,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "_disp"
+      }
+    ],
     "params": [
       {
         "nullable": null,
@@ -1090,7 +1153,7 @@
     "__docId__": 43,
     "kind": "file",
     "name": "src/maybe.js",
-    "content": "import { Monad } from \"./monad\";\r\n/**\r\n * Class Maybe - return given value or produce null if take nothing or get nothing after execution of f(v).\r\n * @extends {Monad}\r\n */\r\nexport class Maybe extends Monad {\r\n    /**\r\n     * chains the operations on a monadic values.\r\n     * @param {MF<T, U>} f - transformation function for a monad.\r\n     * @param {T} v - underlying value for a monad.\r\n     * @return {Pr<U>} transformed by f() value v.\r\n     */\r\n    bind(f, v) {\r\n        if (v === null || v === undefined) {\r\n            return this.nothing();\r\n        }\r\n        else {\r\n            const vL = this.just(f, v);\r\n            return (vL === null || vL === undefined) ? this.nothing() : vL;\r\n        }\r\n    }\r\n    /**\r\n     * return nothing (null).\r\n     * @return {null}\r\n     */\r\n    nothing() {\r\n        return null;\r\n    }\r\n    ;\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
+    "content": "import { Monad } from \"./monad\";\r\n/**\r\n * Class Maybe - return given value or produce null if take nothing or get nothing after execution of f(v).\r\n * @extends {Monad}\r\n */\r\nexport class Maybe extends Monad {\r\n    /**\r\n     * Chains the operations on a monadic values.\r\n     * @method bind\r\n     * @param {MF<T, U>} f - transformation function for a monad.\r\n     * @param {T} v - underlying value for a monad.\r\n     * @return {Pr<U>} transformed by f() value v.\r\n     */\r\n    bind(f, v) {\r\n        if (v === null || v === undefined) {\r\n            return this.nothing();\r\n        }\r\n        else {\r\n            const vL = this.just(f, v);\r\n            return (vL === null || vL === undefined) ? this.nothing() : vL;\r\n        }\r\n    }\r\n    /**\r\n     * Return nothing (null).\r\n     * @method nothing\r\n     * @return {null}\r\n     */\r\n    nothing() {\r\n        return null;\r\n    }\r\n    ;\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
     "static": true,
     "longname": "src/maybe.js",
     "access": null,
@@ -1125,8 +1188,14 @@
     "static": false,
     "longname": "src/maybe.js~Maybe#bind",
     "access": null,
-    "description": "chains the operations on a monadic values.",
-    "lineNumber": 13,
+    "description": "Chains the operations on a monadic values.",
+    "lineNumber": 14,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "bind"
+      }
+    ],
     "params": [
       {
         "nullable": null,
@@ -1168,8 +1237,14 @@
     "static": false,
     "longname": "src/maybe.js~Maybe#nothing",
     "access": null,
-    "description": "return nothing (null).",
-    "lineNumber": 26,
+    "description": "Return nothing (null).",
+    "lineNumber": 28,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "nothing"
+      }
+    ],
     "params": [],
     "return": {
       "nullable": null,
@@ -1184,7 +1259,7 @@
     "__docId__": 47,
     "kind": "file",
     "name": "src/monad.js",
-    "content": "/**\r\n * Class Monad - Base abstract class.\r\n * @implements {M}\r\n * @abstract\r\n */\r\nexport class Monad {\r\n    /**\r\n     * Binds transformation function and underlying value to the monad.\r\n     * @param {MF<T, U> | D<T>} f - transformation function.\r\n     * @param v - underlying value.\r\n     * @return {Pr<U> | Error | boolean}\r\n     * @abstract\r\n     */\r\n    bind(f, v) {\r\n        return void 0;\r\n    }\r\n    ;\r\n    /**\r\n     * takes Error or string return Error.\r\n     * @param {Error | string} e - Error obj. or string.\r\n     * @return {Error}\r\n     * @protected\r\n     */\r\n    errorHandler(e) {\r\n        return e instanceof Error ? e : new Error(e);\r\n    }\r\n    /**\r\n     * produces result after execution f(v).\r\n     * @param {function(v: T) => Pr<U>} f - transformation function for a monad.\r\n     * @param {T} v - underlying value.\r\n     * @return {Pr<U>} extracts transformed value by f(v).\r\n     * @protected\r\n     */\r\n    just(f, v) {\r\n        return f(v);\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
+    "content": "/**\r\n * Class Monad - Base abstract class.\r\n * @implements {M}\r\n * @abstract\r\n */\r\nexport class Monad {\r\n    /**\r\n     * Takes Error or string return Error.\r\n     * @method errorHandler\r\n     * @param {Error | string} e - Error obj. or string.\r\n     * @return {Error}\r\n     * @protected\r\n     */\r\n    errorHandler(e) {\r\n        return e instanceof Error ? e : new Error(e);\r\n    }\r\n    /**\r\n     * Produces result after execution f(v).\r\n     * @method just\r\n     * @param {function(v: T) => Pr<U>} f - transformation function for a monad.\r\n     * @param {T} v - underlying value.\r\n     * @return {Pr<U>} extracts transformed value by f(v).\r\n     * @protected\r\n     */\r\n    just(f, v) {\r\n        return f(v);\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
     "static": true,
     "longname": "src/monad.js",
     "access": null,
@@ -1213,52 +1288,6 @@
   {
     "__docId__": 49,
     "kind": "method",
-    "name": "bind",
-    "memberof": "src/monad.js~Monad",
-    "generator": false,
-    "async": false,
-    "static": false,
-    "longname": "src/monad.js~Monad#bind",
-    "access": null,
-    "description": "Binds transformation function and underlying value to the monad.",
-    "lineNumber": 14,
-    "params": [
-      {
-        "nullable": null,
-        "types": [
-          "MF<T, U> | D<T>"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "f",
-        "description": "transformation function."
-      },
-      {
-        "nullable": null,
-        "types": [
-          "*"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "v",
-        "description": "underlying value."
-      }
-    ],
-    "return": {
-      "nullable": null,
-      "types": [
-        "Pr<U> ",
-        " Error ",
-        " boolean"
-      ],
-      "spread": false,
-      "description": ""
-    },
-    "abstract": true
-  },
-  {
-    "__docId__": 50,
-    "kind": "method",
     "name": "errorHandler",
     "memberof": "src/monad.js~Monad",
     "generator": false,
@@ -1266,8 +1295,14 @@
     "static": false,
     "longname": "src/monad.js~Monad#errorHandler",
     "access": "protected",
-    "description": "takes Error or string return Error.",
-    "lineNumber": 24,
+    "description": "Takes Error or string return Error.",
+    "lineNumber": 14,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "errorHandler"
+      }
+    ],
     "params": [
       {
         "nullable": null,
@@ -1291,7 +1326,7 @@
     }
   },
   {
-    "__docId__": 51,
+    "__docId__": 50,
     "kind": "method",
     "name": "just",
     "memberof": "src/monad.js~Monad",
@@ -1300,8 +1335,14 @@
     "static": false,
     "longname": "src/monad.js~Monad#just",
     "access": "protected",
-    "description": "produces result after execution f(v).",
-    "lineNumber": 34,
+    "description": "Produces result after execution f(v).",
+    "lineNumber": 25,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "just"
+      }
+    ],
     "params": [
       {
         "nullable": null,
@@ -1334,10 +1375,10 @@
     }
   },
   {
-    "__docId__": 52,
+    "__docId__": 51,
     "kind": "file",
     "name": "src/services/cast.js",
-    "content": "/**\r\n * decreasing the dimension of an array by n.\r\n * @param {any} arr - input array.\r\n * @param {number} n - decreasing factor.\r\n * @return {Array<any>|T[]|Error}\r\n */\r\nexport function cast(arr, n = 0) {\r\n    return typeof n === 'number' && Array.isArray(arr)\r\n        ? n > 0 ? _reduser(arr, n) : arr\r\n        : new Error('Function cast. Input  must  be array and factor - number.');\r\n}\r\n/**\r\n * @param {Array<T>} arr - input array.\r\n * @param {number} n - decreasing factor.\r\n * @return {Array<any>}\r\n * @private\r\n */\r\nfunction _reduser(arr, n) {\r\n    return arr.length\r\n        ? arr.reduce((acc, vL) => {\r\n            return acc.concat(_fact(vL, n));\r\n        }, [])\r\n        : arr;\r\n}\r\n/**\r\n * @param {Array<any>} arr - input array.\r\n * @param {number} n - decreasing factor.\r\n * @return {Array<any>}\r\n * @private\r\n */\r\nfunction _fact(arr, n) {\r\n    return (n === 1) ? arr : _reduser(arr, n - 1);\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
+    "content": "/**\r\n * Decreasing the dimension of an array by n.\r\n * @method cast\r\n * @param {any} arr - input array.\r\n * @param {number} n - decreasing factor.\r\n * @return {Array<any>|T[]|Error}\r\n */\r\nexport function cast(arr, n = 0) {\r\n    return typeof n === 'number' && Array.isArray(arr)\r\n        ? n > 0 ? _reduser(arr, n) : arr\r\n        : new Error('Function cast. Input  must  be array and factor - number.');\r\n}\r\n/**\r\n * @method _reduser\r\n * @param {Array<T>} arr - input array.\r\n * @param {number} n - decreasing factor.\r\n * @return {Array<any>}\r\n * @private\r\n */\r\nfunction _reduser(arr, n) {\r\n    return arr.length\r\n        ? arr.reduce((acc, vL) => {\r\n            return acc.concat(_fact(vL, n));\r\n        }, [])\r\n        : arr;\r\n}\r\n/**\r\n * @method _fact\r\n * @param {Array<any>} arr - input array.\r\n * @param {number} n - decreasing factor.\r\n * @return {Array<any>}\r\n * @private\r\n */\r\nfunction _fact(arr, n) {\r\n    return (n === 1) ? arr : _reduser(arr, n - 1);\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
     "static": true,
     "longname": "src/services/cast.js",
     "access": null,
@@ -1345,7 +1386,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 53,
+    "__docId__": 52,
     "kind": "function",
     "name": "cast",
     "memberof": "src/services/cast.js",
@@ -1357,8 +1398,14 @@
     "export": true,
     "importPath": "monad-ts/src/services/cast.js",
     "importStyle": "{cast}",
-    "description": "decreasing the dimension of an array by n.",
-    "lineNumber": 7,
+    "description": "Decreasing the dimension of an array by n.",
+    "lineNumber": 8,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "cast"
+      }
+    ],
     "params": [
       {
         "nullable": null,
@@ -1393,7 +1440,7 @@
     }
   },
   {
-    "__docId__": 54,
+    "__docId__": 53,
     "kind": "function",
     "name": "_reduser",
     "memberof": "src/services/cast.js",
@@ -1406,7 +1453,13 @@
     "importPath": "monad-ts/src/services/cast.js",
     "importStyle": null,
     "description": "",
-    "lineNumber": 18,
+    "lineNumber": 20,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "_reduser"
+      }
+    ],
     "params": [
       {
         "nullable": null,
@@ -1439,7 +1492,7 @@
     }
   },
   {
-    "__docId__": 55,
+    "__docId__": 54,
     "kind": "function",
     "name": "_fact",
     "memberof": "src/services/cast.js",
@@ -1452,7 +1505,13 @@
     "importPath": "monad-ts/src/services/cast.js",
     "importStyle": null,
     "description": "",
-    "lineNumber": 31,
+    "lineNumber": 34,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "_fact"
+      }
+    ],
     "params": [
       {
         "nullable": null,
@@ -1485,10 +1544,10 @@
     }
   },
   {
-    "__docId__": 56,
+    "__docId__": 55,
     "kind": "file",
     "name": "src/services/clone.js",
-    "content": "/**\r\n * the service to clone complex objects, including Map.\r\n * @param {T} obj - Object or Primitives to clone.\r\n * @return {T}\r\n */\r\nexport function clone(obj, map = new Map()) {\r\n    // Primitives are immutable, no need to clone them.\r\n    if (Object(obj) !== obj) {\r\n        return obj;\r\n    }\r\n    else if (map.has(obj)) {\r\n        // Cyclic reference handling\r\n        return map.get(obj);\r\n    }\r\n    else {\r\n        let result = Array.isArray(obj)\r\n            ? []\r\n            : obj.constructor && obj.constructor()\r\n                ? obj.constructor()\r\n                : Object.create(obj);\r\n        if (Object(result) !== result) {\r\n            map.set(obj, obj);\r\n            result = obj;\r\n        }\r\n        else {\r\n            map.set(obj, result);\r\n        }\r\n        if (obj instanceof Map) {\r\n            return Array.from(obj, ([key, val]) => result.set(key, _toTail(val, map)))[0];\r\n        }\r\n        else {\r\n            return Object.assign(result, ...Object.keys(obj).map(key => ({ [key]: _toTail(obj[key], map) })));\r\n        }\r\n    }\r\n}\r\n/**\r\n * @param {T} obj - Object or Primitives to clone.\r\n * @param {any} map\r\n * @return {T}\r\n * @private\r\n */\r\nfunction _toTail(obj, map) {\r\n    return clone(obj, map);\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
+    "content": "/**\r\n * The service to clone complex objects, including Map.\r\n * @method clone\r\n * @param {T} obj - Object or Primitives to clone.\r\n * @return {T}\r\n */\r\nexport function clone(obj, map = new Map()) {\r\n    // Primitives are immutable, no need to clone them.\r\n    if (Object(obj) !== obj) {\r\n        return obj;\r\n    }\r\n    else if (map.has(obj)) {\r\n        // Cyclic reference handling\r\n        return map.get(obj);\r\n    }\r\n    else {\r\n        let result = Array.isArray(obj)\r\n            ? []\r\n            : obj.constructor && obj.constructor()\r\n                ? obj.constructor()\r\n                : Object.create(obj);\r\n        if (Object(result) !== result) {\r\n            map.set(obj, obj);\r\n            result = obj;\r\n        }\r\n        else {\r\n            map.set(obj, result);\r\n        }\r\n        if (obj instanceof Map) {\r\n            return Array.from(obj, ([key, val]) => result.set(key, _toTail(val, map)))[0];\r\n        }\r\n        else {\r\n            return Object.assign(result, ...Object.keys(obj).map(key => ({ [key]: _toTail(obj[key], map) })));\r\n        }\r\n    }\r\n}\r\n/**\r\n * @method _toTail\r\n * @param {T} obj - Object or Primitives to clone.\r\n * @param {any} map\r\n * @return {T}\r\n * @private\r\n */\r\nfunction _toTail(obj, map) {\r\n    return clone(obj, map);\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
     "static": true,
     "longname": "src/services/clone.js",
     "access": null,
@@ -1496,7 +1555,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 57,
+    "__docId__": 56,
     "kind": "function",
     "name": "clone",
     "memberof": "src/services/clone.js",
@@ -1508,8 +1567,14 @@
     "export": true,
     "importPath": "monad-ts/src/services/clone.js",
     "importStyle": "{clone}",
-    "description": "the service to clone complex objects, including Map.",
-    "lineNumber": 6,
+    "description": "The service to clone complex objects, including Map.",
+    "lineNumber": 7,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "clone"
+      }
+    ],
     "params": [
       {
         "nullable": null,
@@ -1532,7 +1597,7 @@
     }
   },
   {
-    "__docId__": 58,
+    "__docId__": 57,
     "kind": "function",
     "name": "_toTail",
     "memberof": "src/services/clone.js",
@@ -1545,7 +1610,13 @@
     "importPath": "monad-ts/src/services/clone.js",
     "importStyle": null,
     "description": "",
-    "lineNumber": 42,
+    "lineNumber": 44,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "_toTail"
+      }
+    ],
     "params": [
       {
         "nullable": null,
@@ -1578,10 +1649,10 @@
     }
   },
   {
-    "__docId__": 59,
+    "__docId__": 58,
     "kind": "file",
     "name": "src/services/debounceTime.js",
-    "content": "/**\r\n * execute a function given a delay time.\r\n * @param {function} f - invoked function.\r\n * @param {number} d - a delay time.\r\n * @param {boolean} [immediate = true] immediate - first func call is immediate if true.\r\n * @return {function(...args:any[])=>void}\r\n */\r\nexport function debounceTime(f, d, immediate = true) {\r\n    let timeout;\r\n    return (...args) => {\r\n        const later = () => {\r\n            timeout = null;\r\n            if (!immediate)\r\n                f.apply(this, args);\r\n        };\r\n        const callNow = immediate && !timeout;\r\n        clearTimeout(timeout);\r\n        timeout = setTimeout(later, d);\r\n        if (callNow)\r\n            f.apply(this, args);\r\n    };\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
+    "content": "/**\r\n * Execute a function given a delay time.\r\n * @method debounceTime\r\n * @param {function} f - invoked function.\r\n * @param {number} d - a delay time.\r\n * @param {boolean} [immediate = true] immediate - first func call is immediate if true.\r\n * @return {function(...args:any[])=>void}\r\n */\r\nexport function debounceTime(f, d, immediate = true) {\r\n    let timeout;\r\n    return (...args) => {\r\n        const later = () => {\r\n            timeout = null;\r\n            if (!immediate)\r\n                f.apply(this, args);\r\n        };\r\n        const callNow = immediate && !timeout;\r\n        clearTimeout(timeout);\r\n        timeout = setTimeout(later, d);\r\n        if (callNow)\r\n            f.apply(this, args);\r\n    };\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
     "static": true,
     "longname": "src/services/debounceTime.js",
     "access": null,
@@ -1589,7 +1660,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 60,
+    "__docId__": 59,
     "kind": "function",
     "name": "debounceTime",
     "memberof": "src/services/debounceTime.js",
@@ -1601,8 +1672,14 @@
     "export": true,
     "importPath": "monad-ts/src/services/debounceTime.js",
     "importStyle": "{debounceTime}",
-    "description": "execute a function given a delay time.",
-    "lineNumber": 8,
+    "description": "Execute a function given a delay time.",
+    "lineNumber": 9,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "debounceTime"
+      }
+    ],
     "params": [
       {
         "nullable": null,
@@ -1647,10 +1724,10 @@
     }
   },
   {
-    "__docId__": 61,
+    "__docId__": 60,
     "kind": "file",
     "name": "src/services/equality.js",
-    "content": "/**\r\n * It checks equality of given arguments, arguments must be statically analyzable, therefore there are some constraints,\r\n * look at examples to find them.\r\n *\r\n *  @example <caption>1)</caption>\r\n *  Functions compare by the structure, not by values of variables or other elements it consists of.\r\n *\r\n *  Equal:\r\n *      let d = 20;\r\n *      equality(\r\n *          ()=>{return ()=> {return {'g': d}};},\r\n *          function(){return function() {return{'g': d}};}\r\n *      )\r\n *\r\n *  Not Equal:\r\n *      let d = 20;\r\n *      let d2 = 20;\r\n *      equality(\r\n *          ()=>{return ()=> {return {'g': d}};},\r\n *          function(){return function() {return{'g': d2}};}\r\n *      )\r\n *\r\n *  @example <caption>2)</caption>\r\n *  Do not use the creation of some objects by object creation, they will be compared wrong.\r\n *  Never use this constructions in compared objects:\r\n *      new Boolean(*);\r\n *      new Number(*);\r\n *      Error(*);\r\n *      new Error(*);\r\n *      new Date(*);\r\n *      new RegExp(*);\r\n *\r\n *  Equal:\r\n *      equality(new Boolean(true), new Boolean(false));                  // Wrong\r\n *      equality(Error('true'), Error('false'));                          // Wrong\r\n *      equality(new Number(1), new Number(11));                          // Wrong\r\n *      equality(new Date(1995, 11, 17), new Date('1995-12-17T03:24:00')) // Wrong\r\n *\r\n *  Not Equal (the exception of `new` option in some cases can solve the issue):\r\n *      equality(Boolean(true), Boolean(false)); // Right\r\n *      equality(Number(1), Number(11));         // Right\r\n *\r\n *  @example <caption>3)</caption>\r\n *  Instances of a user-defined object type that has a constructor function are compared as objects by `key: value`.\r\n *\r\n *      class Test{\r\n *          constructor(private arg: any){    }\r\n *      }\r\n *      class Test2{\r\n *          constructor(private arg: any){    }\r\n *      }\r\n *  Equal:\r\n *      new Test(true) and new Test(true);\r\n *\r\n *  Not Equal:\r\n *      new Test(true) and new Test2(true);\r\n *      new Test(true) and new Test(false);\r\n *\r\n * @param {any} x - argument 1, can include null, NaN etc.\r\n * @param {any} y - argument 2, can include null, NaN etc.\r\n * @returns {boolean}\r\n */\r\nexport function equality(x, y) {\r\n    const isXO = new Object(x);\r\n    const isYO = new Object(y);\r\n    if (isXO !== x && isYO !== y) {\r\n        return Object.is(x, y);\r\n    }\r\n    if (isXO === x && isYO === y) {\r\n        const xN = x.constructor;\r\n        const yN = y.constructor;\r\n        if (xN === yN) {\r\n            if (xN === Array && yN === Array) {\r\n                return x.length !== y.length ? false : _arrayIterator(x, y);\r\n            }\r\n            else if (xN === Function && yN === Function) {\r\n                return x.toString() === y.toString();\r\n            }\r\n            else if (equality(Object.getOwnPropertyNames(x), Object.getOwnPropertyNames(y))) {\r\n                for (let key in x) {\r\n                    if (x.hasOwnProperty(key)) {\r\n                        if (!equality(x[key], y[key]))\r\n                            return false;\r\n                    }\r\n                }\r\n                return true;\r\n            }\r\n        }\r\n        else {\r\n            return false;\r\n        }\r\n    }\r\n    else {\r\n        return false;\r\n    }\r\n}\r\n/**\r\n * iterate array controller.\r\n * @param {Array<any>} x\r\n * @param {Array<any>} y\r\n * @return {boolean}\r\n * @private\r\n */\r\nfunction _arrayIterator(x, y) {\r\n    return !x.some((v, i) => {\r\n        return Array.isArray(v) ? _arrayIterator(v, y[i]) : (typeof v === 'object' || typeof v === \"function\") ? !equality(v, y[i]) : !Object.is(v, y[i]);\r\n    });\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
+    "content": "/**\r\n * It checks equality of given arguments, arguments must be statically analyzable, therefore there are some constraints,\r\n * look at examples to find them.\r\n *\r\n *  @example <caption>1)</caption>\r\n *  Functions compare by the structure, not by values of variables or other elements it consists of.\r\n *\r\n *  Equal:\r\n *      let d = 20;\r\n *      equality(\r\n *          ()=>{return ()=> {return {'g': d}};},\r\n *          function(){return function() {return{'g': d}};}\r\n *      )\r\n *\r\n *  Not Equal:\r\n *      let d = 20;\r\n *      let d2 = 20;\r\n *      equality(\r\n *          ()=>{return ()=> {return {'g': d}};},\r\n *          function(){return function() {return{'g': d2}};}\r\n *      )\r\n *\r\n *  @example <caption>2)</caption>\r\n *  Do not use the creation of some objects by object creation, they will be compared wrong.\r\n *  Never use this constructions in compared objects:\r\n *      new Boolean(*);\r\n *      new Number(*);\r\n *      Error(*);\r\n *      new Error(*);\r\n *      new Date(*);\r\n *      new RegExp(*);\r\n *\r\n *  Equal:\r\n *      equality(new Boolean(true), new Boolean(false));                  // Wrong\r\n *      equality(Error('true'), Error('false'));                          // Wrong\r\n *      equality(new Number(1), new Number(11));                          // Wrong\r\n *      equality(new Date(1995, 11, 17), new Date('1995-12-17T03:24:00')) // Wrong\r\n *\r\n *  Not Equal (the exception of `new` option in some cases can solve the issue):\r\n *      equality(Boolean(true), Boolean(false)); // Right\r\n *      equality(Number(1), Number(11));         // Right\r\n *\r\n *  @example <caption>3)</caption>\r\n *  Instances of a user-defined object type that has a constructor function are compared as objects by `key: value`.\r\n *\r\n *      class Test{\r\n *          constructor(private arg: any){    }\r\n *      }\r\n *      class Test2{\r\n *          constructor(private arg: any){    }\r\n *      }\r\n *  Equal:\r\n *      new Test(true) and new Test(true);\r\n *\r\n *  Not Equal:\r\n *      new Test(true) and new Test2(true);\r\n *      new Test(true) and new Test(false);\r\n *\r\n * @method equality\r\n * @param {any} x - argument 1, can include null, NaN etc.\r\n * @param {any} y - argument 2, can include null, NaN etc.\r\n * @returns {boolean}\r\n */\r\nexport function equality(x, y) {\r\n    const isXO = new Object(x);\r\n    const isYO = new Object(y);\r\n    if (isXO !== x && isYO !== y) {\r\n        return Object.is(x, y);\r\n    }\r\n    if (isXO === x && isYO === y) {\r\n        const xN = x.constructor;\r\n        const yN = y.constructor;\r\n        if (xN === yN) {\r\n            if (xN === Array && yN === Array) {\r\n                return x.length !== y.length ? false : _arrayIterator(x, y);\r\n            }\r\n            else if (xN === Function && yN === Function) {\r\n                return x.toString() === y.toString();\r\n            }\r\n            else if (equality(Object.getOwnPropertyNames(x), Object.getOwnPropertyNames(y))) {\r\n                for (let key in x) {\r\n                    if (x.hasOwnProperty(key)) {\r\n                        if (!equality(x[key], y[key]))\r\n                            return false;\r\n                    }\r\n                }\r\n                return true;\r\n            }\r\n        }\r\n        else {\r\n            return false;\r\n        }\r\n    }\r\n    else {\r\n        return false;\r\n    }\r\n}\r\n/**\r\n * Tterate array controller.\r\n * @method _arrayIterator\r\n * @param {Array<any>} x\r\n * @param {Array<any>} y\r\n * @return {boolean}\r\n * @private\r\n */\r\nfunction _arrayIterator(x, y) {\r\n    return !x.some((v, i) => {\r\n        return Array.isArray(v) ? _arrayIterator(v, y[i]) : (typeof v === 'object' || typeof v === \"function\") ? !equality(v, y[i]) : !Object.is(v, y[i]);\r\n    });\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
     "static": true,
     "longname": "src/services/equality.js",
     "access": null,
@@ -1658,7 +1735,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 62,
+    "__docId__": 61,
     "kind": "function",
     "name": "equality",
     "memberof": "src/services/equality.js",
@@ -1676,8 +1753,12 @@
       "<caption>2)</caption>\n Do not use the creation of some objects by object creation, they will be compared wrong.\n Never use this constructions in compared objects:\n     new Boolean(*);\n     new Number(*);\n     Error(*);\n     new Error(*);\n     new Date(*);\n     new RegExp(*);\n\n Equal:\n     equality(new Boolean(true), new Boolean(false));                  // Wrong\n     equality(Error('true'), Error('false'));                          // Wrong\n     equality(new Number(1), new Number(11));                          // Wrong\n     equality(new Date(1995, 11, 17), new Date('1995-12-17T03:24:00')) // Wrong\n\n Not Equal (the exception of `new` option in some cases can solve the issue):\n     equality(Boolean(true), Boolean(false)); // Right\n     equality(Number(1), Number(11));         // Right",
       "<caption>3)</caption>\n Instances of a user-defined object type that has a constructor function are compared as objects by `key: value`.\n\n     class Test{\n         constructor(private arg: any){    }\n     }\n     class Test2{\n         constructor(private arg: any){    }\n     }\n Equal:\n     new Test(true) and new Test(true);\n\n Not Equal:\n     new Test(true) and new Test2(true);\n     new Test(true) and new Test(false);"
     ],
-    "lineNumber": 63,
+    "lineNumber": 64,
     "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "equality"
+      },
       {
         "tagName": "@returns",
         "tagValue": "{boolean}"
@@ -1715,7 +1796,7 @@
     }
   },
   {
-    "__docId__": 63,
+    "__docId__": 62,
     "kind": "function",
     "name": "_arrayIterator",
     "memberof": "src/services/equality.js",
@@ -1727,8 +1808,14 @@
     "export": false,
     "importPath": "monad-ts/src/services/equality.js",
     "importStyle": null,
-    "description": "iterate array controller.",
-    "lineNumber": 104,
+    "description": "Tterate array controller.",
+    "lineNumber": 106,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "_arrayIterator"
+      }
+    ],
     "params": [
       {
         "nullable": null,
@@ -1761,10 +1848,10 @@
     }
   },
   {
-    "__docId__": 64,
+    "__docId__": 63,
     "kind": "file",
     "name": "src/services/hash.js",
-    "content": "/**\r\n * calculates a hash (32 bit).\r\n * Based on FNV-1a algorithm, ref: http://isthe.com/chongo/tech/comp/fnv/\r\n * @param {string} str - string to hash\r\n * @param {number} [pHash = 2166136261] previous hash.\r\n * @returns {number}\r\n */\r\nexport function hash(str, pHash = 2166136261) {\r\n    if (str.length === 0 || !str)\r\n        return null;\r\n    let n = str.length - 1;\r\n    let hash = pHash;\r\n    while (n >= 0) {\r\n        // xor the bottom with the current chunk.\r\n        hash ^= str.charCodeAt(n--);\r\n        //  multiply with a expression of shifts.\r\n        hash += (hash << 1) + (hash << 4) + (hash << 7) + (hash << 8) + (hash << 24);\r\n    }\r\n    return hash;\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
+    "content": "/**\r\n * Calculates a hash (32 bit).\r\n * Based on FNV-1a algorithm, ref: http://isthe.com/chongo/tech/comp/fnv/\r\n * @method hash\r\n * @param {string} str - string to hash\r\n * @param {number} [pHash = 2166136261] previous hash.\r\n * @returns {number}\r\n */\r\nexport function hash(str, pHash = 2166136261) {\r\n    if (str.length === 0 || !str)\r\n        return null;\r\n    let n = str.length - 1;\r\n    let hash = pHash;\r\n    while (n >= 0) {\r\n        // xor the bottom with the current chunk.\r\n        hash ^= str.charCodeAt(n--);\r\n        //  multiply with a expression of shifts.\r\n        hash += (hash << 1) + (hash << 4) + (hash << 7) + (hash << 8) + (hash << 24);\r\n    }\r\n    return hash;\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
     "static": true,
     "longname": "src/services/hash.js",
     "access": null,
@@ -1772,7 +1859,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 65,
+    "__docId__": 64,
     "kind": "function",
     "name": "hash",
     "memberof": "src/services/hash.js",
@@ -1784,9 +1871,13 @@
     "export": true,
     "importPath": "monad-ts/src/services/hash.js",
     "importStyle": "{hash}",
-    "description": "calculates a hash (32 bit).\nBased on FNV-1a algorithm, ref: http://isthe.com/chongo/tech/comp/fnv/",
-    "lineNumber": 8,
+    "description": "Calculates a hash (32 bit).\nBased on FNV-1a algorithm, ref: http://isthe.com/chongo/tech/comp/fnv/",
+    "lineNumber": 9,
     "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "hash"
+      },
       {
         "tagName": "@returns",
         "tagValue": "{number}"
@@ -1826,10 +1917,10 @@
     }
   },
   {
-    "__docId__": 66,
+    "__docId__": 65,
     "kind": "file",
     "name": "src/services/wait.js",
-    "content": "/**\r\n * converts timeout in a Promise, resolved when specified amount of time passes.\r\n * @param {any} v - value should be returned.\r\n * @param {number} [t = 0] t - amount of time, in millis.\r\n * @return {Promise<T> | Error}\r\n */\r\nexport function wait(v, t = 0) {\r\n    return typeof t === 'number' && t >= 0\r\n        ? new Promise(function (resolve) {\r\n            setTimeout(() => resolve(v), t);\r\n        })\r\n        : new Error('Function wait. Timeout must be number >= 0.');\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
+    "content": "/**\r\n * Converts timeout in a Promise, resolved when specified amount of time passes.\r\n * @method wait\r\n * @param {any} v - value should be returned.\r\n * @param {number} [t = 0] t - amount of time, in millis.\r\n * @return {Promise<T> | Error}\r\n */\r\nexport function wait(v, t = 0) {\r\n    return typeof t === 'number' && t >= 0\r\n        ? new Promise(function (resolve) {\r\n            setTimeout(() => resolve(v), t);\r\n        })\r\n        : new Error('Function wait. Timeout must be number >= 0.');\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
     "static": true,
     "longname": "src/services/wait.js",
     "access": null,
@@ -1837,7 +1928,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 67,
+    "__docId__": 66,
     "kind": "function",
     "name": "wait",
     "memberof": "src/services/wait.js",
@@ -1849,8 +1940,14 @@
     "export": true,
     "importPath": "monad-ts/src/services/wait.js",
     "importStyle": "{wait}",
-    "description": "converts timeout in a Promise, resolved when specified amount of time passes.",
-    "lineNumber": 7,
+    "description": "Converts timeout in a Promise, resolved when specified amount of time passes.",
+    "lineNumber": 8,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "wait"
+      }
+    ],
     "params": [
       {
         "nullable": null,
@@ -1886,10 +1983,10 @@
     }
   },
   {
-    "__docId__": 68,
+    "__docId__": 67,
     "kind": "file",
     "name": "src/state.js",
-    "content": "import { Maybe } from \"./maybe\";\r\nimport { ErrorM } from \"./error\";\r\nimport { clone } from \"./services/clone\";\r\nimport { equality } from \"./services/equality\";\r\n/**\r\n * Class State - it takes a state and returns an intermediate value and some new state value.\r\n */\r\nexport class State {\r\n    /**\r\n     * creates an instance of class State.\r\n     * @param {Object} state - the initial state of app.\r\n     */\r\n    constructor(state) {\r\n        /**\r\n         * keeps the state of application variables.\r\n         * @type {T}\r\n         */\r\n        this.state = clone(state);\r\n        /**\r\n         * the instance of Maybe.\r\n         * @type {Maybe}\r\n         */\r\n        this.maybe = new Maybe();\r\n        /**\r\n         * the instance of ErrorM.\r\n         * @type {ErrorM}\r\n         */\r\n        this.err = new ErrorM();\r\n    }\r\n    /**\r\n     * changes the state of application variables, if you try add new key with put() to state object it'll be assigned\r\n     * with Error instance.\r\n     * @param {function(v: T)=> T} f - app. state transformation function.\r\n     */\r\n    put(f) {\r\n        const buffer = clone(this.state);\r\n        this.state = this.err.bind((v) => equality(Object.getOwnPropertyNames(buffer), Object.getOwnPropertyNames(v))\r\n            ? v\r\n            : new Error('State.put() - after init we can not add / remove keys in state obj.'), this.maybe.bind((v) => f(v), this.state));\r\n    }\r\n    /**\r\n     * extracts the state of application variables.\r\n     * @return {T}\r\n     */\r\n    get() {\r\n        return this.state;\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
+    "content": "import { Maybe } from \"./maybe\";\r\nimport { ErrorM } from \"./error\";\r\nimport { clone } from \"./services/clone\";\r\nimport { equality } from \"./services/equality\";\r\nimport { Monad } from './monad';\r\n/**\r\n * Class State - it takes a state and returns an intermediate value and some new state value.\r\n * @extends {Monad}\r\n */\r\nexport class State extends Monad {\r\n    /**\r\n     * Creates an instance of the class State with an initialization or not, the initialization can be occur late with bind method.\r\n     * @param {Object} [state] - the initial state of app.\r\n     */\r\n    constructor(state) {\r\n        super();\r\n        /**\r\n         * Keeps the state of application variables.\r\n         * @type {any}\r\n         */\r\n        this.state = clone(state);\r\n        /**\r\n         * The instance of Maybe.\r\n         * @type {Maybe}\r\n         */\r\n        this.maybe = new Maybe();\r\n        /**\r\n         * The instance of ErrorM.\r\n         * @type {ErrorM}\r\n         */\r\n        this.err = new ErrorM();\r\n    }\r\n    /**\r\n     * It takes an initial state of the monad if monad has initialized in the constructor then function assigns Error to underlying value.\r\n     * @method bind\r\n     * @param {Function} f\r\n     * @param [v] - underlying value for the monad, it can be null.\r\n     */\r\n    bind(f, v) {\r\n        const state = !!this.state || this.state === 0 || this.state === '' || this.state === null;\r\n        const vL = !!v || v === 0 || v === '' || v === null;\r\n        switch (true) {\r\n            case (state && vL):\r\n                this.state = this.errorHandler('State.bind() - underlying value of the monad have defined in the constructor!');\r\n                break;\r\n            case (!state && !vL):\r\n                this.state = this.errorHandler('State.bind() - underlying value of the monad have not defined!');\r\n                break;\r\n            case (!state && vL):\r\n                this.state = v;\r\n                break;\r\n        }\r\n    }\r\n    /**\r\n     * Changes the state of application variables, if you try add new key with put() to state object it'll be assigned\r\n     * with Error instance.\r\n     * @method put\r\n     * @param {function(v: T)=> T} f - app. state transformation function.\r\n     */\r\n    put(f) {\r\n        const buffer = clone(this.state);\r\n        this.state = this.err.bind((v) => equality(Object.getOwnPropertyNames(buffer), Object.getOwnPropertyNames(v))\r\n            ? v\r\n            : this.errorHandler('State.put()._maybeErrorT() - after init we can not add / remove keys in state obj.'), this.maybe.bind((v) => f(v), this.state));\r\n    }\r\n    /**\r\n     * Extracts the state of app.\r\n     * @method get\r\n     * @return {T}\r\n     */\r\n    get() {\r\n        return this.state;\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
     "static": true,
     "longname": "src/state.js",
     "access": null,
@@ -1897,7 +1994,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 69,
+    "__docId__": 68,
     "kind": "class",
     "name": "State",
     "memberof": "src/state.js",
@@ -1908,11 +2005,14 @@
     "importPath": "monad-ts/src/state.js",
     "importStyle": "{State}",
     "description": "Class State - it takes a state and returns an intermediate value and some new state value.",
-    "lineNumber": 8,
-    "interface": false
+    "lineNumber": 10,
+    "interface": false,
+    "extends": [
+      "Monad"
+    ]
   },
   {
-    "__docId__": 70,
+    "__docId__": 69,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/state.js~State",
@@ -1921,8 +2021,8 @@
     "static": false,
     "longname": "src/state.js~State#constructor",
     "access": null,
-    "description": "creates an instance of class State.",
-    "lineNumber": 13,
+    "description": "Creates an instance of the class State with an initialization or not, the initialization can be occur late with bind method.",
+    "lineNumber": 15,
     "params": [
       {
         "nullable": null,
@@ -1930,41 +2030,41 @@
           "Object"
         ],
         "spread": false,
-        "optional": false,
+        "optional": true,
         "name": "state",
         "description": "the initial state of app."
       }
     ]
   },
   {
-    "__docId__": 71,
+    "__docId__": 70,
     "kind": "member",
     "name": "state",
     "memberof": "src/state.js~State",
     "static": false,
     "longname": "src/state.js~State#state",
     "access": null,
-    "description": "keeps the state of application variables.",
-    "lineNumber": 18,
+    "description": "Keeps the state of application variables.",
+    "lineNumber": 21,
     "type": {
       "nullable": null,
       "types": [
-        "T"
+        "any"
       ],
       "spread": false,
       "description": null
     }
   },
   {
-    "__docId__": 72,
+    "__docId__": 71,
     "kind": "member",
     "name": "maybe",
     "memberof": "src/state.js~State",
     "static": false,
     "longname": "src/state.js~State#maybe",
     "access": null,
-    "description": "the instance of Maybe.",
-    "lineNumber": 23,
+    "description": "The instance of Maybe.",
+    "lineNumber": 26,
     "type": {
       "nullable": null,
       "types": [
@@ -1975,15 +2075,15 @@
     }
   },
   {
-    "__docId__": 73,
+    "__docId__": 72,
     "kind": "member",
     "name": "err",
     "memberof": "src/state.js~State",
     "static": false,
     "longname": "src/state.js~State#err",
     "access": null,
-    "description": "the instance of ErrorM.",
-    "lineNumber": 28,
+    "description": "The instance of ErrorM.",
+    "lineNumber": 31,
     "type": {
       "nullable": null,
       "types": [
@@ -1994,29 +2094,68 @@
     }
   },
   {
-    "__docId__": 74,
+    "__docId__": 73,
     "kind": "method",
-    "name": "put",
+    "name": "bind",
     "memberof": "src/state.js~State",
     "generator": false,
     "async": false,
     "static": false,
-    "longname": "src/state.js~State#put",
+    "longname": "src/state.js~State#bind",
     "access": null,
-    "description": "changes the state of application variables, if you try add new key with put() to state object it'll be assigned\nwith Error instance.",
-    "lineNumber": 35,
+    "description": "It takes an initial state of the monad if monad has initialized in the constructor then function assigns Error to underlying value.",
+    "lineNumber": 39,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "bind"
+      }
+    ],
     "params": [
       {
         "nullable": null,
         "types": [
-          "function(v: T)=> T"
+          "Function"
         ],
         "spread": false,
         "optional": false,
         "name": "f",
-        "description": "app. state transformation function."
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "v",
+        "description": "underlying value for the monad, it can be null."
       }
     ]
+  },
+  {
+    "__docId__": 74,
+    "kind": "member",
+    "name": "state",
+    "memberof": "src/state.js~State",
+    "static": false,
+    "longname": "src/state.js~State#state",
+    "access": null,
+    "description": null,
+    "lineNumber": 44,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
   },
   {
     "__docId__": 75,
@@ -2027,7 +2166,7 @@
     "longname": "src/state.js~State#state",
     "access": null,
     "description": null,
-    "lineNumber": 37,
+    "lineNumber": 47,
     "undocument": true,
     "unknown": [
       {
@@ -2043,6 +2182,83 @@
   },
   {
     "__docId__": 76,
+    "kind": "member",
+    "name": "state",
+    "memberof": "src/state.js~State",
+    "static": false,
+    "longname": "src/state.js~State#state",
+    "access": null,
+    "description": null,
+    "lineNumber": 50,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 77,
+    "kind": "method",
+    "name": "put",
+    "memberof": "src/state.js~State",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/state.js~State#put",
+    "access": null,
+    "description": "Changes the state of application variables, if you try add new key with put() to state object it'll be assigned\nwith Error instance.",
+    "lineNumber": 60,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "put"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "function(v: T)=> T"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "f",
+        "description": "app. state transformation function."
+      }
+    ]
+  },
+  {
+    "__docId__": 78,
+    "kind": "member",
+    "name": "state",
+    "memberof": "src/state.js~State",
+    "static": false,
+    "longname": "src/state.js~State#state",
+    "access": null,
+    "description": null,
+    "lineNumber": 62,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 79,
     "kind": "method",
     "name": "get",
     "memberof": "src/state.js~State",
@@ -2051,8 +2267,14 @@
     "static": false,
     "longname": "src/state.js~State#get",
     "access": null,
-    "description": "extracts the state of application variables.",
-    "lineNumber": 45,
+    "description": "Extracts the state of app.",
+    "lineNumber": 71,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "get"
+      }
+    ],
     "params": [],
     "return": {
       "nullable": null,
@@ -2064,7 +2286,7 @@
     }
   },
   {
-    "__docId__": 77,
+    "__docId__": 80,
     "kind": "file",
     "name": "src/types/d.js",
     "content": "/**\r\n * D<T> - dispatcher's type function.\r\n * @public\r\n * @typedef {function(v: T): Boolean} D<T>\r\n */\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
@@ -2075,7 +2297,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 78,
+    "__docId__": 81,
     "kind": "typedef",
     "name": "D<T>",
     "memberof": "src/types/d.js",
@@ -2092,7 +2314,7 @@
     }
   },
   {
-    "__docId__": 79,
+    "__docId__": 82,
     "kind": "file",
     "name": "src/types/mf.js",
     "content": "/**\r\n * MF<T, U> - transformation function's type.\r\n * @public\r\n * @typedef {function(v: T): Pr<U>} MF<T,U>\r\n */\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
@@ -2103,7 +2325,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 80,
+    "__docId__": 83,
     "kind": "typedef",
     "name": "MF<T,U>",
     "memberof": "src/types/mf.js",
@@ -2120,7 +2342,7 @@
     }
   },
   {
-    "__docId__": 81,
+    "__docId__": 84,
     "kind": "file",
     "name": "src/types/pr.js",
     "content": "/**\r\n * Pr<U> - type of returned values.\r\n * @public\r\n * @typedef {M<U> | U} Pr<U>\r\n */\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
@@ -2131,7 +2353,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 82,
+    "__docId__": 85,
     "kind": "typedef",
     "name": "Pr<U>",
     "memberof": "src/types/pr.js",
@@ -2149,7 +2371,7 @@
     }
   },
   {
-    "__docId__": 84,
+    "__docId__": 87,
     "kind": "external",
     "name": "Infinity",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
@@ -2161,7 +2383,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 85,
+    "__docId__": 88,
     "kind": "external",
     "name": "NaN",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
@@ -2173,7 +2395,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 86,
+    "__docId__": 89,
     "kind": "external",
     "name": "undefined",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
@@ -2185,7 +2407,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 87,
+    "__docId__": 90,
     "kind": "external",
     "name": "null",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
@@ -2197,7 +2419,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 88,
+    "__docId__": 91,
     "kind": "external",
     "name": "Object",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
@@ -2209,7 +2431,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 89,
+    "__docId__": 92,
     "kind": "external",
     "name": "object",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
@@ -2221,7 +2443,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 90,
+    "__docId__": 93,
     "kind": "external",
     "name": "Function",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
@@ -2233,7 +2455,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 91,
+    "__docId__": 94,
     "kind": "external",
     "name": "function",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
@@ -2245,7 +2467,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 92,
+    "__docId__": 95,
     "kind": "external",
     "name": "Boolean",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
@@ -2257,7 +2479,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 93,
+    "__docId__": 96,
     "kind": "external",
     "name": "boolean",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
@@ -2269,7 +2491,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 94,
+    "__docId__": 97,
     "kind": "external",
     "name": "Symbol",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
@@ -2281,7 +2503,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 95,
+    "__docId__": 98,
     "kind": "external",
     "name": "Error",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
@@ -2293,7 +2515,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 96,
+    "__docId__": 99,
     "kind": "external",
     "name": "EvalError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
@@ -2305,7 +2527,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 97,
+    "__docId__": 100,
     "kind": "external",
     "name": "InternalError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
@@ -2317,7 +2539,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 98,
+    "__docId__": 101,
     "kind": "external",
     "name": "RangeError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
@@ -2329,7 +2551,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 99,
+    "__docId__": 102,
     "kind": "external",
     "name": "ReferenceError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
@@ -2341,7 +2563,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 100,
+    "__docId__": 103,
     "kind": "external",
     "name": "SyntaxError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
@@ -2353,7 +2575,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 101,
+    "__docId__": 104,
     "kind": "external",
     "name": "TypeError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
@@ -2365,7 +2587,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 102,
+    "__docId__": 105,
     "kind": "external",
     "name": "URIError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
@@ -2377,7 +2599,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 103,
+    "__docId__": 106,
     "kind": "external",
     "name": "Number",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
@@ -2389,7 +2611,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 104,
+    "__docId__": 107,
     "kind": "external",
     "name": "number",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
@@ -2401,7 +2623,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 105,
+    "__docId__": 108,
     "kind": "external",
     "name": "Date",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
@@ -2413,7 +2635,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 106,
+    "__docId__": 109,
     "kind": "external",
     "name": "String",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
@@ -2425,7 +2647,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 107,
+    "__docId__": 110,
     "kind": "external",
     "name": "string",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
@@ -2437,7 +2659,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 108,
+    "__docId__": 111,
     "kind": "external",
     "name": "RegExp",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
@@ -2449,7 +2671,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 109,
+    "__docId__": 112,
     "kind": "external",
     "name": "Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
@@ -2461,7 +2683,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 110,
+    "__docId__": 113,
     "kind": "external",
     "name": "Int8Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
@@ -2473,7 +2695,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 111,
+    "__docId__": 114,
     "kind": "external",
     "name": "Uint8Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
@@ -2485,7 +2707,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 112,
+    "__docId__": 115,
     "kind": "external",
     "name": "Uint8ClampedArray",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
@@ -2497,7 +2719,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 113,
+    "__docId__": 116,
     "kind": "external",
     "name": "Int16Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
@@ -2509,7 +2731,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 114,
+    "__docId__": 117,
     "kind": "external",
     "name": "Uint16Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
@@ -2521,7 +2743,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 115,
+    "__docId__": 118,
     "kind": "external",
     "name": "Int32Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
@@ -2533,7 +2755,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 116,
+    "__docId__": 119,
     "kind": "external",
     "name": "Uint32Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
@@ -2545,7 +2767,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 117,
+    "__docId__": 120,
     "kind": "external",
     "name": "Float32Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
@@ -2557,7 +2779,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 118,
+    "__docId__": 121,
     "kind": "external",
     "name": "Float64Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
@@ -2569,7 +2791,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 119,
+    "__docId__": 122,
     "kind": "external",
     "name": "Map",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
@@ -2581,7 +2803,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 120,
+    "__docId__": 123,
     "kind": "external",
     "name": "Set",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
@@ -2593,7 +2815,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 121,
+    "__docId__": 124,
     "kind": "external",
     "name": "WeakMap",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
@@ -2605,7 +2827,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 122,
+    "__docId__": 125,
     "kind": "external",
     "name": "WeakSet",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
@@ -2617,7 +2839,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 123,
+    "__docId__": 126,
     "kind": "external",
     "name": "ArrayBuffer",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
@@ -2629,7 +2851,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 124,
+    "__docId__": 127,
     "kind": "external",
     "name": "DataView",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
@@ -2641,7 +2863,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 125,
+    "__docId__": 128,
     "kind": "external",
     "name": "JSON",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
@@ -2653,7 +2875,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 126,
+    "__docId__": 129,
     "kind": "external",
     "name": "Promise",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
@@ -2665,7 +2887,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 127,
+    "__docId__": 130,
     "kind": "external",
     "name": "Generator",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
@@ -2677,7 +2899,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 128,
+    "__docId__": 131,
     "kind": "external",
     "name": "GeneratorFunction",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
@@ -2689,7 +2911,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 129,
+    "__docId__": 132,
     "kind": "external",
     "name": "Reflect",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
@@ -2701,7 +2923,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 130,
+    "__docId__": 133,
     "kind": "external",
     "name": "Proxy",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
@@ -2714,7 +2936,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 132,
+    "__docId__": 135,
     "kind": "external",
     "name": "CanvasRenderingContext2D",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D",
@@ -2726,7 +2948,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 133,
+    "__docId__": 136,
     "kind": "external",
     "name": "DocumentFragment",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment",
@@ -2738,7 +2960,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 134,
+    "__docId__": 137,
     "kind": "external",
     "name": "Element",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Element",
@@ -2750,7 +2972,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 135,
+    "__docId__": 138,
     "kind": "external",
     "name": "Event",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Event",
@@ -2762,7 +2984,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 136,
+    "__docId__": 139,
     "kind": "external",
     "name": "Node",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Node",
@@ -2774,7 +2996,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 137,
+    "__docId__": 140,
     "kind": "external",
     "name": "NodeList",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/NodeList",
@@ -2786,7 +3008,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 138,
+    "__docId__": 141,
     "kind": "external",
     "name": "XMLHttpRequest",
     "externalLink": "https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest",
@@ -2798,7 +3020,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 139,
+    "__docId__": 142,
     "kind": "external",
     "name": "AudioContext",
     "externalLink": "https://developer.mozilla.org/en/docs/Web/API/AudioContext",

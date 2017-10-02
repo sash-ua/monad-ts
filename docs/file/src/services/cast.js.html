@@ -57,7 +57,8 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/services/cast.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
- * decreasing the dimension of an array by n.
+ * Decreasing the dimension of an array by n.
+ * @method cast
  * @param {any} arr - input array.
  * @param {number} n - decreasing factor.
  * @return {Array&lt;any&gt;|T[]|Error}
@@ -68,6 +69,7 @@ export function cast(arr, n = 0) {
         : new Error(&apos;Function cast. Input  must  be array and factor - number.&apos;);
 }
 /**
+ * @method _reduser
  * @param {Array&lt;T&gt;} arr - input array.
  * @param {number} n - decreasing factor.
  * @return {Array&lt;any&gt;}
@@ -81,6 +83,7 @@ function _reduser(arr, n) {
         : arr;
 }
 /**
+ * @method _fact
  * @param {Array&lt;any&gt;} arr - input array.
  * @param {number} n - decreasing factor.
  * @return {Array&lt;any&gt;}

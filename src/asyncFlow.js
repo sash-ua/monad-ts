@@ -16,11 +16,12 @@ var clone_1 = require("./services/clone");
 var monad_1 = require("./monad");
 /**
  * Class AsyncFlow - for composing monads in an async flow (pipe), based on Promise.
+ * @extends {Monad}
  */
 var AsyncFlow = /** @class */ (function (_super) {
     __extends(AsyncFlow, _super);
     /**
-     * creates an instance of class AsyncFlow.
+     * Creates an instance of class AsyncFlow.
      * @param {any} [initV = 0] initV - initial value of new flow (pipe).
      * @param {boolean} [encapsulate = true] encapsulate - flag, if true then the init value will be cloned.
      */
@@ -29,24 +30,25 @@ var AsyncFlow = /** @class */ (function (_super) {
         if (encapsulate === void 0) { encapsulate = true; }
         var _this = _super.call(this) || this;
         /**
-         * keep initial flow (pipe) value.
+         * Keep initial flow (pipe) value.
          * @type {any}
          */
         _this.flow = encapsulate ? clone_1.clone(initV) : initV;
         /**
-         * the instance of Maybe.
+         * The instance of Maybe.
          * @type {Maybe}
          */
         _this.maybe = new maybe_1.Maybe();
         /**
-         * the instance of ErrorM.
+         * The instance of ErrorM.
          * @type {ErrorM}
          */
         _this.err = new error_1.ErrorM();
         return _this;
     }
     /**
-     * binds initial value to the transformation function
+     * Binds initial value to the transformation function.
+     * @method bind
      * @param {function(v: T) => Pr<U>} f - transformation function.
      * @return {Promise<T>}
      */

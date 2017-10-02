@@ -56,13 +56,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Either} from &apos;<span><a href="file/src/either.js.html#lineNumber8">monad-ts/src/either.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Either} from &apos;<span><a href="file/src/either.js.html#lineNumber7">monad-ts/src/either.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/either.js.html#lineNumber8">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/either.js.html#lineNumber7">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -75,7 +75,7 @@
   <div class="flat-list" data-ice="extendsChain"><h4>Extends:</h4><div><span><a href="class/src/monad.js~Monad.html">Monad</a></span> &#x2192; Either</div></div>
   
   
-  <div class="flat-list" data-ice="implements"><h4>Implements:</h4><ul><li><span>Binding</span></li></ul></div>
+  
   <div class="flat-list" data-ice="indirectImplements"><h4>Indirect Implements:</h4><ul><li><span><a href="class/src/interfaces/m.js~M.html">M</a></span></li></ul></div>
   
   
@@ -120,7 +120,7 @@
       <div>
         
         
-        <div data-ice="description"><p>creates an instance of class Either.</p>
+        <div data-ice="description"><p>Creates an instance of class Either.</p>
 </div>
       </div>
     </td>
@@ -156,7 +156,7 @@
       <div>
         
         
-        <div data-ice="description"><p>binds controller function and underlying value to the monad.</p>
+        <div data-ice="description"><p>Binds controller function and underlying value to the monad.</p>
 </div>
       </div>
     </td>
@@ -178,13 +178,13 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/either.js~Either.html#instance-method-left">left</a></span></span><span data-ice="signature">(v: <span>T</span>): <span>Pr</span>&lt;<span>N</span>&gt;</span>
+          <span data-ice="name"><span><a href="class/src/either.js~Either.html#instance-method-left">left</a></span></span><span data-ice="signature">(v: <span>T</span>): <span>Pr</span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>extract result of left(v) computation.</p>
+        <div data-ice="description"><p>Extract result of left(v) computation.</p>
 </div>
       </div>
     </td>
@@ -206,13 +206,13 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/either.js~Either.html#instance-method-right">right</a></span></span><span data-ice="signature">(v: <span>T</span>): <span>Pr</span>&lt;<span>Z</span>&gt;</span>
+          <span data-ice="name"><span><a href="class/src/either.js~Either.html#instance-method-right">right</a></span></span><span data-ice="signature">(v: <span>T</span>): <span>Pr</span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>extract result of right(v) computation.</p>
+        <div data-ice="description"><p>Extract result of right(v) computation.</p>
 </div>
       </div>
     </td>
@@ -231,34 +231,6 @@
   
   <tr data-ice="target">
     <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      <span class="abstract" data-ice="abstract">abstract</span>
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          <span data-ice="name"><span><a href="class/src/monad.js~Monad.html#instance-method-bind">bind</a></span></span><span data-ice="signature">(f: <span>MF</span>&lt;<span>T</span>, <span>U&gt;</span>|<span>D&lt;T</span>&gt;, v: <span>*</span>): <span>Pr&lt;U&gt; </span> | <span> Error </span> | <span> boolean</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>Binds transformation function and underlying value to the monad.</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
       <span class="access" data-ice="access">protected</span>
       
       
@@ -276,7 +248,7 @@
       <div>
         
         
-        <div data-ice="description"><p>takes Error or string return Error.</p>
+        <div data-ice="description"><p>Takes Error or string return Error.</p>
 </div>
       </div>
     </td>
@@ -304,7 +276,7 @@
       <div>
         
         
-        <div data-ice="description"><p>produces result after execution f(v).</p>
+        <div data-ice="description"><p>Produces result after execution f(v).</p>
 </div>
       </div>
     </td>
@@ -333,14 +305,14 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/either.js.html#lineNumber14">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/either.js.html#lineNumber13">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>creates an instance of class Either.</p>
+  <div data-ice="description"><p>Creates an instance of class Either.</p>
 </div>
 
   
@@ -412,10 +384,10 @@
   
   
   
-  <div data-ice="description"><p>binds controller function and underlying value to the monad.</p>
+  <div data-ice="description"><p>Binds controller function and underlying value to the monad.</p>
 </div>
 
-  <div data-ice="override"><h4>Override:</h4><span><a href="class/src/monad.js~Monad.html#instance-method-bind">Monad#bind</a></span></div>
+  
 
   <div data-ice="properties"><div data-ice="properties">
   <h4 data-ice="title">Params:</h4>
@@ -481,18 +453,18 @@
     
     
     
-    <span data-ice="name">left</span><span data-ice="signature">(v: <span>T</span>): <span>Pr</span>&lt;<span>N</span>&gt;</span>
+    <span data-ice="name">left</span><span data-ice="signature">(v: <span>T</span>): <span>Pr</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/either.js.html#lineNumber46">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/either.js.html#lineNumber47">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>extract result of left(v) computation.</p>
+  <div data-ice="description"><p>Extract result of left(v) computation.</p>
 </div>
 
   
@@ -522,7 +494,7 @@
     <table>
       <tbody>
         <tr>
-          <td class="return-type" data-ice="returnType"><span>Pr</span>&lt;<span>N</span>&gt;</td>
+          <td class="return-type" data-ice="returnType"><span>Pr</span></td>
           
         </tr>
       </tbody>
@@ -554,18 +526,18 @@
     
     
     
-    <span data-ice="name">right</span><span data-ice="signature">(v: <span>T</span>): <span>Pr</span>&lt;<span>Z</span>&gt;</span>
+    <span data-ice="name">right</span><span data-ice="signature">(v: <span>T</span>): <span>Pr</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/either.js.html#lineNumber54">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/either.js.html#lineNumber56">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>extract result of right(v) computation.</p>
+  <div data-ice="description"><p>Extract result of right(v) computation.</p>
 </div>
 
   
@@ -595,7 +567,7 @@
     <table>
       <tbody>
         <tr>
-          <td class="return-type" data-ice="returnType"><span>Pr</span>&lt;<span>Z</span>&gt;</td>
+          <td class="return-type" data-ice="returnType"><span>Pr</span></td>
           
         </tr>
       </tbody>

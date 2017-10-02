@@ -21,27 +21,28 @@ var error_1 = require("./error");
 var Identity = /** @class */ (function (_super) {
     __extends(Identity, _super);
     /**
-     * creates an instance of class Identity.
-     * @param {any} v - The initial state of app.
+     * Creates an instance of class Identity.
+     * @param {any} [v] - The initial state of app.
      * */
     function Identity(v) {
         var _this = _super.call(this) || this;
         /**
-         * keeps underlying value of a monad.
+         * Keeps underlying value of a monad.
          * @type {any}
          */
         _this.v = clone_1.clone(v);
         /**
-         * the instance of ErrorM.
+         * The instance of ErrorM.
          * @type {ErrorM}
          */
         _this.err = new error_1.ErrorM();
         return _this;
     }
     /**
-     * chains the operations on a monadic value.
+     * Chains the operations on a monadic value.
+     * @method bind
      * @param {MF<T, U>} f - transformation function for the monad.
-     * @param {any} [v = this.v]- underlying value for the monad, Can not be null or undefined.
+     * @param {any} [v = this.v]- underlying value for the monad, it can be null.
      * @return {Pr<U> | Error}
      */
     Identity.prototype.bind = function (f, v) {
@@ -50,7 +51,7 @@ var Identity = /** @class */ (function (_super) {
             ? equality_1.equality(this.v, v)
                 ? f(v)
                 : this.errorHandler('Identity.bind() - underlying value of the monad have defined in the constructor!')
-            : v || v === 0
+            : v || v === 0 || v === '' || v === null
                 ? f(v)
                 : f();
     };

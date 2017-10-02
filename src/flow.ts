@@ -1,4 +1,3 @@
-
 import {Monad} from "./monad";
 import {Maybe} from "./maybe";
 import {clone} from "./services/clone";
@@ -16,17 +15,17 @@ export class Flow<T> extends Monad<T>{
      */
     protected flow: any;
     /**
-     * @type {Maybe<T>}
+     * @type {Maybe}
      * @protected
      */
     protected maybe: Maybe<T>;
     /**
-     * @type {ErrorM<T>}
+     * @type {ErrorM}
      * @protected
      */
     protected err: ErrorM<T>;
     /**
-     * create an instance of class AsyncFlow.
+     * Create an instance of class AsyncFlow.
      * @param {any} initV - initial value of new flow (pipe).
      * @param {boolean} [encapsulate = true] encapsulate - flag, if true then the init value will be cloned.
      */
@@ -52,9 +51,10 @@ export class Flow<T> extends Monad<T>{
         this.err = new ErrorM();
     }
     /**
-     * chains the operations on a monadic values.
+     * Chains the operations on a monadic values.
+     * @method bind
      * @param {function(v: T) => Pr<U>} f - transformation function for a main flow value.
-     * @param {any} [v= this.flow] - underlying value for a monad.
+     * @param {any} [v = this.flow] - underlying value for a monad.
      * @return {Flow<T>} transformed by f() value v or throw Error or null.
      */
     bind<T, U>(f: MF<T, U>, v: any = this.flow): Flow<T>{
@@ -62,7 +62,8 @@ export class Flow<T> extends Monad<T>{
         return this;
     }
     /**
-     * creates branch from a flow (pipe).
+     * Creates branch from a flow (pipe).
+     * @method let
      * @param {function(v: T) => Pr<U>} f - transformation function for a main flow value.
      * @return {Flow<T>}
      */
@@ -71,7 +72,8 @@ export class Flow<T> extends Monad<T>{
         return this;
     }
     /**
-     * extract value from a flow (pipe).
+     * Extract value from a flow (pipe).
+     * @method subscribe
      * @return {T}
      */
     subscribe<T>(): T{

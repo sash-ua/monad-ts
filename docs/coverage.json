@@ -44,13 +44,13 @@
       "undocumentLines": []
     },
     "src/monad.js": {
-      "expectCount": 4,
-      "actualCount": 4,
+      "expectCount": 3,
+      "actualCount": 3,
       "undocumentLines": []
     },
     "src/state.js": {
-      "expectCount": 7,
-      "actualCount": 7,
+      "expectCount": 8,
+      "actualCount": 8,
       "undocumentLines": []
     },
     "src/services/cast.js": {

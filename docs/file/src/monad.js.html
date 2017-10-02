@@ -63,18 +63,8 @@
  */
 export class Monad {
     /**
-     * Binds transformation function and underlying value to the monad.
-     * @param {MF&lt;T, U&gt; | D&lt;T&gt;} f - transformation function.
-     * @param v - underlying value.
-     * @return {Pr&lt;U&gt; | Error | boolean}
-     * @abstract
-     */
-    bind(f, v) {
-        return void 0;
-    }
-    ;
-    /**
-     * takes Error or string return Error.
+     * Takes Error or string return Error.
+     * @method errorHandler
      * @param {Error | string} e - Error obj. or string.
      * @return {Error}
      * @protected
@@ -83,7 +73,8 @@ export class Monad {
         return e instanceof Error ? e : new Error(e);
     }
     /**
-     * produces result after execution f(v).
+     * Produces result after execution f(v).
+     * @method just
      * @param {function(v: T) =&gt; Pr&lt;U&gt;} f - transformation function for a monad.
      * @param {T} v - underlying value.
      * @return {Pr&lt;U&gt;} extracts transformed value by f(v).

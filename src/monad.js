@@ -9,18 +9,8 @@ var Monad = /** @class */ (function () {
     function Monad() {
     }
     /**
-     * Binds transformation function and underlying value to the monad.
-     * @param {MF<T, U> | D<T>} f - transformation function.
-     * @param v - underlying value.
-     * @return {Pr<U> | Error | boolean}
-     * @abstract
-     */
-    Monad.prototype.bind = function (f, v) {
-        return void 0;
-    };
-    ;
-    /**
-     * takes Error or string return Error.
+     * Takes Error or string return Error.
+     * @method errorHandler
      * @param {Error | string} e - Error obj. or string.
      * @return {Error}
      * @protected
@@ -29,7 +19,8 @@ var Monad = /** @class */ (function () {
         return e instanceof Error ? e : new Error(e);
     };
     /**
-     * produces result after execution f(v).
+     * Produces result after execution f(v).
+     * @method just
      * @param {function(v: T) => Pr<U>} f - transformation function for a monad.
      * @param {T} v - underlying value.
      * @return {Pr<U>} extracts transformed value by f(v).

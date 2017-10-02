@@ -56,6 +56,7 @@
  *      new Test(true) and new Test2(true);
  *      new Test(true) and new Test(false);
  *
+ * @method equality
  * @param {any} x - argument 1, can include null, NaN etc.
  * @param {any} y - argument 2, can include null, NaN etc.
  * @returns {boolean}

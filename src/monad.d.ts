@@ -10,21 +10,24 @@ import { D } from './types/d';
 export declare abstract class Monad<T> implements M<T> {
     /**
      * Binds transformation function and underlying value to the monad.
+     * @method bind
      * @param {MF<T, U> | D<T>} f - transformation function.
      * @param v - underlying value.
-     * @return {Pr<U> | Error | boolean}
+     * @return {Promise<U> | Pr<U> | Error | boolean  | void}
      * @abstract
      */
-    bind<T, U>(f: MF<T, U> | D<T>, v: any): Promise<U> | Pr<U> | Error | boolean;
+    abstract bind<T, U>(f: MF<T, U> | D<T>, v: any): Promise<U> | Pr<U> | Error | boolean | void;
     /**
-     * takes Error or string return Error.
+     * Takes Error or string return Error.
+     * @method errorHandler
      * @param {Error | string} e - Error obj. or string.
      * @return {Error}
      * @protected
      */
     errorHandler(e: Error | string): Error;
     /**
-     * produces result after execution f(v).
+     * Produces result after execution f(v).
+     * @method just
      * @param {function(v: T) => Pr<U>} f - transformation function for a monad.
      * @param {T} v - underlying value.
      * @return {Pr<U>} extracts transformed value by f(v).

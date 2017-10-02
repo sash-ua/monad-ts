@@ -62,33 +62,35 @@ import { clone } from &quot;./services/clone&quot;;
 import { Monad } from &quot;./monad&quot;;
 /**
  * Class AsyncFlow - for composing monads in an async flow (pipe), based on Promise.
+ * @extends {Monad}
  */
 export class AsyncFlow extends Monad {
     /**
-     * creates an instance of class AsyncFlow.
+     * Creates an instance of class AsyncFlow.
      * @param {any} [initV = 0] initV - initial value of new flow (pipe).
      * @param {boolean} [encapsulate = true] encapsulate - flag, if true then the init value will be cloned.
      */
     constructor(initV = 0, encapsulate = true) {
         super();
         /**
-         * keep initial flow (pipe) value.
+         * Keep initial flow (pipe) value.
          * @type {any}
          */
         this.flow = encapsulate ? clone(initV) : initV;
         /**
-         * the instance of Maybe.
+         * The instance of Maybe.
          * @type {Maybe}
          */
         this.maybe = new Maybe();
         /**
-         * the instance of ErrorM.
+         * The instance of ErrorM.
          * @type {ErrorM}
          */
         this.err = new ErrorM();
     }
     /**
-     * binds initial value to the transformation function
+     * Binds initial value to the transformation function.
+     * @method bind
      * @param {function(v: T) =&gt; Pr&lt;U&gt;} f - transformation function.
      * @return {Promise&lt;T&gt;}
      */

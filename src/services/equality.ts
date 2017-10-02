@@ -56,11 +56,11 @@
  *      new Test(true) and new Test2(true);
  *      new Test(true) and new Test(false);
  *
+ * @method equality
  * @param {any} x - argument 1, can include null, NaN etc.
  * @param {any} y - argument 2, can include null, NaN etc.
  * @returns {boolean}
  */
-
 
 export  function equality(x: any, y: any): boolean{
     const isXO = new Object(x);
@@ -92,7 +92,8 @@ export  function equality(x: any, y: any): boolean{
     }
 }
 /**
- * iterate array controller.
+ * Tterate array controller.
+ * @method _arrayIterator
  * @param {Array<any>} x
  * @param {Array<any>} y
  * @return {boolean}

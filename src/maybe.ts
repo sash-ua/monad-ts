@@ -8,7 +8,8 @@ import {Pr} from "./types/pr";
  */
 export class Maybe<T> extends Monad<T> {
     /**
-     * chains the operations on a monadic values.
+     * Chains the operations on a monadic values.
+     * @method bind
      * @param {MF<T, U>} f - transformation function for a monad.
      * @param {T} v - underlying value for a monad.
      * @return {Pr<U>} transformed by f() value v.
@@ -22,7 +23,8 @@ export class Maybe<T> extends Monad<T> {
         }
     }
     /**
-     * return nothing (null).
+     * Return nothing (null).
+     * @method nothing
      * @return {null}
      */
     nothing(): any{

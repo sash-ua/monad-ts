@@ -1,8 +1,20 @@
-# 0.3.13 (2017-09-01)
+# 0.3.14 (2017-10-02)
+
+### Changes
+
+**state**:
+
+1) added bind method to initialize instance of the State class late, after creation.
+
+2) the instance of the State class can be created without initialization.
+
+* docs updated.
+
+# 0.3.13 (2017-10-01)
 
 ### Bug fixed
 
-**class Identity** If it get 0 as underlying value it execute transformation function without underlying value.
+**identity** If it get 0 as underlying value it execute transformation function without underlying value.
 
 ### Changes
 

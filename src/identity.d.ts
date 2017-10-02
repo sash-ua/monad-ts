@@ -13,19 +13,20 @@ export declare class Identity<T> extends Monad<T> {
      */
     protected v: any;
     /**
-     * @type {ErrorM<T>}
+     * @type {ErrorM}
      * @protected
      */
     protected err: ErrorM<T>;
     /**
-     * creates an instance of class Identity.
-     * @param {any} v - The initial state of app.
+     * Creates an instance of class Identity.
+     * @param {any} [v] - The initial state of app.
      * */
     constructor(v?: any);
     /**
-     * chains the operations on a monadic value.
+     * Chains the operations on a monadic value.
+     * @method bind
      * @param {MF<T, U>} f - transformation function for the monad.
-     * @param {any} [v = this.v]- underlying value for the monad, Can not be null or undefined.
+     * @param {any} [v = this.v]- underlying value for the monad, it can be null.
      * @return {Pr<U> | Error}
      */
     bind<T, U>(f: MF<T, U>, v?: any): Pr<U> | Error;

@@ -63,15 +63,17 @@
  */
 export class List extends Monad {
     /**
-     *
+     * Transform every element of array with given function
+     * @method bind
      * @param {MF&lt;T, U&gt;} f - transformation function for a monad.
      * @param v - underlying value for a monad.
      * @return {Pr&lt;U&gt; | Error} transformed by f() value v or error if input arg is not array.
      */
     bind(f, v) {
-        return Array.isArray(v) ? this._disp(f, v) : this.errorHandler(&apos;List. Input must be an array.&apos;);
+        return Array.isArray(v) ? this._disp(f, v) : this.errorHandler(&apos;List.bind() - input must be an array.&apos;);
     }
     /**
+     * @method _disp
      * @param {function(n: T) =&gt; U} f - transformation function for a monad.
      * @param {any} v - underlying value for a monad.
      * @return {Array&lt;U&gt;} transformed by f() value v.

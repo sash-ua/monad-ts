@@ -1,5 +1,6 @@
 /**
- * execute a function given a delay time.
+ * Execute a function given a delay time.
+ * @method debounceTime
  * @param {function} f - invoked function.
  * @param {number} d - a delay time.
  * @param {boolean} [immediate = true] immediate - first func call is immediate if true.

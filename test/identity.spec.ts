@@ -70,10 +70,24 @@ describe('Identity: ', ()=>{
     });
     it('14) should produce value', () => {
         const i = new Identity();
-        const f = (v: number) => {
+        const f = (v: any) => {
             return v;
         };
-        expect(i.bind(f, '')).toMatch('');
+        expect(i.bind(f, '')).toEqual('');
+    });
+    it('15) should produce value', () => {
+        const i = new Identity();
+        const f = (v: any) => {
+            return v;
+        };
+        expect(i.bind(f, null)).toEqual(null);
+    });
+    it('16) should produce value', () => {
+        const i = new Identity(null);
+        const f = (v: any) => {
+            return v;
+        };
+        expect(i.bind(f)).toEqual(null);
     });
 });
 

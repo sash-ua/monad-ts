@@ -56,13 +56,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {State} from &apos;<span><a href="file/src/state.js.html#lineNumber8">monad-ts/src/state.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {State} from &apos;<span><a href="file/src/state.js.html#lineNumber10">monad-ts/src/state.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/state.js.html#lineNumber8">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/state.js.html#lineNumber10">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -72,11 +72,11 @@
 
   
   
+  <div class="flat-list" data-ice="extendsChain"><h4>Extends:</h4><div><span><a href="class/src/monad.js~Monad.html">Monad</a></span> &#x2192; State</div></div>
   
   
   
-  
-  
+  <div class="flat-list" data-ice="indirectImplements"><h4>Indirect Implements:</h4><ul><li><span><a href="class/src/interfaces/m.js~M.html">M</a></span></li></ul></div>
   
   
 
@@ -120,7 +120,7 @@
       <div>
         
         
-        <div data-ice="description"><p>creates an instance of class State.</p>
+        <div data-ice="description"><p>Creates an instance of the class State with an initialization or not, the initialization can be occur late with bind method.</p>
 </div>
       </div>
     </td>
@@ -155,7 +155,7 @@
       <div>
         
         
-        <div data-ice="description"><p>the instance of ErrorM.</p>
+        <div data-ice="description"><p>The instance of ErrorM.</p>
 </div>
       </div>
     </td>
@@ -183,7 +183,7 @@
       <div>
         
         
-        <div data-ice="description"><p>the instance of Maybe.</p>
+        <div data-ice="description"><p>The instance of Maybe.</p>
 </div>
       </div>
     </td>
@@ -205,13 +205,13 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/state.js~State.html#instance-member-state">state</a></span></span><span data-ice="signature">: <span>T</span></span>
+          <span data-ice="name"><span><a href="class/src/state.js~State.html#instance-member-state">state</a></span></span><span data-ice="signature">: <span>any</span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>keeps the state of application variables.</p>
+        <div data-ice="description"><p>Keeps the state of application variables.</p>
 </div>
       </div>
     </td>
@@ -240,13 +240,41 @@
         <p>
           
           
+          <span data-ice="name"><span><a href="class/src/state.js~State.html#instance-method-bind">bind</a></span></span><span data-ice="signature">(f: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>, v: <span>*</span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>It takes an initial state of the monad if monad has initialized in the constructor then function assigns Error to underlying value.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
           <span data-ice="name"><span><a href="class/src/state.js~State.html#instance-method-get">get</a></span></span><span data-ice="signature">(): <span>T</span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>extracts the state of application variables.</p>
+        <div data-ice="description"><p>Extracts the state of app.</p>
 </div>
       </div>
     </td>
@@ -274,7 +302,7 @@
       <div>
         
         
-        <div data-ice="description"><p>changes the state of application variables, if you try add new key with put() to state object it&apos;ll be assigned
+        <div data-ice="description"><p>Changes the state of application variables, if you try add new key with put() to state object it&apos;ll be assigned
 with Error instance.</p>
 </div>
       </div>
@@ -288,7 +316,69 @@ with Error instance.</p>
 </table>
 </div>
 
-
+<div class="inherited-summary" data-ice="inheritedSummary"><h2>Inherited Summary</h2><table class="summary" data-ice="summary">
+  <thead><tr><td data-ice="title" colspan="3"><span class="toggle closed"></span> From class <span><a href="class/src/monad.js~Monad.html">Monad</a></span></td></tr></thead>
+  <tbody>
+  
+  <tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">protected</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          <span data-ice="name"><span><a href="class/src/monad.js~Monad.html#instance-method-errorHandler">errorHandler</a></span></span><span data-ice="signature">(e: <span>Error </span> | <span> string</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error">Error</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Takes Error or string return Error.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">protected</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          <span data-ice="name"><span><a href="class/src/monad.js~Monad.html#instance-method-just">just</a></span></span><span data-ice="signature">(f: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(v: <span>T</span>)</span></span>, v: <span>T</span>): <span>Pr</span>&lt;<span>U</span>&gt;</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Produces result after execution f(v).</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
 
 
 
@@ -306,14 +396,14 @@ with Error instance.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/state.js.html#lineNumber13">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/state.js.html#lineNumber15">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>creates an instance of class State.</p>
+  <div data-ice="description"><p>Creates an instance of the class State with an initialization or not, the initialization can be occur late with bind method.</p>
 </div>
 
   
@@ -329,7 +419,7 @@ with Error instance.</p>
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">state</td>
       <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
-      <td data-ice="appendix"></td>
+      <td data-ice="appendix"><ul><li>optional</li></ul></td>
       <td data-ice="description"><p>the initial state of app.</p>
 </td>
     </tr>
@@ -370,14 +460,14 @@ with Error instance.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/state.js.html#lineNumber28">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/state.js.html#lineNumber31">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>the instance of ErrorM.</p>
+  <div data-ice="description"><p>The instance of ErrorM.</p>
 </div>
 
   
@@ -414,14 +504,14 @@ with Error instance.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/state.js.html#lineNumber23">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/state.js.html#lineNumber26">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>the instance of Maybe.</p>
+  <div data-ice="description"><p>The instance of Maybe.</p>
 </div>
 
   
@@ -454,18 +544,18 @@ with Error instance.</p>
     
     
     
-    <span data-ice="name">state</span><span data-ice="signature">: <span>T</span></span>
+    <span data-ice="name">state</span><span data-ice="signature">: <span>any</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/state.js.html#lineNumber18">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/state.js.html#lineNumber21">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>keeps the state of application variables.</p>
+  <div data-ice="description"><p>Keeps the state of application variables.</p>
 </div>
 
   
@@ -494,6 +584,73 @@ with Error instance.</p>
 <div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
 
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-bind">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span data-ice="name">bind</span><span data-ice="signature">(f: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>, v: <span>*</span>)</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/state.js.html#lineNumber39">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>It takes an initial state of the monad if monad has initialized in the constructor then function assigns Error to underlying value.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">f</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"></td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">v</td>
+      <td data-ice="type"><span>*</span></td>
+      <td data-ice="appendix"><ul><li>optional</li></ul></td>
+      <td data-ice="description"><p>underlying value for the monad, it can be null.</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-get">
     <span class="access" data-ice="access">public</span>
     
@@ -505,14 +662,14 @@ with Error instance.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/state.js.html#lineNumber45">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/state.js.html#lineNumber71">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>extracts the state of application variables.</p>
+  <div data-ice="description"><p>Extracts the state of app.</p>
 </div>
 
   
@@ -561,14 +718,14 @@ with Error instance.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/state.js.html#lineNumber35">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/state.js.html#lineNumber60">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>changes the state of application variables, if you try add new key with put() to state object it&apos;ll be assigned
+  <div data-ice="description"><p>Changes the state of application variables, if you try add new key with put() to state object it&apos;ll be assigned
 with Error instance.</p>
 </div>
 
