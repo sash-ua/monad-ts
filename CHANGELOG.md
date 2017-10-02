@@ -1,3 +1,9 @@
+# 0.3.15 (2017-10-02)
+
+### Bug fixed
+
+**state.get()** type issue.
+
 # 0.3.14 (2017-10-02)
 
 ### Changes

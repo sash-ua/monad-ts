@@ -45,5 +45,5 @@ export declare class State<T> extends Monad<T> {
      * @method get
      * @return {T}
      */
-    get<T>(): T;
+    get(): T;
 }
