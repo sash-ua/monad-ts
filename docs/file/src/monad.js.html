@@ -63,6 +63,18 @@
  */
 export class Monad {
     /**
+     * Binds transformation function and underlying value to the monad.
+     * @method bind
+     * @param {MF&lt;T, U&gt; | D&lt;T&gt;} f - transformation function.
+     * @param v - underlying value.
+     * @return {Promise&lt;U&gt; | Pr&lt;U&gt; | Error | boolean  | void}
+     * @abstract
+     */
+    bind(f, v) {
+        return void 0;
+    }
+    ;
+    /**
      * Takes Error or string return Error.
      * @method errorHandler
      * @param {Error | string} e - Error obj. or string.
