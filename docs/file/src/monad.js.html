@@ -70,18 +70,16 @@ export class Monad {
      * @return {Promise&lt;U&gt; | Pr&lt;U&gt; | Error | boolean  | void}
      * @abstract
      */
-    bind(f, v) {
-        return void 0;
-    }
+    abstract bind(f, v)
     ;
     /**
      * Takes Error or string return Error.
-     * @method errorHandler
+     * @method fail
      * @param {Error | string} e - Error obj. or string.
      * @return {Error}
      * @protected
      */
-    errorHandler(e) {
+    fail(e) {
         return e instanceof Error ? e : new Error(e);
     }
     /**

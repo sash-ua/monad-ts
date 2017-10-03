@@ -208,13 +208,14 @@ z = cast(list.bind((v: number) =>list.bind((v: number) => [-v, v], [v-1, v, v+1]
 
 The State monad interact with local and global state variables to transform them. After initializing an instance of State monad we can not
 add new keys to the state object.
-It take object usually.
+It take object.
 
 The instance of the State monad can be initialized in two ways.
 
 1. While the instance create - in constructor (Ex.1).
 
-2. After instance created - with `bind()` method (Ex.2).
+2. After instance created - use `bind()` method (Ex.2). The function `x => x` in `st.bind(x => x, initState);` is for backward
+compatibility with previous versions, it's unused in the method. Lazy initialization can be useful in some cases.
 
 Example 1:
 ```
@@ -337,6 +338,7 @@ let g = hash('test "#^test "#^test "#^testRrr G!@#$%^&*()__+<>?ZXCV":A'); // g =
 #### wait
 Function to convert timeout in a Promise, resolved when specified amount of time passes. It take value (v) end emit
 Promise after t timeout with value (v). `wait(v, t)`
+It produce a promise rejection handler on an Error occur.
 ```
 const s = wait(1, 300).then((v: number)=>{
             console.log(v);                 // v = 1, emitted after 300 ms

@@ -83,8 +83,8 @@
   
   
   <div class="description" data-ice="description"><p>interface M&lt;T&gt;{</p>
-<p> just&lt;T,U&gt;(f: MF&lt;T, U&gt;, v: T): Pr&lt;U&gt;;</p>
-<p> errorHandler(e: Error | string): Error;</p>
+<p>protected just&lt;T,U&gt;(f: MF&lt;T, U&gt;, v: T): Pr&lt;U&gt;;</p>
+<p>protected  fail(e: Error | string): Error;</p>
 <p>}</p>
 </div>
   
@@ -103,12 +103,12 @@
 
 
 <div data-ice="methodSummary"><h2>Method Summary</h2><table class="summary" data-ice="summary">
-  <thead><tr><td data-ice="title" colspan="3">Public Methods</td></tr></thead>
+  <thead><tr><td data-ice="title" colspan="3">Protected Methods</td></tr></thead>
   <tbody>
   
   <tr data-ice="target">
     <td>
-      <span class="access" data-ice="access">public</span>
+      <span class="access" data-ice="access">protected</span>
       
       
       
@@ -119,13 +119,13 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/interfaces/m.js~M.html#instance-method-errorHandler">errorHandler</a></span></span><span data-ice="signature">(e: <span>Error </span> | <span> string</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error">Error</a></span></span>
+          <span data-ice="name"><span><a href="class/src/interfaces/m.js~M.html#instance-method-fail">fail</a></span></span><span data-ice="signature">(e: <span>Error </span> | <span> string</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error">Error</a></span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>errors handler.</p>
+        <div data-ice="description"><p>Execute on error occur.</p>
 </div>
       </div>
     </td>
@@ -136,7 +136,7 @@
   </tr>
 <tr data-ice="target">
     <td>
-      <span class="access" data-ice="access">public</span>
+      <span class="access" data-ice="access">protected</span>
       
       
       
@@ -153,7 +153,7 @@
       <div>
         
         
-        <div data-ice="description"><p>extracts value from monad.</p>
+        <div data-ice="description"><p>Extracts value from monad.</p>
 </div>
       </div>
     </td>
@@ -172,28 +172,28 @@
 
 
 
-<div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
+<div data-ice="methodDetails"><h2 data-ice="title">Protected Methods</h2>
 
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-errorHandler">
-    <span class="access" data-ice="access">public</span>
+  <h3 data-ice="anchor" id="instance-method-fail">
+    <span class="access" data-ice="access">protected</span>
     
     
     
     
     
-    <span data-ice="name">errorHandler</span><span data-ice="signature">(e: <span>Error </span> | <span> string</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error">Error</a></span></span>
+    <span data-ice="name">fail</span><span data-ice="signature">(e: <span>Error </span> | <span> string</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error">Error</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/interfaces/m.js.html#lineNumber29">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/interfaces/m.js.html#lineNumber31">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>errors handler.</p>
+  <div data-ice="description"><p>Execute on error occur.</p>
 </div>
 
   
@@ -249,7 +249,7 @@
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-just">
-    <span class="access" data-ice="access">public</span>
+    <span class="access" data-ice="access">protected</span>
     
     
     
@@ -259,14 +259,14 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/interfaces/m.js.html#lineNumber20">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/interfaces/m.js.html#lineNumber21">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>extracts value from monad.</p>
+  <div data-ice="description"><p>Extracts value from monad.</p>
 </div>
 
   

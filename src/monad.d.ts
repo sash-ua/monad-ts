@@ -19,12 +19,12 @@ export declare abstract class Monad<T> implements M<T> {
     abstract bind<T, U>(f: MF<T, U> | D<T>, v: any): Promise<U> | Pr<U> | Error | boolean | void;
     /**
      * Takes Error or string return Error.
-     * @method errorHandler
+     * @method fail
      * @param {Error | string} e - Error obj. or string.
      * @return {Error}
      * @protected
      */
-    errorHandler(e: Error | string): Error;
+    fail(e: Error | string): Error;
     /**
      * Produces result after execution f(v).
      * @method just

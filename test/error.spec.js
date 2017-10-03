@@ -4,7 +4,7 @@ var error_1 = require("../src/error");
 describe('ErrorM: ', function () {
     var e = new error_1.ErrorM();
     it('1) should produce return values', function () {
-        expect(e.just(function (v) { return v; }, 3)).toEqual(3);
+        expect(e.bind(function (v) { return v; }, 3)).toEqual(3);
     });
     it('2) should produce return values', function () {
         var f = function (v) { return v; };
@@ -12,11 +12,11 @@ describe('ErrorM: ', function () {
     });
     it('3) should produce return values', function () {
         var f = function (v) { return v; };
-        expect(e.just(function (v) { return v + 2; }, e.just(f, 1))).toEqual(3);
+        expect(e.bind(function (v) { return v + 2; }, e.bind(f, 1))).toEqual(3);
     });
     it('4) should produce return values', function () {
         var f = function (v) { return v; };
-        expect(e.just(function (x) { return e.just(function (v) { return v + 2; }, f(x)); }, 1)).toEqual(3);
+        expect(e.bind(function (x) { return e.bind(function (v) { return v + 2; }, f(x)); }, 1)).toEqual(3);
     });
     it('5) should produce errors', function () {
         expect(e.bind(function (v) { return e.bind(function (v1) { return v + v1; }, 1); }, Infinity) instanceof Error).toBeTruthy();

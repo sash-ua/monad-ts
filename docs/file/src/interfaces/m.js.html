@@ -59,34 +59,32 @@
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
  * interface M&lt;T&gt;{
  *
- *  just&lt;T,U&gt;(f: MF&lt;T, U&gt;, v: T): Pr&lt;U&gt;;
+ * protected just&lt;T,U&gt;(f: MF&lt;T, U&gt;, v: T): Pr&lt;U&gt;;
  *
- *  errorHandler(e: Error | string): Error;
+ * protected  fail(e: Error | string): Error;
  *
  * }
  * @interface
  * @name M - monads interface, {@link Monad}.
  * @noimport true
  */
-export class M {
+export interface M {
     /**
-     * extracts value from monad.
+     * Extracts value from monad.
      * @param {function(v: T) =&gt; Pr&lt;U&gt;} f - transformation function for a monad.
      * @param {T} v - underlying value.
      * @return {Pr&lt;U&gt;} extracts transformed value by f(v).
+     * @protected
      */
-    just(f, v) {
-        return void 0;
-    }
+    just(f, v)
     ;
     /**
-     * errors handler.
+     * Execute on error occur.
      * @param {Error | string} e - Error obj. or string.
      * @return {Error}
+     * @protected
      */
-    errorHandler(e) {
-        return void 0;
-    }
+    fail(e)
     ;
 }
 //Copyright (c) 2017 Alex Tranchenko. All rights reserved. 

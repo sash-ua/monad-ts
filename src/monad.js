@@ -10,12 +10,12 @@ var Monad = /** @class */ (function () {
     }
     /**
      * Takes Error or string return Error.
-     * @method errorHandler
+     * @method fail
      * @param {Error | string} e - Error obj. or string.
      * @return {Error}
      * @protected
      */
-    Monad.prototype.errorHandler = function (e) {
+    Monad.prototype.fail = function (e) {
         return e instanceof Error ? e : new Error(e);
     };
     /**

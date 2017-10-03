@@ -3,6 +3,7 @@ import {ErrorM} from "./error";
 import {clone} from "./services/clone";
 import {equality} from "./services/equality";
 import {Monad} from './monad';
+import {Pr} from "../index";
 
 /**
  * Class State - it takes a state and returns an intermediate value and some new state value.
@@ -13,7 +14,7 @@ export class State<T>  extends Monad<T> {
      * @type {any}
      * @protected
      */
-    protected state: any;
+    protected state: Pr<T> | Error;
     /**
      * @type {Maybe}
      * @protected
@@ -29,7 +30,7 @@ export class State<T>  extends Monad<T> {
      * @param {Object} [state] - the initial state of app.
      */
     constructor(
-        state?: T
+        state?: Pr<T> | Error
     ){
         super();
         /**
@@ -56,14 +57,14 @@ export class State<T>  extends Monad<T> {
      * @param [v] - underlying value for the monad, it can be null.
      */
     bind<T>(f: Function, v?: any): void {
-        const state = !!this.state || this.state === 0 || this.state === '' || this.state === null;
-        const vL = !!v || v === 0 || v === '' || v === null;
+        const state = !!this.state;
+        const vL = !!v;
         switch (true) {
             case (state && vL):
-                this.state = this.errorHandler('State.bind() - underlying value of the monad have defined in the constructor!');
+                this.state = this.fail('State.bind() - underlying value of the monad have defined in the constructor!');
                 break;
             case (!state && !vL):
-                this.state = this.errorHandler('State.bind() - underlying value of the monad have not defined!');
+                this.state = this.fail('State.bind() - underlying value of the monad have not defined!');
                 break;
             case (!state && vL):
                 this.state = v;
@@ -81,16 +82,16 @@ export class State<T>  extends Monad<T> {
         this.state = this.err.bind(
             (v: T) => equality(Object.getOwnPropertyNames(buffer), Object.getOwnPropertyNames(v))
                 ? v
-                : this.errorHandler('State.put()._maybeErrorT() - after init we can not add / remove keys in state obj.'),
+                : this.fail('State.put()._maybeErrorT() - after init we can not add / remove keys in state obj.'),
             this.maybe.bind((v: any) => f(v), this.state)
         );
     }
     /**
      * Extracts the state of app.
      * @method get
-     * @return {T}
+     * @return {Pr<T> | Error}
      */
-    get(): T{
+    get(): Pr<T> | Error{
         return this.state;
     }
 }

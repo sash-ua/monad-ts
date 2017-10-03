@@ -16,10 +16,10 @@ export class ErrorM<T> extends Monad<T> {
      */
     bind<T, U>(f: MF<T, U>, v: any): Pr<U> | Error{
         if(v !== v || v === Infinity|| v === -Infinity || v instanceof Error){
-            return this.errorHandler(v);
+            return this.fail(v);
         } else {
             const vL: any = this.just(f, v);
-            return (vL !== vL || vL === Infinity|| vL === -Infinity || vL instanceof Error) ? this.errorHandler(vL) : vL;
+            return (vL !== vL || vL === Infinity|| vL === -Infinity || vL instanceof Error) ? this.fail(vL) : vL;
         }
     }
 }

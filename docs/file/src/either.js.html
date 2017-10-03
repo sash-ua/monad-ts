@@ -89,11 +89,11 @@ export class Either extends Monad {
                 case false:
                     return this.l(v);
                 default:
-                    return this.errorHandler(&apos;Either.bind() - binding error&apos;);
+                    return this.fail(&apos;Either.bind() - binding error&apos;);
             }
         }
         catch (e) {
-            this.errorHandler(`Either.bind().switch - ${e}`);
+            this.fail(`Either.bind().switch - ${e}`);
         }
     }
     /**
@@ -103,7 +103,7 @@ export class Either extends Monad {
      * @return {Pr}
      */
     left(v) {
-        return this.uVal ? equality(this.uVal, v) ? this.l(v) : this.errorHandler(&apos;Either.left() - v have been binded with bind method&apos;) : this.l(v);
+        return this.uVal ? equality(this.uVal, v) ? this.l(v) : this.fail(&apos;Either.left() - v have been binded with bind method&apos;) : this.l(v);
     }
     /**
      * Extract result of right(v) computation.
@@ -112,7 +112,7 @@ export class Either extends Monad {
      * @return {Pr}
      */
     right(v) {
-        return this.uVal ? equality(this.uVal, v) ? this.r(v) : this.errorHandler(&apos;Either.right() - v have been binded with bind method&apos;) : this.r(v);
+        return this.uVal ? equality(this.uVal, v) ? this.r(v) : this.fail(&apos;Either.right() - v have been binded with bind method&apos;) : this.r(v);
     }
 }
 //Copyright (c) 2017 Alex Tranchenko. All rights reserved. 

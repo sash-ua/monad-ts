@@ -82,22 +82,22 @@ describe('State: ', function () {
     it('11) should produce value', function () {
         var st = new state_1.State(0);
         st.bind(function (x) { return x; });
-        expect(st.get()).toEqual(0);
+        expect(st.get() instanceof Error).toBeTruthy();
     });
     it('12) should produce value', function () {
         var st = new state_1.State('');
         st.bind(function (x) { return x; });
-        expect(st.get()).toEqual('');
+        expect(st.get() instanceof Error).toBeTruthy();
     });
     it('13) should produce value', function () {
         var st = new state_1.State();
         st.bind(function (x) { return x; }, 0);
-        expect(st.get()).toEqual(0);
+        expect(st.get() instanceof Error).toBeTruthy();
     });
     it('14) should produce value', function () {
         var st = new state_1.State();
         st.bind(function (x) { return x; }, '');
-        expect(st.get()).toEqual('');
+        expect(st.get() instanceof Error).toBeTruthy();
     });
     it('15) should return changed given object', function () {
         var initState = {

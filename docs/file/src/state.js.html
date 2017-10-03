@@ -95,14 +95,14 @@ export class State extends Monad {
      * @param [v] - underlying value for the monad, it can be null.
      */
     bind(f, v) {
-        const state = !!this.state || this.state === 0 || this.state === &apos;&apos; || this.state === null;
-        const vL = !!v || v === 0 || v === &apos;&apos; || v === null;
+        const state = !!this.state;
+        const vL = !!v;
         switch (true) {
             case (state &amp;&amp; vL):
-                this.state = this.errorHandler(&apos;State.bind() - underlying value of the monad have defined in the constructor!&apos;);
+                this.state = this.fail(&apos;State.bind() - underlying value of the monad have defined in the constructor!&apos;);
                 break;
             case (!state &amp;&amp; !vL):
-                this.state = this.errorHandler(&apos;State.bind() - underlying value of the monad have not defined!&apos;);
+                this.state = this.fail(&apos;State.bind() - underlying value of the monad have not defined!&apos;);
                 break;
             case (!state &amp;&amp; vL):
                 this.state = v;
@@ -119,12 +119,12 @@ export class State extends Monad {
         const buffer = clone(this.state);
         this.state = this.err.bind((v) =&gt; equality(Object.getOwnPropertyNames(buffer), Object.getOwnPropertyNames(v))
             ? v
-            : this.errorHandler(&apos;State.put()._maybeErrorT() - after init we can not add / remove keys in state obj.&apos;), this.maybe.bind((v) =&gt; f(v), this.state));
+            : this.fail(&apos;State.put()._maybeErrorT() - after init we can not add / remove keys in state obj.&apos;), this.maybe.bind((v) =&gt; f(v), this.state));
     }
     /**
      * Extracts the state of app.
      * @method get
-     * @return {T}
+     * @return {Pr&lt;T&gt; | Error}
      */
     get() {
         return this.state;

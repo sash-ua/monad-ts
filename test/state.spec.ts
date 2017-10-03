@@ -41,7 +41,7 @@ describe('State: ', ()=>{
             v.arr = list.bind((x:number) => x+f, v.arr);
             return v;
         });
-        expect(st.get()instanceof Error).toBeTruthy();
+        expect(st.get() instanceof Error).toBeTruthy();
     });
     it('5) should produce state', ()=>{
         const iS: R = {
@@ -74,32 +74,32 @@ describe('State: ', ()=>{
     it('9) should produce Error', ()=>{
         const st = new State(0);
         st.bind((x: any) => x, 0);
-        expect(st.get()instanceof Error).toBeTruthy();
+        expect(st.get() instanceof Error).toBeTruthy();
     });
     it('10) should produce Error', ()=>{
         const st = new State('');
         st.bind((x: any) => x, '');
-        expect(st.get()instanceof Error).toBeTruthy();
+        expect(st.get() instanceof Error).toBeTruthy();
     });
     it('11) should produce value', ()=>{
         const st = new State(0);
         st.bind((x: any) => x);
-        expect(st.get()).toEqual(0);
+        expect(st.get() instanceof Error).toBeTruthy();
     });
     it('12) should produce value', ()=>{
         const st = new State('');
         st.bind((x: any) => x);
-        expect(st.get()).toEqual('');
+        expect(st.get() instanceof Error).toBeTruthy();
     });
     it('13) should produce value', ()=>{
         const st = new State();
         st.bind((x: any) => x, 0);
-        expect(st.get()).toEqual(0);
+        expect(st.get() instanceof Error).toBeTruthy();
     });
     it('14) should produce value', ()=>{
         const st = new State();
         st.bind((x: any) => x, '');
-        expect(st.get()).toEqual('');
+        expect(st.get() instanceof Error).toBeTruthy();
     });
     it('15) should return changed given object', ()=>{
         const initState: R = {

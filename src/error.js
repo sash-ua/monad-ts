@@ -29,11 +29,11 @@ var ErrorM = /** @class */ (function (_super) {
      */
     ErrorM.prototype.bind = function (f, v) {
         if (v !== v || v === Infinity || v === -Infinity || v instanceof Error) {
-            return this.errorHandler(v);
+            return this.fail(v);
         }
         else {
             var vL = this.just(f, v);
-            return (vL !== vL || vL === Infinity || vL === -Infinity || vL instanceof Error) ? this.errorHandler(vL) : vL;
+            return (vL !== vL || vL === Infinity || vL === -Infinity || vL instanceof Error) ? this.fail(vL) : vL;
         }
     };
     return ErrorM;

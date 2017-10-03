@@ -70,7 +70,7 @@ export class List extends Monad {
      * @return {Pr&lt;U&gt; | Error} transformed by f() value v or error if input arg is not array.
      */
     bind(f, v) {
-        return Array.isArray(v) ? this._disp(f, v) : this.errorHandler(&apos;List.bind() - input must be an array.&apos;);
+        return Array.isArray(v) ? this._disp(f, v) : this.fail(&apos;List.bind() - input must be an array.&apos;);
     }
     /**
      * @method _disp

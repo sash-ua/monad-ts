@@ -15,7 +15,7 @@ export class List<T> extends Monad<T> {
      * @return {Pr<U> | Error} transformed by f() value v or error if input arg is not array.
      */
     bind<T, U>(f:  MF<T, U>, v: any): Pr<U> | Error{
-        return Array.isArray(v) ? this._disp(f, v): this.errorHandler('List.bind() - input must be an array.');
+        return Array.isArray(v) ? this._disp(f, v): this.fail('List.bind() - input must be an array.');
     }
     /**
      * @method _disp

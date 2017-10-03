@@ -1,3 +1,17 @@
+# 0.3.16 (2017-10-03)
+
+### Bug fixed
+
+**state.get()** type issue.
+
+### Changes
+
+**state** can be initialized by object only.
+
+**wait** produce a promise rejection handler on an Error occur.
+
+* docs updated.
+
 # 0.3.15 (2017-10-02)
 
 ### Bug fixed

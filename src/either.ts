@@ -39,10 +39,10 @@ export class Either<T, U> extends  Monad<T> {
                 case false:
                     return this.l(v);
                 default:
-                    return this.errorHandler('Either.bind() - binding error');
+                    return this.fail('Either.bind() - binding error');
             }
         } catch (e) {
-            this.errorHandler(`Either.bind().switch - ${e}`);
+            this.fail(`Either.bind().switch - ${e}`);
         }
         
     }
@@ -54,7 +54,7 @@ export class Either<T, U> extends  Monad<T> {
      * @return {Pr}
      */
     left<T>(v: T): Pr<any>{
-        return this.uVal ? equality(this.uVal, v) ? this.l(v) : this.errorHandler('Either.left() - v have been binded with bind method') : this.l(v);
+        return this.uVal ? equality(this.uVal, v) ? this.l(v) : this.fail('Either.left() - v have been binded with bind method') : this.l(v);
     }
 
     /**
@@ -64,7 +64,7 @@ export class Either<T, U> extends  Monad<T> {
      * @return {Pr}
      */
     right<T>(v: T): Pr<any>{
-        return this.uVal ? equality(this.uVal, v) ? this.r(v) : this.errorHandler('Either.right() - v have been binded with bind method') : this.r(v);
+        return this.uVal ? equality(this.uVal, v) ? this.r(v) : this.fail('Either.right() - v have been binded with bind method') : this.r(v);
     }
 }
 

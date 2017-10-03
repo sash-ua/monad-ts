@@ -1,10 +1,9 @@
-
 import {Identity} from "../src/identity";
 
 describe('Identity: ', ()=>{
     it('1) should produce values', ()=>{
         const i = new Identity();
-        expect(i.just((v:number)=>v, 3)).toEqual(3);
+        expect(i.bind((v:number)=>v, 3)).toEqual(3);
     });
     it('2) should produce values', ()=>{
         const f = (v:number) => v;
@@ -13,12 +12,12 @@ describe('Identity: ', ()=>{
     it('3) should produce values', ()=>{
         const i = new Identity();
         const f = (v:number) => v;
-        expect(i.just((v:number) => v+2, i.just(f, 1))).toEqual(3);
+        expect(i.bind((v:number) => v+2, i.bind(f, 1))).toEqual(3);
     });
     it('4) should produce values', ()=>{
         const i = new Identity();
         const f = (v:number) => v;
-        expect(i.just((x:number) => i.just(v => v+2, f(x)), 1)).toEqual(3);
+        expect(i.bind((x:number) => i.bind(v => v+2, f(x)), 1)).toEqual(3);
     });
     it('5) should produce values', ()=>{
         const i = new Identity(3);

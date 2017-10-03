@@ -61,14 +61,14 @@
  * @method wait
  * @param {any} v - value should be returned.
  * @param {number} [t = 0] t - amount of time, in millis.
- * @return {Promise&lt;T&gt; | Error}
+ * @return {Promise&lt;T&gt;}
  */
 export function wait(v, t = 0) {
     return typeof t === &apos;number&apos; &amp;&amp; t &gt;= 0
-        ? new Promise(function (resolve) {
+        ? new Promise((resolve) =&gt; {
             setTimeout(() =&gt; resolve(v), t);
         })
-        : new Error(&apos;Function wait. Timeout must be number &gt;= 0.&apos;);
+        : Promise.reject(new Error(&apos;Function wait - timeout must be number &gt;= 0.&apos;));
 }
 //Copyright (c) 2017 Alex Tranchenko. All rights reserved. 
 </code></pre>

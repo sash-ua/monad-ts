@@ -4,34 +4,32 @@ import {Pr} from "../types/pr";
 /**
  * interface M<T>{
  *
- *  just<T,U>(f: MF<T, U>, v: T): Pr<U>;
+ * protected just<T,U>(f: MF<T, U>, v: T): Pr<U>;
  *
- *  errorHandler(e: Error | string): Error;
+ * protected  fail(e: Error | string): Error;
  *
  * }
  * @interface
  * @name M - monads interface, {@link Monad}.
  * @noimport true
  */
-export class M<T>{
+export interface M<T>{
     /**
-     * extracts value from monad.
+     * Extracts value from monad.
      * @param {function(v: T) => Pr<U>} f - transformation function for a monad.
      * @param {T} v - underlying value.
      * @return {Pr<U>} extracts transformed value by f(v).
+     * @protected
      */
-    just<T,U>(f: MF<T, U>, v: T): Pr<U> {
-        return void 0;
-    };
+    just<T,U>(f: MF<T, U>, v: T): Pr<U>;
 
     /**
-     * errors handler.
+     * Execute on error occur.
      * @param {Error | string} e - Error obj. or string.
      * @return {Error}
+     * @protected
      */
-    errorHandler(e: Error | string): Error {
-        return void 0;
-    };
+    fail(e: Error | string): Error;
 }
 
 

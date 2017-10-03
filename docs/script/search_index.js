@@ -588,9 +588,9 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/interfaces/m.js~m#errorhandler",
-    "class/src/interfaces/m.js~M.html#instance-method-errorHandler",
-    "src/interfaces/m.js~M#errorHandler",
+    "src/interfaces/m.js~m#fail",
+    "class/src/interfaces/m.js~M.html#instance-method-fail",
+    "src/interfaces/m.js~M#fail",
     "method"
   ],
   [
@@ -642,9 +642,9 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/monad.js~monad#errorhandler",
-    "class/src/monad.js~Monad.html#instance-method-errorHandler",
-    "src/monad.js~Monad#errorHandler",
+    "src/monad.js~monad#fail",
+    "class/src/monad.js~Monad.html#instance-method-fail",
+    "src/monad.js~Monad#fail",
     "method"
   ],
   [

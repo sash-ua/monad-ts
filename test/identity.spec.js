@@ -4,7 +4,7 @@ var identity_1 = require("../src/identity");
 describe('Identity: ', function () {
     it('1) should produce values', function () {
         var i = new identity_1.Identity();
-        expect(i.just(function (v) { return v; }, 3)).toEqual(3);
+        expect(i.bind(function (v) { return v; }, 3)).toEqual(3);
     });
     it('2) should produce values', function () {
         var f = function (v) { return v; };
@@ -13,12 +13,12 @@ describe('Identity: ', function () {
     it('3) should produce values', function () {
         var i = new identity_1.Identity();
         var f = function (v) { return v; };
-        expect(i.just(function (v) { return v + 2; }, i.just(f, 1))).toEqual(3);
+        expect(i.bind(function (v) { return v + 2; }, i.bind(f, 1))).toEqual(3);
     });
     it('4) should produce values', function () {
         var i = new identity_1.Identity();
         var f = function (v) { return v; };
-        expect(i.just(function (x) { return i.just(function (v) { return v + 2; }, f(x)); }, 1)).toEqual(3);
+        expect(i.bind(function (x) { return i.bind(function (v) { return v + 2; }, f(x)); }, 1)).toEqual(3);
     });
     it('5) should produce values', function () {
         var i = new identity_1.Identity(3);

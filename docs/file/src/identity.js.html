@@ -93,7 +93,7 @@ export class Identity extends Monad {
         return this.v &amp;&amp; v
             ? equality(this.v, v)
                 ? f(v)
-                : this.errorHandler(&apos;Identity.bind() - underlying value of the monad have defined in the constructor!&apos;)
+                : this.fail(&apos;Identity.bind() - underlying value of the monad have defined in the constructor!&apos;)
             : v || v === 0 || v === &apos;&apos; || v === null
                 ? f(v)
                 : f();

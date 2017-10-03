@@ -28,7 +28,7 @@ var List = /** @class */ (function (_super) {
      * @return {Pr<U> | Error} transformed by f() value v or error if input arg is not array.
      */
     List.prototype.bind = function (f, v) {
-        return Array.isArray(v) ? this._disp(f, v) : this.errorHandler('List.bind() - input must be an array.');
+        return Array.isArray(v) ? this._disp(f, v) : this.fail('List.bind() - input must be an array.');
     };
     /**
      * @method _disp

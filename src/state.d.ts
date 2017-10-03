@@ -1,6 +1,7 @@
 import { Maybe } from "./maybe";
 import { ErrorM } from "./error";
 import { Monad } from './monad';
+import { Pr } from "../index";
 /**
  * Class State - it takes a state and returns an intermediate value and some new state value.
  * @extends {Monad}
@@ -10,7 +11,7 @@ export declare class State<T> extends Monad<T> {
      * @type {any}
      * @protected
      */
-    protected state: any;
+    protected state: Pr<T> | Error;
     /**
      * @type {Maybe}
      * @protected
@@ -25,7 +26,7 @@ export declare class State<T> extends Monad<T> {
      * Creates an instance of the class State with an initialization or not, the initialization can be occur late with bind method.
      * @param {Object} [state] - the initial state of app.
      */
-    constructor(state?: T);
+    constructor(state?: Pr<T> | Error);
     /**
      * It takes an initial state of the monad if monad has initialized in the constructor then function assigns Error to underlying value.
      * @method bind
@@ -43,7 +44,7 @@ export declare class State<T> extends Monad<T> {
     /**
      * Extracts the state of app.
      * @method get
-     * @return {T}
+     * @return {Pr<T> | Error}
      */
-    get(): T;
+    get(): Pr<T> | Error;
 }

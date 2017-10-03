@@ -167,7 +167,7 @@
     "__docId__": 7,
     "kind": "file",
     "name": "src/either.js",
-    "content": "import { Monad } from \"./monad\";\r\nimport { equality } from \"./services/equality\";\r\n/**\r\n * Class Either - represents computation with two possibilities.\r\n * @extends {Monad}\r\n */\r\nexport class Either extends Monad {\r\n    /**\r\n     * Creates an instance of class Either.\r\n     * @param {function(v: any) => any} r - right function.\r\n     * @param {function(v: any) => any} l - left function.\r\n     */\r\n    constructor(r, l) {\r\n        super();\r\n        this.r = r;\r\n        this.l = l;\r\n    }\r\n    /**\r\n     * Binds controller function and underlying value to the monad.\r\n     * @method bind\r\n     * @param {D<T>} f - controller function, after execution f(v) produce true (execute right func-n) or false (execute left func-n).\r\n     * @param {any} v - underlying value for the monad.\r\n     * @return {boolean | Pr<any> | Error}\r\n     */\r\n    bind(f, v) {\r\n        this.uVal = v;\r\n        try {\r\n            switch (f(v)) {\r\n                case true:\r\n                    return this.r(v);\r\n                case false:\r\n                    return this.l(v);\r\n                default:\r\n                    return this.errorHandler('Either.bind() - binding error');\r\n            }\r\n        }\r\n        catch (e) {\r\n            this.errorHandler(`Either.bind().switch - ${e}`);\r\n        }\r\n    }\r\n    /**\r\n     * Extract result of left(v) computation.\r\n     * @method left\r\n     * @param {T} v - underlying value.\r\n     * @return {Pr}\r\n     */\r\n    left(v) {\r\n        return this.uVal ? equality(this.uVal, v) ? this.l(v) : this.errorHandler('Either.left() - v have been binded with bind method') : this.l(v);\r\n    }\r\n    /**\r\n     * Extract result of right(v) computation.\r\n     * @method right\r\n     * @param {T} v - underlying value.\r\n     * @return {Pr}\r\n     */\r\n    right(v) {\r\n        return this.uVal ? equality(this.uVal, v) ? this.r(v) : this.errorHandler('Either.right() - v have been binded with bind method') : this.r(v);\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
+    "content": "import { Monad } from \"./monad\";\r\nimport { equality } from \"./services/equality\";\r\n/**\r\n * Class Either - represents computation with two possibilities.\r\n * @extends {Monad}\r\n */\r\nexport class Either extends Monad {\r\n    /**\r\n     * Creates an instance of class Either.\r\n     * @param {function(v: any) => any} r - right function.\r\n     * @param {function(v: any) => any} l - left function.\r\n     */\r\n    constructor(r, l) {\r\n        super();\r\n        this.r = r;\r\n        this.l = l;\r\n    }\r\n    /**\r\n     * Binds controller function and underlying value to the monad.\r\n     * @method bind\r\n     * @param {D<T>} f - controller function, after execution f(v) produce true (execute right func-n) or false (execute left func-n).\r\n     * @param {any} v - underlying value for the monad.\r\n     * @return {boolean | Pr<any> | Error}\r\n     */\r\n    bind(f, v) {\r\n        this.uVal = v;\r\n        try {\r\n            switch (f(v)) {\r\n                case true:\r\n                    return this.r(v);\r\n                case false:\r\n                    return this.l(v);\r\n                default:\r\n                    return this.fail('Either.bind() - binding error');\r\n            }\r\n        }\r\n        catch (e) {\r\n            this.fail(`Either.bind().switch - ${e}`);\r\n        }\r\n    }\r\n    /**\r\n     * Extract result of left(v) computation.\r\n     * @method left\r\n     * @param {T} v - underlying value.\r\n     * @return {Pr}\r\n     */\r\n    left(v) {\r\n        return this.uVal ? equality(this.uVal, v) ? this.l(v) : this.fail('Either.left() - v have been binded with bind method') : this.l(v);\r\n    }\r\n    /**\r\n     * Extract result of right(v) computation.\r\n     * @method right\r\n     * @param {T} v - underlying value.\r\n     * @return {Pr}\r\n     */\r\n    right(v) {\r\n        return this.uVal ? equality(this.uVal, v) ? this.r(v) : this.fail('Either.right() - v have been binded with bind method') : this.r(v);\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
     "static": true,
     "longname": "src/either.js",
     "access": null,
@@ -429,7 +429,7 @@
     "__docId__": 16,
     "kind": "file",
     "name": "src/error.js",
-    "content": "import { Monad } from \"./monad\";\r\n/**\r\n * Class ErrorM - return given value or produce Error if take Error or get Error after execution of f(v).\r\n * @extends {Monad}\r\n */\r\nexport class ErrorM extends Monad {\r\n    /**\r\n     * Chains the operations on a monadic values.\r\n     * @method bind\r\n     * @param {function(v: T) => Pr<U>} f - transformation function for a monad.\r\n     * @param {any} v - underlying value for a monad.\r\n     * @return {Pr<U>  | Error} transformed by f() value v or Error.\r\n     */\r\n    bind(f, v) {\r\n        if (v !== v || v === Infinity || v === -Infinity || v instanceof Error) {\r\n            return this.errorHandler(v);\r\n        }\r\n        else {\r\n            const vL = this.just(f, v);\r\n            return (vL !== vL || vL === Infinity || vL === -Infinity || vL instanceof Error) ? this.errorHandler(vL) : vL;\r\n        }\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
+    "content": "import { Monad } from \"./monad\";\r\n/**\r\n * Class ErrorM - return given value or produce Error if take Error or get Error after execution of f(v).\r\n * @extends {Monad}\r\n */\r\nexport class ErrorM extends Monad {\r\n    /**\r\n     * Chains the operations on a monadic values.\r\n     * @method bind\r\n     * @param {function(v: T) => Pr<U>} f - transformation function for a monad.\r\n     * @param {any} v - underlying value for a monad.\r\n     * @return {Pr<U>  | Error} transformed by f() value v or Error.\r\n     */\r\n    bind(f, v) {\r\n        if (v !== v || v === Infinity || v === -Infinity || v instanceof Error) {\r\n            return this.fail(v);\r\n        }\r\n        else {\r\n            const vL = this.just(f, v);\r\n            return (vL !== vL || vL === Infinity || vL === -Infinity || vL instanceof Error) ? this.fail(vL) : vL;\r\n        }\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
     "static": true,
     "longname": "src/error.js",
     "access": null,
@@ -772,7 +772,7 @@
     "__docId__": 29,
     "kind": "file",
     "name": "src/identity.js",
-    "content": "import { Monad } from \"./monad\";\r\nimport { clone } from \"./services/clone\";\r\nimport { equality } from \"./services/equality\";\r\nimport { ErrorM } from \"./error\";\r\n/**\r\n * Class Identity - wraps underlying value into the monadic value and compute results from a monadic value.\r\n * @extends {Monad}\r\n */\r\nexport class Identity extends Monad {\r\n    /**\r\n     * Creates an instance of class Identity.\r\n     * @param {any} [v] - The initial state of app.\r\n     * */\r\n    constructor(v) {\r\n        super();\r\n        /**\r\n         * Keeps underlying value of a monad.\r\n         * @type {any}\r\n         */\r\n        this.v = clone(v);\r\n        /**\r\n         * The instance of ErrorM.\r\n         * @type {ErrorM}\r\n         */\r\n        this.err = new ErrorM();\r\n    }\r\n    /**\r\n     * Chains the operations on a monadic value.\r\n     * @method bind\r\n     * @param {MF<T, U>} f - transformation function for the monad.\r\n     * @param {any} [v = this.v]- underlying value for the monad, it can be null.\r\n     * @return {Pr<U> | Error}\r\n     */\r\n    bind(f, v = this.v) {\r\n        return this.v && v\r\n            ? equality(this.v, v)\r\n                ? f(v)\r\n                : this.errorHandler('Identity.bind() - underlying value of the monad have defined in the constructor!')\r\n            : v || v === 0 || v === '' || v === null\r\n                ? f(v)\r\n                : f();\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
+    "content": "import { Monad } from \"./monad\";\r\nimport { clone } from \"./services/clone\";\r\nimport { equality } from \"./services/equality\";\r\nimport { ErrorM } from \"./error\";\r\n/**\r\n * Class Identity - wraps underlying value into the monadic value and compute results from a monadic value.\r\n * @extends {Monad}\r\n */\r\nexport class Identity extends Monad {\r\n    /**\r\n     * Creates an instance of class Identity.\r\n     * @param {any} [v] - The initial state of app.\r\n     * */\r\n    constructor(v) {\r\n        super();\r\n        /**\r\n         * Keeps underlying value of a monad.\r\n         * @type {any}\r\n         */\r\n        this.v = clone(v);\r\n        /**\r\n         * The instance of ErrorM.\r\n         * @type {ErrorM}\r\n         */\r\n        this.err = new ErrorM();\r\n    }\r\n    /**\r\n     * Chains the operations on a monadic value.\r\n     * @method bind\r\n     * @param {MF<T, U>} f - transformation function for the monad.\r\n     * @param {any} [v = this.v]- underlying value for the monad, it can be null.\r\n     * @return {Pr<U> | Error}\r\n     */\r\n    bind(f, v = this.v) {\r\n        return this.v && v\r\n            ? equality(this.v, v)\r\n                ? f(v)\r\n                : this.fail('Identity.bind() - underlying value of the monad have defined in the constructor!')\r\n            : v || v === 0 || v === '' || v === null\r\n                ? f(v)\r\n                : f();\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
     "static": true,
     "longname": "src/identity.js",
     "access": null,
@@ -916,7 +916,7 @@
     "__docId__": 35,
     "kind": "file",
     "name": "src/interfaces/m.js",
-    "content": "/**\r\n * interface M<T>{\r\n *\r\n *  just<T,U>(f: MF<T, U>, v: T): Pr<U>;\r\n *\r\n *  errorHandler(e: Error | string): Error;\r\n *\r\n * }\r\n * @interface\r\n * @name M - monads interface, {@link Monad}.\r\n * @noimport true\r\n */\r\nexport class M {\r\n    /**\r\n     * extracts value from monad.\r\n     * @param {function(v: T) => Pr<U>} f - transformation function for a monad.\r\n     * @param {T} v - underlying value.\r\n     * @return {Pr<U>} extracts transformed value by f(v).\r\n     */\r\n    just(f, v) {\r\n        return void 0;\r\n    }\r\n    ;\r\n    /**\r\n     * errors handler.\r\n     * @param {Error | string} e - Error obj. or string.\r\n     * @return {Error}\r\n     */\r\n    errorHandler(e) {\r\n        return void 0;\r\n    }\r\n    ;\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
+    "content": "/**\r\n * interface M<T>{\r\n *\r\n * protected just<T,U>(f: MF<T, U>, v: T): Pr<U>;\r\n *\r\n * protected  fail(e: Error | string): Error;\r\n *\r\n * }\r\n * @interface\r\n * @name M - monads interface, {@link Monad}.\r\n * @noimport true\r\n */\r\nexport class M {\r\n    /**\r\n     * Extracts value from monad.\r\n     * @param {function(v: T) => Pr<U>} f - transformation function for a monad.\r\n     * @param {T} v - underlying value.\r\n     * @return {Pr<U>} extracts transformed value by f(v).\r\n     * @protected\r\n     */\r\n    just(f, v) {\r\n        return void 0;\r\n    }\r\n    ;\r\n    /**\r\n     * Execute on error occur.\r\n     * @param {Error | string} e - Error obj. or string.\r\n     * @return {Error}\r\n     * @protected\r\n     */\r\n    fail(e) {\r\n        return void 0;\r\n    }\r\n    ;\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
     "static": true,
     "longname": "src/interfaces/m.js",
     "access": null,
@@ -934,7 +934,7 @@
     "export": true,
     "importPath": "monad-ts/src/interfaces/m.js",
     "importStyle": "{M}",
-    "description": "interface M<T>{\n\n just<T,U>(f: MF<T, U>, v: T): Pr<U>;\n\n errorHandler(e: Error | string): Error;\n\n}",
+    "description": "interface M<T>{\n\nprotected just<T,U>(f: MF<T, U>, v: T): Pr<U>;\n\nprotected  fail(e: Error | string): Error;\n\n}",
     "lineNumber": 13,
     "unknown": [
       {
@@ -953,9 +953,9 @@
     "async": false,
     "static": false,
     "longname": "src/interfaces/m.js~M#just",
-    "access": null,
-    "description": "extracts value from monad.",
-    "lineNumber": 20,
+    "access": "protected",
+    "description": "Extracts value from monad.",
+    "lineNumber": 21,
     "params": [
       {
         "nullable": null,
@@ -990,15 +990,15 @@
   {
     "__docId__": 38,
     "kind": "method",
-    "name": "errorHandler",
+    "name": "fail",
     "memberof": "src/interfaces/m.js~M",
     "generator": false,
     "async": false,
     "static": false,
-    "longname": "src/interfaces/m.js~M#errorHandler",
-    "access": null,
-    "description": "errors handler.",
-    "lineNumber": 29,
+    "longname": "src/interfaces/m.js~M#fail",
+    "access": "protected",
+    "description": "Execute on error occur.",
+    "lineNumber": 31,
     "params": [
       {
         "nullable": null,
@@ -1025,7 +1025,7 @@
     "__docId__": 39,
     "kind": "file",
     "name": "src/list.js",
-    "content": "import { Monad } from \"./monad\";\r\n/**\r\n * Class List - transform every element of array with given function \"contemporaneously\".\r\n * @extends {Monad}\r\n */\r\nexport class List extends Monad {\r\n    /**\r\n     * Transform every element of array with given function\r\n     * @method bind\r\n     * @param {MF<T, U>} f - transformation function for a monad.\r\n     * @param v - underlying value for a monad.\r\n     * @return {Pr<U> | Error} transformed by f() value v or error if input arg is not array.\r\n     */\r\n    bind(f, v) {\r\n        return Array.isArray(v) ? this._disp(f, v) : this.errorHandler('List.bind() - input must be an array.');\r\n    }\r\n    /**\r\n     * @method _disp\r\n     * @param {function(n: T) => U} f - transformation function for a monad.\r\n     * @param {any} v - underlying value for a monad.\r\n     * @return {Array<U>} transformed by f() value v.\r\n     * @private\r\n     */\r\n    _disp(f, v) {\r\n        return v.map((vL) => {\r\n            return !Array.isArray(vL) ? f(vL) : this._disp(f, vL);\r\n        });\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
+    "content": "import { Monad } from \"./monad\";\r\n/**\r\n * Class List - transform every element of array with given function \"contemporaneously\".\r\n * @extends {Monad}\r\n */\r\nexport class List extends Monad {\r\n    /**\r\n     * Transform every element of array with given function\r\n     * @method bind\r\n     * @param {MF<T, U>} f - transformation function for a monad.\r\n     * @param v - underlying value for a monad.\r\n     * @return {Pr<U> | Error} transformed by f() value v or error if input arg is not array.\r\n     */\r\n    bind(f, v) {\r\n        return Array.isArray(v) ? this._disp(f, v) : this.fail('List.bind() - input must be an array.');\r\n    }\r\n    /**\r\n     * @method _disp\r\n     * @param {function(n: T) => U} f - transformation function for a monad.\r\n     * @param {any} v - underlying value for a monad.\r\n     * @return {Array<U>} transformed by f() value v.\r\n     * @private\r\n     */\r\n    _disp(f, v) {\r\n        return v.map((vL) => {\r\n            return !Array.isArray(vL) ? f(vL) : this._disp(f, vL);\r\n        });\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
     "static": true,
     "longname": "src/list.js",
     "access": null,
@@ -1259,7 +1259,7 @@
     "__docId__": 47,
     "kind": "file",
     "name": "src/monad.js",
-    "content": "/**\r\n * Class Monad - Base abstract class.\r\n * @implements {M}\r\n * @abstract\r\n */\r\nexport class Monad {\r\n    /**\r\n     * Binds transformation function and underlying value to the monad.\r\n     * @method bind\r\n     * @param {MF<T, U> | D<T>} f - transformation function.\r\n     * @param v - underlying value.\r\n     * @return {Promise<U> | Pr<U> | Error | boolean  | void}\r\n     * @abstract\r\n     */\r\n    bind(f, v) {\r\n        return void 0;\r\n    }\r\n    ;\r\n    /**\r\n     * Takes Error or string return Error.\r\n     * @method errorHandler\r\n     * @param {Error | string} e - Error obj. or string.\r\n     * @return {Error}\r\n     * @protected\r\n     */\r\n    errorHandler(e) {\r\n        return e instanceof Error ? e : new Error(e);\r\n    }\r\n    /**\r\n     * Produces result after execution f(v).\r\n     * @method just\r\n     * @param {function(v: T) => Pr<U>} f - transformation function for a monad.\r\n     * @param {T} v - underlying value.\r\n     * @return {Pr<U>} extracts transformed value by f(v).\r\n     * @protected\r\n     */\r\n    just(f, v) {\r\n        return f(v);\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
+    "content": "/**\r\n * Class Monad - Base abstract class.\r\n * @implements {M}\r\n * @abstract\r\n */\r\nexport class Monad {\r\n    /**\r\n     * Binds transformation function and underlying value to the monad.\r\n     * @method bind\r\n     * @param {MF<T, U> | D<T>} f - transformation function.\r\n     * @param v - underlying value.\r\n     * @return {Promise<U> | Pr<U> | Error | boolean  | void}\r\n     * @abstract\r\n     */\r\n    bind(f, v) {\r\n        return void 0;\r\n    }\r\n    ;\r\n    /**\r\n     * Takes Error or string return Error.\r\n     * @method fail\r\n     * @param {Error | string} e - Error obj. or string.\r\n     * @return {Error}\r\n     * @protected\r\n     */\r\n    fail(e) {\r\n        return e instanceof Error ? e : new Error(e);\r\n    }\r\n    /**\r\n     * Produces result after execution f(v).\r\n     * @method just\r\n     * @param {function(v: T) => Pr<U>} f - transformation function for a monad.\r\n     * @param {T} v - underlying value.\r\n     * @return {Pr<U>} extracts transformed value by f(v).\r\n     * @protected\r\n     */\r\n    just(f, v) {\r\n        return f(v);\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
     "static": true,
     "longname": "src/monad.js",
     "access": null,
@@ -1338,19 +1338,19 @@
   {
     "__docId__": 50,
     "kind": "method",
-    "name": "errorHandler",
+    "name": "fail",
     "memberof": "src/monad.js~Monad",
     "generator": false,
     "async": false,
     "static": false,
-    "longname": "src/monad.js~Monad#errorHandler",
+    "longname": "src/monad.js~Monad#fail",
     "access": "protected",
     "description": "Takes Error or string return Error.",
     "lineNumber": 26,
     "unknown": [
       {
         "tagName": "@method",
-        "tagValue": "errorHandler"
+        "tagValue": "fail"
       }
     ],
     "params": [
@@ -1970,7 +1970,7 @@
     "__docId__": 66,
     "kind": "file",
     "name": "src/services/wait.js",
-    "content": "/**\r\n * Converts timeout in a Promise, resolved when specified amount of time passes.\r\n * @method wait\r\n * @param {any} v - value should be returned.\r\n * @param {number} [t = 0] t - amount of time, in millis.\r\n * @return {Promise<T> | Error}\r\n */\r\nexport function wait(v, t = 0) {\r\n    return typeof t === 'number' && t >= 0\r\n        ? new Promise(function (resolve) {\r\n            setTimeout(() => resolve(v), t);\r\n        })\r\n        : new Error('Function wait. Timeout must be number >= 0.');\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
+    "content": "/**\r\n * Converts timeout in a Promise, resolved when specified amount of time passes.\r\n * @method wait\r\n * @param {any} v - value should be returned.\r\n * @param {number} [t = 0] t - amount of time, in millis.\r\n * @return {Promise<T>}\r\n */\r\nexport function wait(v, t = 0) {\r\n    return typeof t === 'number' && t >= 0\r\n        ? new Promise((resolve) => {\r\n            setTimeout(() => resolve(v), t);\r\n        })\r\n        : Promise.reject(new Error('Function wait - timeout must be number >= 0.'));\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
     "static": true,
     "longname": "src/services/wait.js",
     "access": null,
@@ -2025,8 +2025,7 @@
     "return": {
       "nullable": null,
       "types": [
-        "Promise<T> ",
-        " Error"
+        "Promise<T>"
       ],
       "spread": false,
       "description": ""
@@ -2036,7 +2035,7 @@
     "__docId__": 68,
     "kind": "file",
     "name": "src/state.js",
-    "content": "import { Maybe } from \"./maybe\";\r\nimport { ErrorM } from \"./error\";\r\nimport { clone } from \"./services/clone\";\r\nimport { equality } from \"./services/equality\";\r\nimport { Monad } from './monad';\r\n/**\r\n * Class State - it takes a state and returns an intermediate value and some new state value.\r\n * @extends {Monad}\r\n */\r\nexport class State extends Monad {\r\n    /**\r\n     * Creates an instance of the class State with an initialization or not, the initialization can be occur late with bind method.\r\n     * @param {Object} [state] - the initial state of app.\r\n     */\r\n    constructor(state) {\r\n        super();\r\n        /**\r\n         * Keeps the state of application variables.\r\n         * @type {any}\r\n         */\r\n        this.state = clone(state);\r\n        /**\r\n         * The instance of Maybe.\r\n         * @type {Maybe}\r\n         */\r\n        this.maybe = new Maybe();\r\n        /**\r\n         * The instance of ErrorM.\r\n         * @type {ErrorM}\r\n         */\r\n        this.err = new ErrorM();\r\n    }\r\n    /**\r\n     * It takes an initial state of the monad if monad has initialized in the constructor then function assigns Error to underlying value.\r\n     * @method bind\r\n     * @param {Function} f\r\n     * @param [v] - underlying value for the monad, it can be null.\r\n     */\r\n    bind(f, v) {\r\n        const state = !!this.state || this.state === 0 || this.state === '' || this.state === null;\r\n        const vL = !!v || v === 0 || v === '' || v === null;\r\n        switch (true) {\r\n            case (state && vL):\r\n                this.state = this.errorHandler('State.bind() - underlying value of the monad have defined in the constructor!');\r\n                break;\r\n            case (!state && !vL):\r\n                this.state = this.errorHandler('State.bind() - underlying value of the monad have not defined!');\r\n                break;\r\n            case (!state && vL):\r\n                this.state = v;\r\n                break;\r\n        }\r\n    }\r\n    /**\r\n     * Changes the state of application variables, if you try add new key with put() to state object it'll be assigned\r\n     * with Error instance.\r\n     * @method put\r\n     * @param {function(v: T)=> T} f - app. state transformation function.\r\n     */\r\n    put(f) {\r\n        const buffer = clone(this.state);\r\n        this.state = this.err.bind((v) => equality(Object.getOwnPropertyNames(buffer), Object.getOwnPropertyNames(v))\r\n            ? v\r\n            : this.errorHandler('State.put()._maybeErrorT() - after init we can not add / remove keys in state obj.'), this.maybe.bind((v) => f(v), this.state));\r\n    }\r\n    /**\r\n     * Extracts the state of app.\r\n     * @method get\r\n     * @return {T}\r\n     */\r\n    get() {\r\n        return this.state;\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
+    "content": "import { Maybe } from \"./maybe\";\r\nimport { ErrorM } from \"./error\";\r\nimport { clone } from \"./services/clone\";\r\nimport { equality } from \"./services/equality\";\r\nimport { Monad } from './monad';\r\n/**\r\n * Class State - it takes a state and returns an intermediate value and some new state value.\r\n * @extends {Monad}\r\n */\r\nexport class State extends Monad {\r\n    /**\r\n     * Creates an instance of the class State with an initialization or not, the initialization can be occur late with bind method.\r\n     * @param {Object} [state] - the initial state of app.\r\n     */\r\n    constructor(state) {\r\n        super();\r\n        /**\r\n         * Keeps the state of application variables.\r\n         * @type {any}\r\n         */\r\n        this.state = clone(state);\r\n        /**\r\n         * The instance of Maybe.\r\n         * @type {Maybe}\r\n         */\r\n        this.maybe = new Maybe();\r\n        /**\r\n         * The instance of ErrorM.\r\n         * @type {ErrorM}\r\n         */\r\n        this.err = new ErrorM();\r\n    }\r\n    /**\r\n     * It takes an initial state of the monad if monad has initialized in the constructor then function assigns Error to underlying value.\r\n     * @method bind\r\n     * @param {Function} f\r\n     * @param [v] - underlying value for the monad, it can be null.\r\n     */\r\n    bind(f, v) {\r\n        const state = !!this.state;\r\n        const vL = !!v;\r\n        switch (true) {\r\n            case (state && vL):\r\n                this.state = this.fail('State.bind() - underlying value of the monad have defined in the constructor!');\r\n                break;\r\n            case (!state && !vL):\r\n                this.state = this.fail('State.bind() - underlying value of the monad have not defined!');\r\n                break;\r\n            case (!state && vL):\r\n                this.state = v;\r\n                break;\r\n        }\r\n    }\r\n    /**\r\n     * Changes the state of application variables, if you try add new key with put() to state object it'll be assigned\r\n     * with Error instance.\r\n     * @method put\r\n     * @param {function(v: T)=> T} f - app. state transformation function.\r\n     */\r\n    put(f) {\r\n        const buffer = clone(this.state);\r\n        this.state = this.err.bind((v) => equality(Object.getOwnPropertyNames(buffer), Object.getOwnPropertyNames(v))\r\n            ? v\r\n            : this.fail('State.put()._maybeErrorT() - after init we can not add / remove keys in state obj.'), this.maybe.bind((v) => f(v), this.state));\r\n    }\r\n    /**\r\n     * Extracts the state of app.\r\n     * @method get\r\n     * @return {Pr<T> | Error}\r\n     */\r\n    get() {\r\n        return this.state;\r\n    }\r\n}\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
     "static": true,
     "longname": "src/state.js",
     "access": null,
@@ -2329,7 +2328,8 @@
     "return": {
       "nullable": null,
       "types": [
-        "T"
+        "Pr<T> ",
+        " Error"
       ],
       "spread": false,
       "description": ""
@@ -2367,7 +2367,7 @@
     "__docId__": 83,
     "kind": "file",
     "name": "src/types/mf.js",
-    "content": "/**\r\n * MF<T, U> - transformation function's type.\r\n * @public\r\n * @typedef {function(v: T): Pr<U>} MF<T,U>\r\n */\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved. \r\n",
+    "content": "/**\r\n * MF<T, U> - transformation function's type.\r\n * @public\r\n * @typedef {function(v: T): Pr<U>} MF<T,U>\r\n */\r\n//Copyright (c) 2017 Alex Tranchenko. All rights reserved.\r\n",
     "static": true,
     "longname": "src/types/mf.js",
     "access": null,

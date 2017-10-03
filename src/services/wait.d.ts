@@ -3,6 +3,6 @@
  * @method wait
  * @param {any} v - value should be returned.
  * @param {number} [t = 0] t - amount of time, in millis.
- * @return {Promise<T> | Error}
+ * @return {Promise<T>}
  */
-export declare function wait<T>(v: any, t?: number): Promise<T> | Error;
+export declare function wait<T>(v: any, t?: number): Promise<T>;

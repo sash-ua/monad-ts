@@ -51,14 +51,14 @@ var State = /** @class */ (function (_super) {
      * @param [v] - underlying value for the monad, it can be null.
      */
     State.prototype.bind = function (f, v) {
-        var state = !!this.state || this.state === 0 || this.state === '' || this.state === null;
-        var vL = !!v || v === 0 || v === '' || v === null;
+        var state = !!this.state;
+        var vL = !!v;
         switch (true) {
             case (state && vL):
-                this.state = this.errorHandler('State.bind() - underlying value of the monad have defined in the constructor!');
+                this.state = this.fail('State.bind() - underlying value of the monad have defined in the constructor!');
                 break;
             case (!state && !vL):
-                this.state = this.errorHandler('State.bind() - underlying value of the monad have not defined!');
+                this.state = this.fail('State.bind() - underlying value of the monad have not defined!');
                 break;
             case (!state && vL):
                 this.state = v;
@@ -76,12 +76,12 @@ var State = /** @class */ (function (_super) {
         var buffer = clone_1.clone(this.state);
         this.state = this.err.bind(function (v) { return equality_1.equality(Object.getOwnPropertyNames(buffer), Object.getOwnPropertyNames(v))
             ? v
-            : _this.errorHandler('State.put()._maybeErrorT() - after init we can not add / remove keys in state obj.'); }, this.maybe.bind(function (v) { return f(v); }, this.state));
+            : _this.fail('State.put()._maybeErrorT() - after init we can not add / remove keys in state obj.'); }, this.maybe.bind(function (v) { return f(v); }, this.state));
     };
     /**
      * Extracts the state of app.
      * @method get
-     * @return {T}
+     * @return {Pr<T> | Error}
      */
     State.prototype.get = function () {
         return this.state;

@@ -207,12 +207,13 @@ z = cast(list.bind((v: number) =&gt;list.bind((v: number) =&gt; [-v, v], [v-1, v
 </code></pre><h4 id="state">State</h4>
 <p>The State monad interact with local and global state variables to transform them. After initializing an instance of State monad we can not
 add new keys to the state object.
-It take object usually.</p>
+It take object.</p>
 <p>The instance of the State monad can be initialized in two ways.</p>
 <ol>
 <li><p>While the instance create - in constructor (Ex.1).</p>
 </li>
-<li><p>After instance created - with <code>bind()</code> method (Ex.2).</p>
+<li><p>After instance created - use <code>bind()</code> method (Ex.2). The function <code>x =&gt; x</code> in <code>st.bind(x =&gt; x, initState);</code> is for backward
+compatibility with previous versions, it&apos;s unused in the method.</p>
 </li>
 </ol>
 <p>Example 1:</p>
@@ -310,7 +311,8 @@ equality(
 <pre><code><code class="source-code prettyprint">let g = hash(&apos;test &quot;#^test &quot;#^test &quot;#^testRrr G!@#$%^&amp;*()__+&lt;&gt;?ZXCV&quot;:A&apos;); // g = 2692353561</code>
 </code></pre><h4 id="wait">wait</h4>
 <p>Function to convert timeout in a Promise, resolved when specified amount of time passes. It take value (v) end emit
-Promise after t timeout with value (v). <code>wait(v, t)</code></p>
+Promise after t timeout with value (v). <code>wait(v, t)</code>
+It produce a promise rejection handler on an Error occur.</p>
 <pre><code><code class="source-code prettyprint">const s = wait(1, 300).then((v: number)=&gt;{
             console.log(v);                 // v = 1, emitted after 300 ms
         })</code>
