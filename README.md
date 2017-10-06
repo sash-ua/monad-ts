@@ -133,16 +133,6 @@ const left = (y: string) => y + ' - isn\'t string';  // if cond(v) return false,
 const cond = (v:any) => typeof v === 'string';       // dispatcher function - cond(v)
 const e = new Either(right, left).bind(cond , uVal); // '10 - isn't string'
 ```
-or another way, useful in asynchronous code
-```
-const uVal = 10;                                     // underlying value
-const right = (x: number) => x+1;                    // if cond(v) return true, than executed
-const left = (y: string) => y + ' - isn\'t string';  // if cond(v) return false, than executed
-const cond = (v:any) => typeof v === 'string';       // dispatcher function - cond(v)
-const e = new Either(right, left);                   // to wrap functions in the monad
-const w = cond(uVal) ? right(uVal) : left(uVal);     // '10 - isn't string'
-
-```
 
 #### ErrorM
 
@@ -167,7 +157,7 @@ i.bind((v:number) => v);      // 3
 ```
 ```
 const i = new Identity();
-i.just((v:number) => v+1, 3); // 4
+i.bind((v:number) => v, 3); // 3
 ```
 
 #### Maybe
@@ -215,7 +205,7 @@ The instance of the State monad can be initialized in two ways.
 1. While the instance create - in constructor (Ex.1).
 
 2. After instance created - use `bind()` method (Ex.2). The function `x => x` in `st.bind(x => x, initState);` is for backward
-compatibility with previous versions, it's unused in the method. Lazy initialization can be useful in some cases.
+compatibility with previous versions, it's unused in the method. Delayed initialization can be useful in some cases.
 
 Example 1:
 ```

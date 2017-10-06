@@ -160,14 +160,8 @@ const right = (x: number) =&gt; x+1;                    // if cond(v) return tru
 const left = (y: string) =&gt; y + &apos; - isn\&apos;t string&apos;;  // if cond(v) return false, than executed
 const cond = (v:any) =&gt; typeof v === &apos;string&apos;;       // dispatcher function - cond(v)
 const e = new Either(right, left).bind(cond , uVal); // &apos;10 - isn&apos;t string&apos;</code>
-</code></pre><p>or another way, useful in asynchronous code</p>
-<pre><code><code class="source-code prettyprint">const uVal = 10;                                     // underlying value
-const right = (x: number) =&gt; x+1;                    // if cond(v) return true, than executed
-const left = (y: string) =&gt; y + &apos; - isn\&apos;t string&apos;;  // if cond(v) return false, than executed
-const cond = (v:any) =&gt; typeof v === &apos;string&apos;;       // dispatcher function - cond(v)
-const e = new Either(right, left);                   // to wrap functions in the monad
-const w = cond(uVal) ? right(uVal) : left(uVal);     // &apos;10 - isn&apos;t string&apos;</code>
-</code></pre><h4 id="errorm">ErrorM</h4>
+</code></pre>
+<h4 id="errorm">ErrorM</h4>
 <p>It similar to the Identity but it can also represent the error. Error monad returns value transformed by given function.
 If Error monad gets Error in given values it produce Error. If after application of given transformation function monad
 get Error monad produce Error.</p>
@@ -180,7 +174,7 @@ e.bind((v: number) =&gt; e.bind((v1: number)=&gt;v+v1, 1), 1/0); // Error</code>
 <pre><code><code class="source-code prettyprint">const i = new Identity(3);    // Identity({v: 3})
 i.bind((v:number) =&gt; v);      // 3</code>
 </code></pre><pre><code><code class="source-code prettyprint">const i = new Identity();
-i.just((v:number) =&gt; v+1, 3); // 4</code>
+i.bind((v:number) =&gt; v, 3); // 3 </code>
 </code></pre><h4 id="maybe">Maybe</h4>
 <p>It similar to the Identity but it can also represent the absence of any value. Monad Maybe returns value transformed
 by given function. If Maybe monad gets null or undefined in given values it produce null. If after application of given
@@ -212,8 +206,8 @@ It take object.</p>
 <ol>
 <li><p>While the instance create - in constructor (Ex.1).</p>
 </li>
-<li><p>After instance created - use <code>bind()</code> method (Ex.2). The function <code>x =&gt; x</code> in <code>st.bind(x =&gt; x, initState);</code> is for backward
-compatibility with previous versions, it&apos;s unused in the method.</p>
+<li><p>After instance created - use <code>bind()</code> method (Ex.2). The function <code>x =&gt; x</code> in <code>st.bind(x =&gt; x, initState)</code> is for backward
+compatibility with previous versions, it&apos;s unused in the method. Delayed initialization can be useful in some cases.</p>
 </li>
 </ol>
 <p>Example 1:</p>
