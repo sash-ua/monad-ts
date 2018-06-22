@@ -96,7 +96,7 @@ SystemJS.config({
 **2.** **WebPack** No special configuration.
 
 Example:
-```
+```ts
 import {Flow, List} from "monad-ts"
 
 const list = new List();
@@ -126,7 +126,7 @@ It represents computation with two possibilities, `right` and `left`. Attached b
 which of them apply to underlying value.
 
 Example:
-```
+```ts
 const uVal = 10;                                     // underlying value
 const right = (x: number) => x+1;                    // if cond(v) return true, than executed
 const left = (y: string) => y + ' - isn\'t string';  // if cond(v) return false, than executed
@@ -141,7 +141,7 @@ If Error monad gets Error in given values it produce Error. If after application
 get Error monad produce Error.
 
 Examples:
-```
+```ts
 const e = new ErrorM();
 e.bind((v: number) => e.bind((v1: number)=>v+v1, 1), 1/0); // Error
 ```
@@ -151,11 +151,11 @@ e.bind((v: number) => e.bind((v1: number)=>v+v1, 1), 1/0); // Error
 It returns underlying value transformed by given function. We can add underlying value in constructor or in bind method.
 
 Examples:
-```
+```ts
 const i = new Identity(3);    // Identity({v: 3})
 i.bind((v:number) => v);      // 3
 ```
-```
+```ts
 const i = new Identity();
 i.bind((v:number) => v, 3); // 3
 ```
@@ -167,7 +167,7 @@ by given function. If Maybe monad gets null or undefined in given values it prod
 transformation function monad get null or undefined monad produce null.
 
 Examples:
-```
+```ts
 const maybe = new Maybe();
 type G = { url: string; getUrl: () => any; };
 const z: G = {
@@ -187,10 +187,10 @@ The List monad represents a computed list of values. It takes in an input value 
 It get array and return array, to cast array dimension according to entered array we can use function [cast](#cast);
 
 Examples:
-```
+```ts
 const list = new List();
 const x = [10, 2];                                                                         // Entered array
-z = cast(list.bind((v: number) =>list.bind((v: number) => [-v, v], [v-1, v, v+1]), x), 2); // [ -9, 9, -10, 10, -11, 11, -1, 1, -2, 2,
+z = cast(list.bind((v: number) => list.bind((v: number) => [-v, v], [v-1, v, v+1]), x), 2); // [ -9, 9, -10, 10, -11, 11, -1, 1, -2, 2,
 -3, 3 ]
 ```
 
@@ -208,7 +208,7 @@ The instance of the State monad can be initialized in two ways.
 compatibility with previous versions, it's unused in the method. Delayed initialization can be useful in some cases.
 
 Example 1:
-```
+```ts
 type R = { data: number; children: any[]; arr: number[]; };
     const initState: R = {
         data: 1,
@@ -228,7 +228,7 @@ type R = { data: number; children: any[]; arr: number[]; };
     console.log(st.get()); // { data: 10, children: [ Object({ data: 2, parent: 'null' }) ], arr: [ 2.25, 3.25, 4.25 ] }
 ```
 Example 2:
-```
+```ts
 type R = { data: number; children: any[]; arr: number[]; };
     const initState: R = {
         data: 1,
@@ -259,7 +259,7 @@ initial value wouldn't be encapsulated and we will be able to change inner state
 `initV`.
 
 **NB** Initial value should be statically analyzable.
-```
+```ts
 new AsyncFlow(5)
   .bind((v) => v)
   .then((v) => v)
@@ -272,7 +272,7 @@ new AsyncFlow(5)
 
 #### Flow
 For composing monads in a flow (pipe). Class instance creation is identical to AsyncFlow.
-```
+```ts
 const e: number = 50;
 let r : number;
 let t : number[];
@@ -289,14 +289,14 @@ console.log(z); // [ -7, -6, -5, 5, 6, 7 ]
 
 #### cast
 Function to decreasing the dimension of an array by factor `n`. It takes array and factor.
-```
+```ts
 console.log(cast([10, [11], [12]], 0));           // [10, [11], [12]]
 console.log(cast([10, [[11, [2]], 3], [12]], 2)); // [ 10, 11, [ 2 ], 3, 12 ]
 ```
 
 #### clone
 Function to clone objects (including Map). It takes objects, arrays and primitives.
-```
+```ts
 const x = {x:1};
 const z = clone(x);
 z.x = 10;
@@ -312,7 +312,7 @@ Execute a function given a delay time. `debounceTime(func, d, i?)`, `func` - inv
 It checks equality of given arguments, arguments must be statically analyzable, therefore there are some constraints,
 look at **[examples]( https://sash-ua.github.io/monad-ts/function/index.html#static-function-equality )** to find
 them.
-```
+```ts
 // true
 equality(
   {x1: 0, x: [1, {c: [22, {j:21, g: 'ert'}, 23]}, NaN, Infinity, null, undefined], t: [null, 0]},
@@ -321,7 +321,7 @@ equality(
 ```
 #### hash
 It calculates a hash (32 bit).
-```
+```ts
 let g = hash('test "#^test "#^test "#^testRrr G!@#$%^&*()__+<>?ZXCV":A'); // g = 2692353561
 ```
 
@@ -329,7 +329,7 @@ let g = hash('test "#^test "#^test "#^testRrr G!@#$%^&*()__+<>?ZXCV":A'); // g =
 Function to convert timeout in a Promise, resolved when specified amount of time passes. It take value (v) end emit
 Promise after t timeout with value (v). `wait(v, t)`
 It produce a promise rejection handler on an Error occur.
-```
+```ts
 const s = wait(1, 300).then((v: number)=>{
             console.log(v);                 // v = 1, emitted after 300 ms
         })
